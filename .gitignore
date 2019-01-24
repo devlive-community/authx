@@ -1,33 +1,9 @@
-# Created by .ignore support plugin (hsz.mobi)
 ### JetBrains template
-# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
-# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
-
-# User-specific stuff
-.idea/**/workspace.xml
-.idea/**/tasks.xml
-.idea/**/dictionaries
-.idea/**/shelf
-
-# Sensitive or high-churn files
-.idea/**/dataSources/
-.idea/**/dataSources.ids
-.idea/**/dataSources.local.xml
-.idea/**/sqlDataSources.xml
-.idea/**/dynamic.xml
-.idea/**/uiDesigner.xml
-.idea/**/dbnavigator.xml
-
-# Gradle
-.idea/**/gradle.xml
-.idea/**/libraries
+.idea/
 
 # CMake
 cmake-build-debug/
 cmake-build-release/
-
-# Mongo Explorer plugin
-.idea/**/mongoSettings.xml
 
 # File-based project format
 *.iws
@@ -52,14 +28,8 @@ fabric.properties
 
 # Editor-based Rest Client
 .idea/httpRequests
-### Example user template template
-### Example user template
 
-# IntelliJ project files
-.idea
-*.iml
-out
-gen### Eclipse template
+### Example user template
 
 .metadata
 bin/
@@ -113,6 +83,7 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
+
 ### macOS template
 # General
 .DS_Store
@@ -140,6 +111,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
 ### Windows template
 # Windows thumbnail cache files
 Thumbs.db
@@ -164,6 +136,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
 ### Maven template
 target/
 pom.xml.tag
@@ -177,6 +150,7 @@ buildNumber.properties
 
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
+
 ### Linux template
 *~
 
@@ -191,4 +165,3 @@ buildNumber.properties
 
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
-
