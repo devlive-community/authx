@@ -13,6 +13,9 @@
         <module>bootstack-script</module>
         <module>bootstack-web</module>
         <module>bootstack-cache</module>
+        <module>bootstack-model</module>
+        <module>bootstack-repository</module>
+        <module>bootstack-service</module>
     </modules>
 
     <name>bootstack parent</name>
@@ -60,6 +63,16 @@
             <dependency>
                 <groupId>com.bootstack</groupId>
                 <artifactId>bootstack-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.bootstack</groupId>
+                <artifactId>bootstack-model</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.bootstack</groupId>
+                <artifactId>bootstack-repository</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!-- springboot -->
