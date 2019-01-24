@@ -12,6 +12,7 @@
         <module>bootstack-core</module>
         <module>bootstack-script</module>
         <module>bootstack-web</module>
+        <module>bootstack-cache</module>
     </modules>
 
     <name>bootstack parent</name>
