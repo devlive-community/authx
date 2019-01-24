@@ -13,18 +13,13 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!-- header -->
-    <head th:include="layout/common/layout-common-header::common-header('Home', 'Home')"></head>
-    <!-- script -->
-    <div th:include="layout/common/layout-common-script::common-script"></div>
+<head th:fragment="common-header(title, description)">
+    <meta charset="utf-8"/>
+    <title th:text="${title} + '- BootStack'"></title>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta th:content="${description}" name="description"/>
+    <meta content="qianmoQ" name="author"/>
+    <!-- bootstrap -->
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-
-<h1>Welcome To BootStack System!</h1>
-
-</body>
-</html>

@@ -11,6 +11,7 @@ bootstack is a open source privilege management platform
 |Java|1.8+|
 |SpringBoot|2.0.x|
 |Thymeleaf|-|
+|Bootstrap|4.2.x|
 
 ### Contributors(In no particular order)
 
