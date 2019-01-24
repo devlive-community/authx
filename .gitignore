@@ -1,5 +1,6 @@
 ### JetBrains template
 .idea/
+*.iml
 
 # CMake
 cmake-build-debug/

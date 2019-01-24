@@ -9,6 +9,8 @@
 
     <modules>
         <module>bootstack-common</module>
+        <module>bootstack-core</module>
+        <module>bootstack-script</module>
     </modules>
 
     <name>bootstack parent</name>
@@ -50,22 +52,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- project -->
+            <dependency>
+                <groupId>com.bootstack</groupId>
+                <artifactId>bootstack-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!-- springboot -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-web</artifactId>
-                <version>${dependency.springboot.common.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-security</artifactId>
-                <version>${dependency.springboot.common.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-test</artifactId>
-                <version>${dependency.springboot.common.version}</version>
-            </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -82,37 +75,21 @@
                 <version>${dependency.spring.security.jwt.version}</version>
             </dependency>
             <!-- validation -->
-            <dependency>
-                <groupId>javax.validation</groupId>
-                <artifactId>validation-api</artifactId>
-                <version>${dependency.validation.api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-validator</artifactId>
-                <version>${dependency.validation.hibernate.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>javax.validation</groupId>-->
+                <!--<artifactId>validation-api</artifactId>-->
+                <!--<version>${dependency.validation.api.version}</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.hibernate</groupId>-->
+                <!--<artifactId>hibernate-validator</artifactId>-->
+                <!--<version>${dependency.validation.hibernate.version}</version>-->
+            <!--</dependency>-->
             <!-- database -->
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${dependency.mysql.version}</version>
-            </dependency>
-            <!-- spring -->
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-beans</artifactId>
-                <version>${dependency.spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context</artifactId>
-                <version>${dependency.spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-tx</artifactId>
-                <version>${dependency.spring.version}</version>
             </dependency>
             <!-- jackson -->
             <dependency>
