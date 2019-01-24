@@ -9,7 +9,11 @@ bootstack is a open source privilege management platform
 |Name|Version|
 |:---:|---|
 |Java|1.8+|
+|Jwt|-|
 |SpringBoot|2.0.x|
+|Spring Security|-|
+|Spring Security Oauth2|-|
+|Spring Data JPA|-|
 |Thymeleaf|-|
 |Bootstrap|4.2.x|
 
@@ -38,3 +42,12 @@ bootstack is a open source privilege management platform
 ---
 
 please commit to github or gitee
+
+### Contact us
+    
+---
+
+|Name|Value|Remarks|
+|:---:|---|---|
+|QQ Group|324412218|BootStack|
+|WeChat|2663|BootStack(Face-to-face additive group)|
