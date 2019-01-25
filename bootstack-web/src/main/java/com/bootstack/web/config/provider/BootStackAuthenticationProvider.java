@@ -20,10 +20,8 @@ package com.bootstack.web.config.provider;
 import com.bootstack.cache.Cache;
 import com.bootstack.cache.CacheManager;
 import com.bootstack.web.BootStackWebSupport;
-import com.bootstack.web.entity.BadCredentialsEntity;
-import com.bootstack.web.entity.JwtTokenEntity;
+import com.bootstack.web.entity.RemoteResponseEntity;
 import com.bootstack.web.entity.RemoteServerEntity;
-import com.bootstack.web.entity.SuccessCredentialsEntity;
 import com.bootstack.web.template.JwtTemplate;
 import com.google.gson.Gson;
 import org.apache.http.HttpEntity;
@@ -37,15 +35,10 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * <p> BootStackAuthenticationProvider </p>
@@ -81,35 +74,22 @@ public class BootStackAuthenticationProvider implements AuthenticationProvider {
         // use rest oauth2
         RemoteServerEntity remoteServer = new RemoteServerEntity(environment);
         String param = "?username=" + username + "&password=" + password
-                + "&grant_type=" + remoteServer.getApiGrantType()
-                + "&client_id=" + remoteServer.getApiClientId();
+                + "&grant_type=" + remoteServer.getApiGrantType();
         HttpPost post = new HttpPost(remoteServer.oauthPath() + param);
         post.setHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
-        post.setHeader("Authorization", "Basic d2lraWZ0LWNsaWVudDp3aWtpZnQtd2Vi");
         try {
             CloseableHttpResponse response = client.execute(post);
             HttpEntity entity = response.getEntity();
             if (!ObjectUtils.isEmpty(entity)) {
                 String result = EntityUtils.toString(entity, encoding);
-                // error
-                BadCredentialsEntity badCredentials = gson.fromJson(result, BadCredentialsEntity.class);
-                if (ObjectUtils.isEmpty(badCredentials.getError())) {
-                    System.out.println(gson.toJson(result));
-                    // success
-                    SuccessCredentialsEntity successCredentials = gson.fromJson(result, SuccessCredentialsEntity.class);
-                    JwtTokenEntity jwtToken = (JwtTokenEntity) jwtTemplate.decodedJwtTokenBody(successCredentials.getAccess_token(), JwtTokenEntity.class);
-                    List<GrantedAuthority> grantedAuthoritys = new ArrayList<>();
-                    Arrays.asList(jwtToken.getAuthorities()).forEach(grant -> {
-                        grantedAuthoritys.add(new SimpleGrantedAuthority("ROLE_" + grant));
-                    });
+                RemoteResponseEntity responseEntity = gson.fromJson(result, RemoteResponseEntity.class);
+                if (responseEntity.getCode().startsWith("200")) {
                     Cache cache = new Cache();
                     cache.setKey(BootStackWebSupport.CACHE_AUTHENTICATION_TOKEN);
-                    cache.setValue(successCredentials.getAccess_token());
+                    cache.setValue(responseEntity.getData());
                     cache.setTimeOut(0);
                     cacheManager.put(BootStackWebSupport.CACHE_AUTHENTICATION_TOKEN, cache);
-                    return new UsernamePasswordAuthenticationToken(username, password, grantedAuthoritys);
-                } else {
-                    System.out.println(gson.toJson(result));
+                    return new UsernamePasswordAuthenticationToken(username, password, null);
                 }
             }
         } catch (IOException e) {

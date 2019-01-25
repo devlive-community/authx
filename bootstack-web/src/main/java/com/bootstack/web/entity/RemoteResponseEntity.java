@@ -30,9 +30,10 @@ import lombok.ToString;
  */
 @Data
 @ToString
-public class BadCredentialsEntity {
+public class RemoteResponseEntity {
 
-    private String error;
-    private String error_description;
+    private String code;
+    private String message;
+    private String data;
 
 }

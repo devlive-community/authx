@@ -23,11 +23,14 @@
 <body class="text-center">
 <!-- form begin -->
 <form class="form-signin" action="" method="post">
+    <div th:if="${param.error}" class="alert alert-danger" role="alert">
+        <strong>Login Error!</strong> Please check you username or password!
+    </div>
     <h1 class="h3 mb-3 font-weight-normal">BootStack Login</h1>
     <label for="name" class="sr-only">UserName</label>
-    <input type="text" id="name" class="form-control" placeholder="please input username" required autofocus>
+    <input type="text" name="username" id="name" class="form-control" placeholder="please input username" required autofocus>
     <label for="password" class="sr-only">Password</label>
-    <input type="password" id="password" class="form-control" placeholder="please input password" required>
+    <input type="password" name="password" id="password" class="form-control" placeholder="please input password" required>
     <div class="checkbox mb-3">
         <label>
             <input type="checkbox" value="remember-me"> Remember me
