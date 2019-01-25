@@ -37,6 +37,7 @@ public class BootStackWebSupport {
     public static String TEMPLATE_AUTHENTICATION_LOGIN_PAGE_PATH = "authentication/authentication-";
 
     public static String AUTHENTICATION_LOGIN = "/authentication/login";
+    public static String AUTHENTICATION_REGISTER = "/authentication/register";
 
     /**
      * white list
