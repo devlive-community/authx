@@ -15,33 +15,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.web;
+package com.bootstack.web.param.user;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.PropertySource;
+import lombok.Data;
+import lombok.ToString;
 
 /**
- * <p> BootStackWebBootstrap </p>
- * <p> Description : BootStackWebBootstrap </p>
+ * <p> UserParam </p>
+ * <p> Description : UserParam </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-24 17:32 </p>
+ * <p> Create Time : 2019-01-25 16:59 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@SpringBootApplication
-@ComponentScan(value = {
-        "com.bootstack.web"
-})
-@PropertySource(value = {
-        "bootstack-template.properties",
-        "bootstack-server.properties"
-})
-public class BootStackWebBootstrap {
+@Data
+@ToString
+public class UserParam {
 
-    public static void main(String[] args) {
-        SpringApplication.run(BootStackWebBootstrap.class, args);
-    }
+    private String name;
+    private String password;
 
 }

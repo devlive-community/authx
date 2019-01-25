@@ -15,27 +15,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.web.config;
+package com.bootstack.web.template;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import org.springframework.stereotype.Component;
 
 /**
- * <p> ResourceConfig </p>
- * <p> Description : ResourceConfig </p>
+ * <p> JsonTemplate </p>
+ * <p> Description : JsonTemplate </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-24 19:16 </p>
+ * <p> Create Time : 2019-01-25 16:57 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@Configuration
-public class ResourceConfig extends WebMvcConfigurerAdapter {
+@Component
+public class JsonTemplate {
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/bootstack/**").addResourceLocations("classpath:/bootstack/");
-        super.addResourceHandlers(registry);
+    public JSONObject getJsonObject(String json) {
+        return JSON.parseObject(json);
+    }
+
+    public String toJson(Object obj) {
+        return JSON.toJSONString(obj);
     }
 
 }

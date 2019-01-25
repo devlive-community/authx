@@ -17,31 +17,30 @@
  */
 package com.bootstack.web;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.PropertySource;
-
 /**
- * <p> BootStackWebBootstrap </p>
- * <p> Description : BootStackWebBootstrap </p>
+ * <p> BootStackWebSupport </p>
+ * <p> Description : BootStackWebSupport </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-24 17:32 </p>
+ * <p> Create Time : 2019-01-25 15:59 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@SpringBootApplication
-@ComponentScan(value = {
-        "com.bootstack.web"
-})
-@PropertySource(value = {
-        "bootstack-template.properties",
-        "bootstack-server.properties"
-})
-public class BootStackWebBootstrap {
+public class BootStackWebSupport {
 
-    public static void main(String[] args) {
-        SpringApplication.run(BootStackWebBootstrap.class, args);
-    }
+    public static String CONFIG_WEB_PREFIX = "bootstack.web.config";
+    public static String CONFIG_SERVER_PREFIX = "bootstack.server.config";
+
+    /**
+     * template path
+     */
+    public static String TEMPLATE_AUTHENTICATION_LOGIN_PAGE_PATH = "authentication/authentication-";
+
+    public static String AUTHENTICATION_LOGIN = "/authentication/login";
+
+    /**
+     * white list
+     */
+    public static String COMMON_WHITE_LIST_AUTHENTICATION = "/authentication/**";
+    public static String COMMON_WHITE_LIST_USER_REGISTER = "/user/register";
 
 }
