@@ -15,34 +15,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.web;
+package com.bootstack.web.entity;
+
+import lombok.Data;
+import lombok.ToString;
 
 /**
- * <p> BootStackWebSupport </p>
- * <p> Description : BootStackWebSupport </p>
+ * <p> JwtTokenEntity </p>
+ * <p> Description : JwtTokenEntity </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-25 15:59 </p>
+ * <p> Create Time : 2019-01-25 17:40 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public class BootStackWebSupport {
+@Data
+@ToString
+public class JwtTokenEntity {
 
-    public static String CONFIG_WEB_PREFIX = "bootstack.web.config";
-    public static String CONFIG_SERVER_PREFIX = "bootstack.server.config";
-
-    /**
-     * template path
-     */
-    public static String TEMPLATE_AUTHENTICATION_LOGIN_PAGE_PATH = "authentication/authentication-";
-
-    public static String AUTHENTICATION_LOGIN = "/authentication/login";
-
-    /**
-     * white list
-     */
-    public static String COMMON_WHITE_LIST_AUTHENTICATION = "/authentication/**";
-    public static String COMMON_WHITE_LIST_USER_REGISTER = "/user/register";
-
-    public static String CACHE_AUTHENTICATION_TOKEN = "authenticationToken";
+    private String[] aud;
+    private String user_name;
+    private String[] scope;
+    private Long exp;
+    private String[] authorities;
+    private String jti;
+    private String client_id;
 
 }

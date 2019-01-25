@@ -64,6 +64,14 @@
             <artifactId>jackson-databind</artifactId>
             <version>${dependency.jackson.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.bootstack</groupId>
+            <artifactId>bootstack-cache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
