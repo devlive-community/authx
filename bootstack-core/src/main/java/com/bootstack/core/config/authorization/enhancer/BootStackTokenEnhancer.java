@@ -48,7 +48,7 @@ public class BootStackTokenEnhancer implements TokenEnhancer {
         ((DefaultOAuth2AccessToken) oAuth2AccessToken).setTokenType(null);
         ((DefaultOAuth2AccessToken) oAuth2AccessToken).setScope(null);
         ((DefaultOAuth2AccessToken) oAuth2AccessToken).setExpiration(null);
-        ((DefaultOAuth2AccessToken) oAuth2AccessToken).setValue(null);
+        ((DefaultOAuth2AccessToken) oAuth2AccessToken).setValue(oAuth2AccessToken.getValue());
         return oAuth2AccessToken;
     }
 

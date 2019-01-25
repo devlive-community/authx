@@ -56,11 +56,8 @@ public class SecurityUserDetailsSupport implements UserDetailsService {
         if (ObjectUtils.isEmpty(user)) {
             throw new UsernameNotFoundException(String.format("this user %s not found", s));
         }
-
-
-        System.out.println(s);
-
-        authorities.add(new SimpleGrantedAuthority("ADMIN"));
+        // set user roles
+        user.getRoles().forEach(v -> authorities.add(new SimpleGrantedAuthority(String.valueOf(v.getId()))));
         // generate a test user
         return new User(user.getName(), user.getPassword(), authorities);
     }

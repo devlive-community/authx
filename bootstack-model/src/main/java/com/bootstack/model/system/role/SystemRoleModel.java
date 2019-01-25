@@ -15,12 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.model.user;
+package com.bootstack.model.system.role;
 
 import com.bootstack.common.support.DateSuooprt;
-import com.bootstack.model.system.role.SystemRoleModel;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,14 +29,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 /**
- * <p> UserModel </p>
- * <p> Description : UserModel </p>
+ * <p> SystemRoleModel </p>
+ * <p> Description : SystemRoleModel </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-24 20:36 </p>
+ * <p> Create Time : 2019-01-26 00:54 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @Data
@@ -48,12 +44,8 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @EntityListeners(value = AuditingEntityListener.class)
-@Table(name = "users")
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
-@JsonIgnoreProperties(value = {
-        "password"
-})
-public class UserModel {
+@Table(name = "system_role")
+public class SystemRoleModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,11 +55,11 @@ public class UserModel {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name = "code")
+    private String code;
 
-    @Column(name = "avatar")
-    private String avatar;
+    @Column(name = "description")
+    private String description;
 
     @Column(name = "active")
     private Boolean active;
@@ -81,11 +73,5 @@ public class UserModel {
     @LastModifiedDate
     @DateTimeFormat(pattern = DateSuooprt.DATE_FORMAT_YYYY_MM_DD_HH_MM_SS)
     private Date updateTime;
-
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "users_system_role_relation",
-            joinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "system_role_id", referencedColumnName = "id"))
-    private List<SystemRoleModel> roles;
 
 }

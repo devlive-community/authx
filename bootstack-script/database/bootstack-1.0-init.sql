@@ -14,6 +14,10 @@ create table users (
 ) comment 'user table'
     default charset utf8;
 
+insert into users(name, password, avatar, active, create_time, update_time)
+values ('admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', null, '1', '2019-01-26 01:05:36',
+        '2019-01-26 01:05:36');
+
 # system interface table
 drop table if exists system_interface;
 create table system_interface (
@@ -40,7 +44,8 @@ insert into system_interface(name, code, description, white, path, method, activ
                                                                                           '/oauth/token',
                                                                                           'get,post,put', true);
 insert into system_interface(name, code, description, white, path, method, active) value ('User Register', 'UR',
-                                                                                          'User Register Interface', true,
+                                                                                          'User Register Interface',
+                                                                                          true,
                                                                                           '/api/v1/user',
                                                                                           'post', true);
 
@@ -61,3 +66,30 @@ create table system_interface_type (
 insert into system_interface_type(name, code, description) value ('Button', 'button', 'button');
 insert into system_interface_type(name, code, description) value ('API', 'api', 'api');
 insert into system_interface_type(name, code, description) value ('Menu', 'menu', 'menu');
+
+-- system role table
+DROP TABLE IF EXISTS system_role;
+CREATE TABLE system_role (
+    id          INT AUTO_INCREMENT,
+    name        VARCHAR(100) COMMENT 'role name',
+    code        VARCHAR(50) COMMENT 'role code',
+    description VARCHAR(100) COMMENT 'role description',
+    active      BOOLEAN COMMENT 'active status' DEFAULT TRUE,
+    create_time timestamp                       default current_timestamp comment 'create time',
+    update_time timestamp                       default current_timestamp comment 'update time',
+    PRIMARY KEY (id)
+) COMMENT 'system role table'
+    DEFAULT CHARSET utf8;
+
+insert into system_role(name, code, description) VALUE ('Super User', 'SU', 'Super User');
+insert into system_role(name, code, description) VALUE ('Default User', 'DU', 'Default User');
+
+-- user and system role relation table
+DROP TABLE IF EXISTS users_system_role_relation;
+CREATE TABLE users_system_role_relation (
+    users_id       INT,
+    system_role_id INT
+) COMMENT 'user and system role relation table'
+    DEFAULT CHARSET utf8;
+
+insert into users_system_role_relation(users_id, system_role_id) VALUE (1, 1);
