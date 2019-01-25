@@ -41,6 +41,14 @@
             <groupId>com.bootstack</groupId>
             <artifactId>bootstack-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.bootstack</groupId>
+            <artifactId>bootstack-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.bootstack</groupId>
+            <artifactId>bootstack-param</artifactId>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>

@@ -1,0 +1,63 @@
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- header -->
+<head th:include="layout/common/layout-common-header::common-header('Login', 'Login')"></head>
+<!-- script -->
+<div th:include="layout/common/layout-common-script::common-script"></div>
+<body class="text-center">
+<!-- form begin -->
+<form class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal">BootStack Register</h1>
+    <label for="user-name-input" class="sr-only">UserName</label>
+    <input type="text" id="user-name-input" class="form-control" placeholder="please input username" required autofocus>
+    <label for="user-password-input" class="sr-only">Password</label>
+    <input type="password" id="user-password-input" class="form-control" placeholder="please input password" required>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+    <div class="checkbox mb-3">
+        <label>
+            Already have an account?<a th:href="@{/authentication/login}">Login Now</a>
+        </label>
+    </div>
+    <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
+</form>
+<!-- form stop -->
+<script>
+    $('.form-signin').submit(function () {
+        var userInfo = {
+            "name": $('#user-name-input').val(),
+            "password": $('#user-password-input').val()
+        }
+        $.ajax({
+            type: "POST",
+            url: "/user/register",
+            data: JSON.stringify(userInfo),
+            contentType: "application/json",
+            success: function (result) {
+                if (result.code == 2000) {
+                    alert("register success!");
+                } else {
+                    alert(result.message);
+                }
+            }
+        });
+        return false;
+    });
+</script>
+</body>
+</html>

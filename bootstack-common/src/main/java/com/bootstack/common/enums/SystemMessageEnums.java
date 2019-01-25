@@ -30,7 +30,8 @@ public enum SystemMessageEnums {
     SYSTEM_SUCCESS(2000, ""),
     SYSTEM_UNAUTHORIZED(4000, "Invalid access permissions, please contact administrator to assign permissions"),
     SYSTEM_ERROR_TOKEN(4001, "this is a not active token"),
-    SYSTEM_BAD_CREDENTIALS(4002, "bad user or password");
+    SYSTEM_BAD_CREDENTIALS(4002, "bad user or password"),
+    SYSTEM_PARAMS_VALIDATE_ERROR(4003, "param validation error, please check");
 
     private Integer code;
     private String value;

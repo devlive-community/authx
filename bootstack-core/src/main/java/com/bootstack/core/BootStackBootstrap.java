@@ -20,6 +20,7 @@ package com.bootstack.core;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -35,10 +36,16 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @Slf4j
 @EnableAsync
 @EnableScheduling
+@ComponentScan(value = {
+        "com.bootstack",
+        "com.bootstack.core",
+        "com.bootstack.core.controller"
+})
 @SpringBootApplication
 @PropertySource(value = {
         "bootstack.properties",
-        "bootstack-database.properties"
+        "bootstack-database.properties",
+        "bootstack-api.properties"
 })
 public class BootStackBootstrap {
 

@@ -17,6 +17,7 @@
  */
 package com.bootstack.web.config;
 
+import com.bootstack.web.BootStackWebSupport;
 import com.bootstack.web.config.handler.BootStackAuthenticationSuccessHandler;
 import com.bootstack.web.config.provider.BootStackAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,19 +80,21 @@ public class BootStackSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().
                 antMatchers(whitePath()).permitAll()
                 .anyRequest().authenticated()
-                .and().formLogin().loginPage("")
+                .and().formLogin().loginPage(BootStackWebSupport.AUTHENTICATION_LOGIN)
                 .successHandler(bootStackAuthenticationSuccessHandler).permitAll()
-                .and().logout().logoutSuccessUrl("").permitAll();
+                .and().logout().logoutSuccessUrl(BootStackWebSupport.AUTHENTICATION_LOGIN).permitAll();
     }
 
     @Override
     public void configure(WebSecurity web) {
+        web.ignoring().mvcMatchers(environment.getProperty(BootStackWebSupport.CONFIG_WEB_PREFIX + ".static-relative-location"));
     }
 
     private String[] whitePath() {
         List<String> path = new ArrayList<>();
+        path.add(BootStackWebSupport.COMMON_WHITE_LIST_AUTHENTICATION);
+        path.add(BootStackWebSupport.COMMON_WHITE_LIST_USER_REGISTER);
         return path.toArray(new String[path.size()]);
     }
-
 
 }

@@ -17,6 +17,9 @@
  */
 package com.bootstack.core.config.security;
 
+import com.bootstack.service.user.UserService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -37,12 +40,19 @@ import java.util.List;
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @Component
+@Slf4j
 public class SecurityUserDetailsSupport implements UserDetailsService {
+
+    @Autowired
+    private UserService userService;
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         // Encapsulating permission information
         List<GrantedAuthority> authorities = new ArrayList<>();
+
+
+
         authorities.add(new SimpleGrantedAuthority("ADMIN"));
         // generate a test user
         return new User("admin", "password", authorities);

@@ -30,7 +30,7 @@ public class ConfigSupport {
     // root
     public final static String CONFIG_PREFIX = "com.bootstack.";
     // database root path
-    public final static String CONFIG_DATASOURCE_BASE_PACKAGE = CONFIG_PREFIX + "support.repository";
+    public final static String CONFIG_DATASOURCE_BASE_PACKAGE = CONFIG_PREFIX + "repository";
     // database prefix
     public final static String CONFIG_DATASOURCE_PREFIX = "bootstack.database.";
     // database model prefix
