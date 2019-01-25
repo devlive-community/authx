@@ -1,4 +1,4 @@
-/**
+package com.bootstack.service.system.interfaces; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -15,34 +15,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.web;
+
+import com.bootstack.model.page.PageModel;
+import com.bootstack.model.system.interfaces.SystemInterfaceModel;
+import org.springframework.data.domain.Pageable;
 
 /**
- * <p> BootStackWebSupport </p>
- * <p> Description : BootStackWebSupport </p>
+ * <p> SystemInterfaceService </p>
+ * <p> Description : SystemInterfaceService </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-25 15:59 </p>
- * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ * <p> Create Time : 2019-01-25 22:41 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public class BootStackWebSupport {
-
-    public static String CONFIG_WEB_PREFIX = "bootstack.web.config";
-    public static String CONFIG_SERVER_PREFIX = "bootstack.server.config";
+public interface SystemInterfaceService {
 
     /**
-     * template path
+     * add system interface to system
+     *
+     * @param model model info
+     * @return insert count
      */
-    public static String TEMPLATE_AUTHENTICATION_LOGIN_PAGE_PATH = "authentication/authentication-";
+    Long insertModel(SystemInterfaceModel model);
 
-    public static String AUTHENTICATION_LOGIN = "/authentication/login";
+    PageModel<SystemInterfaceModel> getAllByWhiteTrueAndActiveTrue(Pageable pageable);
 
-    /**
-     * white list
-     */
-    public static String COMMON_WHITE_LIST_AUTHENTICATION = "/authentication/**";
-    public static String COMMON_WHITE_LIST_USER_REGISTER = "/user/register";
-
-    public static String CACHE_AUTHENTICATION_TOKEN = "authenticationToken";
+    SystemInterfaceModel getByPathLike(String path);
 
 }
