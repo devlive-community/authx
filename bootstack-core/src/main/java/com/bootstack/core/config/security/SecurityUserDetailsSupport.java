@@ -17,6 +17,7 @@
  */
 package com.bootstack.core.config.security;
 
+import com.bootstack.model.user.UserModel;
 import com.bootstack.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,12 +52,17 @@ public class SecurityUserDetailsSupport implements UserDetailsService {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         // Encapsulating permission information
         List<GrantedAuthority> authorities = new ArrayList<>();
+        UserModel user = this.userService.getModelByName(s);
+        if (ObjectUtils.isEmpty(user)) {
+            throw new UsernameNotFoundException(String.format("this user %s not found", s));
+        }
 
 
+        System.out.println(s);
 
         authorities.add(new SimpleGrantedAuthority("ADMIN"));
         // generate a test user
-        return new User("admin", "password", authorities);
+        return new User(user.getName(), user.getPassword(), authorities);
     }
 
 }

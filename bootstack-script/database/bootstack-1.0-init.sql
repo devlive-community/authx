@@ -35,6 +35,14 @@ insert into system_interface(name, code, description, white, path, method, activ
                                                                                           'User Interface', true,
                                                                                           '/api/v1/user',
                                                                                           'get,post,put', true);
+insert into system_interface(name, code, description, white, path, method, active) value ('User Oauth Token', 'UOT',
+                                                                                          'User Oauth Token', true,
+                                                                                          '/oauth/token',
+                                                                                          'get,post,put', true);
+insert into system_interface(name, code, description, white, path, method, active) value ('User Register', 'UR',
+                                                                                          'User Register Interface', true,
+                                                                                          '/api/v1/user',
+                                                                                          'post', true);
 
 # system interface type table
 drop table if exists system_interface_type;

@@ -94,6 +94,7 @@ public class BootStackAuthenticationProvider implements AuthenticationProvider {
                 // error
                 BadCredentialsEntity badCredentials = gson.fromJson(result, BadCredentialsEntity.class);
                 if (ObjectUtils.isEmpty(badCredentials.getError())) {
+                    System.out.println(gson.toJson(result));
                     // success
                     SuccessCredentialsEntity successCredentials = gson.fromJson(result, SuccessCredentialsEntity.class);
                     JwtTokenEntity jwtToken = (JwtTokenEntity) jwtTemplate.decodedJwtTokenBody(successCredentials.getAccess_token(), JwtTokenEntity.class);

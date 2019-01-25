@@ -32,9 +32,4 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SystemController {
 
-    @GetMapping
-    CommonResponseModel get() {
-        return CommonResponseModel.success();
-    }
-
 }

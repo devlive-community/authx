@@ -63,6 +63,8 @@ public class BootStackAuthorizationServerConfig extends AuthorizationServerConfi
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
                 .withClient(BootStackAuthorizationOauth2Support.SECURITY_CLIENT_ID)
+                // The secret password configuration must be filled in the format {bcrypt}+ encrypted password starting with Spring Security 5.0
+//                .secret(PasswordEncoderFactories.createDelegatingPasswordEncoder().encode(BootStackAuthorizationOauth2Support.SECURITY_CLIENT_SECRET))
                 .secret(BootStackAuthorizationOauth2Support.SECURITY_CLIENT_SECRET)
                 .authorizedGrantTypes(BootStackAuthorizationOauth2Support.SECURITY_GRANT_TYPES)
                 .scopes("select", "write", "read")
