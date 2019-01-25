@@ -18,9 +18,10 @@
 package com.bootstack.core.config.security;
 
 import com.bootstack.common.enums.SystemMessageEnums;
-import lombok.Data;
-import lombok.ToString;
+import com.bootstack.model.system.interfaces.SystemInterfaceModel;
+import com.bootstack.service.system.interfaces.SystemInterfaceService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.ConfigAttribute;
@@ -28,6 +29,7 @@ import org.springframework.security.authentication.InsufficientAuthenticationExc
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
@@ -44,18 +46,23 @@ import java.util.Collection;
 @Service(value = "securityAccessDecisionManager")
 public class SecurityAccessDecisionManager implements AccessDecisionManager {
 
+    @Autowired
+    private SystemInterfaceService systemInterfaceService;
+
     @Override
     public void decide(Authentication authentication, Object object, Collection<ConfigAttribute> configAttributes) throws AccessDeniedException, InsufficientAuthenticationException {
         HttpServletRequest request = ((FilterInvocation) object).getHttpRequest();
-        String url, method, requestUrl = request.getServletPath(), requestMethod = request.getMethod();
-        if (requestUrl.equalsIgnoreCase("/oauth/token")
-                || requestUrl.contains("public") || requestUrl.contains("/api/v1")) {
-            return;
-        }
+        String requestUrl = request.getServletPath(), requestMethod = request.getMethod();
         log.info("current api interface：" + requestUrl + " , request method：" + requestMethod);
+        // Get whether the data is in the white list through the database
+        SystemInterfaceModel systemInterface = this.systemInterfaceService.getByPathLike(requestUrl);
+        if (!ObjectUtils.isEmpty(systemInterface)) {
+            if (systemInterface.getMethod().contains(requestMethod.toLowerCase())) {
+                return;
+            }
+        }
         throw new AccessDeniedException(SystemMessageEnums.SYSTEM_UNAUTHORIZED.getValue());
     }
-
 
     @Override
     public boolean supports(ConfigAttribute attribute) {
@@ -65,15 +72,6 @@ public class SecurityAccessDecisionManager implements AccessDecisionManager {
     @Override
     public boolean supports(Class<?> clazz) {
         return true;
-    }
-
-    @Data
-    @ToString
-    private class Role {
-
-        private String url;
-        private String method;
-
     }
 
 }
