@@ -15,21 +15,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.controller.system;
+package com.bootstack.web.entity;
 
-import com.bootstack.model.common.CommonResponseModel;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.Data;
+import lombok.ToString;
 
 /**
- * <p> SystemController </p>
- * <p> Description : SystemController </p>
+ * <p> BadCredentialsEntity </p>
+ * <p> Description : BadCredentialsEntity </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-25 14:41 </p>
+ * <p> Create Time : 2019-01-25 17:40 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@RestController
-public class SystemController {
+@Data
+@ToString
+public class RemoteResponseEntity {
+
+    private String code;
+    private String message;
+    private String data;
 
 }

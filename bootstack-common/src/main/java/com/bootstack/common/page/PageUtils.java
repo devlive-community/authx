@@ -40,7 +40,7 @@ public class PageUtils {
      * @return current page config
      */
     public static Pageable orderByCreateTimeAndDesc(Integer page, Integer size) {
-        return PageRequest.of(page, size, new Sort(Sort.Direction.DESC,
+        return new PageRequest(page, size, new Sort(Sort.Direction.DESC,
                 PageSupport.DEFAULT_ORDER_PROPERTY_CREATE_TIME));
     }
 

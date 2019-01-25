@@ -43,6 +43,7 @@ public class BootStackTokenEnhancer implements TokenEnhancer {
         final Map<String, Object> additionalInfo = new HashMap<>();
         additionalInfo.put("code", SystemMessageEnums.SYSTEM_SUCCESS.getCode());
         additionalInfo.put("message", SystemMessageEnums.SYSTEM_SUCCESS.getValue());
+        additionalInfo.put("data", oAuth2AccessToken.getValue());
         ((DefaultOAuth2AccessToken) oAuth2AccessToken).setAdditionalInformation(additionalInfo);
         // rest oauth2 other data
         ((DefaultOAuth2AccessToken) oAuth2AccessToken).setTokenType(null);

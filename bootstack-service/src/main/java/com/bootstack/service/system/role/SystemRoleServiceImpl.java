@@ -15,24 +15,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.web.entity;
+package com.bootstack.service.system.role;
 
-import lombok.Data;
-import lombok.ToString;
+import com.bootstack.repository.system.role.SystemRoleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
- * <p> BadCredentialsEntity </p>
- * <p> Description : BadCredentialsEntity </p>
+ * <p> SystemRoleServiceImpl </p>
+ * <p> Description : SystemRoleServiceImpl </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-25 17:40 </p>
+ * <p> Create Time : 2019-01-26 01:01 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@Data
-@ToString
-public class BadCredentialsEntity {
+@Service(value = "systemRoleService")
+public class SystemRoleServiceImpl implements SystemRoleService {
 
-    private String error;
-    private String error_description;
+    @Autowired
+    private SystemRoleRepository systemRoleRepository;
 
 }

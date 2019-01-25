@@ -17,6 +17,7 @@
  */
 package com.bootstack.core.controller.user;
 
+import com.bootstack.common.encryption.EncryptionShaUtils;
 import com.bootstack.model.common.CommonResponseModel;
 import com.bootstack.model.user.UserModel;
 import com.bootstack.param.user.UserBasicParam;
@@ -46,13 +47,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping
+    @PostMapping(value = "register")
     CommonResponseModel add(@RequestBody @Validated UserBasicParam param) {
         log.info("add user action, user name is {}", param.getName());
         UserModel user = new UserModel();
         user.setName(param.getName());
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        user.setPassword(encoder.encode(param.getPassword().trim()));
+        user.setPassword(EncryptionShaUtils.hash256(param.getPassword()));
         // default active this user
         user.setActive(Boolean.TRUE);
         return CommonResponseModel.success(this.userService.insertModel(user));

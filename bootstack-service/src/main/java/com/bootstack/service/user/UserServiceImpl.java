@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserModel getModelById(Long id) {
-        return this.userRepository.findById(id).get();
+        return this.userRepository.findOne(id);
     }
 
     @Override

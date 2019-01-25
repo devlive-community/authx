@@ -15,21 +15,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.controller.system;
+package com.bootstack.web.controller.view;
 
-import com.bootstack.model.common.CommonResponseModel;
+import com.bootstack.web.BootStackWebSupport;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * <p> SystemController </p>
- * <p> Description : SystemController </p>
+ * <p> IndexController </p>
+ * <p> Description : IndexController </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-25 14:41 </p>
+ * <p> Create Time : 2019-01-26 01:50 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@RestController
-public class SystemController {
+@Controller
+@RequestMapping(value = "index", method = RequestMethod.GET)
+public class IndexController {
+
+    @GetMapping(value = {"", "/{page}/{size}"})
+    public String index(Model model) {
+        return BootStackWebSupport.TEMPLATE_INDEX_AND_ROOT_PAGE_PATH;
+    }
 
 }

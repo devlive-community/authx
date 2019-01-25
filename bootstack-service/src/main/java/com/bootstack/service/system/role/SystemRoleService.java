@@ -1,4 +1,4 @@
-/**
+package com.bootstack.service.system.role; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -15,27 +15,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.web.entity;
-
-import lombok.Data;
-import lombok.ToString;
 
 /**
- * <p> SuccessCredentialsEntity </p>
- * <p> Description : SuccessCredentialsEntity </p>
+ * <p> SystemRoleService </p>
+ * <p> Description : SystemRoleService </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-25 17:41 </p>
- * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ * <p> Create Time : 2019-01-26 01:01 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@Data
-@ToString
-public class SuccessCredentialsEntity {
-
-    private String access_token;
-    private String token_type;
-    private String expires_in;
-    private String scope;
-    private String jti;
-
+public interface SystemRoleService {
 }
