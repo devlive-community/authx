@@ -15,25 +15,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.config;
+package com.bootstack.param.user;
+
+import com.bootstack.validation.user.UserNameValidation;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import javax.validation.constraints.NotEmpty;
 
 /**
- * <p> ConfigSupport </p>
- * <p> Description : ConfigSupport </p>
+ * <p> UserBasicParam </p>
+ * <p> Description : UserBasicParam </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-24 12:59 </p>
+ * <p> Create Time : 2019-01-25 10:22 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public class ConfigSupport {
+@Data
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+public class UserBasicParam {
 
-    // root
-    public final static String CONFIG_PREFIX = "com.bootstack.";
-    // database root path
-    public final static String CONFIG_DATASOURCE_BASE_PACKAGE = CONFIG_PREFIX + "repository";
-    // database prefix
-    public final static String CONFIG_DATASOURCE_PREFIX = "bootstack.database.";
-    // database model prefix
-    public final static String CONFIG_DATASOURCE_MODEL = CONFIG_PREFIX + "model";
+    @NotEmpty(message = "user name must not null")
+    @UserNameValidation
+    private String name;
+
+    @NotEmpty(message = "user password must not null")
+    private String password;
 
 }

@@ -15,25 +15,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.config;
+package com.bootstack.service;
 
 /**
- * <p> ConfigSupport </p>
- * <p> Description : ConfigSupport </p>
+ * <p> ServiceSupport </p>
+ * <p> Description : ServiceSupport </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-24 12:59 </p>
+ * <p> Create Time : 2019-01-25 15:05 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public class ConfigSupport {
+public class ServiceSupport {
 
-    // root
-    public final static String CONFIG_PREFIX = "com.bootstack.";
-    // database root path
-    public final static String CONFIG_DATASOURCE_BASE_PACKAGE = CONFIG_PREFIX + "repository";
-    // database prefix
-    public final static String CONFIG_DATASOURCE_PREFIX = "bootstack.database.";
-    // database model prefix
-    public final static String CONFIG_DATASOURCE_MODEL = CONFIG_PREFIX + "model";
+    public static final Long DEFAULT_ID = 0L;
 
 }

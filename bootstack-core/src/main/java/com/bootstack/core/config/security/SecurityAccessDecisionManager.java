@@ -48,6 +48,10 @@ public class SecurityAccessDecisionManager implements AccessDecisionManager {
     public void decide(Authentication authentication, Object object, Collection<ConfigAttribute> configAttributes) throws AccessDeniedException, InsufficientAuthenticationException {
         HttpServletRequest request = ((FilterInvocation) object).getHttpRequest();
         String url, method, requestUrl = request.getServletPath(), requestMethod = request.getMethod();
+        if (requestUrl.equalsIgnoreCase("/oauth/token")
+                || requestUrl.contains("public") || requestUrl.contains("/api/v1")) {
+            return;
+        }
         log.info("current api interface：" + requestUrl + " , request method：" + requestMethod);
         throw new AccessDeniedException(SystemMessageEnums.SYSTEM_UNAUTHORIZED.getValue());
     }

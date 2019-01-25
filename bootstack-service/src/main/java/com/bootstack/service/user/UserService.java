@@ -15,25 +15,51 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.config;
+package com.bootstack.service.user;
+
+import com.bootstack.model.user.UserModel;
 
 /**
- * <p> ConfigSupport </p>
- * <p> Description : ConfigSupport </p>
+ * <p> UserService </p>
+ * <p> Description : UserService </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-24 12:59 </p>
+ * <p> Create Time : 2019-01-25 09:50 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public class ConfigSupport {
+public interface UserService {
 
-    // root
-    public final static String CONFIG_PREFIX = "com.bootstack.";
-    // database root path
-    public final static String CONFIG_DATASOURCE_BASE_PACKAGE = CONFIG_PREFIX + "repository";
-    // database prefix
-    public final static String CONFIG_DATASOURCE_PREFIX = "bootstack.database.";
-    // database model prefix
-    public final static String CONFIG_DATASOURCE_MODEL = CONFIG_PREFIX + "model";
+    /**
+     * add user to system
+     *
+     * @param model model info
+     * @return insert count
+     */
+    Long insertModel(UserModel model);
+
+    /**
+     * get model by id
+     *
+     * @param id user id
+     * @return model
+     */
+    UserModel getModelById(Long id);
+
+    /**
+     * get model by username and password
+     *
+     * @param name     username
+     * @param password password
+     * @return user model
+     */
+    UserModel getModelByNameAndPassword(String name, String password);
+
+    /**
+     * get model by username
+     *
+     * @param name username
+     * @return user model
+     */
+    UserModel getModelByName(String name);
 
 }

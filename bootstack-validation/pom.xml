@@ -11,23 +11,19 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>bootstack-model</artifactId>
+    <artifactId>bootstack-validation</artifactId>
 
-    <name>bootstack model module</name>
-    <description>bootstack core model</description>
+    <name>bootstack validation module</name>
+    <description>bootstack validation lib</description>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
         <dependency>
             <groupId>com.bootstack</groupId>
-            <artifactId>bootstack-common</artifactId>
+            <artifactId>bootstack-service</artifactId>
         </dependency>
     </dependencies>
 

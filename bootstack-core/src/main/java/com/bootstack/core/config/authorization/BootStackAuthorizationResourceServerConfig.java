@@ -57,7 +57,8 @@ public class BootStackAuthorizationResourceServerConfig extends ResourceServerCo
         http.requestMatchers()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/v1/**/public/**").permitAll()
+                .antMatchers("/api/v1/user").permitAll()
+//                .antMatchers("/api/v1/**/public/**").permitAll()
                 .antMatchers("/**").authenticated();
     }
 

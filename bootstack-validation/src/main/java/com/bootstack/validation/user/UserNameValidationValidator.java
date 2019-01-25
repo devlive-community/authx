@@ -15,25 +15,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.config;
+package com.bootstack.validation.user;
+
+import com.bootstack.service.user.UserService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
+
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 /**
- * <p> ConfigSupport </p>
- * <p> Description : ConfigSupport </p>
+ * <p> UserNameValidationValidator </p>
+ * <p> Description : UserNameValidationValidator </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-24 12:59 </p>
+ * <p> Create Time : 2019-01-25 15:27 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public class ConfigSupport {
+@Slf4j
+public class UserNameValidationValidator implements ConstraintValidator<UserNameValidation, String> {
 
-    // root
-    public final static String CONFIG_PREFIX = "com.bootstack.";
-    // database root path
-    public final static String CONFIG_DATASOURCE_BASE_PACKAGE = CONFIG_PREFIX + "repository";
-    // database prefix
-    public final static String CONFIG_DATASOURCE_PREFIX = "bootstack.database.";
-    // database model prefix
-    public final static String CONFIG_DATASOURCE_MODEL = CONFIG_PREFIX + "model";
+    @Autowired
+    private UserService userService;
+
+    @Override
+    public void initialize(UserNameValidation validation) {
+    }
+
+    @Override
+    public boolean isValid(String s, ConstraintValidatorContext context) {
+        log.info("validation username is exists, username is {}", s);
+        return ObjectUtils.isEmpty(this.userService.getModelByName(s));
+    }
 
 }
