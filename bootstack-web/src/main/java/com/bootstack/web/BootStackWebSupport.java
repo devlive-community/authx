@@ -33,6 +33,7 @@ public class BootStackWebSupport {
     /**
      * template path
      */
+    public static String TEMPLATE_INDEX_AND_ROOT_PAGE_PATH = "index";
     public static String TEMPLATE_AUTHENTICATION_LOGIN_PAGE_PATH = "authentication/authentication-";
 
     public static String AUTHENTICATION_LOGIN = "/authentication/login";
@@ -42,6 +43,11 @@ public class BootStackWebSupport {
      */
     public static String COMMON_WHITE_LIST_AUTHENTICATION = "/authentication/**";
     public static String COMMON_WHITE_LIST_USER_REGISTER = "/user/register";
+
+    /**
+     * redirect path
+     */
+    public static String REDIRECT_HOME = "/index";
 
     public static String CACHE_AUTHENTICATION_TOKEN = "authenticationToken";
 
