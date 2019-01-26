@@ -43,19 +43,14 @@ insert into system_interface(name, code, description, white, path, method, activ
                                                                                           'user oauth token', true,
                                                                                           '/oauth/token',
                                                                                           'get,post,put', true);
-insert into system_interface(name, code, description, white, path, method, active) value ('user register', 'ur',
-                                                                                          'user register interface',
-                                                                                          true,
-                                                                                          '/api/v1/user',
-                                                                                          'post', true);
 
 # system menu type table
 drop table if exists system_menu_type;
 create table system_menu_type (
     id          int auto_increment,
-    name        varchar(100) comment 'interface type name',
-    code        varchar(100) comment 'interface type code',
-    description varchar(200) comment 'interface type description',
+    name        varchar(100) comment 'menu type name',
+    code        varchar(100) comment 'menu type code',
+    description varchar(200) comment 'menu type description',
     active      boolean comment 'active status' default true,
     create_time timestamp                       default current_timestamp comment 'create time',
     update_time timestamp                       default current_timestamp comment 'update time',
@@ -122,5 +117,49 @@ create table system_menu_type_relation (
     system_menu_id      int,
     system_menu_type_id int
 ) comment 'system menu and system menu type relation table'
+    default charset utf8;
+
+-- system menu and system role relation table
+drop table if exists system_menu_role_relation;
+create table system_menu_role_relation (
+    system_menu_id int,
+    system_role_id int
+) comment 'system menu and system role relation table'
+    default charset utf8;
+
+# system log type table
+drop table if exists system_log_type;
+create table system_log_type (
+    id          int auto_increment,
+    name        varchar(100) comment 'system log type name',
+    code        varchar(100) comment 'system log type code',
+    description varchar(200) comment 'system log type description',
+    active      boolean comment 'active status' default true,
+    create_time timestamp                       default current_timestamp comment 'create time',
+    update_time timestamp                       default current_timestamp comment 'update time',
+    primary key (id)
+) comment 'system log type table'
+    default charset utf8;
+
+# system log table
+drop table if exists system_log;
+create table system_log (
+    id          int auto_increment,
+    title       varchar(100) comment 'system log title',
+    url         varchar(200) comment 'system log url',
+    method      varchar(100) comment 'system log method',
+    active      boolean comment 'active status' default true,
+    create_time timestamp                       default current_timestamp comment 'create time',
+    update_time timestamp                       default current_timestamp comment 'update time',
+    primary key (id)
+) comment 'system log table'
+    default charset utf8;
+
+-- system log and system log type relation table
+drop table if exists system_log_type_relation;
+create table system_log_type_relation (
+    system_log_id      int,
+    system_log_type_id int
+) comment 'system log and system log type relation table'
     default charset utf8;
 
