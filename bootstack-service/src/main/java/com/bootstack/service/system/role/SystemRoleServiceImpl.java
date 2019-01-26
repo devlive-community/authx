@@ -19,8 +19,10 @@ package com.bootstack.service.system.role;
 
 import com.bootstack.model.system.role.SystemRoleModel;
 import com.bootstack.repository.system.role.SystemRoleRepository;
+import com.bootstack.service.ServiceSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 /**
  * <p> SystemRoleServiceImpl </p>
@@ -35,6 +37,15 @@ public class SystemRoleServiceImpl implements SystemRoleService {
 
     @Autowired
     private SystemRoleRepository systemRoleRepository;
+
+    @Override
+    public Long insertModel(SystemRoleModel model) {
+        SystemRoleModel systemRole = this.systemRoleRepository.save(model);
+        if (!ObjectUtils.isEmpty(systemRole)) {
+            return systemRole.getId();
+        }
+        return ServiceSupport.DEFAULT_ID;
+    }
 
     @Override
     public SystemRoleModel getModelById(Long id) {

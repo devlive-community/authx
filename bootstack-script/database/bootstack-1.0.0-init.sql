@@ -141,6 +141,8 @@ create table system_log_type (
 ) comment 'system log type table'
     default charset utf8;
 
+insert into system_log_type(name, code, description) VALUE ('User Login Log', 'ULL', 'User Login Log');
+
 # system log table
 drop table if exists system_log;
 create table system_log (
