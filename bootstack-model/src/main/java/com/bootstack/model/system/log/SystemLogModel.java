@@ -15,10 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.model.system.role;
+package com.bootstack.model.system.log;
 
 import com.bootstack.common.support.DateSuooprt;
-import com.bootstack.model.system.menu.SystemMenuModel;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,14 +30,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 /**
- * <p> SystemRoleModel </p>
- * <p> Description : SystemRoleModel </p>
+ * <p> SystemLogModel </p>
+ * <p> Description : SystemLogModel </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-26 00:54 </p>
+ * <p> Create Time : 2019-01-26 16:03 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @Data
@@ -46,22 +45,23 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @EntityListeners(value = AuditingEntityListener.class)
-@Table(name = "system_role")
-public class SystemRoleModel {
+@Table(name = "system_log")
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class SystemLogModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "title")
+    private String title;
 
-    @Column(name = "code")
-    private String code;
+    @Column(name = "url")
+    private String url;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "method")
+    private String method;
 
     @Column(name = "active")
     private Boolean active;
@@ -76,10 +76,10 @@ public class SystemRoleModel {
     @DateTimeFormat(pattern = DateSuooprt.DATE_FORMAT_YYYY_MM_DD_HH_MM_SS)
     private Date updateTime;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "system_role_menu_relation",
-            joinColumns = @JoinColumn(name = "system_role_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "system_menu_id", referencedColumnName = "id"))
-    private List<SystemMenuModel> menuList;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinTable(name = "system_log_type_relation",
+            joinColumns = @JoinColumn(name = "system_log_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "system_log_type_id", referencedColumnName = "id"))
+    private SystemLogTypeModel type;
 
 }

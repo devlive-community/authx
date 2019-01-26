@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.model.system.interfaces;
+package com.bootstack.model.system.menu;
 
 import com.bootstack.common.support.DateSuooprt;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -45,9 +45,9 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @EntityListeners(value = AuditingEntityListener.class)
-@Table(name = "system_interface_type")
+@Table(name = "system_menu_type")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class SystemInterfaceTypeModel {
+public class SystemMenuTypeModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

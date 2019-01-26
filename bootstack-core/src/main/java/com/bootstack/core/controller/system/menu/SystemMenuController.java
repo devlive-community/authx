@@ -1,4 +1,4 @@
-package com.bootstack.service.system.role; /**
+/**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -15,21 +15,22 @@ package com.bootstack.service.system.role; /**
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.bootstack.core.controller.system.menu;
 
-import com.bootstack.model.system.role.SystemRoleModel;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
- * <p> SystemRoleService </p>
- * <p> Description : SystemRoleService </p>
+ * <p> SystemMenuController </p>
+ * <p> Description : SystemMenuController </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-26 01:01 </p>
- * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ * <p> Create Time : 2019-01-26 15:56 </p>
+ * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface SystemRoleService {
-
-    Long insertModel(SystemRoleModel model);
-
-    SystemRoleModel getModelById(Long id);
-
+@RestController
+@RequestMapping(value = "${bootstack.api.path}/${bootstack.api.version}/system/menu")
+@Slf4j
+public class SystemMenuController {
 }

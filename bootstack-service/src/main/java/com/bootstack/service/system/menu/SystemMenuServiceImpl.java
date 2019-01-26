@@ -1,4 +1,4 @@
-package com.bootstack.service.system.role; /**
+/**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -15,21 +15,18 @@ package com.bootstack.service.system.role; /**
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.bootstack.service.system.menu;
 
-import com.bootstack.model.system.role.SystemRoleModel;
+import org.springframework.stereotype.Service;
 
 /**
- * <p> SystemRoleService </p>
- * <p> Description : SystemRoleService </p>
+ * <p> SystemMenuServiceImpl </p>
+ * <p> Description : SystemMenuServiceImpl </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-26 01:01 </p>
- * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ * <p> Create Time : 2019-01-26 15:40 </p>
+ * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface SystemRoleService {
-
-    Long insertModel(SystemRoleModel model);
-
-    SystemRoleModel getModelById(Long id);
-
+@Service(value = "systemMenuService")
+public class SystemMenuServiceImpl implements SystemMenuService {
 }

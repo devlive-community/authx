@@ -58,4 +58,8 @@ public class RemoteServerEntity {
         return address + environment.getProperty(BootStackWebSupport.CONFIG_SERVER_PREFIX + ".oauth");
     }
 
+    public String requestPath() {
+        return environment.getProperty(BootStackWebSupport.CONFIG_SERVER_PREFIX + ".url.root") + apiPath + apiVersion;
+    }
+
 }
