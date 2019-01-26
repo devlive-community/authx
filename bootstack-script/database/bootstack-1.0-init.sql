@@ -35,23 +35,23 @@ create table system_interface (
 ) comment 'system interface table'
     default charset utf8;
 
-insert into system_interface(name, code, description, white, path, method, active) value ('User Interface', 'UI',
-                                                                                          'User Interface', true,
+insert into system_interface(name, code, description, white, path, method, active) value ('user interface', 'ui',
+                                                                                          'user interface', true,
                                                                                           '/api/v1/user',
                                                                                           'get,post,put', true);
-insert into system_interface(name, code, description, white, path, method, active) value ('User Oauth Token', 'UOT',
-                                                                                          'User Oauth Token', true,
+insert into system_interface(name, code, description, white, path, method, active) value ('user oauth token', 'uot',
+                                                                                          'user oauth token', true,
                                                                                           '/oauth/token',
                                                                                           'get,post,put', true);
-insert into system_interface(name, code, description, white, path, method, active) value ('User Register', 'UR',
-                                                                                          'User Register Interface',
+insert into system_interface(name, code, description, white, path, method, active) value ('user register', 'ur',
+                                                                                          'user register interface',
                                                                                           true,
                                                                                           '/api/v1/user',
                                                                                           'post', true);
 
-# system interface type table
-drop table if exists system_interface_type;
-create table system_interface_type (
+# system menu type table
+drop table if exists system_menu_type;
+create table system_menu_type (
     id          int auto_increment,
     name        varchar(100) comment 'interface type name',
     code        varchar(100) comment 'interface type code',
@@ -60,36 +60,67 @@ create table system_interface_type (
     create_time timestamp                       default current_timestamp comment 'create time',
     update_time timestamp                       default current_timestamp comment 'update time',
     primary key (id)
-) comment 'system interface type table'
+) comment 'system menu type table'
     default charset utf8;
 
-insert into system_interface_type(name, code, description) value ('Button', 'button', 'button');
-insert into system_interface_type(name, code, description) value ('API', 'api', 'api');
-insert into system_interface_type(name, code, description) value ('Menu', 'menu', 'menu');
+insert into system_menu_type(name, code, description) value ('button', 'button', 'button');
+insert into system_menu_type(name, code, description) value ('api', 'api', 'api');
+insert into system_menu_type(name, code, description) value ('menu', 'menu', 'menu');
 
 -- system role table
-DROP TABLE IF EXISTS system_role;
-CREATE TABLE system_role (
-    id          INT AUTO_INCREMENT,
-    name        VARCHAR(100) COMMENT 'role name',
-    code        VARCHAR(50) COMMENT 'role code',
-    description VARCHAR(100) COMMENT 'role description',
-    active      BOOLEAN COMMENT 'active status' DEFAULT TRUE,
+drop table if exists system_role;
+create table system_role (
+    id          int auto_increment,
+    name        varchar(100) comment 'role name',
+    code        varchar(50) comment 'role code',
+    description varchar(100) comment 'role description',
+    active      boolean comment 'active status' default true,
     create_time timestamp                       default current_timestamp comment 'create time',
     update_time timestamp                       default current_timestamp comment 'update time',
-    PRIMARY KEY (id)
-) COMMENT 'system role table'
-    DEFAULT CHARSET utf8;
+    primary key (id)
+) comment 'system role table'
+    default charset utf8;
 
-insert into system_role(name, code, description) VALUE ('Super User', 'SU', 'Super User');
-insert into system_role(name, code, description) VALUE ('Default User', 'DU', 'Default User');
+insert into system_role(name, code, description) value ('super user', 'su', 'super user');
+insert into system_role(name, code, description) value ('default user', 'du', 'default user');
 
 -- user and system role relation table
-DROP TABLE IF EXISTS users_system_role_relation;
-CREATE TABLE users_system_role_relation (
-    users_id       INT,
-    system_role_id INT
-) COMMENT 'user and system role relation table'
-    DEFAULT CHARSET utf8;
+drop table if exists users_system_role_relation;
+create table users_system_role_relation (
+    users_id       int,
+    system_role_id int
+) comment 'user and system role relation table'
+    default charset utf8;
 
-insert into users_system_role_relation(users_id, system_role_id) VALUE (1, 1);
+insert into users_system_role_relation(users_id, system_role_id) value (1, 1);
+
+# system menu table
+drop table if exists system_menu;
+create table system_menu (
+    id          int auto_increment,
+    name        varchar(100) comment 'system menu name',
+    code        varchar(100) comment 'system menu code',
+    url         varchar(200) comment 'system menu url',
+    icon        varchar(100) comment 'system menu icon',
+    sorted      int comment 'system menu sort',
+    level       int comment 'system menu level',
+    tips        varchar(200) comment 'system menu tips description',
+    newd        boolean comment 'system menu is new ?' default true,
+    parent      int comment 'system menu parent menu id',
+    method      varchar(200) comment 'system menu method multiple method split by ,',
+    description varchar(100) comment 'system menu description',
+    active      boolean comment 'active status'        default true,
+    create_time timestamp                              default current_timestamp comment 'create time',
+    update_time timestamp                              default current_timestamp comment 'update time',
+    primary key (id)
+) comment 'system menu table'
+    default charset utf8;
+
+-- system menu and system menu type relation table
+drop table if exists system_menu_type_relation;
+create table system_menu_type_relation (
+    system_menu_id      int,
+    system_menu_type_id int
+) comment 'system menu and system menu type relation table'
+    default charset utf8;
+
