@@ -24,12 +24,8 @@ import com.bootstack.param.user.UserBasicParam;
 import com.bootstack.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p> UserController </p>
@@ -56,6 +52,11 @@ public class UserController {
         // default active this user
         user.setActive(Boolean.TRUE);
         return CommonResponseModel.success(this.userService.insertModel(user));
+    }
+
+    @GetMapping(value = "info/{name}")
+    CommonResponseModel info(@PathVariable String name) {
+        return CommonResponseModel.success(this.userService.getModelByName(name));
     }
 
 }

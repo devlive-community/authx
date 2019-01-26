@@ -15,16 +15,32 @@
 -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!-- header -->
-    <head th:include="layout/common/layout-common-header::common-header('Home', 'Home')"></head>
-    <!-- script -->
-    <div th:include="layout/common/layout-common-script::common-script"></div>
-</head>
+<!-- header -->
+<head th:include="layout/common/layout-common-header::common-header('Home', 'Home')"></head>
+<!-- script -->
+<div th:include="layout/common/layout-common-script::common-script"></div>
 <body>
+<!-- navigation -->
+<div th:include="layout/common/navigation/layout-common-navigation::common-navigation"></div>
 
-<h1>Welcome To BootStack System!</h1>
-
-</body>
+<div class="container-fluid">
+    <div class="row">
+        <!-- left menu start -->
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="file-text"></span>
+                            Menu
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- left menu end -->
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        </main>
+    </div>
+</div>
 </html>

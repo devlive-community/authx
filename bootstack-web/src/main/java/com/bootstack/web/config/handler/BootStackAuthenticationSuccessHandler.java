@@ -17,11 +17,15 @@
  */
 package com.bootstack.web.config.handler;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.bootstack.cache.CacheManager;
 import com.bootstack.web.BootStackWebSupport;
+import com.bootstack.web.entity.RemoteServerEntity;
 import com.bootstack.web.template.HttpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -29,7 +33,10 @@ import org.springframework.stereotype.Component;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * <p> BootStackAuthenticationSuccessHandler </p>
@@ -54,6 +61,16 @@ public class BootStackAuthenticationSuccessHandler implements AuthenticationSucc
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         String accessPath = request.getServletPath();
+        HttpSession session = request.getSession();
+        RemoteServerEntity remoteServer = new RemoteServerEntity(environment);
+        Map<String, String> headers = new ConcurrentHashMap<>();
+        headers.put("Authorization", "Bearer " + cacheManager.get(BootStackWebSupport.CACHE_AUTHENTICATION_TOKEN).getValue());
+        headers.put("Content-Type", MediaType.APPLICATION_JSON_VALUE);
+        String path = remoteServer.requestPath() + "user/info/" + authentication.getPrincipal();
+        String userJson = httpTemplate.getRemoteResponseToString(path, headers);
+        JSONObject userInfo = JSON.parseObject(userJson).getJSONObject("data");
+        // put user info to session
+        session.setAttribute("userInfo", userInfo);
         if (accessPath.equals(BootStackWebSupport.AUTHENTICATION_LOGIN)) {
             response.sendRedirect(BootStackWebSupport.REDIRECT_HOME);
         } else {
