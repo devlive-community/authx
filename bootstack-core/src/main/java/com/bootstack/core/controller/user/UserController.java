@@ -19,13 +19,22 @@ package com.bootstack.core.controller.user;
 
 import com.bootstack.common.encryption.EncryptionShaUtils;
 import com.bootstack.model.common.CommonResponseModel;
+import com.bootstack.model.system.role.SystemRoleModel;
 import com.bootstack.model.user.UserModel;
 import com.bootstack.param.user.UserBasicParam;
+import com.bootstack.param.user.UserSetRoleParam;
+import com.bootstack.service.system.role.SystemRoleService;
 import com.bootstack.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 /**
  * <p> UserController </p>
@@ -43,6 +52,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private SystemRoleService systemRoleService;
+
     @PostMapping(value = "register")
     CommonResponseModel add(@RequestBody @Validated UserBasicParam param) {
         log.info("add user action, user name is {}", param.getName());
@@ -57,6 +69,21 @@ public class UserController {
     @GetMapping(value = "info/{name}")
     CommonResponseModel info(@PathVariable String name) {
         return CommonResponseModel.success(this.userService.getModelByName(name));
+    }
+
+    @PutMapping(value = "role")
+    CommonResponseModel setRole(@RequestBody @Validated UserSetRoleParam param) {
+        UserModel user = this.userService.getModelById(Long.valueOf(param.getUserId()));
+        List<SystemRoleModel> systemRoles = user.getRoles();
+        // add new role to source role list
+        systemRoles.add(this.systemRoleService.getModelById(Long.valueOf(param.getRoleId())));
+        // distinct role
+        systemRoles = systemRoles.stream().collect(
+                Collectors.collectingAndThen(Collectors.toCollection(() ->
+                                new TreeSet<>(Comparator.comparingLong(SystemRoleModel::getId))),
+                        ArrayList::new));
+        user.setRoles(systemRoles);
+        return CommonResponseModel.success(this.userService.insertModel(user));
     }
 
 }

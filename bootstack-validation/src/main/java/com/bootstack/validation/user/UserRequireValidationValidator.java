@@ -15,30 +15,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.service.system.role;
+package com.bootstack.validation.user;
 
-import com.bootstack.model.system.role.SystemRoleModel;
-import com.bootstack.repository.system.role.SystemRoleRepository;
+import com.bootstack.service.user.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
+
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 /**
- * <p> SystemRoleServiceImpl </p>
- * <p> Description : SystemRoleServiceImpl </p>
+ * <p> UserRequireValidationValidator </p>
+ * <p> Description : UserRequireValidationValidator </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-26 01:01 </p>
+ * <p> Create Time : 2019-01-26 14:58 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@Service(value = "systemRoleService")
-public class SystemRoleServiceImpl implements SystemRoleService {
+@Slf4j
+public class UserRequireValidationValidator implements ConstraintValidator<UserRequireValidation, String> {
 
     @Autowired
-    private SystemRoleRepository systemRoleRepository;
+    private UserService userService;
 
     @Override
-    public SystemRoleModel getModelById(Long id) {
-        return this.systemRoleRepository.findOne(id);
+    public void initialize(UserRequireValidation validation) {
+    }
+
+    @Override
+    public boolean isValid(String s, ConstraintValidatorContext context) {
+        log.info("validation user id is exists, user id is {}", s);
+        return !StringUtils.isEmpty(s) && !ObjectUtils.isEmpty(this.userService.getModelById(Long.valueOf(s)));
     }
 
 }
