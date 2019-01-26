@@ -165,3 +165,11 @@ create table system_log_type_relation (
 ) comment 'system log and system log type relation table'
     default charset utf8;
 
+-- system role and system menu relation table
+drop table if exists system_role_menu_relation;
+create table system_role_menu_relation (
+    system_role_id int,
+    system_menu_id int
+) comment 'system role and system menu relation table'
+    default charset utf8;
+

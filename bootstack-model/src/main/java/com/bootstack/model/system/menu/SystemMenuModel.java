@@ -104,4 +104,8 @@ public class SystemMenuModel {
             inverseJoinColumns = @JoinColumn(name = "system_menu_type_id", referencedColumnName = "id"))
     private SystemMenuTypeModel type;
 
+    public SystemMenuModel(Long id) {
+        this.id = id;
+    }
+
 }

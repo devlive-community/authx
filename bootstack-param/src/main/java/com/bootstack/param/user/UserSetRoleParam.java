@@ -17,7 +17,7 @@
  */
 package com.bootstack.param.user;
 
-import com.bootstack.validation.system.role.SystemRoleValidation;
+import com.bootstack.validation.system.role.SystemRoleRequireValidation;
 import com.bootstack.validation.user.UserRequireValidation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -44,7 +44,7 @@ public class UserSetRoleParam {
     private String userId;
 
     @NotEmpty(message = "role id must not null")
-    @SystemRoleValidation
+    @SystemRoleRequireValidation
     private String roleId;
 
 }

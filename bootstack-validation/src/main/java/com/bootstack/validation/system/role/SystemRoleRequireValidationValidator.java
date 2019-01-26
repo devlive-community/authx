@@ -35,13 +35,13 @@ import javax.validation.ConstraintValidatorContext;
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @Slf4j
-public class SystemRoleValidationValidator implements ConstraintValidator<SystemRoleValidation, String> {
+public class SystemRoleRequireValidationValidator implements ConstraintValidator<SystemRoleRequireValidation, String> {
 
     @Autowired
     private SystemRoleService systemRoleService;
 
     @Override
-    public void initialize(SystemRoleValidation validation) {
+    public void initialize(SystemRoleRequireValidation validation) {
     }
 
     @Override

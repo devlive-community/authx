@@ -18,6 +18,7 @@
 package com.bootstack.model.system.role;
 
 import com.bootstack.common.support.DateSuooprt;
+import com.bootstack.model.system.menu.SystemMenuModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,6 +30,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p> SystemRoleModel </p>
@@ -73,5 +75,11 @@ public class SystemRoleModel {
     @LastModifiedDate
     @DateTimeFormat(pattern = DateSuooprt.DATE_FORMAT_YYYY_MM_DD_HH_MM_SS)
     private Date updateTime;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "system_role_menu_relation",
+            joinColumns = @JoinColumn(name = "system_role_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "system_menu_id", referencedColumnName = "id"))
+    private List<SystemMenuModel> menuList;
 
 }

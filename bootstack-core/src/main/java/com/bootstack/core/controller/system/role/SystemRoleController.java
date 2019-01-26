@@ -20,17 +20,20 @@ package com.bootstack.core.controller.system.role;
 import com.bootstack.common.pinyin.PinYinUtils;
 import com.bootstack.core.controller.ControllerSupport;
 import com.bootstack.model.common.CommonResponseModel;
+import com.bootstack.model.system.menu.SystemMenuModel;
 import com.bootstack.model.system.role.SystemRoleModel;
 import com.bootstack.param.system.role.SystemRoleBasicParam;
+import com.bootstack.param.system.role.SystemRoleSetMenuParam;
 import com.bootstack.service.system.role.SystemRoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * <p> SystemRoleController </p>
@@ -57,6 +60,15 @@ public class SystemRoleController {
         systemRole.setDescription(param.getDescription());
         systemRole.setName(param.getName());
         systemRole.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
+        return CommonResponseModel.success(this.systemRoleService.insertModel(systemRole));
+    }
+
+    @PutMapping(value = ControllerSupport.CONTROLLER_DEFAULT_SET + "/menu")
+    CommonResponseModel setMenus(@RequestBody @Validated SystemRoleSetMenuParam param) {
+        SystemRoleModel systemRole = this.systemRoleService.getModelById(Long.valueOf(param.getId()));
+        List<SystemMenuModel> menuList = new ArrayList<>();
+        Arrays.asList(param.getMenu().split(",")).forEach(v -> menuList.add(new SystemMenuModel(Long.valueOf(v))));
+        systemRole.setMenuList(menuList);
         return CommonResponseModel.success(this.systemRoleService.insertModel(systemRole));
     }
 

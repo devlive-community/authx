@@ -29,10 +29,10 @@ import java.lang.annotation.*;
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @Documented
-@Constraint(validatedBy = SystemRoleValidationValidator.class)
+@Constraint(validatedBy = SystemRoleRequireValidationValidator.class)
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface SystemRoleValidation {
+public @interface SystemRoleRequireValidation {
 
     String message() default "the role id not exists";
 
