@@ -73,7 +73,7 @@ public class UserController {
 
     @PutMapping(value = "role")
     CommonResponseModel setRole(@RequestBody @Validated UserSetRoleParam param) {
-        UserModel user = this.userService.getModelById(Long.valueOf(param.getUserId()));
+        UserModel user = (UserModel) this.userService.getModelById(Long.valueOf(param.getUserId()));
         List<SystemRoleModel> systemRoles = user.getRoles();
         // add new role to source role list
         systemRoles.add(this.systemRoleService.getModelById(Long.valueOf(param.getRoleId())));

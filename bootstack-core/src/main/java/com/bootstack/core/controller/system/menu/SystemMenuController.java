@@ -20,8 +20,10 @@ package com.bootstack.core.controller.system.menu;
 import com.bootstack.core.controller.ControllerSupport;
 import com.bootstack.model.common.CommonResponseModel;
 import com.bootstack.model.system.menu.SystemMenuModel;
+import com.bootstack.param.system.menu.SystemMenuBasicParam;
 import com.bootstack.service.system.menu.SystemMenuService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,5 +46,19 @@ public class SystemMenuController {
 
     @Autowired
     private SystemMenuService systemMenuService;
+
+    /**
+     * create new menu
+     *
+     * @param param menu info
+     * @return create result
+     */
+    @PostMapping(value = ControllerSupport.CONTROLLER_DEFAULT_ADD)
+    CommonResponseModel add(@RequestBody @Validated SystemMenuBasicParam param) {
+        SystemMenuModel systemMenuModel = new SystemMenuModel();
+        BeanUtils.copyProperties(param, systemMenuModel);
+        systemMenuModel.setActive(Boolean.TRUE);
+        return CommonResponseModel.success(this.systemMenuService.insertModel(systemMenuModel));
+    }
 
 }
