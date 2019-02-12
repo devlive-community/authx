@@ -41,7 +41,7 @@ bootstack is a open source privilege management platform
 
 ---
 
-please commit to github or gitee
+- [JIRA](http://jira.ttxit.com/projects/BOOTSTACK)
 
 ### Contact us
     
