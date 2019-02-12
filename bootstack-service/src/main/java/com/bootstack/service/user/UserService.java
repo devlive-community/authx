@@ -18,6 +18,7 @@
 package com.bootstack.service.user;
 
 import com.bootstack.model.user.UserModel;
+import com.bootstack.service.BaseService;
 
 /**
  * <p> UserService </p>
@@ -27,23 +28,7 @@ import com.bootstack.model.user.UserModel;
  * <p> Create Time : 2019-01-25 09:50 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface UserService {
-
-    /**
-     * add user to system
-     *
-     * @param model model info
-     * @return insert count
-     */
-    Long insertModel(UserModel model);
-
-    /**
-     * get model by id
-     *
-     * @param id user id
-     * @return model
-     */
-    UserModel getModelById(Long id);
+public interface UserService extends BaseService {
 
     /**
      * get model by username and password

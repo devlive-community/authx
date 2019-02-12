@@ -17,10 +17,13 @@
  */
 package com.bootstack.service.user;
 
+import com.bootstack.model.page.PageModel;
 import com.bootstack.model.user.UserModel;
 import com.bootstack.repository.user.UserRepository;
 import com.bootstack.service.ServiceSupport;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -39,8 +42,9 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public Long insertModel(UserModel model) {
-        UserModel user = this.userRepository.save(model);
+    public Long insertModel(Object model) {
+        UserModel source = (UserModel) model;
+        UserModel user = this.userRepository.save(source);
         if (!ObjectUtils.isEmpty(user)) {
             return user.getId();
         }
@@ -50,6 +54,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserModel getModelById(Long id) {
         return this.userRepository.findOne(id);
+    }
+
+    @Override
+    public PageModel findAllByPage(Pageable pageable) {
+        Page<UserModel> pageModel = this.userRepository.findAll(pageable);
+        return new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements());
     }
 
     @Override

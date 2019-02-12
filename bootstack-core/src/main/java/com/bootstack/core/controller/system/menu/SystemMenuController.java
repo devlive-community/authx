@@ -17,7 +17,15 @@
  */
 package com.bootstack.core.controller.system.menu;
 
+import com.bootstack.core.controller.ControllerSupport;
+import com.bootstack.model.common.CommonResponseModel;
+import com.bootstack.model.system.menu.SystemMenuModel;
+import com.bootstack.service.system.menu.SystemMenuService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,4 +41,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "${bootstack.api.path}/${bootstack.api.version}/system/menu")
 @Slf4j
 public class SystemMenuController {
+
+    @Autowired
+    private SystemMenuService systemMenuService;
+
 }

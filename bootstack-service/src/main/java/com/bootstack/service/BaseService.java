@@ -1,4 +1,4 @@
-package com.bootstack.service.system.menu; /**
+package com.bootstack.service; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -16,15 +16,41 @@ package com.bootstack.service.system.menu; /**
  * limitations under the License.
  */
 
-import com.bootstack.service.BaseService;
+import com.bootstack.model.page.PageModel;
+import org.springframework.data.domain.Pageable;
 
 /**
- * <p> SystemMenuTypeService </p>
- * <p> Description : SystemMenuTypeService </p>
+ * <p> BaseService </p>
+ * <p> Description : BaseService </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-26 15:39 </p>
+ * <p> Create Time : 2019-02-12 14:38 </p>
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface SystemMenuTypeService extends BaseService {
+public interface BaseService<T> {
+
+    /**
+     * add model
+     *
+     * @param model model info
+     * @return insert count
+     */
+    Long insertModel(T model);
+
+    /**
+     * get model by id
+     *
+     * @param id model id
+     * @return model
+     */
+    T getModelById(Long id);
+
+    /**
+     * get all model by page
+     *
+     * @param pageable page info
+     * @return all model for page
+     */
+    PageModel<T> findAllByPage(Pageable pageable);
+
 }

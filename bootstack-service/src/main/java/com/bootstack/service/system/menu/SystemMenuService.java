@@ -16,6 +16,8 @@ package com.bootstack.service.system.menu; /**
  * limitations under the License.
  */
 
+import com.bootstack.service.BaseService;
+
 /**
  * <p> SystemMenuService </p>
  * <p> Description : SystemMenuService </p>
@@ -24,5 +26,5 @@ package com.bootstack.service.system.menu; /**
  * <p> Create Time : 2019-01-26 15:40 </p>
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface SystemMenuService {
+public interface SystemMenuService extends BaseService {
 }
