@@ -1,4 +1,4 @@
-package com.bootstack.service.system.menu; /**
+/**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -15,16 +15,31 @@ package com.bootstack.service.system.menu; /**
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.bootstack.param.system.menu;
 
-import com.bootstack.service.BaseService;
+import com.bootstack.validation.system.menu.SystemMenuRequireValidation;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- * <p> SystemMenuTypeService </p>
- * <p> Description : SystemMenuTypeService </p>
+ * <p> SystemRoleBasicParam </p>
+ * <p> Description : SystemRoleBasicParam </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-26 15:39 </p>
- * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ * <p> Create Time : 2019-01-26 16:20 </p>
+ * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface SystemMenuTypeService extends BaseService {
+@Data
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+public class SystemMenuRequireParam {
+
+    @NotEmpty(message = "system menu id must not null")
+    @SystemMenuRequireValidation
+    private String id;
+
 }

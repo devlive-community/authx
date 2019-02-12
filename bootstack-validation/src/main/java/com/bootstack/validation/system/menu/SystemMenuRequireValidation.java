@@ -1,4 +1,4 @@
-package com.bootstack.service.system.menu; /**
+package com.bootstack.validation.system.menu; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -16,15 +16,28 @@ package com.bootstack.service.system.menu; /**
  * limitations under the License.
  */
 
-import com.bootstack.service.BaseService;
+import javax.validation.Constraint;
+import javax.validation.Payload;
+import java.lang.annotation.*;
 
 /**
- * <p> SystemMenuTypeService </p>
- * <p> Description : SystemMenuTypeService </p>
+ * <p> SystemRoleValidation </p>
+ * <p> Description : SystemRoleValidation </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-26 15:39 </p>
+ * <p> Create Time : 2019-01-26 15:01 </p>
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface SystemMenuTypeService extends BaseService {
+@Documented
+@Constraint(validatedBy = SystemMenuRequireValidationValidator.class)
+@Target({ElementType.METHOD, ElementType.FIELD})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface SystemMenuRequireValidation {
+
+    String message() default "the menu id not exists";
+
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
+
 }
