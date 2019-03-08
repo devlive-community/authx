@@ -19,8 +19,6 @@ package com.bootstack.web;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.PropertySource;
 
 /**
  * <p> BootStackWebBootstrap </p>
@@ -31,13 +29,6 @@ import org.springframework.context.annotation.PropertySource;
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @SpringBootApplication
-@ComponentScan(value = {
-        "com.bootstack.web"
-})
-@PropertySource(value = {
-        "bootstack-template.properties",
-        "bootstack-server.properties"
-})
 public class BootStackWebBootstrap {
 
     public static void main(String[] args) {
