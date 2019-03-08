@@ -7,6 +7,13 @@
     <packaging>pom</packaging>
     <version>1.0.0</version>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.6.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
     <modules>
         <module>bootstack-common</module>
         <module>bootstack-core</module>
@@ -42,10 +49,15 @@
         <plugin.maven.compiler.version>3.3</plugin.maven.compiler.version>
         <plugin.maven.javadoc.version>2.10.4</plugin.maven.javadoc.version>
         <plugin.maven.checkstyle.version>2.17</plugin.maven.checkstyle.version>
+        <plugin.frontend.version>0.0.27</plugin.frontend.version>
+        <plugin.springboot.version>1.5.6.RELEASE</plugin.springboot.version>
         <!-- environment config -->
         <environment.compile.java.version>1.8</environment.compile.java.version>
         <!-- reporting config -->
         <reporting.maven.jxr.version>2.5</reporting.maven.jxr.version>
+        <!-- node & npm -->
+        <system.node.version>v8.9.4</system.node.version>
+        <system.npm.version>5.4.2</system.npm.version>
     </properties>
 
     <dependencies>
@@ -223,5 +235,16 @@
             </plugin>
         </plugins>
     </reporting>
+
+    <repositories>
+        <repository>
+            <id>nexus-ttxit</id>
+            <name>edurt maven center</name>
+            <url>http://maven.edurt.com/repository/maven/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
 </project>
