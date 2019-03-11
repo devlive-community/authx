@@ -17,9 +17,12 @@
  */
 package com.bootstack.core.config.handler;
 
+import com.bootstack.common.enums.SystemMessageEnums;
 import com.bootstack.common.validation.ValidationUtils;
 import com.bootstack.model.common.CommonResponseModel;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -57,6 +60,28 @@ public class BootStackExceptionHandler {
     @ExceptionHandler(value = BindException.class)
     public Object methodArgumentNotValidHandler(BindException exception) {
         return CommonResponseModel.validateError(ValidationUtils.extractValidate(exception.getBindingResult()));
+    }
+
+    /**
+     * http param validation error
+     *
+     * @param exception param validation exception
+     * @return error result
+     */
+    @ExceptionHandler(value = HttpMessageNotReadableException.class)
+    public Object methodHttpMessageNotReadableException(HttpMessageNotReadableException exception) {
+        return CommonResponseModel.error(SystemMessageEnums.SYSTEM_PARAMS_MUST_NULL, exception.getMessage());
+    }
+
+    /**
+     * Media Type validation error
+     *
+     * @param exception param validation exception
+     * @return error result
+     */
+    @ExceptionHandler(value = HttpMediaTypeNotSupportedException.class)
+    public Object methodHttpMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException exception) {
+        return CommonResponseModel.error(SystemMessageEnums.SYSTEM_MEDIA_TYPE_NOT_SUPPORT, exception.getMessage());
     }
 
 }

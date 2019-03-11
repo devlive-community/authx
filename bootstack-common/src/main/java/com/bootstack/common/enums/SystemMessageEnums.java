@@ -31,7 +31,10 @@ public enum SystemMessageEnums {
     SYSTEM_UNAUTHORIZED(4000, "Invalid access permissions, please contact administrator to assign permissions"),
     SYSTEM_ERROR_TOKEN(4001, "this is a not active token"),
     SYSTEM_BAD_CREDENTIALS(4002, "bad user or password"),
-    SYSTEM_PARAMS_VALIDATE_ERROR(4003, "param validation error, please check");
+    SYSTEM_PARAMS_VALIDATE_ERROR(4003, "param validation error, please check"),
+    SYSTEM_PARAMS_MUST_NULL(4004, "required request body is missing"),
+    SYSTEM_MEDIA_TYPE_NOT_SUPPORT(4005, "media type not supported or media type must not null"),
+    ;
 
     private Integer code;
     private String value;

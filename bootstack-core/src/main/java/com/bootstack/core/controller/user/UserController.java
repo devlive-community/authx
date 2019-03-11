@@ -18,6 +18,7 @@
 package com.bootstack.core.controller.user;
 
 import com.bootstack.common.encryption.EncryptionShaUtils;
+import com.bootstack.core.controller.ControllerSupport;
 import com.bootstack.model.common.CommonResponseModel;
 import com.bootstack.model.system.role.SystemRoleModel;
 import com.bootstack.model.user.UserModel;
@@ -55,7 +56,8 @@ public class UserController {
     @Autowired
     private SystemRoleService systemRoleService;
 
-    @PostMapping(value = "register")
+//    @PostMapping(value = ControllerSupport.CONTROLLER_DEFAULT_PUBLIC + ControllerSupport.CONTROLLER_DEFAULT_ADD)
+    @PostMapping(value = ControllerSupport.CONTROLLER_DEFAULT_ADD)
     CommonResponseModel add(@RequestBody @Validated UserBasicParam param) {
         log.info("add user action, user name is {}", param.getName());
         UserModel user = new UserModel();
