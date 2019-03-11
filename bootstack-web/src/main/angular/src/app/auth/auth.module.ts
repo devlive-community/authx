@@ -16,8 +16,6 @@
  * limitations under the License.
  */
 import {NgModule} from '@angular/core';
-import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
-import {TooltipModule} from 'ngx-bootstrap/tooltip';
 
 import {SharedModule} from '../shared/shared.module';
 
@@ -28,8 +26,6 @@ import {UserService} from '../../services/user.service';
 @NgModule({
   imports: [
     SharedModule,
-    TooltipModule.forRoot(),
-    BsDropdownModule.forRoot()
   ],
   declarations: [],
   providers: [

@@ -18,13 +18,7 @@
 import {Injectable} from '@angular/core';
 import {Http, RequestOptions} from '@angular/http';
 import {Router} from '@angular/router';
-// import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import {CookieUtils} from "../app/shared/utils/cookie.utils";
-// @ts-ignore
-
-import {ToastyService} from 'ng2-toasty';
+import {CookieUtils} from '../app/shared/utils/cookie.utils';
 
 /**
  * user service
@@ -35,8 +29,7 @@ export class UserService {
   constructor(
     private http: Http,
     private options: RequestOptions,
-    private router: Router,
-    private toastyService: ToastyService) {
+    private router: Router) {
   }
 
   /**

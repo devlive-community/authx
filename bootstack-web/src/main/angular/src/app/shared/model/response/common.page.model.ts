@@ -32,10 +32,6 @@ export class CommonPageModel implements Serializable<CommonPageModel> {
   public first: number;
   public numberOfElements: number;
 
-  public deserialize(input) {
-    return this;
-  }
-
   // tslint:disable-next-line:member-ordering
   public static getPage(json) {
     const page: CommonPageModel = new CommonPageModel();
@@ -47,6 +43,10 @@ export class CommonPageModel implements Serializable<CommonPageModel> {
     page.first = json.first;
     page.numberOfElements = json.numberOfElements;
     return page;
+  }
+
+  public deserialize(input) {
+    return this;
   }
 
 }

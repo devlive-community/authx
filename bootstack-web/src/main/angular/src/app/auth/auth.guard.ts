@@ -17,8 +17,7 @@
  */
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
-// @ts-ignore
-import {CommonConfig} from "../../config/common.config";
+import {CommonConfig} from '../../config/common.config';
 
 import {Cookie} from 'ng2-cookies';
 
