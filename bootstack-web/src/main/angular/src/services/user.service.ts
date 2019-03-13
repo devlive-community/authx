@@ -15,10 +15,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {Injectable} from '@angular/core';
-import {Http, RequestOptions} from '@angular/http';
-import {Router} from '@angular/router';
-import {CookieUtils} from '../app/shared/utils/cookie.utils';
+import { Injectable } from '@angular/core';
+import { Http, Headers, RequestOptions, URLSearchParams, QueryEncoder } from '@angular/http';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+import { Cookie } from 'ng2-cookies';
+
+import { HttpUtils } from '../app/shared/utils/http.util';
+import { CookieUtils } from '../app/shared/utils/cookie.util';
+
+import { ApiConfig } from '../config/api.config';
+import { CommonConfig } from '../config/common.config';
+
+import { LoginParamModel } from '../app/shared/model/param/login.param.model';
+import { UserParamModel } from '../app/shared/model/param/user.param.model';
+import { UserModel } from '../app/shared/model/user/user.model';
+import { CommonResultModel } from '../app/shared/model/result/result.model';
+import { ResultUtils } from '../app/shared/utils/result.util';
+import { ToastyService } from 'ng2-toasty';
 
 /**
  * user service
@@ -26,34 +42,58 @@ import {CookieUtils} from '../app/shared/utils/cookie.utils';
 @Injectable()
 export class UserService {
 
-  constructor(
-    private http: Http,
-    private options: RequestOptions,
-    private router: Router) {
-  }
-
-  /**
-   * user login
-   */
-  login() {
-    // Cookie.set(CommonConfig.AUTH_USER_NAME, param.username);
-    // const params = HttpUtils.getParams();
-    // params.append('username', param.username);
-    // params.append('password', param.password);
-    // params.append('grant_type', CommonConfig.AUTH_GRANT_TYPE);
-    // params.append('client_id', CommonConfig.AUTH_CLIENT_ID);
-    // const options = HttpUtils.getDefaultRequestOptionsByClient();
-    // options.params = params;
-    return false;
-  }
-
-  /**
-   * check login status
-   */
-  checkCredentials() {
-    if (!CookieUtils.get()) {
-      this.router.navigate(['/user/login']);
+    constructor(
+        private http: Http,
+        private options: RequestOptions,
+        private router: Router,
+        private toastyService: ToastyService) {
     }
-  }
+
+    /**
+     * login
+     */
+    login(param: LoginParamModel) {
+        Cookie.set(CommonConfig.AUTH_USER_NAME, param.username);
+        const params = HttpUtils.getParams();
+        params.append('username', param.username);
+        params.append('password', param.password);
+        params.append('grant_type', CommonConfig.AUTH_GRANT_TYPE);
+        params.append('client_id', CommonConfig.AUTH_CLIENT_ID);
+        const options = HttpUtils.getDefaultRequestOptionsByClient();
+        options.params = params;
+        return this.http.post(ApiConfig.AUTHORIZATION_API, param.toJson(), options)
+            .map(res => res.json())
+            .subscribe(
+                data => {
+                    this.saveToken(data);
+                    return true;
+                },
+                err => {
+                    CookieUtils.clearBy(CommonConfig.AUTH_USER_NAME);
+                    this.toastyService.error('Login failed, please check your user name or password.');
+                    return false;
+                });
+    }
+
+    /**
+     * save token
+     * @param token token
+     */
+    saveToken(token) {
+        const expire = new Date();
+        const time = Date.now() + ((3600 * 1000) * 1); // save token to cookie 1 hour
+        expire.setTime(time);
+        Cookie.set(CommonConfig.AUTH_TOKEN, token.access_token, expire);
+        this.router.navigate(['/']);
+    }
+
+    /**
+     * validate
+     */
+    checkCredentials() {
+        if (!CookieUtils.get()) {
+            this.router.navigate(['/user/login']);
+        }
+    }
 
 }

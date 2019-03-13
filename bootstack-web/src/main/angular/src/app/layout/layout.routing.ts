@@ -22,7 +22,9 @@ import { AuthGuard } from '../../app/auth/auth.guard';
 
 const LAYOUT_ROUTES: Routes = [
     {
-        path: '', component: LayoutComponent, children: []
+        path: '', component: LayoutComponent, children: [
+            { path: '', redirectTo: 'login', pathMatch: 'full' },
+        ]
     },
     {
         path: 'user', children: [

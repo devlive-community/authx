@@ -1,0 +1,125 @@
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+// 布局样式
+.main {
+  position: relative;
+}
+
+.main--alt {
+  // padding-top: 40px;
+}
+
+.content {
+  &:not(.content--boxed):not(.content--full) {
+    @include media-breakpoint-up(xl) {
+      padding: ($header-height + $grid-gutter-width) $grid-gutter-width 0 $sidebar-width;
+    }
+
+    @include media-breakpoint-between(sm, lg) {
+      padding: ($header-height + $grid-gutter-width) $grid-gutter-width 0;
+    }
+
+    @include media-breakpoint-down(xs) {
+      padding: ($header-height + $grid-gutter-width/2) $grid-gutter-width/2 0;
+    }
+  }
+}
+
+.content--full {
+  @include media-breakpoint-up(sm) {
+    // padding: ($header-height + $grid-gutter-width) $grid-gutter-width 0;
+    margin-top: 0px;
+  }
+
+  @include media-breakpoint-down(sm) {
+    // padding: ($header-height + $grid-gutter-width/2) $grid-gutter-width/2 0;
+    margin-top: 0px;
+  }
+}
+
+.content--full-fiexd {
+  @include media-breakpoint-up(sm) {
+    // padding: ($header-height + $grid-gutter-width) $grid-gutter-width 0;
+    margin-top: $header-height;
+  }
+
+  @include media-breakpoint-down(sm) {
+    // padding: ($header-height + $grid-gutter-width/2) $grid-gutter-width/2 0;
+    margin-top: $header-height;
+  }
+}
+
+.content--row-fiexd {
+  @include media-breakpoint-up(sm) {
+    padding: ($header-height + $grid-gutter-width) $grid-gutter-width 0;
+  }
+
+  @include media-breakpoint-down(sm) {
+    padding: ($header-height + $grid-gutter-width/2) $grid-gutter-width/2 0;
+  }
+}
+
+.content--row {
+  @include media-breakpoint-up(sm) {
+    padding: 10px $grid-gutter-width 0;
+  }
+
+  @include media-breakpoint-down(sm) {
+    padding: ($header-height + $grid-gutter-width/2) $grid-gutter-width/2 0;
+  }
+}
+
+.content__inner {
+  margin: auto;
+
+  &:not(.content__inner--sm) {
+    max-width: 1280px;
+  }
+}
+
+.content__inner--sm {
+  max-width: 800px;
+}
+
+.content__title {
+  margin-bottom: 2rem;
+  padding: 1rem 2rem 0;
+  position: relative;
+
+  & > h1 {
+    line-height: 100%;
+    font-weight: normal;
+    font-size: 1.15rem;
+    margin: 0;
+    text-transform: uppercase;
+    color: $content-title-heading-color;
+  }
+
+  .actions {
+    position: absolute;
+    top: 0.3rem;
+    right: 1rem;
+  }
+
+  & > small {
+    font-size: 1rem;
+    display: block;
+    margin-top: 0.8rem;
+    color: lighten($content-title-heading-color, 18%);
+  }
+}

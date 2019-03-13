@@ -28,50 +28,55 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BusyModule, BusyConfig } from 'angular2-busy';
+import { ToastyModule, ToastyService } from 'ng2-toasty';
+import { CustomFormsModule } from 'ng2-validation';
 
 import { LayoutComponent } from './layout.component';
 import { HeaderComponent } from './header/header.component';
-import { HeaderNavigationComponent } from './header/navigation/header-navigation.component';
+import { NavigationTriggerComponent } from './header/navigation-trigger/navigation-trigger.component';
 
 import { UserService } from '../../services/user.service';
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-    suppressScrollX: true
+  suppressScrollX: true
 };
 
 export function busyConfigFactory() {
-    return new BusyConfig({
-        message: 'data load...',
-        minDuration: 1000,
-        backdrop: true,
-    });
+  return new BusyConfig({
+    message: 'Data loading, please wait...',
+    minDuration: 1000,
+    backdrop: true,
+  });
 }
 
 @NgModule({
-    declarations: [
-        LayoutComponent,
-        HeaderComponent,
-        HeaderNavigationComponent
-    ],
-    imports: [
-        CommonModule,
-        LayoutRouting,
-        FormsModule,
-        BusyModule,
-        BsDropdownModule.forRoot(),
-        ProgressbarModule.forRoot(),
-        ButtonsModule.forRoot(),
-        TabsModule.forRoot(),
-        ModalModule.forRoot(),
-        PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG)
-    ],
-    providers: [
-        UserService,
-        {
-            provide: BusyConfig,
-            useFactory: busyConfigFactory
-        }
-    ]
+  declarations: [
+    LayoutComponent,
+    HeaderComponent,
+    NavigationTriggerComponent
+  ],
+  imports: [
+    CommonModule,
+    LayoutRouting,
+    FormsModule,
+    BusyModule,
+    CustomFormsModule,
+    BsDropdownModule.forRoot(),
+    ProgressbarModule.forRoot(),
+    ButtonsModule.forRoot(),
+    TabsModule.forRoot(),
+    ModalModule.forRoot(),
+    ToastyModule.forRoot(),
+    PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG)
+  ],
+  providers: [
+    UserService,
+    {
+      provide: BusyConfig,
+      useFactory: busyConfigFactory
+    },
+    ToastyService
+  ]
 })
 
 export class LayoutModule { }

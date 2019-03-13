@@ -1,0 +1,90 @@
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+// 卡片样式
+.card {
+  box-shadow: $card-shadow;
+  margin-bottom: $card-columns-margin;
+
+  &:not([class*="border-"]) {
+    border: 0;
+  }
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: normal;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.card-subtitle {
+  color: $text-muted;
+  font-size: 1rem;
+  font-weight: normal;
+  margin-top: -1.35rem;
+
+  &:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+}
+
+.card > .actions,
+.card-body .actions {
+  position: absolute;
+  right: 15px;
+  z-index: 2;
+  top: 18px;
+}
+
+[class*="card-img"] {
+  width: 100%;
+}
+
+.card-link {
+  text-transform: uppercase;
+  font-size: 0.98rem;
+  color: $headings-color;
+  font-weight: 500;
+  display: inline-block;
+  margin-top: 1rem;
+
+  &:hover {
+    color: lighten($headings-color, 10%);
+  }
+}
+
+.card-body__title {
+  font-size: 1.1rem;
+  color: $headings-color;
+  margin-bottom: 0.6rem;
+  font-weight: normal;
+}
+
+.card--inverse {
+  &,
+  .card-title,
+  .card-link {
+    color: $white;
+  }
+
+  .card-subtitle {
+    color: rgba($white, 0.8);
+  }
+}

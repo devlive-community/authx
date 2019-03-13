@@ -18,31 +18,46 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { Subscription } from 'rxjs/Subscription';
+import { FormGroup, FormControl } from '@angular/forms';
+import { ToastyService } from 'ng2-toasty';
 
-import { SharedService } from '../../../services/shared.service';
+import { CookieUtils } from '../../shared/utils/cookie.util';
+
+import { SharedService } from '../../shared/services/shared.service';
 import { UserService } from '../../../services/user.service';
 
+import { UserParamModel } from '../../shared/model/param/user.param.model';
+import { CommonConfig } from '../../../config/common.config';
+import { CodeConfig } from '../../../config/code.config';
+import { ResultUtils } from '../../shared/utils/result.util';
+import { UserModel } from '../../shared/model/user/user.model';
+
 @Component({
-    selector: 'app-header',
-    templateUrl: './header.component.html'
+  selector: 'app-header',
+  templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
 
-    maThemeModel = 'green';
+  token: String;
+  public userInfo;
+  maThemeModel = 'green';
 
-    setTheme() {
-        this.sharedService.setTheme(this.maThemeModel);
-    }
+  setTheme() {
+    this.sharedService.setTheme(this.maThemeModel);
+  }
 
-    constructor(private sharedService: SharedService,
-        private router: Router,
-        private userService: UserService) {
-        sharedService.maThemeSubject.subscribe((value) => {
-            this.maThemeModel = value;
-        });
-    }
+  constructor(private sharedService: SharedService,
+    private router: Router,
+    private userService: UserService,
+    private toastyService: ToastyService) {
+    sharedService.maThemeSubject.subscribe((value) => {
+      this.maThemeModel = value;
+    });
+  }
 
-    ngOnInit() {
-    }
+  ngOnInit() {
+    this.token = CookieUtils.get();
+  }
 
 }

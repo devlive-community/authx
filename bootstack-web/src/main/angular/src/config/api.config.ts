@@ -17,9 +17,11 @@
  */
 export class ApiConfig {
 
-  public static AUTHORIZATION_API = '/oauth/token';
+    public static AUTHORIZATION_API = '/oauth/token';
 
-  private static V1_API_ROOT = '/api/v1/';
-  private static V1_API_ROOT_PUBLIC = ApiConfig.V1_API_ROOT + 'public';
+    private static V1_API_ROOT = '/api/v1/';
+    private static V1_API_ROOT_PUBLIC = ApiConfig.V1_API_ROOT + 'public';
+
+    public static API_USER_REGISTER = ApiConfig.V1_API_ROOT_PUBLIC + '/user/register';
 
 }

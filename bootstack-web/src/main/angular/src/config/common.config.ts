@@ -17,11 +17,11 @@
  */
 export class CommonConfig {
 
-  public static readonly AUTH_CLIENT_ID = 'bootstack-client';
-  public static readonly AUTH_CLIENT_SECRET = 'bootstack-web';
-  public static readonly AUTH_TOKEN = 'access_token';
-  public static readonly AUTH_GRANT_TYPE = 'password';
-  public static readonly AUTH_USER_NAME = 'username';
-  public static readonly AUTH_USER_INFO = 'user-info';
+    public static readonly AUTH_CLIENT_ID = 'bootstack-client';
+    public static readonly AUTH_CLIENT_SECRET = 'bootstack-web';
+    public static readonly AUTH_TOKEN = 'access_token';
+    public static readonly AUTH_GRANT_TYPE = 'password';
+    public static readonly AUTH_USER_NAME = 'username';
+    public static readonly AUTH_USER_INFO = 'user-info';
 
 }
