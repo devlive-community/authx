@@ -29,6 +29,7 @@ const LAYOUT_ROUTES: Routes = [
     {
         path: 'user', children: [
             { path: 'register', loadChildren: '../pages/user/register/user.register.module#UserRegisterModule' },
+            { path: 'login', loadChildren: '../pages/user/login/user.login.module#UserLoginModule' },
         ]
     }
 ];
