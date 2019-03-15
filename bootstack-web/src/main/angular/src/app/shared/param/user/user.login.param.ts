@@ -21,7 +21,8 @@ export class UserLoginParam {
     public username: string;
     public password: string;
 
-    constructor() { }
+    constructor() {
+    }
 
     public toJson(): string {
         const json = {

@@ -57,10 +57,10 @@ export class UserRegisterComponent implements OnInit {
         this.userService.register(this.user).subscribe(
             response => {
                 if (response.code === CodeConfig.SUCCESS) {
-                    this.toastyService.info('user ' + this.user.username + ' register success');
+                    this.toastyService.info('user ' + this.user.name + ' register success');
                     this.router.navigate(['/user/login']);
                 } else {
-                    this.toastyService.error(ResponseUtils.getError(response.message));
+                    this.toastyService.error(ResponseUtils.getError(response));
                 }
             }
         );

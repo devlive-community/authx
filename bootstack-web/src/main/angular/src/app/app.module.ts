@@ -15,37 +15,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {HttpModule} from '@angular/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
 
-import { SharedService } from './shared/services/shared.service';
-import { routing } from './app.routing';
+import {SharedService} from './shared/services/shared.service';
+import {routing} from './app.routing';
 
-import { AuthModule } from './auth/auth.module';
+import {AuthModule} from './auth/auth.module';
 
 @NgModule({
-  imports: [
-    AuthModule,
-    BrowserModule,
-    HttpModule,
-    BrowserAnimationsModule,
-    routing
-  ],
-  declarations: [
-    AppComponent
-  ],
-  providers: [
-    SharedService,
-    {
-      provide: LocationStrategy,
-      useClass: HashLocationStrategy
-    }
-  ],
-  bootstrap: [AppComponent]
+    imports: [
+        AuthModule,
+        BrowserModule,
+        HttpModule,
+        BrowserAnimationsModule,
+        routing
+    ],
+    declarations: [
+        AppComponent
+    ],
+    providers: [
+        SharedService,
+        {
+            provide: LocationStrategy,
+            useClass: HashLocationStrategy
+        }
+    ],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -15,21 +15,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
+import {RouterModule} from '@angular/router';
+import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 
 @NgModule({
-  declarations: [
-  ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    BsDropdownModule.forRoot()
-  ],
-  exports: [
-  ]
+    declarations: [],
+    imports: [
+        CommonModule,
+        RouterModule,
+        BsDropdownModule.forRoot()
+    ],
+    exports: []
 })
 
-export class SharedModule { }
+export class SharedModule {
+}

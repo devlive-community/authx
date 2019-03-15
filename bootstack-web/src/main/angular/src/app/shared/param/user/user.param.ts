@@ -17,7 +17,7 @@
  */
 export class UserParam {
 
-    public username: string;
+    public name: string;
     public password: string;
     public repassword: string;
     public email: string;

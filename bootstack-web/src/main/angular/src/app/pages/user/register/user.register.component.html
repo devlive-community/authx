@@ -29,7 +29,7 @@
             <!-- register from start -->
             <form #registerForm="ngForm" (ngSubmit)="register()">
                 <div class="form-group form-group--float form-group--centered">
-                    <input type="text" [(ngModel)]="user.username" name="username" #username="ngModel"
+                    <input type="text" [(ngModel)]="user.name" name="username" #username="ngModel"
                            class="form-control" [rangeLength]="[5, 20]" required placeholder="Please enter a user name"/>
                     <p class="text-danger" *ngIf="username.errors?.rangeLength">The input character length is between
                         5-20</p>

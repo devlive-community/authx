@@ -15,8 +15,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import {Injectable} from '@angular/core';
+import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class SharedService {
@@ -29,9 +29,7 @@ export class SharedService {
         this.sidebarVisibilitySubject.next(this.sidebarVisible);
     }
 
-    // tslint:disable-next-line:member-ordering
     maTheme: string;
-    // tslint:disable-next-line:member-ordering
     maThemeSubject: Subject<string> = new Subject<string>();
 
     setTheme(color) {

@@ -15,9 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Response } from '@angular/http';
+import {Response} from '@angular/http';
 
-import { CommonResponseModel } from '../model/common/response/response.model';
+import {CommonResponseModel} from '../model/common/response/response.model';
+import {CodeConfig} from "../../../config/code.config";
 
 export class ResponseUtils {
 
@@ -37,17 +38,15 @@ export class ResponseUtils {
             return null;
         }
         let errors = '';
-        if (response.data) {
+        // param validation error
+        if (response.data.code = CodeConfig.PARAM_VALIDATION_ERROR) {
             response.data.error.forEach(e => {
                 errors = e.message + '\n';
             });
-            // tslint:disable-next-line:max-line-length
-            return 'This submission form appears altogether ' + response.data.count + ' second error, the following is the details of the error: \n'
+            return 'This submission form appears altogether ' + response.data.count + ' error, the following is the details of the error: \n'
                 + errors;
-        } else  {
-            return response;
         }
-
+        return response;
     }
 
 }
