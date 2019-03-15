@@ -18,6 +18,7 @@
 import {RouterModule, Routes} from '@angular/router';
 import {LayoutComponent} from './layout.component';
 import {ErrorForiddeComponent} from "../pages/error/403/403.component";
+import {ErrorNotFoundComponent} from "../pages/error/404/404.component";
 
 const LAYOUT_ROUTES: Routes = [
     {
@@ -33,7 +34,8 @@ const LAYOUT_ROUTES: Routes = [
     },
     {
         path: 'error', children: [
-            {path: '403', component: ErrorForiddeComponent}
+            {path: '403', component: ErrorForiddeComponent},
+            {path: '404', component: ErrorNotFoundComponent}
         ]
     }
 ];
