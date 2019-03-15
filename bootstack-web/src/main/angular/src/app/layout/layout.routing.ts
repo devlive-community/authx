@@ -19,6 +19,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {LayoutComponent} from './layout.component';
 import {ErrorForiddeComponent} from "../pages/error/403/403.component";
 import {ErrorNotFoundComponent} from "../pages/error/404/404.component";
+import {AuthGuard} from "../auth/auth.guard";
 
 const LAYOUT_ROUTES: Routes = [
     {
@@ -38,7 +39,13 @@ const LAYOUT_ROUTES: Routes = [
             {path: '403', component: ErrorForiddeComponent},
             {path: '404', component: ErrorNotFoundComponent}
         ]
-    }
+    },
+    {
+        path: 'dashboard', component: LayoutComponent, canActivate: [AuthGuard], children: [
+            { path: '', redirectTo: 'index', pathMatch: 'full' },
+            { path: 'index', loadChildren: '../pages/dashboard/index/dashboard.index.module#DashboardIndexModule' },
+        ]
+    },
 ];
 
 export const LayoutRouting = RouterModule.forChild(LAYOUT_ROUTES);
