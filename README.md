@@ -14,7 +14,7 @@ bootstack is a open source privilege management platform
 |Spring Security|-|
 |Spring Security Oauth2|-|
 |Spring Data JPA|-|
-|Angular|7.1.x|
+|Angular|4.x.x|
 
 ### Contributors(In no particular order)
 
