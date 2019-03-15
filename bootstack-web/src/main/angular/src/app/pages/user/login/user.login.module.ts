@@ -15,19 +15,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { CustomFormsModule } from 'ng2-validation';
-import { ToastyModule } from 'ng2-toasty';
+import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {RouterModule, Routes} from '@angular/router';
+import {TooltipModule} from 'ngx-bootstrap/tooltip';
+import {CustomFormsModule} from 'ng2-validation';
+import {ToastyModule} from 'ng2-toasty';
 
-import { UserLoginComponent } from './user.login.component';
-import { UserService } from '../../../../services/user.service';
+import {UserLoginComponent} from './user.login.component';
+import {UserService} from '../../../../services/user.service';
 
 const USER_REGISTER_ROUTES: Routes = [
-    { path: '', component: UserLoginComponent }
+    {path: '', component: UserLoginComponent}
 ];
 
 @NgModule({
@@ -46,4 +46,5 @@ const USER_REGISTER_ROUTES: Routes = [
         UserService
     ],
 })
-export class UserLoginModule { }
+export class UserLoginModule {
+}

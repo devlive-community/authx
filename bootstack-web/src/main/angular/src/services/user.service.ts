@@ -15,26 +15,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, URLSearchParams, QueryEncoder } from '@angular/http';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {Http, RequestOptions} from '@angular/http';
+import {Router} from '@angular/router';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import { Cookie } from 'ng2-cookies';
+import {Cookie} from 'ng2-cookies';
 
-import { HttpUtils } from '../app/shared/utils/http.util';
-import { CookieUtils } from '../app/shared/utils/cookie.util';
+import {HttpUtils} from '../app/shared/utils/http.util';
+import {CookieUtils} from '../app/shared/utils/cookie.util';
 
-import { ApiConfig } from '../config/api.config';
-import { CommonConfig } from '../config/common.config';
+import {ApiConfig} from '../config/api.config';
+import {CommonConfig} from '../config/common.config';
 
-import { LoginParamModel } from '../app/shared/model/param/login.param.model';
-import { UserParamModel } from '../app/shared/model/param/user.param.model';
-import { UserModel } from '../app/shared/model/user/user.model';
-import { CommonResultModel } from '../app/shared/model/result/result.model';
-import { ResultUtils } from '../app/shared/utils/result.util';
-import { ToastyService } from 'ng2-toasty';
+import {LoginParamModel} from '../app/shared/model/param/login.param.model';
+import {ToastyService} from 'ng2-toasty';
 
 /**
  * user service
@@ -68,7 +63,7 @@ export class UserService {
                     this.saveToken(data);
                     return true;
                 },
-                err => {
+                error => {
                     CookieUtils.clearBy(CommonConfig.AUTH_USER_NAME);
                     this.toastyService.error('Login failed, please check your user name or password.');
                     return false;
@@ -83,7 +78,7 @@ export class UserService {
         const expire = new Date();
         const time = Date.now() + ((3600 * 1000) * 1); // save token to cookie 1 hour
         expire.setTime(time);
-        Cookie.set(CommonConfig.AUTH_TOKEN, token.access_token, expire);
+        Cookie.set(CommonConfig.AUTH_TOKEN, token.data, expire);
         this.router.navigate(['/']);
     }
 

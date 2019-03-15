@@ -15,16 +15,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
-import { CustomValidators } from 'ng2-validation';
-import { ToastyService } from 'ng2-toasty';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {FormControl, FormGroup} from '@angular/forms';
+import {CustomValidators} from 'ng2-validation';
+import {ToastyService} from 'ng2-toasty';
 
-import { LoginParamModel } from '../../../shared/model/param/login.param.model';
+import {LoginParamModel} from '../../../shared/model/param/login.param.model';
 
-import { UserService } from '../../../../services/user.service';
-import { CodeConfig } from '../../../../config/code.config';
+import {UserService} from '../../../../services/user.service';
 
 @Component({
     selector: 'bootstack-user-login',
@@ -33,17 +32,18 @@ import { CodeConfig } from '../../../../config/code.config';
 
 export class UserLoginComponent implements OnInit {
 
+    // login form
     public form: FormGroup;
-    // 页面登录用户
+    // login user
     public user: LoginParamModel;
     public showAlertEmail = false;
 
     constructor(private router: Router,
-        private userService: UserService,
-        private toastyService: ToastyService) {
+                private userService: UserService,
+                private toastyService: ToastyService) {
         this.form = new FormGroup({
             username: new FormControl('', CustomValidators.range([5, 9])),
-            password: new FormControl('', CustomValidators.number)
+            // password: new FormControl('', CustomValidators.number)
         });
     }
 
@@ -52,6 +52,7 @@ export class UserLoginComponent implements OnInit {
     }
 
     login() {
+        this.userService.login(this.user);
     }
 
 }

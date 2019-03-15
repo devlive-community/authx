@@ -1,11 +1,11 @@
 {
     "/oauth/token": {
-        "target": "http://bootstack-server:8080",
+        "target": "http://localhost:9999",
         "secure": false,
         "logLevel": "debug"
     },
     "/api/v1": {
-        "target": "http://bootstack-server:8080",
+        "target": "http://localhost:9999",
         "secure": false,
         "logLevel": "debug"
     }
