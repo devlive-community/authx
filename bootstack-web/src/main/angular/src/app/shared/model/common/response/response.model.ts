@@ -15,38 +15,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Serializable } from '../../model/serialization/serialization.model';
+import { Serializable } from '../../serialization/serialization.model';
 
 /**
- * page
+ * The API returns the data model
  *
  * @author qianmoQ
  */
-export class CommonPageModel implements Serializable<CommonPageModel> {
+export class CommonResponseModel implements Serializable<CommonResponseModel> {
 
-    public totalPages: number;
-    public totalElements: number;
-    public last: boolean;
-    public size = 10;
-    public number = 0;
-    public first: number;
-    public numberOfElements: number;
+    public code;
+    public message: string;
+    public data: any;
+    public color: string;
 
     public deserialize(input) {
         return this;
-    }
-
-    // tslint:disable-next-line:member-ordering
-    public static getPage(json) {
-        const page: CommonPageModel = new CommonPageModel();
-        page.totalPages = json.totalPages;
-        page.totalElements = json.totalElements;
-        page.last = json.last;
-        page.size = json.size;
-        page.number = json.number;
-        page.first = json.first;
-        page.numberOfElements = json.numberOfElements;
-        return page;
     }
 
 }

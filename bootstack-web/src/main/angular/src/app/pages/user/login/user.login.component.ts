@@ -21,7 +21,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {CustomValidators} from 'ng2-validation';
 import {ToastyService} from 'ng2-toasty';
 
-import {LoginParamModel} from '../../../shared/model/param/login.param.model';
+import {UserLoginParam} from '../../../shared/param/user/user.login.param';
 
 import {UserService} from '../../../../services/user.service';
 
@@ -35,7 +35,7 @@ export class UserLoginComponent implements OnInit {
     // login form
     public form: FormGroup;
     // login user
-    public user: LoginParamModel;
+    public user: UserLoginParam;
     public showAlertEmail = false;
 
     constructor(private router: Router,
@@ -48,7 +48,7 @@ export class UserLoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.user = new LoginParamModel();
+        this.user = new UserLoginParam();
     }
 
     login() {

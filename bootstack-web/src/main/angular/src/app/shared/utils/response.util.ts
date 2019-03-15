@@ -17,32 +17,37 @@
  */
 import { Response } from '@angular/http';
 
-import { CommonResultModel } from '../../shared/model/result/result.model';
+import { CommonResponseModel } from '../model/common/response/response.model';
 
-export class ResultUtils {
+export class ResponseUtils {
 
-    public static extractData(res: Response): CommonResultModel {
+    public static extractData(res: Response): CommonResponseModel {
         const body = res.json();
-        const commonResponseModel: CommonResultModel = new CommonResultModel();
+        const commonResponseModel: CommonResponseModel = new CommonResponseModel();
         if (body) {
             commonResponseModel.code = body.code;
-            commonResponseModel.msg = body.message;
+            commonResponseModel.message = body.message;
             commonResponseModel.data = body.data;
         }
         return commonResponseModel;
     }
 
-    public static getError(result) {
-        if (!result) {
+    public static getError(response) {
+        if (!response) {
             return null;
         }
         let errors = '';
-        result.data.error.forEach(e => {
-            errors = e.message + '\n';
-        });
-        // tslint:disable-next-line:max-line-length
-        return 'This submission form appears altogether ' + result.data.count + ' second error, the following is the details of the error: \n'
-            + errors;
+        if (response.data) {
+            response.data.error.forEach(e => {
+                errors = e.message + '\n';
+            });
+            // tslint:disable-next-line:max-line-length
+            return 'This submission form appears altogether ' + response.data.count + ' second error, the following is the details of the error: \n'
+                + errors;
+        } else  {
+            return response;
+        }
+
     }
 
 }

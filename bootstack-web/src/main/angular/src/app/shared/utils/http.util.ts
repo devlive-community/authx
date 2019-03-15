@@ -20,7 +20,7 @@ import { Headers, RequestOptions, URLSearchParams, QueryEncoder } from '@angular
 import { CommonConfig } from '../../../config/common.config';
 
 import { CookieUtils } from '../utils/cookie.util';
-import { CommonPageModel } from '../model/result/page.model';
+import { CommonPageModel } from '../model/common/response/page.model';
 
 /**
  * Global HTTP request

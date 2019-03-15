@@ -15,22 +15,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Serializable } from '../../model/serialization/serialization.model';
+export class UserParam {
 
-/**
- * The API returns the data model
- *
- * @author qianmoQ
- */
-export class CommonResultModel implements Serializable<CommonResultModel> {
+    public username: string;
+    public password: string;
+    public repassword: string;
+    public email: string;
 
-    public code;
-    public msg: string;
-    public data: any;
-    public color: string;
-
-    public deserialize(input) {
-        return this;
+    constructor() {
     }
 
 }

@@ -28,8 +28,12 @@ import {CookieUtils} from '../app/shared/utils/cookie.util';
 import {ApiConfig} from '../config/api.config';
 import {CommonConfig} from '../config/common.config';
 
-import {LoginParamModel} from '../app/shared/model/param/login.param.model';
+import {UserLoginParam} from '../app/shared/param/user/user.login.param';
 import {ToastyService} from 'ng2-toasty';
+import {UserParam} from "../app/shared/param/user/user.param";
+import {Observable} from "rxjs";
+import {CommonResponseModel} from "../app/shared/model/common/response/response.model";
+import {ResponseUtils} from "../app/shared/utils/response.util";
 
 /**
  * user service
@@ -46,8 +50,9 @@ export class UserService {
 
     /**
      * login
+     * @param param user login info
      */
-    login(param: LoginParamModel) {
+    login(param: UserLoginParam) {
         Cookie.set(CommonConfig.AUTH_USER_NAME, param.username);
         const params = HttpUtils.getParams();
         params.append('username', param.username);
@@ -68,6 +73,16 @@ export class UserService {
                     this.toastyService.error('Login failed, please check your user name or password.');
                     return false;
                 });
+    }
+
+    /**
+     * register user
+     * @param param user info
+     */
+    register(param: UserParam): Observable<CommonResponseModel> {
+        const options = HttpUtils.getDefaultRequestOptions();
+        return this.http.post(ApiConfig.API_USER_REGISTER, JSON.stringify(param), options)
+            .map(ResponseUtils.extractData);
     }
 
     /**

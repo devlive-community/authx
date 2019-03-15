@@ -15,17 +15,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
-import { CustomValidators } from 'ng2-validation';
-import { ToastyService } from 'ng2-toasty';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {FormControl, FormGroup} from '@angular/forms';
+import {CustomValidators} from 'ng2-validation';
+import {ToastyService} from 'ng2-toasty';
 
-import { UserParamModel } from '../../../shared/model/param/user.param.model';
+import {UserParam} from '../../../shared/param/user/user.param';
 
-import { UserService } from '../../../../services/user.service';
-import { CodeConfig } from '../../../../config/code.config';
-import { ResultUtils } from '../../../shared/utils/result.util';
+import {UserService} from '../../../../services/user.service';
+import {CodeConfig} from "../../../../config/code.config";
+import {ResponseUtils} from "../../../shared/utils/response.util";
 
 @Component({
     selector: 'bootstack-user-register',
@@ -35,19 +35,35 @@ import { ResultUtils } from '../../../shared/utils/result.util';
 export class UserRegisterComponent implements OnInit {
 
     form: FormGroup;
-    user: UserParamModel;
+    user: UserParam;
 
     constructor(private router: Router,
-        private userService: UserService,
-        private toastyService: ToastyService) {
+                private userService: UserService,
+                private toastyService: ToastyService) {
         this.form = new FormGroup({
-            username: new FormControl('', CustomValidators.range([5, 9])),
+            username: new FormControl('', CustomValidators.range([5, 20])),
             password: new FormControl('', CustomValidators.number)
         });
     }
 
     ngOnInit() {
-        this.user = new UserParamModel();
+        this.user = new UserParam();
+    }
+
+    /**
+     * register a user
+     */
+    register() {
+        this.userService.register(this.user).subscribe(
+            response => {
+                if (response.code === CodeConfig.SUCCESS) {
+                    this.toastyService.info('user ' + this.user.username + ' register success');
+                    this.router.navigate(['/user/login']);
+                } else {
+                    this.toastyService.error(ResponseUtils.getError(response.message));
+                }
+            }
+        );
     }
 
 }

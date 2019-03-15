@@ -27,10 +27,10 @@ import { CookieUtils } from '../../shared/utils/cookie.util';
 import { SharedService } from '../../shared/services/shared.service';
 import { UserService } from '../../../services/user.service';
 
-import { UserParamModel } from '../../shared/model/param/user.param.model';
+import { UserParam } from '../../shared/param/user/user.param';
 import { CommonConfig } from '../../../config/common.config';
 import { CodeConfig } from '../../../config/code.config';
-import { ResultUtils } from '../../shared/utils/result.util';
+import { ResponseUtils } from '../../shared/utils/response.util';
 import { UserModel } from '../../shared/model/user/user.model';
 
 @Component({

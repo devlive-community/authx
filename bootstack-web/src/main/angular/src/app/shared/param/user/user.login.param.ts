@@ -15,13 +15,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-export class UserParamModel {
+export class UserLoginParam {
 
+    public grantType = 'password';
     public username: string;
     public password: string;
-    public repassword: string;
-    public email: string;
 
     constructor() { }
+
+    public toJson(): string {
+        const json = {
+            'grant_type': this.grantType,
+            'username': this.username,
+            'password': this.password
+        };
+        return JSON.stringify(json);
+    }
 
 }
