@@ -23,7 +23,8 @@ import {ErrorNotFoundComponent} from "../pages/error/404/404.component";
 const LAYOUT_ROUTES: Routes = [
     {
         path: '', component: LayoutComponent, children: [
-            {path: '', redirectTo: 'login', pathMatch: 'full'},
+            { path: '', redirectTo: 'home', pathMatch: 'full' },
+            { path: 'home', loadChildren: '../pages/home/home.module#HomeModule' },
         ]
     },
     {

@@ -17,10 +17,25 @@
 -->
 <ng2-toasty [position]="'top-center'"></ng2-toasty>
 <header class="header">
-  <navigation-trigger></navigation-trigger>
-  <div class="header__logo">
-    <h1>
-      <a [routerLink]="['/']">BootStack</a>
-    </h1>
-  </div>
+    <navigation-trigger></navigation-trigger>
+    <div class="header__logo">
+        <h1>
+            <a [routerLink]="['/']">BootStack</a>
+        </h1>
+    </div>
+    <!-- login and register -->
+    <ul class="top-nav">
+        <ng-container *ngIf="token; else noAuth">
+            <li dropdown [autoClose]="false" triggers="mouseover">
+            </li>
+        </ng-container>
+        <ng-template #noAuth>
+            <li class="d-none d-sm-inline-block">
+                <a [routerLink]="['/user/login']" class="btn btn-info waves-effect">Login</a>
+            </li>
+            <li class="d-none d-sm-inline-block">
+                <a [routerLink]="['/user/register']" class="btn btn-primary waves-effect">Register</a>
+            </li>
+        </ng-template>
+    </ul>
 </header>
