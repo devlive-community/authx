@@ -25,7 +25,7 @@
         <module>bootstack-service</module>
         <module>bootstack-param</module>
         <module>bootstack-validation</module>
-        <module>bootstack-docs</module>
+        <module>docs</module>
     </modules>
 
     <name>bootstack parent</name>
