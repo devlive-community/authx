@@ -15,21 +15,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Routes, RouterModule } from '@angular/router';
-import { LayoutComponent } from './layout.component';
-
-import { AuthGuard } from '../../app/auth/auth.guard';
+import {RouterModule, Routes} from '@angular/router';
+import {LayoutComponent} from './layout.component';
+import {ErrorForiddeComponent} from "../pages/error/403/403.component";
 
 const LAYOUT_ROUTES: Routes = [
     {
         path: '', component: LayoutComponent, children: [
-            { path: '', redirectTo: 'login', pathMatch: 'full' },
+            {path: '', redirectTo: 'login', pathMatch: 'full'},
         ]
     },
     {
         path: 'user', children: [
-            { path: 'register', loadChildren: '../pages/user/register/user.register.module#UserRegisterModule' },
-            { path: 'login', loadChildren: '../pages/user/login/user.login.module#UserLoginModule' },
+            {path: 'register', loadChildren: '../pages/user/register/user.register.module#UserRegisterModule'},
+            {path: 'login', loadChildren: '../pages/user/login/user.login.module#UserLoginModule'},
+        ]
+    },
+    {
+        path: 'error', children: [
+            {path: '403', component: ErrorForiddeComponent}
         ]
     }
 ];

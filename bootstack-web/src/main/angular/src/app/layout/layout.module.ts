@@ -15,68 +15,70 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
-import { NgModule } from '@angular/core';
-import { LayoutRouting } from './layout.routing';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
-import { ButtonsModule } from 'ngx-bootstrap';
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-import { TabsModule } from 'ngx-bootstrap/tabs';
-import { ModalModule } from 'ngx-bootstrap/modal';
-import { BusyModule, BusyConfig } from 'angular2-busy';
-import { ToastyModule, ToastyService } from 'ng2-toasty';
-import { CustomFormsModule } from 'ng2-validation';
+import {NgModule} from '@angular/core';
+import {LayoutRouting} from './layout.routing';
+import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
+import {ProgressbarModule} from 'ngx-bootstrap/progressbar';
+import {ButtonsModule} from 'ngx-bootstrap';
+import {PerfectScrollbarConfigInterface, PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
+import {TabsModule} from 'ngx-bootstrap/tabs';
+import {ModalModule} from 'ngx-bootstrap/modal';
+import {BusyConfig, BusyModule} from 'angular2-busy';
+import {ToastyModule, ToastyService} from 'ng2-toasty';
+import {CustomFormsModule} from 'ng2-validation';
 
-import { LayoutComponent } from './layout.component';
-import { HeaderComponent } from './header/header.component';
-import { NavigationTriggerComponent } from './header/navigation-trigger/navigation-trigger.component';
+import {LayoutComponent} from './layout.component';
+import {HeaderComponent} from './header/header.component';
+import {NavigationTriggerComponent} from './header/navigation-trigger/navigation-trigger.component';
 
-import { UserService } from '../../services/user.service';
+import {UserService} from '../../services/user.service';
+import {ErrorForiddeComponent} from "../pages/error/403/403.component";
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  suppressScrollX: true
+    suppressScrollX: true
 };
 
 export function busyConfigFactory() {
-  return new BusyConfig({
-    message: 'Data loading, please wait...',
-    minDuration: 1000,
-    backdrop: true,
-  });
+    return new BusyConfig({
+        message: 'Data loading, please wait...',
+        minDuration: 1000,
+        backdrop: true,
+    });
 }
 
 @NgModule({
-  declarations: [
-    LayoutComponent,
-    HeaderComponent,
-    NavigationTriggerComponent
-  ],
-  imports: [
-    CommonModule,
-    LayoutRouting,
-    FormsModule,
-    BusyModule,
-    CustomFormsModule,
-    BsDropdownModule.forRoot(),
-    ProgressbarModule.forRoot(),
-    ButtonsModule.forRoot(),
-    TabsModule.forRoot(),
-    ModalModule.forRoot(),
-    ToastyModule.forRoot(),
-    PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG)
-  ],
-  providers: [
-    UserService,
-    {
-      provide: BusyConfig,
-      useFactory: busyConfigFactory
-    },
-    ToastyService
-  ]
+    declarations: [
+        LayoutComponent,
+        HeaderComponent,
+        NavigationTriggerComponent,
+        ErrorForiddeComponent
+    ],
+    imports: [
+        CommonModule,
+        LayoutRouting,
+        FormsModule,
+        BusyModule,
+        CustomFormsModule,
+        BsDropdownModule.forRoot(),
+        ProgressbarModule.forRoot(),
+        ButtonsModule.forRoot(),
+        TabsModule.forRoot(),
+        ModalModule.forRoot(),
+        ToastyModule.forRoot(),
+        PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG)
+    ],
+    providers: [
+        UserService,
+        {
+            provide: BusyConfig,
+            useFactory: busyConfigFactory
+        },
+        ToastyService
+    ]
 })
 
-export class LayoutModule { }
+export class LayoutModule {
+}

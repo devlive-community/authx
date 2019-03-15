@@ -26,7 +26,7 @@ bootstack is a open source privilege management platform
 
 ---
 
-- [Internal](https://git.edurt.com/SpringStack/bootstack.git)
+- [Internal](https://gitqub.com/SpringStack/bootstack.git)
 - [GitHub](https://github.com/springstack/bootstack.git)
 - [Gitee](https://gitee.com/Spring-Stack/bootstack.git)
 

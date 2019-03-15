@@ -28,6 +28,45 @@
         <module>docs</module>
     </modules>
 
+    <!-- url -->
+    <url>http://www.bootstack.com</url>
+
+    <!-- scm -->
+    <scm>
+        <url>https://gitqub.com/SpringStack/bootstack.git</url>
+    </scm>
+
+    <!-- licenses -->
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <!-- developer -->
+    <developers>
+        <developer>
+            <name>qianmoQ</name>
+            <roles>
+                <role>owner</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <!-- organization -->
+    <organization>
+        <name>Apache Software Foundation</name>
+        <url>http://www.apache.org</url>
+    </organization>
+
+    <!-- issueManagement -->
+    <issueManagement>
+        <system>jira</system>
+        <url>http://jira.ttxit.com/projects/BOOTSTACK</url>
+    </issueManagement>
+
     <name>bootstack parent</name>
     <description>bootstack</description>
 
