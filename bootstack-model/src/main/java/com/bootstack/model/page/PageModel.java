@@ -60,4 +60,8 @@ public class PageModel<T> extends PageImpl<T> implements Page<T> {
         return super.getNumber() + 1;
     }
 
+    public static Pageable getPageable(Integer page, Integer size) {
+        return PageModel.request(new PageRequest(page, size));
+    }
+
 }

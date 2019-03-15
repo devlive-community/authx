@@ -17,10 +17,13 @@
  */
 package com.bootstack.service.system.role;
 
+import com.bootstack.model.page.PageModel;
 import com.bootstack.model.system.role.SystemRoleModel;
 import com.bootstack.repository.system.role.SystemRoleRepository;
 import com.bootstack.service.ServiceSupport;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -50,6 +53,12 @@ public class SystemRoleServiceImpl implements SystemRoleService {
     @Override
     public SystemRoleModel getModelById(Long id) {
         return this.systemRoleRepository.findOne(id);
+    }
+
+    @Override
+    public PageModel<SystemRoleModel> getAll(Pageable pageable) {
+        Page<SystemRoleModel> models = this.systemRoleRepository.findAll(pageable);
+        return new PageModel<>(models.getContent(), pageable, models.getTotalElements());
     }
 
 }

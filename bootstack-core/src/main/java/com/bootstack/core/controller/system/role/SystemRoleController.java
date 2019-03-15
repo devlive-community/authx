@@ -20,13 +20,16 @@ package com.bootstack.core.controller.system.role;
 import com.bootstack.common.pinyin.PinYinUtils;
 import com.bootstack.core.controller.ControllerSupport;
 import com.bootstack.model.common.CommonResponseModel;
+import com.bootstack.model.page.PageModel;
 import com.bootstack.model.system.menu.SystemMenuModel;
 import com.bootstack.model.system.role.SystemRoleModel;
+import com.bootstack.param.page.PageParam;
 import com.bootstack.param.system.role.SystemRoleBasicParam;
 import com.bootstack.param.system.role.SystemRoleSetMenuParam;
 import com.bootstack.service.system.role.SystemRoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -50,6 +53,12 @@ public class SystemRoleController {
 
     @Autowired
     private SystemRoleService systemRoleService;
+
+    @GetMapping
+    CommonResponseModel list(@RequestParam PageParam param) {
+        Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
+        return CommonResponseModel.success(this.systemRoleService.getAll(pageable));
+    }
 
     @PostMapping(value = ControllerSupport.CONTROLLER_DEFAULT_ADD)
     CommonResponseModel add(@RequestBody @Validated SystemRoleBasicParam param) {
