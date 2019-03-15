@@ -34,7 +34,7 @@ import { ResponseUtils } from '../../shared/utils/response.util';
 import { UserModel } from '../../shared/model/user/user.model';
 
 @Component({
-  selector: 'app-header',
+  selector: 'bootstack-header',
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {

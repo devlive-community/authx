@@ -16,6 +16,7 @@
   limitations under the License.
 -->
 <main class="main main--alt" [attr.data-ma-theme]="maTheme">
-  <app-header></app-header>
-  <router-outlet></router-outlet>
+    <bootstack-header></bootstack-header>
+    <bootstack-navigation *ngIf="token"></bootstack-navigation>
+    <router-outlet></router-outlet>
 </main>

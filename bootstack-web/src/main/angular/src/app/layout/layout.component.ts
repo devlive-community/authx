@@ -17,21 +17,26 @@
  */
 import {Component, OnInit} from '@angular/core';
 import {SharedService} from '../shared/services/shared.service';
+import {CookieUtils} from "../shared/utils/cookie.util";
 
 @Component({
-  selector: 'app-layout',
-  templateUrl: './layout.component.html'
+    selector: 'app-layout',
+    templateUrl: './layout.component.html'
 })
 export class LayoutComponent implements OnInit {
-  maTheme: string = this.sharedService.maTheme;
+    maTheme: string = this.sharedService.maTheme;
 
-  constructor(private sharedService: SharedService) {
-    sharedService.maThemeSubject.subscribe((value) => {
-      this.maTheme = value;
-    });
-  }
+    // user token
+    token: String;
 
-  ngOnInit() {
-  }
+    constructor(private sharedService: SharedService) {
+        sharedService.maThemeSubject.subscribe((value) => {
+            this.maTheme = value;
+        });
+    }
+
+    ngOnInit() {
+        this.token = CookieUtils.get();
+    }
 
 }
