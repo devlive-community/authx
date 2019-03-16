@@ -1,5 +1,7 @@
 import {animate, Component, OnInit, state, style, transition, trigger} from '@angular/core';
 import {SharedService} from "../../../shared/services/shared.service";
+import {UserService} from "../../../../services/user.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'bootstack-navigation',
@@ -43,7 +45,9 @@ export class NavigationComponent implements OnInit {
         this.navigationSubState[menu] = (this.navigationSubState[menu] === 'inactive' ? 'active' : 'inactive');
     }
 
-    constructor(private sharedService: SharedService) {
+    constructor(private router: Router,
+                private sharedService: SharedService,
+                private userService: UserService) {
         sharedService.sidebarVisibilitySubject.subscribe((value) => {
             this.sidebarVisible = value;
         })
@@ -54,7 +58,8 @@ export class NavigationComponent implements OnInit {
     }
 
     logout() {
-        // UserLoginComponent.logout();
+        this.userService.logout();
+        this.router.navigate(['/user/login']);
     }
 
 }

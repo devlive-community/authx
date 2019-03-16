@@ -86,6 +86,13 @@ export class UserService {
     }
 
     /**
+     * logout
+     */
+    logout() {
+        CookieUtils.clear();
+    }
+
+    /**
      * save token
      * @param token token
      */
