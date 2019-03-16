@@ -24,6 +24,7 @@ export class ApiConfig {
     /**
      * user api interface
      */
-    public static API_USER_REGISTER = ApiConfig.API_VERSION_V1 + '/user/register';
+    public static readonly API_USER_REGISTER = ApiConfig.API_VERSION_V1 + '/user/register';
+    public static readonly API_USER_INFO = ApiConfig.API_VERSION_V1 + '/user/info/';
 
 }

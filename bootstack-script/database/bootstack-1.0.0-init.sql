@@ -25,24 +25,31 @@ create table system_interface (
     name        varchar(100) comment 'interface name',
     code        varchar(100) comment 'interface code',
     description varchar(200) comment 'interface description',
-    white       boolean comment 'white list'    default true,
+    white       boolean comment 'white list'     default true,
     path        varchar(200) comment 'interface path',
     method      varchar(200) comment 'interface method multiple method split by ,',
-    active      boolean comment 'active status' default true,
-    create_time timestamp                       default current_timestamp comment 'create time',
-    update_time timestamp                       default current_timestamp comment 'update time',
+    active      boolean comment 'active status'  default true,
+    system      boolean comment 'system default' default false,
+    create_time timestamp                        default current_timestamp comment 'create time',
+    update_time timestamp                        default current_timestamp comment 'update time',
     primary key (id)
 ) comment 'system interface table'
     default charset utf8;
 
-insert into system_interface(name, code, description, white, path, method, active) value ('user interface', 'ui',
-                                                                                          'user interface', true,
-                                                                                          '/api/v1/user',
-                                                                                          'get,post,put', true);
-insert into system_interface(name, code, description, white, path, method, active) value ('user oauth token', 'uot',
-                                                                                          'user oauth token', true,
-                                                                                          '/oauth/token',
-                                                                                          'get,post,put', true);
+insert into system_interface(name, code, description, white, path, method, active, system) value ('user interface',
+                                                                                                  'ui',
+                                                                                                  'user interface',
+                                                                                                  true,
+                                                                                                  '/api/v1/user',
+                                                                                                  'get,post,put', true,
+                                                                                                  true);
+insert into system_interface(name, code, description, white, path, method, active, system) value ('user oauth token',
+                                                                                                  'uot',
+                                                                                                  'user oauth token',
+                                                                                                  true,
+                                                                                                  '/oauth/token',
+                                                                                                  'get,post,put', true,
+                                                                                                  true);
 
 # system menu type table
 drop table if exists system_menu_type;

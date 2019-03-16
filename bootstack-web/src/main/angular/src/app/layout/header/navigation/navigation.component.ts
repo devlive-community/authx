@@ -2,6 +2,9 @@ import {animate, Component, OnInit, state, style, transition, trigger} from '@an
 import {SharedService} from "../../../shared/services/shared.service";
 import {UserService} from "../../../../services/user.service";
 import {Router} from "@angular/router";
+import {CookieUtils} from "../../../shared/utils/cookie.util";
+import {CodeConfig} from "../../../../config/code.config";
+import {ToastyService} from "ng2-toasty";
 
 @Component({
     selector: 'bootstack-navigation',
@@ -47,6 +50,7 @@ export class NavigationComponent implements OnInit {
 
     constructor(private router: Router,
                 private sharedService: SharedService,
+                private toastyService: ToastyService,
                 private userService: UserService) {
         sharedService.sidebarVisibilitySubject.subscribe((value) => {
             this.sidebarVisible = value;
@@ -54,12 +58,22 @@ export class NavigationComponent implements OnInit {
     }
 
     ngOnInit() {
-        // this.user = JSON.parse(sessionStorage.getItem(CommonConfig.AUTH_USER));
+        this.initUserInfo();
     }
 
     logout() {
         this.userService.logout();
         this.router.navigate(['/user/login']);
+    }
+
+    initUserInfo() {
+        this.userService.getInfo(CookieUtils.getUserName()).subscribe(
+            response => {
+                if (response.code !== CodeConfig.SUCCESS) {
+                    this.toastyService.error(response.message);
+                }
+            }
+        );
     }
 
 }

@@ -40,8 +40,10 @@ public interface SystemInterfaceService {
 
     PageModel<SystemInterfaceModel> getAllByWhiteTrueAndActiveTrue(Pageable pageable);
 
-    Iterable<SystemInterfaceModel> getAllByWhiteIsTrueAndActiveTrue();
+    Iterable<SystemInterfaceModel> getAllByWhiteIsTrueAndActiveTrueAndSystemTrue();
 
     SystemInterfaceModel getByPathLike(String path);
+
+    SystemInterfaceModel getByPathLikeAndSystemFalse(String path);
 
 }

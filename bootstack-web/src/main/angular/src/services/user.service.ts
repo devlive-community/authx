@@ -34,12 +34,13 @@ import {UserParam} from "../app/shared/param/user/user.param";
 import {Observable} from "rxjs";
 import {CommonResponseModel} from "../app/shared/model/common/response/response.model";
 import {ResponseUtils} from "../app/shared/utils/response.util";
+import {BaseService} from "./base.service";
 
 /**
  * user service
  */
 @Injectable()
-export class UserService {
+export class UserService implements BaseService {
 
     constructor(
         private http: Http,
@@ -111,6 +112,12 @@ export class UserService {
         if (!CookieUtils.get()) {
             this.router.navigate(['/user/login']);
         }
+    }
+
+    getInfo(primaryKey: Object): Observable<CommonResponseModel> {
+        const options = HttpUtils.getDefaultRequestOptionsByTokenAndJSON();
+        const path = ApiConfig.API_USER_INFO + primaryKey.toString();
+        return this.http.get(path, options).map(ResponseUtils.extractData);
     }
 
 }

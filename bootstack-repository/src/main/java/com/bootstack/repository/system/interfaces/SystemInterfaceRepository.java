@@ -44,7 +44,7 @@ public interface SystemInterfaceRepository extends PagingAndSortingRepository<Sy
      *
      * @return all white list
      */
-    Iterable<SystemInterfaceModel> findAllByWhiteIsTrueAndActiveTrue();
+    Iterable<SystemInterfaceModel> findAllByWhiteIsTrueAndActiveTrueAndSystemTrue();
 
     /**
      * find by path like ?
@@ -53,5 +53,13 @@ public interface SystemInterfaceRepository extends PagingAndSortingRepository<Sy
      * @return info
      */
     SystemInterfaceModel findByPathLike(String path);
+
+    /**
+     * find by path like ? and system default is false
+     *
+     * @param path path
+     * @return info
+     */
+    SystemInterfaceModel findByPathLikeAndSystemFalse(String path);
 
 }

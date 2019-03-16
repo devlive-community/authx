@@ -57,13 +57,18 @@ public class SystemInterfaceServiceImpl implements SystemInterfaceService {
     }
 
     @Override
-    public Iterable<SystemInterfaceModel> getAllByWhiteIsTrueAndActiveTrue() {
-        return this.systemInterfaceRepository.findAllByWhiteIsTrueAndActiveTrue();
+    public Iterable<SystemInterfaceModel> getAllByWhiteIsTrueAndActiveTrueAndSystemTrue() {
+        return this.systemInterfaceRepository.findAllByWhiteIsTrueAndActiveTrueAndSystemTrue();
     }
 
     @Override
     public SystemInterfaceModel getByPathLike(String path) {
         return this.systemInterfaceRepository.findByPathLike("%" + path + "%");
+    }
+
+    @Override
+    public SystemInterfaceModel getByPathLikeAndSystemFalse(String path) {
+        return this.systemInterfaceRepository.findByPathLikeAndSystemFalse("%" + path + "%");
     }
 
 }

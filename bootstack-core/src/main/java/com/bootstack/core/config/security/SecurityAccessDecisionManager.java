@@ -55,7 +55,7 @@ public class SecurityAccessDecisionManager implements AccessDecisionManager {
         String requestUrl = request.getServletPath(), requestMethod = request.getMethod();
         log.info("current api interface：" + requestUrl + " , request method：" + requestMethod);
         // Get whether the data is in the white list through the database
-        SystemInterfaceModel systemInterface = this.systemInterfaceService.getByPathLike(requestUrl);
+        SystemInterfaceModel systemInterface = this.systemInterfaceService.getByPathLikeAndSystemFalse(requestUrl);
         if (!ObjectUtils.isEmpty(systemInterface)) {
             if (systemInterface.getMethod().contains(requestMethod.toLowerCase())) {
                 return;

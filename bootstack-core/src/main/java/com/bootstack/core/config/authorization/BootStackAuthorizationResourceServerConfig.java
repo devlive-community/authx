@@ -60,7 +60,7 @@ public class BootStackAuthorizationResourceServerConfig extends ResourceServerCo
     @Override
     public void configure(HttpSecurity http) throws Exception {
         HttpSecurity.RequestMatcherConfigurer configurer = http.requestMatchers();
-        this.systemInterfaceService.getAllByWhiteIsTrueAndActiveTrue().forEach(v -> {
+        this.systemInterfaceService.getAllByWhiteIsTrueAndActiveTrueAndSystemTrue().forEach(v -> {
             // split path by ,
             String[] paths = v.getPath().split(",");
             for (String path : paths) {

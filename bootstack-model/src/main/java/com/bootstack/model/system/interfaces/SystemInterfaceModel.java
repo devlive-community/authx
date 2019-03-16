@@ -69,6 +69,9 @@ public class SystemInterfaceModel {
     @Column(name = "white")
     private Boolean white; // is white list
 
+    @Column(name = "system")
+    private Boolean system; // system default
+
     @Column(name = "path")
     private String path;
 
