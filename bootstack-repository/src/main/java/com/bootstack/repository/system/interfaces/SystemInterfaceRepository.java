@@ -40,6 +40,13 @@ public interface SystemInterfaceRepository extends PagingAndSortingRepository<Sy
     Page<SystemInterfaceModel> findAllByWhiteTrueAndActiveTrue(Pageable pageable);
 
     /**
+     * get all whilte list
+     *
+     * @return all white list
+     */
+    Iterable<SystemInterfaceModel> findAllByWhiteIsTrueAndActiveTrue();
+
+    /**
      * find by path like ?
      *
      * @param path path
