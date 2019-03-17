@@ -17,6 +17,8 @@ package com.bootstack.repository.system.menu; /**
  */
 
 import com.bootstack.model.system.menu.SystemMenuModel;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
@@ -28,4 +30,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 public interface SystemMenuRepository extends PagingAndSortingRepository<SystemMenuModel, Long> {
+
+    Page<SystemMenuModel> findAllByActiveTrue(Pageable pageable);
+
 }
