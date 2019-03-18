@@ -1,4 +1,4 @@
-package com.bootstack.repository.system.menu; /**
+/**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -15,25 +15,35 @@ package com.bootstack.repository.system.menu; /**
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import com.bootstack.model.system.menu.SystemMenuModel;
-import com.bootstack.model.system.menu.SystemMenuTypeModel;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.PagingAndSortingRepository;
+package com.bootstack.common.enums;
 
 /**
- * <p> SystemMenuRepository </p>
- * <p> Description : SystemMenuRepository </p>
+ * <p> SystemMessageEnums </p>
+ * <p> Description : SystemMessageEnums </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-26 15:39 </p>
+ * <p> Create Time : 2019-01-24 14:12 </p>
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface SystemMenuRepository extends PagingAndSortingRepository<SystemMenuModel, Long> {
+public enum UserMessageEnums {
 
-    Page<SystemMenuModel> findAllByActiveTrue(Pageable pageable);
+    USER_NOT_FOUND(4100, "user not found"),
+    ;
 
-    Page<SystemMenuModel> findAllByActiveTrueAndType(SystemMenuTypeModel model, Pageable pageable);
+    private Integer code;
+    private String value;
+
+    UserMessageEnums(Integer code, String value) {
+        this.code = code;
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public Integer getCode() {
+        return code;
+    }
 
 }

@@ -49,6 +49,10 @@
             <groupId>com.bootstack</groupId>
             <artifactId>bootstack-param</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.bootstack</groupId>
+            <artifactId>bootstack-aop</artifactId>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>

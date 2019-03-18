@@ -17,19 +17,18 @@
  */
 package com.bootstack.core.controller.system.menu;
 
+import com.bootstack.aop.validation.user.UserRequiredParamPathAndQueryAopValidation;
 import com.bootstack.core.controller.ControllerSupport;
 import com.bootstack.model.common.CommonResponseModel;
 import com.bootstack.model.system.menu.SystemMenuModel;
+import com.bootstack.param.page.PageParam;
 import com.bootstack.param.system.menu.SystemMenuBasicParam;
 import com.bootstack.service.system.menu.SystemMenuService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p> SystemMenuController </p>
@@ -59,6 +58,19 @@ public class SystemMenuController {
         BeanUtils.copyProperties(param, systemMenuModel);
         systemMenuModel.setActive(Boolean.TRUE);
         return CommonResponseModel.success(this.systemMenuService.insertModel(systemMenuModel));
+    }
+
+    /**
+     * get all menu by user and page
+     *
+     * @param uid  user id
+     * @param page page info
+     * @return all menu by page and user
+     */
+    @GetMapping(value = "{uid}")
+    @UserRequiredParamPathAndQueryAopValidation
+    CommonResponseModel list(@PathVariable(name = "uid") Long uid) {
+        return null;
     }
 
 }

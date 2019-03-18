@@ -25,6 +25,7 @@
         <module>bootstack-service</module>
         <module>bootstack-param</module>
         <module>bootstack-validation</module>
+        <module>bootstack-aop</module>
         <module>docs</module>
     </modules>
 
@@ -85,6 +86,8 @@
         <dependency.nekohtml.version>1.9.22</dependency.nekohtml.version>
         <dependency.httpclient.version>4.4.1</dependency.httpclient.version>
         <dependency.spring.context.version>4.3.12.RELEASE</dependency.spring.context.version>
+        <dependency.commons.lang3.version>3.8.1</dependency.commons.lang3.version>
+        <dependency.servlet.api.version>2.5</dependency.servlet.api.version>
         <!-- plugin config -->
         <plugin.maven.compiler.version>3.3</plugin.maven.compiler.version>
         <plugin.maven.javadoc.version>2.10.4</plugin.maven.javadoc.version>
@@ -145,6 +148,11 @@
             <dependency>
                 <groupId>com.bootstack</groupId>
                 <artifactId>bootstack-cache</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.bootstack</groupId>
+                <artifactId>bootstack-aop</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!-- springboot -->
@@ -222,6 +230,26 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
                 <version>${dependency.spring.context.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${dependency.spring.context.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aspects</artifactId>
+                <version>${dependency.spring.context.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${dependency.commons.lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>${dependency.servlet.api.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -1,4 +1,4 @@
-package com.bootstack.repository.system.menu; /**
+/**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -15,25 +15,22 @@ package com.bootstack.repository.system.menu; /**
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.bootstack.aop.validation.user;
 
-import com.bootstack.model.system.menu.SystemMenuModel;
-import com.bootstack.model.system.menu.SystemMenuTypeModel;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * <p> SystemMenuRepository </p>
- * <p> Description : SystemMenuRepository </p>
+ * <p> UserRequiredParamPathAndQueryAopValidation </p>
+ * <p> Description : UserRequiredParamPathAndQueryAopValidation </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-26 15:39 </p>
- * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ * <p> Create Time : 2019-03-18 11:10 </p>
+ * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface SystemMenuRepository extends PagingAndSortingRepository<SystemMenuModel, Long> {
-
-    Page<SystemMenuModel> findAllByActiveTrue(Pageable pageable);
-
-    Page<SystemMenuModel> findAllByActiveTrueAndType(SystemMenuTypeModel model, Pageable pageable);
-
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface UserRequiredParamPathAndQueryAopValidation {
 }

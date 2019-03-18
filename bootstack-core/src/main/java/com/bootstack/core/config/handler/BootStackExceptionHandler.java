@@ -24,9 +24,11 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 /**
  * <p> BootStackExceptionHandler </p>
@@ -70,7 +72,7 @@ public class BootStackExceptionHandler {
      */
     @ExceptionHandler(value = HttpMessageNotReadableException.class)
     public Object methodHttpMessageNotReadableException(HttpMessageNotReadableException exception) {
-        return CommonResponseModel.error(SystemMessageEnums.SYSTEM_PARAMS_MUST_NULL, exception.getMessage());
+        return CommonResponseModel.error(SystemMessageEnums.SYSTEM_BODY_MUST_NULL, exception.getMessage());
     }
 
     /**
@@ -82,6 +84,16 @@ public class BootStackExceptionHandler {
     @ExceptionHandler(value = HttpMediaTypeNotSupportedException.class)
     public Object methodHttpMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException exception) {
         return CommonResponseModel.error(SystemMessageEnums.SYSTEM_MEDIA_TYPE_NOT_SUPPORT, exception.getMessage());
+    }
+
+    @ExceptionHandler(value = MethodArgumentTypeMismatchException.class)
+    public Object methodMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException exception) {
+        return CommonResponseModel.error(SystemMessageEnums.SYSTEM_METHOD_CONVERT_NOT_SUPPORT, exception.getMessage());
+    }
+
+    @ExceptionHandler(value = MissingServletRequestParameterException.class)
+    public Object methodMissingServletRequestParameterException(MissingServletRequestParameterException exception) {
+        return CommonResponseModel.error(SystemMessageEnums.SYSTEM_PARAM_MUST_NULL, exception.getMessage());
     }
 
 }
