@@ -21,10 +21,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 /**
  * <p> PageParam </p>
@@ -40,12 +40,12 @@ import javax.validation.constraints.Min;
 @AllArgsConstructor
 public class PageParam {
 
-    @NotEmpty(message = "The number of data displayed per page cannot be empty")
+    @NotNull(message = "The number of data displayed per page cannot be empty")
     @Min(value = 5)
     @Max(value = 100)
     private Integer size; // page size
 
-    @NotEmpty(message = "The current page display number cannot be empty")
+    @NotNull(message = "The current page display number cannot be empty")
     @Min(value = 1)
     @Max(value = Integer.MAX_VALUE)
     private Integer page; // current page number

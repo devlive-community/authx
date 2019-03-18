@@ -28,7 +28,7 @@ export class CommonPageModel implements Serializable<CommonPageModel> {
     public totalElements: number;
     public last: boolean;
     public size = 10;
-    public number = 0;
+    public number = 1;
     public first: number;
     public numberOfElements: number;
 

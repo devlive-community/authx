@@ -21,9 +21,10 @@ import com.bootstack.aop.validation.user.UserRequiredParamPathAndQueryAopValidat
 import com.bootstack.core.controller.ControllerSupport;
 import com.bootstack.model.common.CommonResponseModel;
 import com.bootstack.model.system.menu.SystemMenuModel;
-import com.bootstack.param.page.PageParam;
+import com.bootstack.model.user.UserModel;
 import com.bootstack.param.system.menu.SystemMenuBasicParam;
 import com.bootstack.service.system.menu.SystemMenuService;
+import com.bootstack.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,9 @@ public class SystemMenuController {
     @Autowired
     private SystemMenuService systemMenuService;
 
+    @Autowired
+    private UserService userService;
+
     /**
      * create new menu
      *
@@ -67,9 +71,11 @@ public class SystemMenuController {
      * @param page page info
      * @return all menu by page and user
      */
-    @GetMapping(value = "{uid}")
+    @GetMapping
     @UserRequiredParamPathAndQueryAopValidation
-    CommonResponseModel list(@PathVariable(name = "uid") Long uid) {
+    CommonResponseModel list(@RequestParam String uid) {
+        UserModel user = (UserModel) this.userService.getModelById(Long.valueOf(uid));
+
         return null;
     }
 

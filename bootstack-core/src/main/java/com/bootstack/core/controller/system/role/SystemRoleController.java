@@ -55,7 +55,7 @@ public class SystemRoleController {
     private SystemRoleService systemRoleService;
 
     @GetMapping
-    CommonResponseModel list(@RequestParam PageParam param) {
+    CommonResponseModel list(@Validated PageParam param) {
         Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
         return CommonResponseModel.success(this.systemRoleService.getAll(pageable));
     }

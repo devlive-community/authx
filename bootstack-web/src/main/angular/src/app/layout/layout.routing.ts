@@ -46,6 +46,12 @@ const LAYOUT_ROUTES: Routes = [
             { path: 'index', loadChildren: '../pages/dashboard/index/dashboard.index.module#DashboardIndexModule' },
         ]
     },
+    {
+        path: 'system', component: LayoutComponent, canActivate: [AuthGuard], children: [
+            { path: '', redirectTo: 'index', pathMatch: 'full' },
+            { path: 'role', loadChildren: '../pages/system/role/system.role.module#SystemRoleModule' },
+        ]
+    },
 ];
 
 export const LayoutRouting = RouterModule.forChild(LAYOUT_ROUTES);
