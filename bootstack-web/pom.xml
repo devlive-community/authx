@@ -94,7 +94,7 @@
                             <outputDirectory>${project.build.directory}/classes/resources/</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${project.parent.basedir}/bootstack-web/src/main/angular/dist/angular</directory>
+                                    <directory>${project.parent.basedir}/bootstack-web/src/main/angular/dist</directory>
                                 </resource>
                             </resources>
                         </configuration>
