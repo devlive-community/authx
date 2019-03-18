@@ -1,3 +1,9 @@
+# create database user and privilege
+create user bootstack identified by 'BooT@23StacK';
+grant all privileges on bootstack.* to 'bootstack'@'%' identified by 'BooT@23StacK' with grant option;
+flush privileges;
+
+# create database
 create database bootstack default charset utf8;
 
 # user table
