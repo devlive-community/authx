@@ -17,6 +17,7 @@
  */
 import {Observable} from "rxjs";
 import {CommonResponseModel} from "../app/shared/model/common/response/response.model";
+import {CommonPageModel} from "../app/shared/model/common/response/page.model";
 
 export interface BaseService {
 
@@ -25,5 +26,11 @@ export interface BaseService {
      * @param primaryKey primary key
      */
     getInfo(primaryKey: Object): Observable<CommonResponseModel>;
+
+    /**
+     * get all model by page
+     * @param page page info
+     */
+    getList(page: CommonPageModel): Observable<CommonResponseModel>;
 
 }

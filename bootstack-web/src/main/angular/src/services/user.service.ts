@@ -35,6 +35,7 @@ import {Observable} from "rxjs";
 import {CommonResponseModel} from "../app/shared/model/common/response/response.model";
 import {ResponseUtils} from "../app/shared/utils/response.util";
 import {BaseService} from "./base.service";
+import {CommonPageModel} from "../app/shared/model/common/response/page.model";
 
 /**
  * user service
@@ -118,6 +119,10 @@ export class UserService implements BaseService {
         const options = HttpUtils.getDefaultRequestOptionsByTokenAndJSON();
         const path = ApiConfig.API_USER_INFO + primaryKey.toString();
         return this.http.get(path, options).map(ResponseUtils.extractData);
+    }
+
+    getList(page: CommonPageModel): Observable<CommonResponseModel> {
+        return undefined;
     }
 
 }
