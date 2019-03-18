@@ -6,30 +6,29 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-export class ApiConfig {
+export class SystemRoleParam {
 
-    public static AUTHORIZATION_API = '/oauth/token';
+    public name: string;
+    public description: string;
 
-    private static API_VERSION_V1 = '/api/v1/';
+    constructor() {
+    }
 
-    /**
-     * user api interface
-     */
-    public static readonly API_USER_REGISTER = ApiConfig.API_VERSION_V1 + 'user/register';
-    public static readonly API_USER_INFO = ApiConfig.API_VERSION_V1 + 'user/info/';
-
-    /**
-     * system role interface
-     */
-    public static readonly API_SYSTEM_ROLE = ApiConfig.API_VERSION_V1 + 'system/role';
+    public toJson(): string {
+        const json = {
+            'name': this.name,
+            'description': this.description
+        };
+        return JSON.stringify(json);
+    }
 
 }

@@ -60,7 +60,7 @@ public class SystemRoleController {
         return CommonResponseModel.success(this.systemRoleService.getAll(pageable));
     }
 
-    @PostMapping(value = ControllerSupport.CONTROLLER_DEFAULT_ADD)
+    @PostMapping
     CommonResponseModel add(@RequestBody @Validated SystemRoleBasicParam param) {
         SystemRoleModel systemRole = new SystemRoleModel();
         if (ObjectUtils.isEmpty(param.getActive())) {

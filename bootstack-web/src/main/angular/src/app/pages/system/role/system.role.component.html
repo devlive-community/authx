@@ -15,12 +15,17 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
+<ng2-toasty [position]="'top-center'"></ng2-toasty>
 <section class="content">
     <div class="row">
         <!-- context start -->
         <div class="col-md-12">
             <div [ngBusy]="loadArticleBusy"></div>
             <div class="card">
+                <div class="card-title">
+                    <a class="actions__item btn btn-primary btn-sm" tooltip="Create New System Role"
+                       placement="bottom" (click)="startShowCreateAndUpdateModal()">Create New</a>
+                </div>
                 <div class="card-body">
                     <table class="table mb-0">
                         <thead>
@@ -56,3 +61,38 @@
         <!-- context end -->
     </div>
 </section>
+<!-- import create modal -->
+<div bsModal #createAndUpdateModal="bs-modal" class="modal fade" [config]="{ ignoreBackdropClick: true }">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title pull-left">
+                    Create New System Role
+                </h5>
+            </div>
+            <form #createSystemRoleForm="ngForm" (ngSubmit)="createAndUpdate()">
+                <div class="modal-body">
+                    <div class="form-group form-group--centered">
+                        <input type="text" [(ngModel)]="param.name" name="name" #name="ngModel"
+                               class="form-control" required placeholder="Please enter a role name"/>
+                        <p class="text-danger" *ngIf="name.errors?.rangeLength">The input character length is between
+                            5-9</p>
+                    </div>
+                    <div class="form-group form-group--centered">
+                        <input type="text" [(ngModel)]="param.description" name="description" #description="ngModel"
+                               class="form-control" required placeholder="Please enter role description"/>
+                        <!--[rangeLength]="[8, 20]" -->
+                        <p class="text-danger" *ngIf="description.errors?.rangeLength">Passwords cannot be less than 8
+                            bits,
+                            and cannot be more than 20 bits</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" (click)="createAndUpdateModal.hide()">Close</button>
+                    <button type="submit" class="btn btn-warning" [disabled]="!createSystemRoleForm.form.valid">Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
