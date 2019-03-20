@@ -60,4 +60,10 @@ export class SystemRoleService implements BaseService {
             .map(ResponseUtils.extractData);
     }
 
+    update(param: SystemRoleParam): Observable<CommonResponseModel> {
+        const options = HttpUtils.getDefaultRequestOptionsByTokenAndJSON();
+        return this.http.put(ApiConfig.API_SYSTEM_ROLE, JSON.stringify(param), options)
+            .map(ResponseUtils.extractData);
+    }
+
 }

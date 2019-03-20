@@ -40,7 +40,7 @@ export class SystemRoleComponent implements OnInit {
     public currentPage: number;
 
     // system role param info
-    private readonly param: SystemRoleParam;
+    public param: SystemRoleParam;
 
     @ViewChild('createAndUpdateModal')
     public createAndUpdateModal: ModalDirective;
@@ -96,21 +96,41 @@ export class SystemRoleComponent implements OnInit {
     /**
      * show modal
      */
-    startShowCreateAndUpdateModal() {
+    startShowCreateAndUpdateModal(role: any) {
+        if (role) {
+            this.param = role;
+        } else {
+            this.param = new SystemRoleParam();
+        }
         this.createAndUpdateModal.show();
     }
 
     createAndUpdate() {
-        this.systemRoleService.register(this.param).subscribe(
-            response => {
-                if (response.code !== CodeConfig.SUCCESS) {
-                    this.toastyService.error(response.message);
-                } else {
-                    this.initRoles(this.page);
-                    this.createAndUpdateModal.hide();
+        if (this.param.id) {
+            // update exists role
+            this.systemRoleService.update(this.param).subscribe(
+                response => {
+                    if (response.code !== CodeConfig.SUCCESS) {
+                        this.toastyService.error(response.message);
+                    } else {
+                        this.initRoles(this.page);
+                        this.createAndUpdateModal.hide();
+                    }
                 }
-            }
-        );
+            );
+        } else {
+            // create new role
+            this.systemRoleService.register(this.param).subscribe(
+                response => {
+                    if (response.code !== CodeConfig.SUCCESS) {
+                        this.toastyService.error(response.message);
+                    } else {
+                        this.initRoles(this.page);
+                        this.createAndUpdateModal.hide();
+                    }
+                }
+            );
+        }
     }
 
 }

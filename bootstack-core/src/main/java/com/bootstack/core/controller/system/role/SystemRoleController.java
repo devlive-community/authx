@@ -26,8 +26,10 @@ import com.bootstack.model.system.role.SystemRoleModel;
 import com.bootstack.param.page.PageParam;
 import com.bootstack.param.system.role.SystemRoleBasicParam;
 import com.bootstack.param.system.role.SystemRoleSetMenuParam;
+import com.bootstack.param.system.role.SystemRoleSetParam;
 import com.bootstack.service.system.role.SystemRoleService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.ObjectUtils;
@@ -68,6 +70,15 @@ public class SystemRoleController {
         }
         systemRole.setDescription(param.getDescription());
         systemRole.setName(param.getName());
+        systemRole.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
+        return CommonResponseModel.success(this.systemRoleService.insertModel(systemRole));
+    }
+
+    @PutMapping
+    CommonResponseModel set(@RequestBody @Validated SystemRoleSetParam param) {
+        SystemRoleModel systemRole = new SystemRoleModel();
+        BeanUtils.copyProperties(param, systemRole);
+        systemRole.setId(Long.valueOf(param.getId()));
         systemRole.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
         return CommonResponseModel.success(this.systemRoleService.insertModel(systemRole));
     }

@@ -24,7 +24,8 @@
             <div class="card">
                 <div class="card-title">
                     <a class="actions__item btn btn-primary btn-sm" tooltip="Create New System Role"
-                       placement="bottom" (click)="startShowCreateAndUpdateModal()">Create New</a>
+                       placement="bottom" (click)="startShowCreateAndUpdateModal()"><i class="zmdi zmdi-plus"></i>
+                        Create New</a>
                 </div>
                 <div class="card-body">
                     <table class="table mb-0">
@@ -36,6 +37,7 @@
                             <th>Description</th>
                             <th>Create Time</th>
                             <th>Update Time</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody *ngFor="let role of roles">
@@ -46,6 +48,10 @@
                             <td>{{role.description}}</td>
                             <td>{{role.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                             <td>{{role.updateTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                            <td>
+                                <a (click)="startShowCreateAndUpdateModal(role)"><i class="zmdi zmdi-edit"
+                                                                                    tooltip="Edit this item"></i></a>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -61,7 +67,7 @@
         <!-- context end -->
     </div>
 </section>
-<!-- import create modal -->
+<!-- create and update modal start -->
 <div bsModal #createAndUpdateModal="bs-modal" class="modal fade" [config]="{ ignoreBackdropClick: true }">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -73,6 +79,7 @@
             <form #createSystemRoleForm="ngForm" (ngSubmit)="createAndUpdate()">
                 <div class="modal-body">
                     <div class="form-group form-group--centered">
+                        <input type="hidden" [(ngModel)]="param.id" name="id" #id="ngModel" [value]="param.id"/>
                         <input type="text" [(ngModel)]="param.name" name="name" #name="ngModel"
                                class="form-control" required placeholder="Please enter a role name"/>
                         <p class="text-danger" *ngIf="name.errors?.rangeLength">The input character length is between
@@ -96,3 +103,4 @@
         </div>
     </div>
 </div>
+<!-- create and update modal end -->
