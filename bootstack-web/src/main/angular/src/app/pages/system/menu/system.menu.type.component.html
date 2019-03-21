@@ -25,13 +25,14 @@
                 <div class="card-title">
                 </div>
                 <div class="card-body">
-                    <table class="table mb-0">
+                    <table class="table mb-0 mr-center">
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Code</th>
                                 <th>Description</th>
+                                <th>Active Status</th>
                                 <th>Create Time</th>
                                 <th>Update Time</th>
                             </tr>
@@ -42,6 +43,11 @@
                                 <td>{{data.name}}</td>
                                 <td>{{data.code}}</td>
                                 <td>{{data.description}}</td>
+                                <td class="center">
+                                    <a [tooltip]="data.active ? 'current status is actived' : 'current status is not actived'">
+                                        <i [ngClass]="data.active ? 'zmdi zmdi-stop' : 'zmdi zmdi-play'"></i>
+                                    </a>
+                                </td>
                                 <td>{{data.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                                 <td>{{data.updateTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                             </tr>
