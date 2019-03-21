@@ -57,7 +57,7 @@ public class SystemMenuServiceImpl implements SystemMenuService {
     }
 
     @Override
-    public PageModel findAllByPage(Pageable pageable) {
+    public PageModel getAllByPage(Pageable pageable) {
         Page<SystemMenuModel> pageModel = this.systemMenuRepository.findAll(pageable);
         return new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements());
     }

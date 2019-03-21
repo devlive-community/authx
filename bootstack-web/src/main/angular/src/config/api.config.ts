@@ -32,4 +32,9 @@ export class ApiConfig {
      */
     public static readonly API_SYSTEM_ROLE = ApiConfig.API_VERSION_V1 + 'system/role';
 
+    /**
+     * system menu interface
+     */
+    public static readonly API_SYSTEM_MENU_TYPE = ApiConfig.API_VERSION_V1 + 'system/menu/type';
+
 }

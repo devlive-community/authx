@@ -51,6 +51,6 @@ public interface BaseService<T> {
      * @param pageable page info
      * @return all model for page
      */
-    PageModel<T> findAllByPage(Pageable pageable);
+    PageModel<T> getAllByPage(Pageable pageable);
 
 }

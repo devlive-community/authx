@@ -24,8 +24,8 @@ import {AuthGuard} from "../auth/auth.guard";
 const LAYOUT_ROUTES: Routes = [
     {
         path: '', component: LayoutComponent, children: [
-            { path: '', redirectTo: 'home', pathMatch: 'full' },
-            { path: 'home', loadChildren: '../pages/home/home.module#HomeModule' },
+            {path: '', redirectTo: 'home', pathMatch: 'full'},
+            {path: 'home', loadChildren: '../pages/home/home.module#HomeModule'},
         ]
     },
     {
@@ -42,14 +42,15 @@ const LAYOUT_ROUTES: Routes = [
     },
     {
         path: 'dashboard', component: LayoutComponent, canActivate: [AuthGuard], children: [
-            { path: '', redirectTo: 'index', pathMatch: 'full' },
-            { path: 'index', loadChildren: '../pages/dashboard/index/dashboard.index.module#DashboardIndexModule' },
+            {path: '', redirectTo: 'index', pathMatch: 'full'},
+            {path: 'index', loadChildren: '../pages/dashboard/index/dashboard.index.module#DashboardIndexModule'},
         ]
     },
     {
         path: 'system', component: LayoutComponent, canActivate: [AuthGuard], children: [
-            { path: '', redirectTo: 'index', pathMatch: 'full' },
-            { path: 'role', loadChildren: '../pages/system/role/system.role.module#SystemRoleModule' },
+            {path: '', redirectTo: 'index', pathMatch: 'full'},
+            {path: 'role', loadChildren: '../pages/system/role/system.role.module#SystemRoleModule'},
+            {path: 'menu-type', loadChildren: '../pages/system/menu/system.menu.type.module#SystemMenuTypeModule'}
         ]
     },
 ];
