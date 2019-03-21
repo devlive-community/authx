@@ -24,7 +24,7 @@ import {CustomFormsModule} from 'ng2-validation';
 import {ToastyModule} from 'ng2-toasty';
 
 import {UserLoginComponent} from './user.login.component';
-import {UserService} from '../../../../services/user.service';
+import {UserService} from '../../../../services/user/user.service';
 
 const USER_REGISTER_ROUTES: Routes = [
     {path: '', component: UserLoginComponent}

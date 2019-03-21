@@ -4,9 +4,9 @@
         <!-- user info start -->
         <div class="user" dropdown>
             <div class="user__info" dropdownToggle>
-                <img class="user__img" src="" alt="">
+                <img class="user__img" [src]="user?.avatar" [alt]="user?.name">
                 <div>
-                    <!--<div class="user__name">{{ user.userName }}</div>-->
+                    <div class="user__name">{{ user?.name }}</div>
                     <!--<div class="user__email">{{ user.userToken }}</div>-->
                 </div>
             </div>

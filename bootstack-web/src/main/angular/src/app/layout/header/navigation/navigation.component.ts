@@ -1,6 +1,6 @@
 import {animate, Component, OnInit, state, style, transition, trigger} from '@angular/core';
 import {SharedService} from "../../../shared/services/shared.service";
-import {UserService} from "../../../../services/user.service";
+import {UserService} from "../../../../services/user/user.service";
 import {Router} from "@angular/router";
 import {CookieUtils} from "../../../shared/utils/cookie.util";
 import {CodeConfig} from "../../../../config/code.config";
@@ -28,6 +28,7 @@ import {ToastyService} from "ng2-toasty";
 
 export class NavigationComponent implements OnInit {
 
+    // current login user info
     user;
 
     sidebarVisible: boolean;
@@ -67,6 +68,7 @@ export class NavigationComponent implements OnInit {
                 if (response.code !== CodeConfig.SUCCESS) {
                     this.toastyService.error(response.message);
                 }
+                this.user = response.data;
             }
         );
     }

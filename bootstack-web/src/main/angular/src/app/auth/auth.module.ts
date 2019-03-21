@@ -23,7 +23,7 @@ import { SharedModule } from '../shared/shared.module';
 
 import { AuthGuard } from './auth.guard';
 
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../services/user/user.service';
 
 @NgModule({
     imports: [

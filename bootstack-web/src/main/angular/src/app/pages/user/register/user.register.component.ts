@@ -23,7 +23,7 @@ import {ToastyService} from 'ng2-toasty';
 
 import {UserParam} from '../../../shared/param/user/user.param';
 
-import {UserService} from '../../../../services/user.service';
+import {UserService} from '../../../../services/user/user.service';
 import {CodeConfig} from "../../../../config/code.config";
 import {ResponseUtils} from "../../../shared/utils/response.util";
 

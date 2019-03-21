@@ -22,20 +22,20 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import {Cookie} from 'ng2-cookies';
 
-import {HttpUtils} from '../app/shared/utils/http.util';
-import {CookieUtils} from '../app/shared/utils/cookie.util';
+import {HttpUtils} from '../../app/shared/utils/http.util';
+import {CookieUtils} from '../../app/shared/utils/cookie.util';
 
-import {ApiConfig} from '../config/api.config';
-import {CommonConfig} from '../config/common.config';
+import {ApiConfig} from '../../config/api.config';
+import {CommonConfig} from '../../config/common.config';
 
-import {UserLoginParam} from '../app/shared/param/user/user.login.param';
+import {UserLoginParam} from '../../app/shared/param/user/user.login.param';
 import {ToastyService} from 'ng2-toasty';
-import {UserParam} from "../app/shared/param/user/user.param";
+import {UserParam} from "../../app/shared/param/user/user.param";
 import {Observable} from "rxjs";
-import {CommonResponseModel} from "../app/shared/model/common/response/response.model";
-import {ResponseUtils} from "../app/shared/utils/response.util";
-import {BaseService} from "./base.service";
-import {CommonPageModel} from "../app/shared/model/common/response/page.model";
+import {CommonResponseModel} from "../../app/shared/model/common/response/response.model";
+import {ResponseUtils} from "../../app/shared/utils/response.util";
+import {BaseService} from "../base.service";
+import {CommonPageModel} from "../../app/shared/model/common/response/page.model";
 
 /**
  * user service

@@ -23,7 +23,7 @@ import {ToastyService} from 'ng2-toasty';
 
 import {UserLoginParam} from '../../../shared/param/user/user.login.param';
 
-import {UserService} from '../../../../services/user.service';
+import {UserService} from '../../../../services/user/user.service';
 
 @Component({
     selector: 'bootstack-user-login',

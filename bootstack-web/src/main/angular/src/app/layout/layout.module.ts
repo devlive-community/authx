@@ -34,7 +34,7 @@ import {LayoutComponent} from './layout.component';
 import {HeaderComponent} from './header/header.component';
 import {NavigationTriggerComponent} from './header/navigation-trigger/navigation-trigger.component';
 
-import {UserService} from '../../services/user.service';
+import {UserService} from '../../services/user/user.service';
 import {ErrorForiddeComponent} from "../pages/error/403/403.component";
 import {ErrorNotFoundComponent} from "../pages/error/404/404.component";
 import {NavigationComponent} from "./header/navigation/navigation.component";
