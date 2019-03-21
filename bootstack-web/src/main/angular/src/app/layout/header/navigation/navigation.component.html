@@ -18,11 +18,22 @@
         <ul class="navigation">
             <li routerLinkActive="navigation__active">
                 <a [routerLink]="['/system/role']">
-                    <i class="zmdi zmdi-flower"></i> Role Manager</a>
+                    <i class="zmdi zmdi-flower"></i>
+                    Role Manager
+                </a>
             </li>
-            <li routerLinkActive="navigation__active">
-                <a [routerLink]="['/system/menu-type']">
-                    <i class="zmdi zmdi-menu"></i> Menu Type Manager</a>
+            <li routerLinkActive="navigation__sub--active" class="navigation__sub">
+                <a (click)="toggleNavigationSub('Menus', $event)">
+                    <i class="zmdi zmdi-menu"></i>
+                    Syetem Menu
+                </a>
+                <ul [@toggleHeight]="navigationSubState.Menus">
+                    <li routerLinkActive="navigation__active">
+                        <a [routerLink]="['/system/menu-type']">
+                            Menu Type Manager
+                        </a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </perfect-scrollbar>
