@@ -49,4 +49,3 @@ bootstack is a open source privilege management platform
 |Name|Value|Remarks|
 |:---:|---|---|
 |QQ Group|324412218|BootStack|
-|WeChat|2663|BootStack(Face-to-face additive group)|
