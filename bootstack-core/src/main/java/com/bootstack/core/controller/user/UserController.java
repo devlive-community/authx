@@ -18,6 +18,8 @@
 package com.bootstack.core.controller.user;
 
 import com.bootstack.common.encryption.EncryptionShaUtils;
+import com.bootstack.common.enums.SystemMessageEnums;
+import com.bootstack.common.enums.UserMessageEnums;
 import com.bootstack.core.controller.ControllerSupport;
 import com.bootstack.model.common.CommonResponseModel;
 import com.bootstack.model.system.role.SystemRoleModel;
@@ -28,6 +30,7 @@ import com.bootstack.service.system.role.SystemRoleService;
 import com.bootstack.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -56,10 +59,19 @@ public class UserController {
     @Autowired
     private SystemRoleService systemRoleService;
 
+    /**
+     * register user
+     *
+     * @param param user info
+     * @return register response
+     */
 //    @PostMapping(value = ControllerSupport.CONTROLLER_DEFAULT_PUBLIC + ControllerSupport.CONTROLLER_DEFAULT_ADD)
     @PostMapping(value = ControllerSupport.CONTROLLER_DEFAULT_ADD)
     CommonResponseModel add(@RequestBody @Validated UserBasicParam param) {
         log.info("add user action, user name is {}", param.getName());
+        if (!ObjectUtils.isEmpty(this.userService.getModelByName(param.getName()))) {
+            return CommonResponseModel.error(SystemMessageEnums.SYSTEM_USER_EXISTS);
+        }
         UserModel user = new UserModel();
         user.setName(param.getName());
         user.setPassword(EncryptionShaUtils.hash256(param.getPassword()));
