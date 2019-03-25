@@ -17,6 +17,7 @@
  */
 package com.bootstack.param.page;
 
+import com.bootstack.param.sort.SortModeParam;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -51,5 +52,8 @@ public class PageParam {
     private Integer page; // current page number
 
     private Boolean flag = true;
+
+    private String sortColumn; // sort column
+    private SortModeParam sortMode; // sort mode
 
 }

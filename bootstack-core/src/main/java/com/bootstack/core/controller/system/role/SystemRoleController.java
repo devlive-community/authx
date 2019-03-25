@@ -19,8 +19,8 @@ package com.bootstack.core.controller.system.role;
 
 import com.bootstack.common.pinyin.PinYinUtils;
 import com.bootstack.core.controller.ControllerSupport;
+import com.bootstack.core.support.ParamSupport;
 import com.bootstack.model.common.CommonResponseModel;
-import com.bootstack.model.page.PageModel;
 import com.bootstack.model.system.menu.SystemMenuModel;
 import com.bootstack.model.system.role.SystemRoleModel;
 import com.bootstack.param.page.PageParam;
@@ -56,9 +56,15 @@ public class SystemRoleController {
     @Autowired
     private SystemRoleService systemRoleService;
 
+    /**
+     * find all model
+     *
+     * @param param page info param
+     * @return all model for page
+     */
     @GetMapping
     CommonResponseModel list(@Validated PageParam param) {
-        Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
+        Pageable pageable = ParamSupport.getPageable(param);
         return CommonResponseModel.success(this.systemRoleService.getAll(pageable));
     }
 
