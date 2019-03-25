@@ -1,4 +1,4 @@
-package com.bootstack.repository.system.role; /**
+package com.bootstack.validation.system.role; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -16,25 +16,28 @@ package com.bootstack.repository.system.role; /**
  * limitations under the License.
  */
 
-import com.bootstack.model.system.role.SystemRoleModel;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import javax.validation.Constraint;
+import javax.validation.Payload;
+import java.lang.annotation.*;
 
 /**
- * <p> SystemRoleRepository </p>
- * <p> Description : SystemRoleRepository </p>
+ * <p> SystemRoleValidation </p>
+ * <p> Description : SystemRoleValidation </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-26 01:00 </p>
+ * <p> Create Time : 2019-01-26 15:01 </p>
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface SystemRoleRepository extends PagingAndSortingRepository<SystemRoleModel, Long> {
+@Documented
+@Constraint(validatedBy = SystemRoleNameValidationValidator.class)
+@Target({ElementType.METHOD, ElementType.FIELD})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface SystemRoleNameValidation {
 
-    /**
-     * find model by name
-     *
-     * @param name name
-     * @return model
-     */
-    SystemRoleModel findByName(String name);
+    String message() default "the role name is exists";
+
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
 
 }

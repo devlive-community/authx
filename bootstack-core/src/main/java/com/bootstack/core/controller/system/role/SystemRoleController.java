@@ -68,6 +68,12 @@ public class SystemRoleController {
         return CommonResponseModel.success(this.systemRoleService.getAll(pageable));
     }
 
+    /**
+     * add a role to system
+     *
+     * @param param role info
+     * @return add response
+     */
     @PostMapping
     CommonResponseModel add(@RequestBody @Validated SystemRoleBasicParam param) {
         SystemRoleModel systemRole = new SystemRoleModel();

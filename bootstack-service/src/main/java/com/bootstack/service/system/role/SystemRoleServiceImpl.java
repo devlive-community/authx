@@ -61,4 +61,9 @@ public class SystemRoleServiceImpl implements SystemRoleService {
         return new PageModel<>(models.getContent(), pageable, models.getTotalElements());
     }
 
+    @Override
+    public SystemRoleModel getModelByName(String name) {
+        return this.systemRoleRepository.findByName(name);
+    }
+
 }
