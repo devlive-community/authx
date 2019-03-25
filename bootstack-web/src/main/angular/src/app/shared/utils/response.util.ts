@@ -39,14 +39,14 @@ export class ResponseUtils {
         }
         let errors = '';
         // param validation error
-        if (response.data.code = CodeConfig.PARAM_VALIDATION_ERROR) {
+        if (response.data && response.data.code == CodeConfig.PARAM_VALIDATION_ERROR) {
             response.data.error.forEach(e => {
                 errors = e.message + '\n';
             });
             return 'This submission form appears altogether ' + response.data.count + ' error, the following is the details of the error: \n'
                 + errors;
         }
-        return response;
+        return response.message;
     }
 
 }
