@@ -37,4 +37,9 @@ export class ApiConfig {
      */
     public static readonly API_SYSTEM_MENU_TYPE = ApiConfig.API_VERSION_V1 + 'system/menu/type';
 
+    /**
+     * system settings interface
+     */
+    public static readonly API_SYSTEM_SETTINGS_INTERFACE = ApiConfig.API_VERSION_V1 + 'system/interface';
+
 }

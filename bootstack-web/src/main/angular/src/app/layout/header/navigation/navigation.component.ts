@@ -35,7 +35,8 @@ export class NavigationComponent implements OnInit {
 
     // Sub menu visibilities
     navigationSubState: any = {
-        Menus: 'inactive'
+        Menus: 'inactive',
+        Settings: 'inactive'
     };
 
     // The secondary menu

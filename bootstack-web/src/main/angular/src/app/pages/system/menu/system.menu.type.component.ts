@@ -29,7 +29,7 @@ import {CodeConfig} from "../../../../config/code.config";
 })
 export class SystemMenuTypeComponent implements OnInit {
 
-    public loadArticleBusy: Subscription;
+    public loading: Subscription;
     // menu list
     private datas;
     // page model
@@ -48,7 +48,7 @@ export class SystemMenuTypeComponent implements OnInit {
     }
 
     initList(page: CommonPageModel, uid: number) {
-        this.loadArticleBusy = this.systemMenuTypeService.getList(page).subscribe(
+        this.loading = this.systemMenuTypeService.getList(page).subscribe(
             response => {
                 if (response.code !== CodeConfig.SUCCESS) {
                     this.toastyService.error(response.message);

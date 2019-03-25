@@ -50,7 +50,15 @@ const LAYOUT_ROUTES: Routes = [
         path: 'system', component: LayoutComponent, canActivate: [AuthGuard], children: [
             {path: '', redirectTo: 'index', pathMatch: 'full'},
             {path: 'role', loadChildren: '../pages/system/role/system.role.module#SystemRoleModule'},
-            {path: 'menu-type', loadChildren: '../pages/system/menu/system.menu.type.module#SystemMenuTypeModule'}
+            {path: 'menu-type', loadChildren: '../pages/system/menu/system.menu.type.module#SystemMenuTypeModule'},
+            {
+                path: 'settings', children: [
+                    {
+                        path: 'interface',
+                        loadChildren: '../pages/system/settings/interface/system.settings.interface.module#SystemSettingsInterfaceModule'
+                    }
+                ]
+            }
         ]
     },
 ];

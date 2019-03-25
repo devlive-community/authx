@@ -71,4 +71,10 @@ public class SystemInterfaceServiceImpl implements SystemInterfaceService {
         return this.systemInterfaceRepository.findByPathLikeAndSystemFalse("%" + path + "%");
     }
 
+    @Override
+    public PageModel<SystemInterfaceModel> getAll(Pageable pageable) {
+        Page<SystemInterfaceModel> models = this.systemInterfaceRepository.findAll(pageable);
+        return new PageModel<>(models.getContent(), pageable, models.getTotalElements());
+    }
+
 }

@@ -38,12 +38,43 @@ public interface SystemInterfaceService {
      */
     Long insertModel(SystemInterfaceModel model);
 
+    /**
+     * get all model by white is true and active is true
+     *
+     * @param pageable page info
+     * @return all model
+     */
     PageModel<SystemInterfaceModel> getAllByWhiteTrueAndActiveTrue(Pageable pageable);
 
+    /**
+     * get all model by white is true and active is true and system is true
+     *
+     * @return all model
+     */
     Iterable<SystemInterfaceModel> getAllByWhiteIsTrueAndActiveTrueAndSystemTrue();
 
+    /**
+     * get model by path like ?
+     *
+     * @param path path
+     * @return model info
+     */
     SystemInterfaceModel getByPathLike(String path);
 
+    /**
+     * get model by path like ? and system is false
+     *
+     * @param path path
+     * @return model info
+     */
     SystemInterfaceModel getByPathLikeAndSystemFalse(String path);
+
+    /**
+     * get all model
+     *
+     * @param pageable page info
+     * @return all model
+     */
+    PageModel<SystemInterfaceModel> getAll(Pageable pageable);
 
 }

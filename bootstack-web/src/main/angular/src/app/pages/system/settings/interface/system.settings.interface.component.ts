@@ -18,54 +18,49 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {ToastyService} from 'ng2-toasty';
-import {SystemRoleService} from "../../../../services/system/system.role.service";
-import {CommonPageModel} from "../../../shared/model/common/response/page.model";
 import {Subscription} from "rxjs";
-import {CodeConfig} from "../../../../config/code.config";
 import {ModalDirective} from "ngx-bootstrap";
-import {SystemRoleParam} from "../../../shared/param/system/role/system.role.param";
+import {CommonPageModel} from "../../../../shared/model/common/response/page.model";
+import {SystemSettingsInterfaceService} from "../../../../../services/system/settings/system.settings.interface.service";
+import {CodeConfig} from "../../../../../config/code.config";
 
 @Component({
-    selector: 'bootstack-system-role',
-    templateUrl: './system.role.component.html'
+    selector: 'bootstack-system-settings-interface',
+    templateUrl: './system.settings.interface.component.html'
 })
-export class SystemRoleComponent implements OnInit {
+export class SystemSettingsInterfaceComponent implements OnInit {
 
     public loading: Subscription;
-    // role list
-    private roles;
+    // model list
+    private models;
     // page model
     public page: CommonPageModel;
     // current page number
     public currentPage: number;
 
-    // system role param info
-    public param: SystemRoleParam;
-
     @ViewChild('createAndUpdateModal')
     public createAndUpdateModal: ModalDirective;
 
     constructor(private router: Router,
-                private systemRoleService: SystemRoleService,
+                private systemSettingsInterfaceService: SystemSettingsInterfaceService,
                 private toastyService: ToastyService) {
         this.page = new CommonPageModel();
-        this.param = new SystemRoleParam();
     }
 
     ngOnInit() {
-        this.roles = this.initRoles(this.page);
+        this.models = this.initModels(this.page);
     }
 
     /**
-     * get all system role
+     * init all models
      */
-    initRoles(page: CommonPageModel) {
-        this.loading = this.systemRoleService.getList(page).subscribe(
+    initModels(page: CommonPageModel) {
+        this.loading = this.systemSettingsInterfaceService.getList(page).subscribe(
             response => {
                 if (response.code !== CodeConfig.SUCCESS) {
                     this.toastyService.error(response.message);
                 } else {
-                    this.roles = response.data.content;
+                    this.models = response.data.content;
                     this.page = CommonPageModel.getPage(response.data);
                     this.currentPage = this.page.number;
                 }
@@ -80,57 +75,17 @@ export class SystemRoleComponent implements OnInit {
     pageChanged(event: any) {
         this.page.number = event.page;
         this.page.size = event.itemsPerPage;
-        this.loading = this.systemRoleService.getList(this.page).subscribe(
+        this.loading = this.systemSettingsInterfaceService.getList(this.page).subscribe(
             response => {
                 if (response.code !== CodeConfig.SUCCESS) {
                     this.toastyService.error(response.message);
                 } else {
-                    this.roles = response.data.content;
+                    this.models = response.data.content;
                     this.page = CommonPageModel.getPage(response.data);
                     this.currentPage = this.page.number;
                 }
             }
         );
-    }
-
-    /**
-     * show modal
-     */
-    startShowCreateAndUpdateModal(role: any) {
-        if (role) {
-            this.param = role;
-        } else {
-            this.param = new SystemRoleParam();
-        }
-        this.createAndUpdateModal.show();
-    }
-
-    createAndUpdate() {
-        if (this.param.id) {
-            // update exists role
-            this.systemRoleService.update(this.param).subscribe(
-                response => {
-                    if (response.code !== CodeConfig.SUCCESS) {
-                        this.toastyService.error(response.message);
-                    } else {
-                        this.initRoles(this.page);
-                        this.createAndUpdateModal.hide();
-                    }
-                }
-            );
-        } else {
-            // create new role
-            this.systemRoleService.register(this.param).subscribe(
-                response => {
-                    if (response.code !== CodeConfig.SUCCESS) {
-                        this.toastyService.error(response.message);
-                    } else {
-                        this.initRoles(this.page);
-                        this.createAndUpdateModal.hide();
-                    }
-                }
-            );
-        }
     }
 
 }
