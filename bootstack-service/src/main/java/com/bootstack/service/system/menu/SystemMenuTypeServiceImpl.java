@@ -20,10 +20,12 @@ package com.bootstack.service.system.menu;
 import com.bootstack.model.page.PageModel;
 import com.bootstack.model.system.menu.SystemMenuTypeModel;
 import com.bootstack.repository.system.menu.SystemMenuTypeRepository;
+import com.bootstack.service.ServiceSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 /**
  * <p> SystemMenuTypeServiceImpl </p>
@@ -41,7 +43,12 @@ public class SystemMenuTypeServiceImpl implements SystemMenuTypeService {
 
     @Override
     public Long insertModel(Object model) {
-        return null;
+        SystemMenuTypeModel source = (SystemMenuTypeModel) model;
+        SystemMenuTypeModel temp = this.systemMenuTypeRepository.save(source);
+        if (!ObjectUtils.isEmpty(temp)) {
+            return temp.getId();
+        }
+        return ServiceSupport.DEFAULT_ID;
     }
 
     @Override

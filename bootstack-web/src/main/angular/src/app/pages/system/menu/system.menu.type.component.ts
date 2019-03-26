@@ -15,13 +15,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {ToastyService} from 'ng2-toasty';
 import {Subscription} from "rxjs";
 import {SystemMenuTypeService} from "../../../../services/system/system.menu.type.service";
 import {CommonPageModel} from "../../../shared/model/common/response/page.model";
 import {CodeConfig} from "../../../../config/code.config";
+import {ModalDirective} from "ngx-bootstrap";
+import {SystemMenuTypeParam} from "../../../shared/param/system/menu/system.menu.type.param";
 
 @Component({
     selector: 'bootstack-system-menu-type',
@@ -37,10 +39,17 @@ export class SystemMenuTypeComponent implements OnInit {
     // current page number
     public currentPage: number;
 
+    @ViewChild('createAndUpdateModal')
+    public createAndUpdateModal: ModalDirective;
+
+    // system role param info
+    public param: SystemMenuTypeParam;
+
     constructor(private router: Router,
                 private toastyService: ToastyService,
                 private systemMenuTypeService: SystemMenuTypeService) {
         this.page = new CommonPageModel();
+        this.param = new SystemMenuTypeParam();
     }
 
     ngOnInit() {
@@ -56,6 +65,32 @@ export class SystemMenuTypeComponent implements OnInit {
                     this.datas = response.data.content;
                     this.page = CommonPageModel.getPage(response.data);
                     this.currentPage = this.page.number;
+                }
+            }
+        );
+    }
+
+    /**
+     * show modal
+     */
+    startShowCreateAndUpdateModal(role: any) {
+        if (role) {
+            this.param = role;
+        } else {
+            this.param = new SystemMenuTypeParam();
+        }
+        this.createAndUpdateModal.show();
+    }
+
+    createAndUpdate() {
+        // create new
+        this.systemMenuTypeService.register(this.param).subscribe(
+            response => {
+                if (response.code !== CodeConfig.SUCCESS) {
+                    this.toastyService.error(response.message);
+                } else {
+                    this.initList(this.page, 1);
+                    this.createAndUpdateModal.hide();
                 }
             }
         );

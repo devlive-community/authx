@@ -17,18 +17,19 @@
  */
 package com.bootstack.core.controller.system.menu;
 
+import com.bootstack.common.pinyin.PinYinUtils;
 import com.bootstack.model.common.CommonResponseModel;
 import com.bootstack.model.page.PageModel;
+import com.bootstack.model.system.menu.SystemMenuTypeModel;
 import com.bootstack.param.page.PageParam;
+import com.bootstack.param.system.menu.SystemMenuTypeBasicParam;
 import com.bootstack.service.system.menu.SystemMenuTypeService;
-import com.bootstack.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.util.ObjectUtils;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p> SystemMenuController </p>
@@ -56,6 +57,24 @@ public class SystemMenuTypeController {
     CommonResponseModel list(@Validated PageParam param) {
         Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
         return CommonResponseModel.success(this.systemMenuTypeService.getAllByPage(pageable));
+    }
+
+    /**
+     * add a menu type to system
+     *
+     * @param param menu type info
+     * @return add response
+     */
+    @PostMapping
+    CommonResponseModel add(@RequestBody @Validated SystemMenuTypeBasicParam param) {
+        SystemMenuTypeModel systemRole = new SystemMenuTypeModel();
+        if (ObjectUtils.isEmpty(param.getActive())) {
+            systemRole.setActive(Boolean.TRUE);
+        }
+        systemRole.setDescription(param.getDescription());
+        systemRole.setName(param.getName());
+        systemRole.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
+        return CommonResponseModel.success(this.systemMenuTypeService.insertModel(systemRole));
     }
 
 }

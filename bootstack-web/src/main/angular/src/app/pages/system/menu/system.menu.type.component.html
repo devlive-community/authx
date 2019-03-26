@@ -23,6 +23,9 @@
             <div [ngBusy]="loading"></div>
             <div class="card">
                 <div class="card-title">
+                    <a class="actions__item btn btn-primary btn-sm" tooltip="Create New System Menu Type"
+                       placement="bottom" (click)="startShowCreateAndUpdateModal()"><i class="zmdi zmdi-plus"></i>
+                        Create New</a>
                 </div>
                 <div class="card-body">
                     <table class="table mb-0 mr-center">
@@ -65,3 +68,39 @@
         <!-- context end -->
     </div>
 </section>
+<!-- create and update modal start -->
+<div bsModal #createAndUpdateModal="bs-modal" class="modal fade" [config]="{ ignoreBackdropClick: true }">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title pull-left">
+                    Create New System Menu Type
+                </h5>
+            </div>
+            <form #createSystemRoleForm="ngForm" (ngSubmit)="createAndUpdate()">
+                <div class="modal-body">
+                    <div class="form-group form-group--centered">
+                        <input type="text" [(ngModel)]="param.name" name="name" #name="ngModel"
+                               class="form-control" required placeholder="Please enter a role name"/>
+                        <p class="text-danger" *ngIf="name.errors?.rangeLength">The input character length is between
+                            5-9</p>
+                    </div>
+                    <div class="form-group form-group--centered">
+                        <input type="text" [(ngModel)]="param.description" name="description" #description="ngModel"
+                               class="form-control" required placeholder="Please enter role description"/>
+                        <!--[rangeLength]="[8, 20]" -->
+                        <p class="text-danger" *ngIf="description.errors?.rangeLength">Passwords cannot be less than 8
+                            bits,
+                            and cannot be more than 20 bits</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" (click)="createAndUpdateModal.hide()">Close</button>
+                    <button type="submit" class="btn btn-warning" [disabled]="!createSystemRoleForm.form.valid">Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- create and update modal end -->
