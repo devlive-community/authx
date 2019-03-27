@@ -23,6 +23,8 @@ import {ModalDirective} from "ngx-bootstrap";
 import {CommonPageModel} from "../../../../shared/model/common/response/page.model";
 import {SystemSettingsInterfaceService} from "../../../../../services/system/settings/system.settings.interface.service";
 import {CodeConfig} from "../../../../../config/code.config";
+import {SystemSettingsInterfaceParam} from "../../../../shared/param/system/settings/interface/system.settings.interface.param";
+import {SystemRoleParam} from "../../../../shared/param/system/role/system.role.param";
 
 @Component({
     selector: 'bootstack-system-settings-interface',
@@ -38,6 +40,8 @@ export class SystemSettingsInterfaceComponent implements OnInit {
     // current page number
     public currentPage: number;
 
+    public param: SystemSettingsInterfaceParam;
+
     @ViewChild('createAndUpdateModal')
     public createAndUpdateModal: ModalDirective;
 
@@ -45,6 +49,7 @@ export class SystemSettingsInterfaceComponent implements OnInit {
                 private systemSettingsInterfaceService: SystemSettingsInterfaceService,
                 private toastyService: ToastyService) {
         this.page = new CommonPageModel();
+        this.param = new SystemSettingsInterfaceParam();
     }
 
     ngOnInit() {
@@ -86,6 +91,18 @@ export class SystemSettingsInterfaceComponent implements OnInit {
                 }
             }
         );
+    }
+
+    /**
+     * show modal
+     */
+    startShowCreateAndUpdateModal(model: any) {
+        if (model) {
+            this.param = model;
+        } else {
+            this.param = new SystemSettingsInterfaceParam();
+        }
+        this.createAndUpdateModal.show();
     }
 
 }
