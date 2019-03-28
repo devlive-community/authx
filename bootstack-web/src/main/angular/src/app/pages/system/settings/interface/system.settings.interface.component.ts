@@ -105,17 +105,29 @@ export class SystemSettingsInterfaceComponent implements OnInit {
     }
 
     createAndUpdate() {
-        console.log(this.param);
-        this.systemSettingsInterfaceService.register(this.param).subscribe(
-            response => {
-                if (response.code !== CodeConfig.SUCCESS) {
-                    this.toastyService.error(response.message);
-                } else {
-                    this.initModels(this.page);
-                    this.createAndUpdateModal.hide();
+        if (this.param.id) {
+            this.systemSettingsInterfaceService.update(this.param).subscribe(
+                response => {
+                    if (response.code !== CodeConfig.SUCCESS) {
+                        this.toastyService.error(response.message);
+                    } else {
+                        this.initModels(this.page);
+                        this.createAndUpdateModal.hide();
+                    }
                 }
-            }
-        );
+            );
+        } else {
+            this.systemSettingsInterfaceService.register(this.param).subscribe(
+                response => {
+                    if (response.code !== CodeConfig.SUCCESS) {
+                        this.toastyService.error(response.message);
+                    } else {
+                        this.initModels(this.page);
+                        this.createAndUpdateModal.hide();
+                    }
+                }
+            );
+        }
     }
 
 }

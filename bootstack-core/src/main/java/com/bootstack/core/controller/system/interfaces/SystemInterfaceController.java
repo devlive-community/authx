@@ -23,6 +23,8 @@ import com.bootstack.model.common.CommonResponseModel;
 import com.bootstack.model.system.interfaces.SystemInterfaceModel;
 import com.bootstack.param.page.PageParam;
 import com.bootstack.param.system.interfaces.SystemInterfaceBasicParam;
+import com.bootstack.param.system.interfaces.SystemInterfaceSetParam;
+import com.bootstack.param.system.role.SystemRoleSetParam;
 import com.bootstack.service.system.interfaces.SystemInterfaceService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -68,6 +70,15 @@ public class SystemInterfaceController {
     @PostMapping
     CommonResponseModel add(@RequestBody @Validated SystemInterfaceBasicParam param) {
         SystemInterfaceModel model = new SystemInterfaceModel();
+        BeanUtils.copyProperties(param, model);
+        model.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
+        return CommonResponseModel.success(this.systemInterfaceService.insertModel(model));
+    }
+
+    @PutMapping
+    CommonResponseModel set(@RequestBody @Validated SystemInterfaceSetParam param) {
+        SystemInterfaceModel model = new SystemInterfaceModel();
+        model.setId(Long.valueOf(param.getId()));
         BeanUtils.copyProperties(param, model);
         model.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
         return CommonResponseModel.success(this.systemInterfaceService.insertModel(model));

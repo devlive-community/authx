@@ -27,6 +27,7 @@ import {HttpUtils} from "../../../app/shared/utils/http.util";
 import {ApiConfig} from "../../../config/api.config";
 import {ResponseUtils} from "../../../app/shared/utils/response.util";
 import {SystemSettingsInterfaceParam} from "../../../app/shared/param/system/settings/interface/system.settings.interface.param";
+import {SystemRoleParam} from "../../../app/shared/param/system/role/system.role.param";
 
 /**
  * System Settings Interface Service
@@ -57,6 +58,12 @@ export class SystemSettingsInterfaceService implements BaseService {
     register(param: SystemSettingsInterfaceParam): Observable<CommonResponseModel> {
         const options = HttpUtils.getDefaultRequestOptionsByTokenAndJSON();
         return this.http.post(ApiConfig.API_SYSTEM_SETTINGS_INTERFACE, JSON.stringify(param), options)
+            .map(ResponseUtils.extractData);
+    }
+
+    update(param: SystemSettingsInterfaceParam): Observable<CommonResponseModel> {
+        const options = HttpUtils.getDefaultRequestOptionsByTokenAndJSON();
+        return this.http.put(ApiConfig.API_SYSTEM_SETTINGS_INTERFACE, JSON.stringify(param), options)
             .map(ResponseUtils.extractData);
     }
 

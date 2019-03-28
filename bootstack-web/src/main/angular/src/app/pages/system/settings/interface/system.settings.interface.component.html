@@ -40,6 +40,7 @@
                             <th>Active Status</th>
                             <th>Create Time</th>
                             <th>Update Time</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody *ngFor="let model of models">
@@ -57,6 +58,10 @@
                             </td>
                             <td>{{model.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                             <td>{{model.updateTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                            <td>
+                                <a (click)="startShowCreateAndUpdateModal(model)"><i class="zmdi zmdi-edit"
+                                                                                     tooltip="Edit this item"></i></a>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -84,7 +89,7 @@
             <form #createForm="ngForm" (ngSubmit)="createAndUpdate()">
                 <div class="modal-body">
                     <div class="form-group form-group--centered">
-                        <input type="hidden" [(ngModel)]="param.id" name="id" #id="ngModel" [value]="param.id"/>
+                        <input type="hidden" [(ngModel)]="param.id" name="id" [value]="param.id"/>
                         <input type="text" [(ngModel)]="param.name" name="name" #name="ngModel"
                                class="form-control" required placeholder="Please enter a system interface name"/>
                         <p class="text-danger" *ngIf="name.errors?.rangeLength">The input character length is between
