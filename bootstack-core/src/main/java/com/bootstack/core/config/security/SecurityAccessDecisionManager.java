@@ -21,6 +21,7 @@ import com.bootstack.common.enums.SystemMessageEnums;
 import com.bootstack.model.system.interfaces.SystemInterfaceModel;
 import com.bootstack.service.system.interfaces.SystemInterfaceService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.IteratorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;
@@ -33,6 +34,7 @@ import org.springframework.util.ObjectUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * <p> SecurityAccessDecisionManager </p>
@@ -60,9 +62,9 @@ public class SecurityAccessDecisionManager implements AccessDecisionManager {
 //        }
         log.info("database api interface {}", requestUrl);
         // Get whether the data is in the white list through the database
-        SystemInterfaceModel systemInterface = this.systemInterfaceService.getByPathLike(requestUrl);
-        if (!ObjectUtils.isEmpty(systemInterface)) {
-            if (systemInterface.getMethod().contains(requestMethod.toLowerCase())) {
+        List<SystemInterfaceModel> systemInterfaces = IteratorUtils.toList(this.systemInterfaceService.getAllByPathLike(requestUrl).iterator());
+        if (!ObjectUtils.isEmpty(systemInterfaces)) {
+            if (systemInterfaces.get(0).getMethod().contains(requestMethod.toLowerCase())) {
                 return;
             }
         }

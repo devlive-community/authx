@@ -62,6 +62,14 @@ public interface SystemInterfaceService {
     SystemInterfaceModel getByPathLike(String path);
 
     /**
+     * get all model by path like ?
+     *
+     * @param path path
+     * @return all model for path like ?
+     */
+    Iterable<SystemInterfaceModel> getAllByPathLike(String path);
+
+    /**
      * get model by path like ? and system is false
      *
      * @param path path

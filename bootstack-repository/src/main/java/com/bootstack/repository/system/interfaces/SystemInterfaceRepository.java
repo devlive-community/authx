@@ -55,6 +55,14 @@ public interface SystemInterfaceRepository extends PagingAndSortingRepository<Sy
     SystemInterfaceModel findByPathLike(String path);
 
     /**
+     * get all model by path like ?
+     *
+     * @param path path
+     * @return all model for path like ?
+     */
+    Iterable<SystemInterfaceModel> findAllByPathLike(String path);
+
+    /**
      * find by path like ? and system default is false
      *
      * @param path path

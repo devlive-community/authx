@@ -67,6 +67,11 @@ public class SystemInterfaceServiceImpl implements SystemInterfaceService {
     }
 
     @Override
+    public Iterable<SystemInterfaceModel> getAllByPathLike(String path) {
+        return this.systemInterfaceRepository.findAllByPathLike("%" + path + "%");
+    }
+
+    @Override
     public SystemInterfaceModel getByPathLikeAndSystemFalse(String path) {
         return this.systemInterfaceRepository.findByPathLikeAndSystemFalse("%" + path + "%");
     }
