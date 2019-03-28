@@ -24,7 +24,6 @@ import {CommonPageModel} from "../../../../shared/model/common/response/page.mod
 import {SystemSettingsInterfaceService} from "../../../../../services/system/settings/system.settings.interface.service";
 import {CodeConfig} from "../../../../../config/code.config";
 import {SystemSettingsInterfaceParam} from "../../../../shared/param/system/settings/interface/system.settings.interface.param";
-import {SystemRoleParam} from "../../../../shared/param/system/role/system.role.param";
 
 @Component({
     selector: 'bootstack-system-settings-interface',
@@ -103,6 +102,20 @@ export class SystemSettingsInterfaceComponent implements OnInit {
             this.param = new SystemSettingsInterfaceParam();
         }
         this.createAndUpdateModal.show();
+    }
+
+    createAndUpdate() {
+        console.log(this.param);
+        this.systemSettingsInterfaceService.register(this.param).subscribe(
+            response => {
+                if (response.code !== CodeConfig.SUCCESS) {
+                    this.toastyService.error(response.message);
+                } else {
+                    this.initModels(this.page);
+                    this.createAndUpdateModal.hide();
+                }
+            }
+        );
     }
 
 }

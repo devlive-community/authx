@@ -15,46 +15,46 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// 弹出框样式
+// modal style
 .modal-content {
-  text-align: left;
-  box-shadow: $modal-content-box-shadow-sm-up;
+    text-align: left;
+    box-shadow: $modal-content-box-shadow-sm-up;
 }
 
 .modal-footer {
-  // padding-top: 0.8rem;
-  background-color: #eee;
-  padding: 10px 30px;
+    // padding-top: 0.8rem;
+    background-color: #eee;
+    padding: 10px 30px;
 
-  & > .btn-link {
-    color: darken($body-color, 10%);
-    font-weight: $font-weight-bold;
-    text-transform: uppercase;
-    cursor: pointer;
-    border-radius: $border-radius;
+    & > .btn-link {
+        color: darken($body-color, 10%);
+        font-weight: $font-weight-bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        border-radius: $border-radius;
 
-    &:hover,
-    &:focus {
-      background-color: $gray-100;
-      box-shadow: none;
+        &:hover,
+        &:focus {
+            background-color: $gray-100;
+            box-shadow: none;
+        }
     }
-  }
 }
 
 @include media-breakpoint-up(sm) {
-  .modal {
-    text-align: center;
+    .modal {
+        text-align: center;
 
-    &:before {
-      content: '';
-      height: 100%;
-      width: 1px;
-    }
+        &:before {
+            content: '';
+            height: 100%;
+            width: 1px;
+        }
 
-    &:before,
-    .modal-dialog {
-      display: inline-block;
-      vertical-align: middle;
+        &:before,
+        .modal-dialog {
+            display: inline-block;
+            vertical-align: middle;
+        }
     }
-  }
 }

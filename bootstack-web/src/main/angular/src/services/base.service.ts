@@ -33,4 +33,10 @@ export interface BaseService {
      */
     getList(page: CommonPageModel): Observable<CommonResponseModel>;
 
+    /**
+     * add a model
+     * @param param model info
+     */
+    register(param: Object): Observable<CommonResponseModel>;
+
 }

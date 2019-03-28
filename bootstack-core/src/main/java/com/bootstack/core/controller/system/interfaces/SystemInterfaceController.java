@@ -17,17 +17,19 @@
  */
 package com.bootstack.core.controller.system.interfaces;
 
+import com.bootstack.common.pinyin.PinYinUtils;
 import com.bootstack.core.support.ParamSupport;
 import com.bootstack.model.common.CommonResponseModel;
+import com.bootstack.model.system.interfaces.SystemInterfaceModel;
 import com.bootstack.param.page.PageParam;
+import com.bootstack.param.system.interfaces.SystemInterfaceBasicParam;
 import com.bootstack.service.system.interfaces.SystemInterfaceService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p> SystemInterfaceController </p>
@@ -56,41 +58,19 @@ public class SystemInterfaceController {
         Pageable pageable = ParamSupport.getPageable(param);
         return CommonResponseModel.success(this.systemInterfaceService.getAll(pageable));
     }
-//
-//    /**
-//     * add a role to system
-//     *
-//     * @param param role info
-//     * @return add response
-//     */
-//    @PostMapping
-//    CommonResponseModel add(@RequestBody @Validated SystemRoleBasicParam param) {
-//        SystemRoleModel systemRole = new SystemRoleModel();
-//        if (ObjectUtils.isEmpty(param.getActive())) {
-//            systemRole.setActive(Boolean.TRUE);
-//        }
-//        systemRole.setDescription(param.getDescription());
-//        systemRole.setName(param.getName());
-//        systemRole.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
-//        return CommonResponseModel.success(this.systemRoleService.insertModel(systemRole));
-//    }
-//
-//    @PutMapping
-//    CommonResponseModel set(@RequestBody @Validated SystemRoleSetParam param) {
-//        SystemRoleModel systemRole = new SystemRoleModel();
-//        BeanUtils.copyProperties(param, systemRole);
-//        systemRole.setId(Long.valueOf(param.getId()));
-//        systemRole.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
-//        return CommonResponseModel.success(this.systemRoleService.insertModel(systemRole));
-//    }
-//
-//    @PutMapping(value = ControllerSupport.CONTROLLER_DEFAULT_SET + "/menu")
-//    CommonResponseModel setMenus(@RequestBody @Validated SystemRoleSetMenuParam param) {
-//        SystemRoleModel systemRole = this.systemRoleService.getModelById(Long.valueOf(param.getId()));
-//        List<SystemMenuModel> menuList = new ArrayList<>();
-//        Arrays.asList(param.getMenu().split(",")).forEach(v -> menuList.add(new SystemMenuModel(Long.valueOf(v))));
-//        systemRole.setMenuList(menuList);
-//        return CommonResponseModel.success(this.systemRoleService.insertModel(systemRole));
-//    }
+
+    /**
+     * add system interface
+     *
+     * @param param role info
+     * @return add response
+     */
+    @PostMapping
+    CommonResponseModel add(@RequestBody @Validated SystemInterfaceBasicParam param) {
+        SystemInterfaceModel model = new SystemInterfaceModel();
+        BeanUtils.copyProperties(param, model);
+        model.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
+        return CommonResponseModel.success(this.systemInterfaceService.insertModel(model));
+    }
 
 }
