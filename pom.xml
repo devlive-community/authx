@@ -93,6 +93,7 @@
         <plugin.maven.compiler.version>3.3</plugin.maven.compiler.version>
         <plugin.maven.javadoc.version>2.10.4</plugin.maven.javadoc.version>
         <plugin.maven.checkstyle.version>2.17</plugin.maven.checkstyle.version>
+        <plugin.maven.docker.version>0.23.0</plugin.maven.docker.version>
         <plugin.frontend.version>0.0.27</plugin.frontend.version>
         <plugin.springboot.version>1.5.6.RELEASE</plugin.springboot.version>
         <!-- environment config -->
@@ -102,6 +103,8 @@
         <!-- node & npm -->
         <system.node.version>v8.9.4</system.node.version>
         <system.npm.version>5.4.2</system.npm.version>
+        <!-- docker -->
+        <docker.image.prefix>bootstack</docker.image.prefix>
     </properties>
 
     <dependencies>
@@ -262,6 +265,16 @@
     </dependencyManagement>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <!-- docker -->
+                <plugin>
+                    <groupId>io.fabric8</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>${plugin.maven.docker.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
