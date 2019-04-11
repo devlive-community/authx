@@ -23,6 +23,7 @@ import com.bootstack.model.common.CommonResponseModel;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -94,6 +95,11 @@ public class BootStackExceptionHandler {
     @ExceptionHandler(value = MissingServletRequestParameterException.class)
     public Object methodMissingServletRequestParameterException(MissingServletRequestParameterException exception) {
         return CommonResponseModel.error(SystemMessageEnums.SYSTEM_PARAM_MUST_NULL, exception.getMessage());
+    }
+
+    @ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
+    public Object methodHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException exception) {
+        return CommonResponseModel.error(SystemMessageEnums.SYSTEM_METHOD_NOT_SUPPORT, exception.getMessage());
     }
 
 }

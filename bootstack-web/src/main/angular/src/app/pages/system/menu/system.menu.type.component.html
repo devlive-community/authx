@@ -38,21 +38,26 @@
                                 <th>Active Status</th>
                                 <th>Create Time</th>
                                 <th>Update Time</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody *ngFor="let data of datas">
+                        <tbody *ngFor="let model of datas">
                             <tr>
-                                <th scope="row">{{data.id}}</th>
-                                <td>{{data.name}}</td>
-                                <td>{{data.code}}</td>
-                                <td>{{data.description}}</td>
+                                <th scope="row">{{model.id}}</th>
+                                <td>{{model.name}}</td>
+                                <td>{{model.code}}</td>
+                                <td>{{model.description}}</td>
                                 <td class="center">
-                                    <a [tooltip]="data.active ? 'current status is actived' : 'current status is not actived'">
-                                        <i [ngClass]="data.active ? 'zmdi zmdi-stop' : 'zmdi zmdi-play'"></i>
+                                    <a [tooltip]="model.active ? 'current status is actived' : 'current status is not actived'">
+                                        <i [ngClass]="model.active ? 'zmdi zmdi-stop' : 'zmdi zmdi-play'"></i>
                                     </a>
                                 </td>
-                                <td>{{data.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                                <td>{{data.updateTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                <td>{{model.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                <td>{{model.updateTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                <td>
+                                    <a (click)="startShowCreateAndUpdateModal(model)"><i class="zmdi zmdi-edit"
+                                                                                         tooltip="Edit this item"></i></a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

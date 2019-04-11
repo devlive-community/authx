@@ -125,4 +125,8 @@ export class UserService implements BaseService {
         return undefined;
     }
 
+    update(param: Object): Observable<CommonResponseModel> {
+        return undefined;
+    }
+
 }

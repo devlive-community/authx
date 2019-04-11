@@ -73,9 +73,9 @@ export class SystemMenuTypeComponent implements OnInit {
     /**
      * show modal
      */
-    startShowCreateAndUpdateModal(role: any) {
-        if (role) {
-            this.param = role;
+    startShowCreateAndUpdateModal(model: any) {
+        if (model) {
+            this.param = model;
         } else {
             this.param = new SystemMenuTypeParam();
         }
@@ -83,17 +83,30 @@ export class SystemMenuTypeComponent implements OnInit {
     }
 
     createAndUpdate() {
-        // create new
-        this.systemMenuTypeService.register(this.param).subscribe(
-            response => {
-                if (response.code !== CodeConfig.SUCCESS) {
-                    this.toastyService.error(response.message);
-                } else {
-                    this.initList(this.page, 1);
-                    this.createAndUpdateModal.hide();
+        console.log(this.param);
+        if (this.param.id) {
+            this.systemMenuTypeService.update(this.param).subscribe(
+                response => {
+                    if (response.code !== CodeConfig.SUCCESS) {
+                        this.toastyService.error(response.message);
+                    } else {
+                        this.initList(this.page, 1);
+                        this.createAndUpdateModal.hide();
+                    }
                 }
-            }
-        );
+            );
+        } else {
+            this.systemMenuTypeService.register(this.param).subscribe(
+                response => {
+                    if (response.code !== CodeConfig.SUCCESS) {
+                        this.toastyService.error(response.message);
+                    } else {
+                        this.initList(this.page, 1);
+                        this.createAndUpdateModal.hide();
+                    }
+                }
+            );
+        }
     }
 
 }

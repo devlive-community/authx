@@ -38,6 +38,7 @@ public enum SystemMessageEnums {
     SYSTEM_PARAM_MUST_NULL(4007, "required request param is missing"),
     SYSTEM_PARAM_PATH_MUST_NULL(4008, "required request path param is missing"),
     SYSTEM_USER_EXISTS(4009, "user exists, please replace user name"),
+    SYSTEM_METHOD_NOT_SUPPORT(4010, "request method not supported"),
     ;
 
     private Integer code;
