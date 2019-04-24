@@ -18,16 +18,18 @@
 package com.bootstack.core.controller.system.menu;
 
 import com.bootstack.aop.validation.user.UserRequiredParamPathAndQueryAopValidation;
-import com.bootstack.core.controller.ControllerSupport;
 import com.bootstack.model.common.CommonResponseModel;
+import com.bootstack.model.page.PageModel;
 import com.bootstack.model.system.menu.SystemMenuModel;
 import com.bootstack.model.user.UserModel;
+import com.bootstack.param.page.PageParam;
 import com.bootstack.param.system.menu.SystemMenuBasicParam;
 import com.bootstack.service.system.menu.SystemMenuService;
 import com.bootstack.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -65,18 +67,30 @@ public class SystemMenuController {
     }
 
     /**
-     * get all menu by user and page
+     * get all model by page
      *
-     * @param uid  user id
-     * @param page page info
-     * @return all menu by page and user
+     * @param param page info
+     * @return all model by page
      */
     @GetMapping
-    @UserRequiredParamPathAndQueryAopValidation
-    CommonResponseModel list(@RequestParam String uid) {
-        UserModel user = (UserModel) this.userService.getModelById(Long.valueOf(uid));
-
-        return null;
+    CommonResponseModel list(@Validated PageParam param) {
+        Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
+        return CommonResponseModel.success(this.systemMenuService.getAllByPage(pageable));
     }
+
+//    /**
+//     * get all menu by user and page
+//     *
+//     * @param uid  user id
+//     * @param page page info
+//     * @return all menu by page and user
+//     */
+//    @GetMapping
+//    @UserRequiredParamPathAndQueryAopValidation
+//    CommonResponseModel listByUid(@RequestParam String uid) {
+//        UserModel user = (UserModel) this.userService.getModelById(Long.valueOf(uid));
+//
+//        return null;
+//    }
 
 }

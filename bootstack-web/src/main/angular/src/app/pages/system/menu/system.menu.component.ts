@@ -19,11 +19,11 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {ToastyService} from 'ng2-toasty';
 import {Subscription} from "rxjs";
-import {SystemMenuTypeService} from "../../../../services/system/system.menu.type.service";
 import {CommonPageModel} from "../../../shared/model/common/response/page.model";
 import {CodeConfig} from "../../../../config/code.config";
 import {ModalDirective} from "ngx-bootstrap";
 import {SystemMenuTypeParam} from "../../../shared/param/system/menu/system.menu.type.param";
+import {SystemMenuService} from "../../../../services/system/system.menu.service";
 
 @Component({
     selector: 'bootstack-system-menu',
@@ -47,7 +47,7 @@ export class SystemMenuComponent implements OnInit {
 
     constructor(private router: Router,
                 private toastyService: ToastyService,
-                private systemMenuTypeService: SystemMenuTypeService) {
+                private systemMenuService: SystemMenuService) {
         this.page = new CommonPageModel();
         this.param = new SystemMenuTypeParam();
     }
@@ -57,7 +57,7 @@ export class SystemMenuComponent implements OnInit {
     }
 
     initList(page: CommonPageModel, uid: number) {
-        this.loading = this.systemMenuTypeService.getList(page).subscribe(
+        this.loading = this.systemMenuService.getList(page).subscribe(
             response => {
                 if (response.code !== CodeConfig.SUCCESS) {
                     this.toastyService.error(response.message);
@@ -85,7 +85,7 @@ export class SystemMenuComponent implements OnInit {
     createAndUpdate() {
         console.log(this.param);
         if (this.param.id) {
-            this.systemMenuTypeService.update(this.param).subscribe(
+            this.systemMenuService.update(this.param).subscribe(
                 response => {
                     if (response.code !== CodeConfig.SUCCESS) {
                         this.toastyService.error(response.message);
@@ -96,7 +96,7 @@ export class SystemMenuComponent implements OnInit {
                 }
             );
         } else {
-            this.systemMenuTypeService.register(this.param).subscribe(
+            this.systemMenuService.register(this.param).subscribe(
                 response => {
                     if (response.code !== CodeConfig.SUCCESS) {
                         this.toastyService.error(response.message);
@@ -112,7 +112,7 @@ export class SystemMenuComponent implements OnInit {
     pageChanged(event: any) {
         this.page.number = event.page;
         this.page.size = event.itemsPerPage;
-        this.loading = this.systemMenuTypeService.getList(this.page).subscribe(
+        this.loading = this.systemMenuService.getList(this.page).subscribe(
             response => {
                 if (response.code !== CodeConfig.SUCCESS) {
                     this.toastyService.error(response.message);

@@ -25,8 +25,8 @@ import {ToastyModule} from 'ng2-toasty';
 import {BusyModule} from 'angular2-busy';
 
 import {ModalModule, PaginationModule} from "ngx-bootstrap";
-import {SystemMenuTypeService} from "../../../../services/system/system.menu.type.service";
 import {SystemMenuComponent} from "./system.menu.component";
+import {SystemMenuService} from "../../../../services/system/system.menu.service";
 
 const SYSTEM_MENU_ROUTES: Routes = [
     {path: '', component: SystemMenuComponent}
@@ -50,7 +50,7 @@ const SYSTEM_MENU_ROUTES: Routes = [
         SystemMenuComponent
     ],
     providers: [
-        SystemMenuTypeService
+        SystemMenuService
     ],
 })
 export class SystemMenuModule {
