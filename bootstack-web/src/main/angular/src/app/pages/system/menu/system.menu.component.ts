@@ -24,6 +24,7 @@ import {CodeConfig} from "../../../../config/code.config";
 import {ModalDirective} from "ngx-bootstrap";
 import {SystemMenuTypeParam} from "../../../shared/param/system/menu/system.menu.type.param";
 import {SystemMenuService} from "../../../../services/system/system.menu.service";
+import {SystemMenuParam} from "../../../shared/param/system/menu/system.menu.param";
 
 @Component({
     selector: 'bootstack-system-menu',
@@ -33,7 +34,7 @@ export class SystemMenuComponent implements OnInit {
 
     public loading: Subscription;
     // menu list
-    private models;
+    public models;
     // page model
     public page: CommonPageModel;
     // current page number
@@ -42,14 +43,14 @@ export class SystemMenuComponent implements OnInit {
     @ViewChild('createAndUpdateModal')
     public createAndUpdateModal: ModalDirective;
 
-    // system role param info
-    public param: SystemMenuTypeParam;
+    // model param info
+    public param: SystemMenuParam;
 
     constructor(private router: Router,
                 private toastyService: ToastyService,
                 private systemMenuService: SystemMenuService) {
         this.page = new CommonPageModel();
-        this.param = new SystemMenuTypeParam();
+        this.param = new SystemMenuParam();
     }
 
     ngOnInit() {
@@ -77,36 +78,36 @@ export class SystemMenuComponent implements OnInit {
         if (model) {
             this.param = model;
         } else {
-            this.param = new SystemMenuTypeParam();
+            this.param = new SystemMenuParam();
         }
         this.createAndUpdateModal.show();
     }
 
     createAndUpdate() {
         console.log(this.param);
-        if (this.param.id) {
-            this.systemMenuService.update(this.param).subscribe(
-                response => {
-                    if (response.code !== CodeConfig.SUCCESS) {
-                        this.toastyService.error(response.message);
-                    } else {
-                        this.initList(this.page, 1);
-                        this.createAndUpdateModal.hide();
-                    }
-                }
-            );
-        } else {
-            this.systemMenuService.register(this.param).subscribe(
-                response => {
-                    if (response.code !== CodeConfig.SUCCESS) {
-                        this.toastyService.error(response.message);
-                    } else {
-                        this.initList(this.page, 1);
-                        this.createAndUpdateModal.hide();
-                    }
-                }
-            );
-        }
+        // if (this.param.id) {
+        //     this.systemMenuService.update(this.param).subscribe(
+        //         response => {
+        //             if (response.code !== CodeConfig.SUCCESS) {
+        //                 this.toastyService.error(response.message);
+        //             } else {
+        //                 this.initList(this.page, 1);
+        //                 this.createAndUpdateModal.hide();
+        //             }
+        //         }
+        //     );
+        // } else {
+        //     this.systemMenuService.register(this.param).subscribe(
+        //         response => {
+        //             if (response.code !== CodeConfig.SUCCESS) {
+        //                 this.toastyService.error(response.message);
+        //             } else {
+        //                 this.initList(this.page, 1);
+        //                 this.createAndUpdateModal.hide();
+        //             }
+        //         }
+        //     );
+        // }
     }
 
     pageChanged(event: any) {

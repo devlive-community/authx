@@ -17,14 +17,15 @@
  */
 package com.bootstack.core.controller.system.menu;
 
-import com.bootstack.aop.validation.user.UserRequiredParamPathAndQueryAopValidation;
+import com.bootstack.common.pinyin.PinYinUtils;
 import com.bootstack.model.common.CommonResponseModel;
 import com.bootstack.model.page.PageModel;
 import com.bootstack.model.system.menu.SystemMenuModel;
-import com.bootstack.model.user.UserModel;
+import com.bootstack.model.system.menu.SystemMenuTypeModel;
 import com.bootstack.param.page.PageParam;
-import com.bootstack.param.system.menu.SystemMenuBasicParam;
+import com.bootstack.param.system.menu.SystemMenuCreateParam;
 import com.bootstack.service.system.menu.SystemMenuService;
+import com.bootstack.service.system.menu.SystemMenuTypeService;
 import com.bootstack.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -50,6 +51,9 @@ public class SystemMenuController {
     private SystemMenuService systemMenuService;
 
     @Autowired
+    private SystemMenuTypeService systemMenuTypeService;
+
+    @Autowired
     private UserService userService;
 
     /**
@@ -59,10 +63,15 @@ public class SystemMenuController {
      * @return create result
      */
     @PostMapping
-    CommonResponseModel add(@RequestBody @Validated SystemMenuBasicParam param) {
+    CommonResponseModel add(@RequestBody @Validated SystemMenuCreateParam param) {
         SystemMenuModel systemMenuModel = new SystemMenuModel();
         BeanUtils.copyProperties(param, systemMenuModel);
         systemMenuModel.setActive(Boolean.TRUE);
+        systemMenuModel.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
+        // set menu type
+        SystemMenuTypeModel systemMenuTypeModel = new SystemMenuTypeModel();
+        systemMenuModel.setId(Long.valueOf(param.getType()));
+        systemMenuModel.setType(systemMenuTypeModel);
         return CommonResponseModel.success(this.systemMenuService.insertModel(systemMenuModel));
     }
 

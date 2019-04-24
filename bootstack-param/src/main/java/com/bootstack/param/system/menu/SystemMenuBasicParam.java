@@ -17,6 +17,8 @@
  */
 package com.bootstack.param.system.menu;
 
+import com.bootstack.validation.system.menu.SystemMenuRequireValidation;
+import com.bootstack.validation.system.menu.SystemMenuTypeRequireValidation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -65,5 +67,9 @@ public class SystemMenuBasicParam {
     private String method; // get, put, delete, post, and other
 
     private String description;
+
+    @NotEmpty(message = "system menu type must not null")
+    @SystemMenuTypeRequireValidation
+    private String type;
 
 }
