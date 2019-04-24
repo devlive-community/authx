@@ -186,3 +186,18 @@ create table system_role_menu_relation (
 ) comment 'system role and system menu relation table'
     default charset utf8;
 
+# system method table
+drop table if exists system_method;
+create table system_method (
+    id          int auto_increment,
+    name        varchar(100) comment 'method name',
+    code        varchar(100) comment 'method code',
+    description varchar(200) comment 'method description',
+    method      varchar(200) comment 'interface method multiple method split by ,',
+    active      boolean comment 'active status'  default true,
+    system      boolean comment 'system default' default false,
+    create_time timestamp                        default current_timestamp comment 'create time',
+    update_time timestamp                        default current_timestamp comment 'update time',
+    primary key (id)
+) comment 'system method table'
+    default charset utf8;
