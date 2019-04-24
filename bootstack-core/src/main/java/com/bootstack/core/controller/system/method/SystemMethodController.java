@@ -69,6 +69,7 @@ public class SystemMethodController {
     CommonResponseModel add(@RequestBody @Validated SystemMethodCreateParam param) {
         SystemMethodModel model = new SystemMethodModel();
         BeanUtils.copyProperties(param, model);
+        model.setActive(Boolean.TRUE);
         model.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
         return CommonResponseModel.success(this.systemMethodService.insertModel(model));
     }

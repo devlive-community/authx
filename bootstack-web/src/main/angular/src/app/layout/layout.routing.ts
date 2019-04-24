@@ -57,6 +57,10 @@ const LAYOUT_ROUTES: Routes = [
                     {
                         path: 'interface',
                         loadChildren: '../pages/system/settings/interface/system.settings.interface.module#SystemSettingsInterfaceModule'
+                    },
+                    {
+                        path: 'method',
+                        loadChildren: '../pages/system/settings/method/system.settings.method.module#SystemSettingsMethodModule'
                     }
                 ]
             }

@@ -47,4 +47,9 @@ export class ApiConfig {
      */
     public static readonly API_SYSTEM_SETTINGS_INTERFACE = ApiConfig.API_VERSION_V1 + 'system/interface';
 
+    /**
+     * system settings method
+     */
+    public static readonly API_SYSTEM_SETTINGS_METHOD = ApiConfig.API_VERSION_V1 + 'system/method';
+
 }
