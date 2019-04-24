@@ -56,7 +56,7 @@ public class SystemMenuController {
      * @param param menu info
      * @return create result
      */
-    @PostMapping(value = ControllerSupport.CONTROLLER_DEFAULT_ADD)
+    @PostMapping
     CommonResponseModel add(@RequestBody @Validated SystemMenuBasicParam param) {
         SystemMenuModel systemMenuModel = new SystemMenuModel();
         BeanUtils.copyProperties(param, systemMenuModel);

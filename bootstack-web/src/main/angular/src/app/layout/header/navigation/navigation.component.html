@@ -42,6 +42,11 @@
                 </a>
                 <ul [@toggleHeight]="navigationSubState.Menus">
                     <li routerLinkActive="navigation__active">
+                        <a [routerLink]="['/system/menu']">
+                            Menu Manager
+                        </a>
+                    </li>
+                    <li routerLinkActive="navigation__active">
                         <a [routerLink]="['/system/menu-type']">
                             Menu Type Manager
                         </a>
