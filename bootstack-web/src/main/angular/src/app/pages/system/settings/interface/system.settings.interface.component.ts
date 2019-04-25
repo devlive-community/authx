@@ -20,10 +20,12 @@ import {Router} from '@angular/router';
 import {ToastyService} from 'ng2-toasty';
 import {Subscription} from "rxjs";
 import {ModalDirective} from "ngx-bootstrap";
+import {Select2Component, Select2OptionData} from 'ng2-select2';
 import {CommonPageModel} from "../../../../shared/model/common/response/page.model";
 import {SystemSettingsInterfaceService} from "../../../../../services/system/settings/system.settings.interface.service";
 import {CodeConfig} from "../../../../../config/code.config";
 import {SystemSettingsInterfaceParam} from "../../../../shared/param/system/settings/interface/system.settings.interface.param";
+import {SystemSettingsMethodService} from "../../../../../services/system/settings/system.settings.method.service";
 
 @Component({
     selector: 'bootstack-system-settings-interface',
@@ -38,6 +40,21 @@ export class SystemSettingsInterfaceComponent implements OnInit {
     public page: CommonPageModel;
     // current page number
     public currentPage: number;
+    // select tag config
+    multipleOptions: any = {
+        multiple: true,
+        dropdownAutoWidth: true,
+        placeholder: 'please select your option',
+        width: '100%',
+        containerCssClass: 'select2-selection--alt',
+        dropdownCssClass: 'select2-dropdown--alt'
+    };
+    // select datas
+    methodOptions: Array<Select2OptionData>;
+    @ViewChild('methodFields')
+    methodFields: Select2Component;
+    // save method ids
+    methodId: any;
 
     public param: SystemSettingsInterfaceParam;
 
@@ -46,6 +63,7 @@ export class SystemSettingsInterfaceComponent implements OnInit {
 
     constructor(private router: Router,
                 private systemSettingsInterfaceService: SystemSettingsInterfaceService,
+                private systemSettingsMethodService: SystemSettingsMethodService,
                 private toastyService: ToastyService) {
         this.page = new CommonPageModel();
         this.param = new SystemSettingsInterfaceParam();
@@ -102,10 +120,30 @@ export class SystemSettingsInterfaceComponent implements OnInit {
             this.param = new SystemSettingsInterfaceParam();
         }
         this.createAndUpdateModal.show();
+        // init method list
+        this.page.size = 100;
+        this.systemSettingsMethodService.getList(this.page).subscribe(
+            response => {
+                const fields = [], temps = response.data.content;
+                for (const x in temps) {
+                    let content = temps[x].content;
+                    if (!content) {
+                        content = temps[x].name
+                    }
+                    const v = {
+                        "id": temps[x].id,
+                        "text": content
+                    }
+                    fields.push(v);
+                }
+                this.methodOptions = fields;
+            }
+        )
     }
 
     createAndUpdate() {
         if (this.param.id) {
+            this.param.method = this.methodId;
             this.systemSettingsInterfaceService.update(this.param).subscribe(
                 response => {
                     if (response.code !== CodeConfig.SUCCESS) {
@@ -117,6 +155,7 @@ export class SystemSettingsInterfaceComponent implements OnInit {
                 }
             );
         } else {
+            this.param.method = this.methodId;
             this.systemSettingsInterfaceService.register(this.param).subscribe(
                 response => {
                     if (response.code !== CodeConfig.SUCCESS) {
@@ -128,6 +167,11 @@ export class SystemSettingsInterfaceComponent implements OnInit {
                 }
             );
         }
+    }
+
+    // select method change
+    methodChanged(data: { value: string[] }) {
+        this.methodId = data.value
     }
 
 }

@@ -23,7 +23,7 @@ export class SystemSettingsInterfaceParam {
     public white: boolean;
     public system: boolean;
     public path: string;
-    public method: string; // split by ,
+    public method: any;
 
     constructor() {
     }

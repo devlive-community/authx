@@ -28,7 +28,8 @@
                 "../node_modules/echarts/dist/extension/bmap.js",
                 "../node_modules/echarts-wordcloud/dist/echarts-wordcloud.min.js",
                 "../node_modules/d3/build/d3.min.js",
-                "../node_modules/moment/min/moment.min.js"
+                "../node_modules/moment/min/moment.min.js",
+                "../node_modules/select2/dist/js/select2.full.min.js"
             ],
             "environmentSource": "environments/environment.ts",
             "environments": {

@@ -23,10 +23,12 @@ import {TooltipModule} from 'ngx-bootstrap/tooltip';
 import {CustomFormsModule} from 'ng2-validation';
 import {ToastyModule} from 'ng2-toasty';
 import {BusyModule} from 'angular2-busy';
+import {Select2Module} from 'ng2-select2';
 
 import {SystemSettingsInterfaceComponent} from "./system.settings.interface.component";
 import {ModalModule, PaginationModule} from "ngx-bootstrap";
 import {SystemSettingsInterfaceService} from "../../../../../services/system/settings/system.settings.interface.service";
+import {SystemSettingsMethodService} from "../../../../../services/system/settings/system.settings.method.service";
 
 const SYSTEM_SETTINGS_INTERFACE_ROUTES: Routes = [
     {path: '', component: SystemSettingsInterfaceComponent}
@@ -39,6 +41,7 @@ const SYSTEM_SETTINGS_INTERFACE_ROUTES: Routes = [
         ReactiveFormsModule,
         CustomFormsModule,
         BusyModule,
+        Select2Module,
         TooltipModule.forRoot(),
         ToastyModule.forRoot(),
         PaginationModule.forRoot(),
@@ -50,7 +53,8 @@ const SYSTEM_SETTINGS_INTERFACE_ROUTES: Routes = [
         SystemSettingsInterfaceComponent
     ],
     providers: [
-        SystemSettingsInterfaceService
+        SystemSettingsInterfaceService,
+        SystemSettingsMethodService
     ],
 })
 export class SystemSettingsInterfaceModule {

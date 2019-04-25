@@ -94,3 +94,6 @@
 @import './assets/scss/_bootstack-input-group';
 // header style
 @import './assets/scss/_bootstack-header';
+// vendor style
+@import "../node_modules/select2/dist/css/select2.css";
+@import "./assets/scss/vendor/select2";

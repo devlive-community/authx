@@ -139,9 +139,7 @@
                         <p class="text-danger" *ngIf="path.errors?.rangeLength"></p>
                     </div>
                     <div class="form-group form-group--centered">
-                        <input type="text" [(ngModel)]="param.method" name="method" #method="ngModel"
-                               class="form-control" required placeholder="Please enter interface method"/>
-                        <p class="text-danger" *ngIf="method.errors?.rangeLength"></p>
+                        <select2 #methodFields [data]="methodOptions" [options]="multipleOptions" [value]="value" (valueChanged)="methodChanged($event)"></select2>
                     </div>
                 </div>
                 <div class="modal-footer">
