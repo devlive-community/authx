@@ -28,4 +28,13 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 public interface SystemMethodRepository extends PagingAndSortingRepository<SystemMethodModel, Long> {
+
+    /**
+     * get info by method
+     *
+     * @param method method
+     * @return info
+     */
+    SystemMethodModel findByMethod(String method);
+
 }

@@ -18,7 +18,10 @@ package com.bootstack.service.system.interfaces; /**
 
 import com.bootstack.model.page.PageModel;
 import com.bootstack.model.system.interfaces.SystemInterfaceModel;
+import com.bootstack.model.system.method.SystemMethodModel;
 import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 
 /**
  * <p> SystemInterfaceService </p>
@@ -84,5 +87,23 @@ public interface SystemInterfaceService {
      * @return all model
      */
     PageModel<SystemInterfaceModel> getAll(Pageable pageable);
+
+    /**
+     * find by path like ? and method in method list
+     *
+     * @param path    path
+     * @param methods method list
+     * @return info
+     */
+    SystemInterfaceModel getByPathLikeAndMethodsIn(String path, List<SystemMethodModel> methods);
+
+    /**
+     * find by path like ? and method in method
+     *
+     * @param path   path
+     * @param method method info
+     * @return info
+     */
+    SystemInterfaceModel getByPathLikeAndMethods(String path, SystemMethodModel method);
 
 }

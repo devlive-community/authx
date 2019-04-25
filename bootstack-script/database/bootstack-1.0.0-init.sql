@@ -186,7 +186,7 @@ create table system_role_menu_relation (
 ) comment 'system role and system menu relation table'
     default charset utf8;
 
-# system method table
+-- system method table
 drop table if exists system_method;
 create table system_method (
     id          int auto_increment,
@@ -200,4 +200,12 @@ create table system_method (
     update_time timestamp                        default current_timestamp comment 'update time',
     primary key (id)
 ) comment 'system method table'
+    default charset utf8;
+
+-- system interface and system method relation table
+drop table if exists system_interface_method_relation;
+create table system_interface_method_relation (
+    system_interface_id int,
+    system_method_id    int
+) comment 'system interface and system method relation table'
     default charset utf8;

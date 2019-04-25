@@ -21,17 +21,20 @@ import com.bootstack.common.pinyin.PinYinUtils;
 import com.bootstack.core.support.ParamSupport;
 import com.bootstack.model.common.CommonResponseModel;
 import com.bootstack.model.system.interfaces.SystemInterfaceModel;
+import com.bootstack.model.system.method.SystemMethodModel;
 import com.bootstack.param.page.PageParam;
-import com.bootstack.param.system.interfaces.SystemInterfaceBasicParam;
+import com.bootstack.param.system.interfaces.SystemInterfaceCreateParam;
 import com.bootstack.param.system.interfaces.SystemInterfaceSetParam;
-import com.bootstack.param.system.role.SystemRoleSetParam;
 import com.bootstack.service.system.interfaces.SystemInterfaceService;
+import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p> SystemInterfaceController </p>
@@ -68,10 +71,17 @@ public class SystemInterfaceController {
      * @return add response
      */
     @PostMapping
-    CommonResponseModel add(@RequestBody @Validated SystemInterfaceBasicParam param) {
+    CommonResponseModel add(@RequestBody @Validated SystemInterfaceCreateParam param) {
         SystemInterfaceModel model = new SystemInterfaceModel();
         BeanUtils.copyProperties(param, model);
         model.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
+        List<SystemMethodModel> methods = Lists.newArrayList();
+        param.getMethod().forEach(v -> {
+            SystemMethodModel method = new SystemMethodModel();
+            method.setId(Long.valueOf(v));
+            methods.add(method);
+        });
+        model.setMethods(methods);
         return CommonResponseModel.success(this.systemInterfaceService.insertModel(model));
     }
 

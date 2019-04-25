@@ -89,6 +89,7 @@
         <dependency.commons.lang3.version>3.8.1</dependency.commons.lang3.version>
         <dependency.servlet.api.version>2.5</dependency.servlet.api.version>
         <dependency.commons.version>3.2.2</dependency.commons.version>
+        <dependency.google.collections.version>1.0</dependency.google.collections.version>
         <!-- plugin config -->
         <plugin.maven.compiler.version>3.3</plugin.maven.compiler.version>
         <plugin.maven.javadoc.version>2.10.4</plugin.maven.javadoc.version>
@@ -260,6 +261,11 @@
                 <groupId>commons-collections</groupId>
                 <artifactId>commons-collections</artifactId>
                 <version>${dependency.commons.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.collections</groupId>
+                <artifactId>google-collections</artifactId>
+                <version>${dependency.google.collections.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

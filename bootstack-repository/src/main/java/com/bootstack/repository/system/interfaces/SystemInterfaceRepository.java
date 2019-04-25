@@ -17,9 +17,12 @@ package com.bootstack.repository.system.interfaces; /**
  */
 
 import com.bootstack.model.system.interfaces.SystemInterfaceModel;
+import com.bootstack.model.system.method.SystemMethodModel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
+
+import java.util.List;
 
 /**
  * <p> SystemInterfaceRepository </p>
@@ -69,5 +72,14 @@ public interface SystemInterfaceRepository extends PagingAndSortingRepository<Sy
      * @return info
      */
     SystemInterfaceModel findByPathLikeAndSystemFalse(String path);
+
+    /**
+     * find by path like ? and method in method list
+     *
+     * @param path    path
+     * @param methods method list
+     * @return info
+     */
+    SystemInterfaceModel findByPathLikeAndMethodsInAndSystemFalse(String path, List<SystemMethodModel> methods);
 
 }

@@ -16,6 +16,7 @@ package com.bootstack.service.system.method; /**
  * limitations under the License.
  */
 
+import com.bootstack.model.system.method.SystemMethodModel;
 import com.bootstack.service.BaseService;
 
 /**
@@ -27,4 +28,13 @@ import com.bootstack.service.BaseService;
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 public interface SystemMethodService extends BaseService {
+
+    /**
+     * get info by method
+     *
+     * @param method method
+     * @return info
+     */
+    SystemMethodModel getByMethod(String method);
+
 }

@@ -18,6 +18,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.google.collections</groupId>
+            <artifactId>google-collections</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.bootstack</groupId>
             <artifactId>bootstack-repository</artifactId>
         </dependency>

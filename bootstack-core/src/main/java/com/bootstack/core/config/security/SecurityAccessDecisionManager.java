@@ -19,9 +19,10 @@ package com.bootstack.core.config.security;
 
 import com.bootstack.common.enums.SystemMessageEnums;
 import com.bootstack.model.system.interfaces.SystemInterfaceModel;
+import com.bootstack.model.system.method.SystemMethodModel;
 import com.bootstack.service.system.interfaces.SystemInterfaceService;
+import com.bootstack.service.system.method.SystemMethodService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections.IteratorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;
@@ -34,7 +35,6 @@ import org.springframework.util.ObjectUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * <p> SecurityAccessDecisionManager </p>
@@ -51,20 +51,22 @@ public class SecurityAccessDecisionManager implements AccessDecisionManager {
     @Autowired
     private SystemInterfaceService systemInterfaceService;
 
+    @Autowired
+    private SystemMethodService systemMethodService;
+
     @Override
     public void decide(Authentication authentication, Object object, Collection<ConfigAttribute> configAttributes) throws AccessDeniedException, InsufficientAuthenticationException {
         HttpServletRequest request = ((FilterInvocation) object).getHttpRequest();
         String requestUrl = request.getServletPath(), requestMethod = request.getMethod();
         log.info("current api interface：" + requestUrl + " , request method：" + requestMethod);
-//        // replace * to empty string
-//        if (requestUrl.lastIndexOf("*") > 0) {
-//            requestUrl = requestUrl.replace("*", "");
-//        }
         log.info("database api interface {}", requestUrl);
+        // get method info from db
+        SystemMethodModel systemMethodModel = this.systemMethodService.getByMethod(requestMethod.toUpperCase());
         // Get whether the data is in the white list through the database
-        List<SystemInterfaceModel> systemInterfaces = IteratorUtils.toList(this.systemInterfaceService.getAllByPathLike(requestUrl).iterator());
-        if (!ObjectUtils.isEmpty(systemInterfaces)) {
-            if (systemInterfaces.get(0).getMethod().contains(requestMethod.toLowerCase())) {
+//        List<SystemInterfaceModel> systemInterfaces = IteratorUtils.toList(this.systemInterfaceService.getAllByPathLike(requestUrl).iterator());
+        if (!ObjectUtils.isEmpty(systemMethodModel)) {
+            SystemInterfaceModel systemInterfaceModel = this.systemInterfaceService.getByPathLikeAndMethods(requestUrl, systemMethodModel);
+            if (!ObjectUtils.isEmpty(systemInterfaceModel)) {
                 return;
             }
         }

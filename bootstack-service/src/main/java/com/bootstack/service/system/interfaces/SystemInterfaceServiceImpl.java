@@ -19,13 +19,17 @@ package com.bootstack.service.system.interfaces;
 
 import com.bootstack.model.page.PageModel;
 import com.bootstack.model.system.interfaces.SystemInterfaceModel;
+import com.bootstack.model.system.method.SystemMethodModel;
 import com.bootstack.repository.system.interfaces.SystemInterfaceRepository;
 import com.bootstack.service.ServiceSupport;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
+
+import java.util.List;
 
 /**
  * <p> SystemInterfaceServiceImpl </p>
@@ -80,6 +84,18 @@ public class SystemInterfaceServiceImpl implements SystemInterfaceService {
     public PageModel<SystemInterfaceModel> getAll(Pageable pageable) {
         Page<SystemInterfaceModel> models = this.systemInterfaceRepository.findAll(pageable);
         return new PageModel<>(models.getContent(), pageable, models.getTotalElements());
+    }
+
+    @Override
+    public SystemInterfaceModel getByPathLikeAndMethodsIn(String path, List<SystemMethodModel> methods) {
+        return this.systemInterfaceRepository.findByPathLikeAndMethodsInAndSystemFalse("%" + path + "%", methods);
+    }
+
+    @Override
+    public SystemInterfaceModel getByPathLikeAndMethods(String path, SystemMethodModel method) {
+        List<SystemMethodModel> methods = Lists.newArrayList();
+        methods.add(method);
+        return this.systemInterfaceRepository.findByPathLikeAndMethodsInAndSystemFalse("%" + path + "%", methods);
     }
 
 }

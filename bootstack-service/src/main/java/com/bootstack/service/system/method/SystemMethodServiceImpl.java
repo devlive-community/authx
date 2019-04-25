@@ -62,4 +62,9 @@ public class SystemMethodServiceImpl implements SystemMethodService {
         return new PageModel<>(models.getContent(), pageable, models.getTotalElements());
     }
 
+    @Override
+    public SystemMethodModel getByMethod(String method) {
+        return this.systemMethodRepository.findByMethod(method);
+    }
+
 }
