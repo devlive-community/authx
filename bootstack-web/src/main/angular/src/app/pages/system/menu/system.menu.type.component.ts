@@ -33,7 +33,7 @@ export class SystemMenuTypeComponent implements OnInit {
 
     public loading: Subscription;
     // menu list
-    private datas;
+    private models;
     // page model
     public page: CommonPageModel;
     // current page number
@@ -53,7 +53,7 @@ export class SystemMenuTypeComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.datas = this.initList(this.page, 1);
+        this.models = this.initList(this.page, 1);
     }
 
     initList(page: CommonPageModel, uid: number) {
@@ -62,7 +62,7 @@ export class SystemMenuTypeComponent implements OnInit {
                 if (response.code !== CodeConfig.SUCCESS) {
                     this.toastyService.error(response.message);
                 } else {
-                    this.datas = response.data.content;
+                    this.models = response.data.content;
                     this.page = CommonPageModel.getPage(response.data);
                     this.currentPage = this.page.number;
                 }
@@ -107,6 +107,22 @@ export class SystemMenuTypeComponent implements OnInit {
                 }
             );
         }
+    }
+
+    pageChanged(event: any) {
+        this.page.number = event.page;
+        this.page.size = event.itemsPerPage;
+        this.loading = this.systemMenuTypeService.getList(this.page).subscribe(
+            response => {
+                if (response.code !== CodeConfig.SUCCESS) {
+                    this.toastyService.error(response.message);
+                } else {
+                    this.models = response.data.content;
+                    this.page = CommonPageModel.getPage(response.data);
+                    this.currentPage = this.page.number;
+                }
+            }
+        );
     }
 
 }

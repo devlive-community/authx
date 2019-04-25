@@ -41,7 +41,7 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody *ngFor="let model of datas">
+                        <tbody *ngFor="let model of models">
                             <tr>
                                 <th scope="row">{{model.id}}</th>
                                 <td>{{model.name}}</td>
@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class="mr-center">
-                <pagination *ngIf="roles?.length && page" [(ngModel)]="currentPage" totalItems="{{page.totalElements}}"
+                <pagination *ngIf="models?.length && page" [(ngModel)]="currentPage" totalItems="{{page.totalElements}}"
                     maxSize="{{page.size}}"
                     (pageChanged)="pageChanged($event)" [boundaryLinks]="true">
                 </pagination>
