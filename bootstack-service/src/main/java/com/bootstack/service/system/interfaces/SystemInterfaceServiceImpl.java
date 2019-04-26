@@ -29,6 +29,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -96,6 +97,11 @@ public class SystemInterfaceServiceImpl implements SystemInterfaceService {
         List<SystemMethodModel> methods = Lists.newArrayList();
         methods.add(method);
         return this.systemInterfaceRepository.findByPathLikeAndMethodsInAndSystemFalse("%" + path + "%", methods);
+    }
+
+    @Override
+    public SystemInterfaceModel getByPathAndMethodsIn(String path, SystemMethodModel... methods) {
+        return this.systemInterfaceRepository.findByPathAndSystemFalseAndMethodsIn(path, Arrays.asList(methods));
     }
 
 }

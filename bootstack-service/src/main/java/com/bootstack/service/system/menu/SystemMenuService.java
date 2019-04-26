@@ -16,7 +16,12 @@ package com.bootstack.service.system.menu; /**
  * limitations under the License.
  */
 
+import com.bootstack.model.page.PageModel;
+import com.bootstack.model.system.menu.SystemMenuModel;
 import com.bootstack.service.BaseService;
+import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 
 /**
  * <p> SystemMenuService </p>
@@ -27,4 +32,13 @@ import com.bootstack.service.BaseService;
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 public interface SystemMenuService extends BaseService {
+
+    /**
+     * get all model by parent
+     *
+     * @param parent parent id
+     * @return all model from parent
+     */
+    PageModel<SystemMenuModel> getAllByParent(Long parent, Pageable pageable);
+
 }

@@ -19,12 +19,14 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {ToastyService} from 'ng2-toasty';
 import {Subscription} from "rxjs";
+import {Select2Component, Select2OptionData} from 'ng2-select2';
 import {CommonPageModel} from "../../../shared/model/common/response/page.model";
 import {CodeConfig} from "../../../../config/code.config";
 import {ModalDirective} from "ngx-bootstrap";
-import {SystemMenuTypeParam} from "../../../shared/param/system/menu/system.menu.type.param";
 import {SystemMenuService} from "../../../../services/system/system.menu.service";
 import {SystemMenuParam} from "../../../shared/param/system/menu/system.menu.param";
+import {SystemSettingsMethodService} from "../../../../services/system/settings/system.settings.method.service";
+import {SystemMenuTypeService} from "../../../../services/system/system.menu.type.service";
 
 @Component({
     selector: 'bootstack-system-menu',
@@ -39,6 +41,24 @@ export class SystemMenuComponent implements OnInit {
     public page: CommonPageModel;
     // current page number
     public currentPage: number;
+    // select tag config
+    multipleOptions: any = {
+        multiple: true,
+        dropdownAutoWidth: true,
+        placeholder: 'please select your option',
+        width: '100%',
+        containerCssClass: 'select2-selection--alt',
+        dropdownCssClass: 'select2-dropdown--alt'
+    };
+    methodOptions: Array<Select2OptionData>;
+    @ViewChild('methodFields')
+    methodFields: Select2Component;
+    menuTypeOptions: Array<Select2OptionData>;
+    @ViewChild('menuTypeFields')
+    menuTypeFields: Select2Component;
+    menuParentOptions: Array<Select2OptionData>;
+    @ViewChild('menuParentFields')
+    menuParentFields: Select2Component;
 
     @ViewChild('createAndUpdateModal')
     public createAndUpdateModal: ModalDirective;
@@ -48,6 +68,8 @@ export class SystemMenuComponent implements OnInit {
 
     constructor(private router: Router,
                 private toastyService: ToastyService,
+                private systemSettingsMethodService: SystemSettingsMethodService,
+                private systemMenuTypeService: SystemMenuTypeService,
                 private systemMenuService: SystemMenuService) {
         this.page = new CommonPageModel();
         this.param = new SystemMenuParam();
@@ -83,31 +105,104 @@ export class SystemMenuComponent implements OnInit {
         this.createAndUpdateModal.show();
     }
 
+    /**
+     * init step data models
+     * @param event current event
+     */
+    initStepDataModels(event) {
+        this.initMethod();
+        this.initMenuType();
+        this.initMenuParent();
+    }
+
+    /**
+     * init method list
+     */
+    initMethod() {
+        this.page.size = 100;
+        this.systemSettingsMethodService.getList(this.page).subscribe(
+            response => {
+                const temps = response.data.content;
+                this.methodOptions = this.generateOptions(temps);
+            }
+        )
+    }
+
+    /**
+     * init menu type list
+     */
+    initMenuType() {
+        this.page.size = 100;
+        this.systemMenuTypeService.getList(this.page).subscribe(
+            response => {
+                const temps = response.data.content;
+                this.menuTypeOptions = this.generateOptions(temps);
+            }
+        )
+    }
+
+    /**
+     * init menu parent list
+     */
+    initMenuParent() {
+        this.page.size = 100;
+        this.systemMenuService.getListByParent(this.page, 0).subscribe(
+            response => {
+                const temps = response.data.content;
+                this.menuParentOptions = this.generateOptions(temps);
+            }
+        )
+    }
+
+    /**
+     * generate select options
+     */
+    generateOptions(temps) {
+        const fields = [];
+        fields.push({
+            'id': 0,
+            'text': 'please select data'
+        })
+        for (const x in temps) {
+            let content = temps[x].name;
+            const v = {
+                "id": temps[x].id,
+                "text": content
+            }
+            fields.push(v);
+        }
+        return fields;
+    }
+
     createAndUpdate() {
         console.log(this.param);
-        // if (this.param.id) {
-        //     this.systemMenuService.update(this.param).subscribe(
-        //         response => {
-        //             if (response.code !== CodeConfig.SUCCESS) {
-        //                 this.toastyService.error(response.message);
-        //             } else {
-        //                 this.initList(this.page, 1);
-        //                 this.createAndUpdateModal.hide();
-        //             }
-        //         }
-        //     );
-        // } else {
-        //     this.systemMenuService.register(this.param).subscribe(
-        //         response => {
-        //             if (response.code !== CodeConfig.SUCCESS) {
-        //                 this.toastyService.error(response.message);
-        //             } else {
-        //                 this.initList(this.page, 1);
-        //                 this.createAndUpdateModal.hide();
-        //             }
-        //         }
-        //     );
-        // }
+        if (this.param.type === '0') {
+            this.toastyService.error('menu type is must null');
+            return
+        }
+        if (this.param.id) {
+            this.systemMenuService.update(this.param).subscribe(
+                response => {
+                    if (response.code !== CodeConfig.SUCCESS) {
+                        this.toastyService.error(response.message);
+                    } else {
+                        this.initList(this.page, 1);
+                        this.createAndUpdateModal.hide();
+                    }
+                }
+            );
+        } else {
+            this.systemMenuService.register(this.param).subscribe(
+                response => {
+                    if (response.code !== CodeConfig.SUCCESS) {
+                        this.toastyService.error(response.message);
+                    } else {
+                        this.initList(this.page, 1);
+                        this.createAndUpdateModal.hide();
+                    }
+                }
+            );
+        }
     }
 
     pageChanged(event: any) {
@@ -124,6 +219,19 @@ export class SystemMenuComponent implements OnInit {
                 }
             }
         );
+    }
+
+    // select method change
+    methodChanged(data: { value: string[] }) {
+        this.param.method = data.value
+    }
+
+    menuTypeChanged(data: { value: string[] }) {
+        this.param.type = data.value
+    }
+
+    menuParentChanged(data: { value: string[] }) {
+        this.param.parent = data.value
     }
 
 }

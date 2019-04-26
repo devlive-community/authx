@@ -18,6 +18,7 @@
 package com.bootstack.model.system.menu;
 
 import com.bootstack.common.support.DateSuooprt;
+import com.bootstack.model.system.method.SystemMethodModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,6 +30,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p> SystemMenuModel </p>
@@ -79,9 +81,6 @@ public class SystemMenuModel {
     @Column(name = "parent")
     private Long parent;
 
-    @Column(name = "method")
-    private String method;
-
     @Column(name = "description")
     private String description;
 
@@ -103,6 +102,12 @@ public class SystemMenuModel {
             joinColumns = @JoinColumn(name = "system_menu_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "system_menu_type_id", referencedColumnName = "id"))
     private SystemMenuTypeModel type;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "system_interface_method_relation",
+            joinColumns = @JoinColumn(name = "system_interface_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "system_method_id", referencedColumnName = "id"))
+    private List<SystemMethodModel> methods;
 
     public SystemMenuModel(Long id) {
         this.id = id;

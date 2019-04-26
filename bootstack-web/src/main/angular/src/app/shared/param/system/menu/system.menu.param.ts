@@ -25,9 +25,9 @@ export class SystemMenuParam {
     public level: number;
     public tips: string
     public news: boolean;
-    public parent: number;
-    public method: string;
+    public parent: any;
+    public method: any;
     public description: string;
-    public type: string; // current menu parent id
+    public type: any; // current menu parent id
 
 }

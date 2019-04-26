@@ -106,4 +106,13 @@ public interface SystemInterfaceService {
      */
     SystemInterfaceModel getByPathLikeAndMethods(String path, SystemMethodModel method);
 
+    /**
+     * find by path and method in method
+     *
+     * @param path   path
+     * @param method method info
+     * @return info
+     */
+    SystemInterfaceModel getByPathAndMethodsIn(String path, SystemMethodModel... methods);
+
 }

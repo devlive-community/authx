@@ -22,17 +22,21 @@ import com.bootstack.model.common.CommonResponseModel;
 import com.bootstack.model.page.PageModel;
 import com.bootstack.model.system.menu.SystemMenuModel;
 import com.bootstack.model.system.menu.SystemMenuTypeModel;
+import com.bootstack.model.system.method.SystemMethodModel;
 import com.bootstack.param.page.PageParam;
 import com.bootstack.param.system.menu.SystemMenuCreateParam;
 import com.bootstack.service.system.menu.SystemMenuService;
 import com.bootstack.service.system.menu.SystemMenuTypeService;
 import com.bootstack.service.user.UserService;
+import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p> SystemMenuController </p>
@@ -70,8 +74,16 @@ public class SystemMenuController {
         systemMenuModel.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
         // set menu type
         SystemMenuTypeModel systemMenuTypeModel = new SystemMenuTypeModel();
-        systemMenuModel.setId(Long.valueOf(param.getType()));
+        systemMenuTypeModel.setId(Long.valueOf(param.getType()));
         systemMenuModel.setType(systemMenuTypeModel);
+        List<SystemMethodModel> methods = Lists.newArrayList();
+        param.getMethod().forEach(v -> {
+            SystemMethodModel method = new SystemMethodModel();
+            method.setId(Long.valueOf(v));
+            methods.add(method);
+        });
+        systemMenuModel.setMethods(methods);
+        systemMenuModel.setParent(param.getParent());
         return CommonResponseModel.success(this.systemMenuService.insertModel(systemMenuModel));
     }
 
@@ -85,6 +97,19 @@ public class SystemMenuController {
     CommonResponseModel list(@Validated PageParam param) {
         Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
         return CommonResponseModel.success(this.systemMenuService.getAllByPage(pageable));
+    }
+
+    /**
+     * get all model by parent
+     *
+     * @param parent parent id
+     * @return all model by parent
+     */
+    @GetMapping(value = "parent")
+    CommonResponseModel getByParent(@Validated PageParam param,
+                                    @RequestParam(value = "parent", defaultValue = "0") Long parent) {
+        Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
+        return CommonResponseModel.success(this.systemMenuService.getAllByParent(parent, pageable));
     }
 
 //    /**

@@ -82,4 +82,13 @@ public interface SystemInterfaceRepository extends PagingAndSortingRepository<Sy
      */
     SystemInterfaceModel findByPathLikeAndMethodsInAndSystemFalse(String path, List<SystemMethodModel> methods);
 
+    /**
+     * find by path and method in method list
+     *
+     * @param path    path
+     * @param methods method list
+     * @return info
+     */
+    SystemInterfaceModel findByPathAndSystemFalseAndMethodsIn(String path, List<SystemMethodModel> methods);
+
 }

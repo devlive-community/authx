@@ -23,10 +23,14 @@ import {TooltipModule} from 'ngx-bootstrap/tooltip';
 import {CustomFormsModule} from 'ng2-validation';
 import {ToastyModule} from 'ng2-toasty';
 import {BusyModule} from 'angular2-busy';
+import { ArchwizardModule } from 'ng2-archwizard';
+import {Select2Module} from 'ng2-select2';
 
 import {ModalModule, PaginationModule} from "ngx-bootstrap";
 import {SystemMenuComponent} from "./system.menu.component";
 import {SystemMenuService} from "../../../../services/system/system.menu.service";
+import {SystemSettingsMethodService} from "../../../../services/system/settings/system.settings.method.service";
+import {SystemMenuTypeService} from "../../../../services/system/system.menu.type.service";
 
 const SYSTEM_MENU_ROUTES: Routes = [
     {path: '', component: SystemMenuComponent}
@@ -39,6 +43,8 @@ const SYSTEM_MENU_ROUTES: Routes = [
         ReactiveFormsModule,
         CustomFormsModule,
         BusyModule,
+        ArchwizardModule,
+        Select2Module,
         TooltipModule.forRoot(),
         ToastyModule.forRoot(),
         PaginationModule.forRoot(),
@@ -50,7 +56,9 @@ const SYSTEM_MENU_ROUTES: Routes = [
         SystemMenuComponent
     ],
     providers: [
-        SystemMenuService
+        SystemMenuService,
+        SystemSettingsMethodService,
+        SystemMenuTypeService
     ],
 })
 export class SystemMenuModule {

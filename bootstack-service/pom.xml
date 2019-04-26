@@ -22,6 +22,10 @@
             <artifactId>google-collections</artifactId>
         </dependency>
         <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.bootstack</groupId>
             <artifactId>bootstack-repository</artifactId>
         </dependency>

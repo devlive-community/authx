@@ -46,7 +46,7 @@ public class SystemMenuTypeRequireValidationValidator implements ConstraintValid
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext context) {
-        log.info("validation system menu type id is exists, role id is {}", s);
+        log.info("validation system menu type id is exists, id is {}", s);
         return !StringUtils.isEmpty(s) && !ObjectUtils.isEmpty(this.systemMenuTypeService.getModelById(Long.valueOf(s)));
     }
 

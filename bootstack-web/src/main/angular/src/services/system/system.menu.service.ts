@@ -26,7 +26,6 @@ import {CommonPageModel} from "../../app/shared/model/common/response/page.model
 import {HttpUtils} from "../../app/shared/utils/http.util";
 import {ApiConfig} from "../../config/api.config";
 import {ResponseUtils} from "../../app/shared/utils/response.util";
-import {SystemMenuTypeParam} from "../../app/shared/param/system/menu/system.menu.type.param";
 import {SystemMenuParam} from "../../app/shared/param/system/menu/system.menu.param";
 
 /**
@@ -65,6 +64,20 @@ export class SystemMenuService implements BaseService {
         const options = HttpUtils.getDefaultRequestOptionsByTokenAndJSON();
         return this.http.put(ApiConfig.API_SYSTEM_MENU, JSON.stringify(param), options)
             .map(ResponseUtils.extractData);
+    }
+
+    /**
+     * get model list by parent
+     * @param page page info
+     * @param parent parent id, default 0
+     */
+    getListByParent(page: CommonPageModel, parent: number): Observable<CommonResponseModel> {
+        const options = HttpUtils.getDefaultRequestOptionsByTokenAndJSON();
+        const params = HttpUtils.getParams();
+        params.append('page', page.number.toString());
+        params.append('size', page.size.toString());
+        options.params = params;
+        return this.http.get(ApiConfig.API_SYSTEM_MENU + '/parent', options).map(ResponseUtils.extractData);
     }
 
 }

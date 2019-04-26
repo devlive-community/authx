@@ -24,8 +24,10 @@
             <div class="card">
                 <div class="card-title">
                     <a class="actions__item btn btn-primary btn-sm" tooltip="Create New System Menu"
-                       placement="bottom" (click)="startShowCreateAndUpdateModal()"><i class="zmdi zmdi-plus"></i>
-                        Create New</a>
+                       placement="bottom" (click)="startShowCreateAndUpdateModal()">
+                        <i class="zmdi zmdi-plus"></i>
+                        Create New
+                    </a>
                 </div>
                 <div class="card-body">
                     <table class="table mb-0 mr-center">
@@ -55,8 +57,10 @@
                                 <td>{{model.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                                 <td>{{model.updateTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                                 <td>
-                                    <a (click)="startShowCreateAndUpdateModal(model)"><i class="zmdi zmdi-edit"
-                                                                                         tooltip="Edit this item"></i></a>
+                                    <a (click)="startShowCreateAndUpdateModal(model)">
+                                        <i class="zmdi zmdi-edit"
+                                           tooltip="Edit this item"></i>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>
@@ -84,94 +88,114 @@
             </div>
             <form #createAndUpdateForm="ngForm" (ngSubmit)="createAndUpdate()">
                 <div class="modal-body">
-                    <div class="form-group form-group--centered">
-                        <input type="text" [(ngModel)]="param.name" name="name" #name="ngModel"
-                               class="form-control" required placeholder="Please enter a role name"/>
-                        <p class="text-danger" *ngIf="name.errors?.rangeLength">The input character length is between
-                            5-9</p>
-                    </div>
-                    <div class="form-group form-group--centered">
-                        <input type="text" [(ngModel)]="param.url" name="url" #url="ngModel"
-                               class="form-control" required placeholder="Please enter url"/>
-                        <!--[rangeLength]="[8, 20]" -->
-                        <p class="text-danger" *ngIf="url.errors?.rangeLength">url cannot be less than 8
-                            bits,
-                            and cannot be more than 20 bits</p>
-                    </div>
-                    <div class="form-group form-group--centered">
-                        <input type="text" [(ngModel)]="param.icon" name="description" #icon="ngModel"
-                               class="form-control" required placeholder="Please enter icon, support fa icons"/>
-                        <!--[rangeLength]="[8, 20]" -->
-                        <!--<p class="text-danger" *ngIf="icon.errors?.rangeLength"></p>-->
-                    </div>
-                    <div class="form-group form-group--centered">
-                        <input type="text" [(ngModel)]="param.sorted" name="description" #sorted="ngModel"
-                               class="form-control" required placeholder="Please enter sorted, The higher the number, the higher the order"/>
-                    </div>
-                    <div class="form-group form-group--centered">
-                        <input type="text" [(ngModel)]="param.level" name="level" #level="ngModel"
-                               class="form-control" required placeholder="Please enter level, The higher the number, the higher the level"/>
-                    </div>
-                    <div class="form-group form-group--centered">
-                        <input type="text" [(ngModel)]="param.tips" name="tips" #tips="ngModel"
-                               class="form-control" required placeholder="Please enter tips"/>
-                    </div>
-                    <div class="form-group form-group--centered">
-                        News:
-                        <label class="custom-control custom-radio">
-                            <input type="radio" [(ngModel)]="param.news" name="news" value="true"
-                                   class="custom-control-input">
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description">Yes</span>
-                        </label>
-                        <label class="custom-control custom-radio">
-                            <input type="radio" [(ngModel)]="param.news" name="news" value="false" checked="checked"
-                                   class="custom-control-input">
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description">No</span>
-                        </label>
-                    </div>
-                    <!--public parent: number;-->
-                    <!--public method: string;-->
-                    <!--public description: string;-->
-                    <!--public type: string; // current menu parent id-->
-                    <div class="form-group form-group--centered">
-                        <input type="text" [(ngModel)]="param.description" name="description" #description="ngModel"
-                               class="form-control" required placeholder="Please enter role description"/>
-                        <!--[rangeLength]="[8, 20]" -->
-                        <p class="text-danger" *ngIf="description.errors?.rangeLength">Passwords cannot be less than 8
-                            bits,
-                            and cannot be more than 20 bits</p>
-                    </div>
-                    <div class="form-group form-group--centered">
-                        <input type="text" [(ngModel)]="param.description" name="description" #description="ngModel"
-                               class="form-control" required placeholder="Please enter role description"/>
-                        <!--[rangeLength]="[8, 20]" -->
-                        <p class="text-danger" *ngIf="description.errors?.rangeLength">Passwords cannot be less than 8
-                            bits,
-                            and cannot be more than 20 bits</p>
-                    </div>
-                    <div class="form-group form-group--centered">
-                        <input type="text" [(ngModel)]="param.description" name="description" #description="ngModel"
-                               class="form-control" required placeholder="Please enter role description"/>
-                        <!--[rangeLength]="[8, 20]" -->
-                        <p class="text-danger" *ngIf="description.errors?.rangeLength">Passwords cannot be less than 8
-                            bits,
-                            and cannot be more than 20 bits</p>
-                    </div>
-                    <div class="form-group form-group--centered">
-                        <input type="text" [(ngModel)]="param.description" name="description" #description="ngModel"
-                               class="form-control" required placeholder="Please enter role description"/>
-                        <!--[rangeLength]="[8, 20]" -->
-                        <p class="text-danger" *ngIf="description.errors?.rangeLength">Passwords cannot be less than 8
-                            bits,
-                            and cannot be more than 20 bits</p>
-                    </div>
+                    <wizard navBarLayout="large-empty-symbols">
+                        <!-- basic config -->
+                        <wizard-step stepTitle="Menu Basic" navigationSymbol="&#xf0b1;"
+                                     navigationSymbolFontFamily="FontAwesome">
+                            <div style="margin-top: 10px;">
+                                <div class="form-group form-group--centered">
+                                    <input type="text" [(ngModel)]="param.name" name="name" #name="ngModel"
+                                           class="form-control" required placeholder="Please enter a name"/>
+                                </div>
+                                <div class="form-group form-group--centered">
+                                    <input type="text" [(ngModel)]="param.url" name="url" #url="ngModel"
+                                           class="form-control" required placeholder="Please enter url"/>
+                                    <p class="text-danger" *ngIf="url.errors?.rangeLength">url cannot be less than 8
+                                        bits,
+                                        and cannot be more than 20 bits
+                                    </p>
+                                </div>
+                                <div class="form-group form-group--centered">
+                                    <input type="text" [(ngModel)]="param.tips" name="tips" #tips="ngModel"
+                                           class="form-control" required placeholder="Please enter tips"/>
+                                </div>
+                                <div class="form-group form-group--centered">
+                                    <input type="text" [(ngModel)]="param.description"
+                                           name="description" #sorted="ngModel"
+                                           class="form-control" required placeholder="Please enter description"/>
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex px-4 py-3">
+                                <div class="mr-auto"></div>
+                                <div class="ml-4">
+                                    <a class="btn btn-info" [ngClass]="{'disabled': !param.name || !param.url}"
+                                       nextStep>Next Step
+                                    </a>
+                                </div>
+                            </div>
+                        </wizard-step>
+                        <!-- custom config -->
+                        <wizard-step stepTitle="Menu  Custom" navigationSymbol="&#xf0b1;"
+                                     navigationSymbolFontFamily="FontAwesome">
+                            <div class="card-block" style="margin-top: 10px;">
+                                <div class="clearfix mt-2"></div>
+                                <div class="form-group form-group--centered">
+                                    <input type="text" [(ngModel)]="param.icon" name="icon" #icon="ngModel"
+                                           class="form-control" required
+                                           placeholder="Please enter icon, support fa icons"/>
+                                </div>
+                                <div class="form-group form-group--centered">
+                                    <input type="text" [(ngModel)]="param.level" name="level" #level="ngModel"
+                                           class="form-control" required
+                                           placeholder="Please enter level, The higher the number, the higher the level"/>
+                                </div>
+                                <div class="form-group form-group--centered">
+                                    <input type="text" [(ngModel)]="param.sorted" name="sorted" #sorted="ngModel"
+                                           class="form-control" required
+                                           placeholder="Please enter sorted, The higher the number, the higher the level"/>
+                                </div>
+                                <div class="form-group form-group--centered">
+                                    News:
+                                    <label class="custom-control custom-radio">
+                                        <input type="radio" [(ngModel)]="param.news" name="news" value="true"
+                                               class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Yes</span>
+                                    </label>
+                                    <label class="custom-control custom-radio">
+                                        <input type="radio" [(ngModel)]="param.news" name="news" value="false"
+                                               checked="checked"
+                                               class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">No</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex px-4 py-3">
+                                <div class="mr-auto">
+                                    <a class="btn btn-secondary" previousStep>Previous Step</a>
+                                </div>
+                                <div class="ml-4">
+                                    <a class="btn btn-info" nextStep>Next Step</a>
+                                </div>
+                            </div>
+                        </wizard-step>
+                        <wizard-step stepTitle="Menu Config" (stepEnter)="initStepDataModels($event)" navigationSymbol="&#xf085;"
+                                     navigationSymbolFontFamily="FontAwesome">
+                            <div class="card-block mr-center" style="margin-top: 10px;">
+                                <div class="form-group form-group--centered">
+                                    <select2 #methodFields [data]="methodOptions" [options]="multipleOptions" [value]="value" (valueChanged)="methodChanged($event)"></select2>
+                                </div>
+                                <div class="form-group form-group--centered">
+                                    <select2 #menuTypeFields [data]="menuTypeOptions" [value]="value" (valueChanged)="menuTypeChanged($event)" width="100%"></select2>
+                                </div>
+                                <div class="form-group form-group--centered">
+                                    <select2 #menuParentFields [data]="menuParentOptions" [value]="value" (valueChanged)="menuParentChanged($event)" width="100%"></select2>
+                                </div>
+                                <div class="card-footer d-flex px-4 py-3">
+                                    <div class="mr-auto">
+                                        <a class="btn btn-secondary" previousStep>Previous Step</a>
+                                    </div>
+                                    <div class="ml-4">
+                                        <button class="btn btn-info" type="submit">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </wizard-step>
+                    </wizard>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-link" (click)="createAndUpdateModal.hide()">Close</button>
-                    <button type="submit" class="btn btn-warning" [disabled]="!createAndUpdateForm.form.valid">Save
-                    </button>
                 </div>
             </form>
         </div>
