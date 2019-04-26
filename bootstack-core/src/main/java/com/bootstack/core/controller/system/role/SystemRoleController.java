@@ -25,6 +25,7 @@ import com.bootstack.model.system.menu.SystemMenuModel;
 import com.bootstack.model.system.role.SystemRoleModel;
 import com.bootstack.param.page.PageParam;
 import com.bootstack.param.system.role.SystemRoleBasicParam;
+import com.bootstack.param.system.role.SystemRoleMenuParam;
 import com.bootstack.param.system.role.SystemRoleSetMenuParam;
 import com.bootstack.param.system.role.SystemRoleSetParam;
 import com.bootstack.service.system.role.SystemRoleService;
@@ -102,6 +103,31 @@ public class SystemRoleController {
         Arrays.asList(param.getMenu().split(",")).forEach(v -> menuList.add(new SystemMenuModel(Long.valueOf(v))));
         systemRole.setMenuList(menuList);
         return CommonResponseModel.success(this.systemRoleService.insertModel(systemRole));
+    }
+
+    /**
+     * Assign system permissions menu
+     *
+     * @param param System permissions and menu information
+     * @return Distribution state
+     */
+    @PutMapping(value = "menu")
+    public CommonResponseModel setMenu(@RequestBody @Validated SystemRoleMenuParam param) {
+        List<SystemMenuModel> menus = new ArrayList<>();
+        List<String> menuId = param.getValue();
+        if (!ObjectUtils.isEmpty(menuId)) {
+            menuId.forEach(v -> {
+                SystemMenuModel menu = new SystemMenuModel();
+                menu.setId(Long.valueOf(v));
+                menus.add(menu);
+            });
+        }
+        SystemRoleModel model = this.systemRoleService.getModelById(Long.valueOf(param.getKey()));
+        BeanUtils.copyProperties(param, model);
+        List<SystemMenuModel> temp = model.getMenuList();
+        menus.addAll(temp);
+        model.setMenuList(menus);
+        return CommonResponseModel.success(this.systemRoleService.insertModel(model));
     }
 
 }

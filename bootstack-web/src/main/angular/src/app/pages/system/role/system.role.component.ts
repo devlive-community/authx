@@ -44,6 +44,8 @@ export class SystemRoleComponent implements OnInit {
 
     @ViewChild('createAndUpdateModal')
     public createAndUpdateModal: ModalDirective;
+    @ViewChild('assignmentMenuModal')
+    public assignmentMenuModal: ModalDirective;
 
     constructor(private router: Router,
                 private systemRoleService: SystemRoleService,
@@ -103,6 +105,11 @@ export class SystemRoleComponent implements OnInit {
             this.param = new SystemRoleParam();
         }
         this.createAndUpdateModal.show();
+    }
+
+    startShowAssignmentMenusModal(role: any) {
+        this.param = role;
+        this.assignmentMenuModal.show();
     }
 
     createAndUpdate() {
