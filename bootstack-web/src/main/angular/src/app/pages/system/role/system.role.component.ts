@@ -18,6 +18,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {ToastyService} from 'ng2-toasty';
+import {TranslateService} from '@ngx-translate/core';
 import {SystemRoleService} from "../../../../services/system/system.role.service";
 import {CommonPageModel} from "../../../shared/model/common/response/page.model";
 import {Subscription} from "rxjs";
@@ -48,8 +49,13 @@ export class SystemRoleComponent implements OnInit {
     public assignmentMenuModal: ModalDirective;
 
     constructor(private router: Router,
+                private translate: TranslateService,
                 private systemRoleService: SystemRoleService,
                 private toastyService: ToastyService) {
+        translate.addLangs(['zh-CN', 'en']);
+        translate.setDefaultLang('zh-CN');
+        let broswerLang = translate.getBrowserLang();
+        translate.use(broswerLang.match(/en|zh-CN/) ? broswerLang : 'zh-CN');
         this.page = new CommonPageModel();
         this.param = new SystemRoleParam();
     }

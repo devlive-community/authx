@@ -18,8 +18,11 @@
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {HttpModule} from '@angular/http';
+import {Http, HttpModule} from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+/** translate */
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 import {AppComponent} from './app.component';
 
@@ -28,12 +31,27 @@ import {routing} from './app.routing';
 
 import {AuthModule} from './auth/auth.module';
 
+/**
+ * support translate
+ * @param http
+ */
+export function createTranslateLoader(http: Http) {
+    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
 @NgModule({
     imports: [
         AuthModule,
         BrowserModule,
         HttpModule,
         BrowserAnimationsModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: (createTranslateLoader),
+                deps: [Http]
+            }
+        }),
         routing
     ],
     declarations: [

@@ -1,0 +1,29 @@
+{
+    "system": {
+        "role": {
+        }
+    },
+    "common": {
+        "name": "名称",
+        "code": "编码",
+        "description": "描述",
+        "createTime": "创建时间",
+        "updateTime": "更新时间",
+        "action": {
+            "name": "操作",
+            "editItem": "编辑该选项",
+            "assignmentMenu": "分配菜单"
+        },
+        "button": {
+            "create": {
+                "title": "创建",
+                "tip": "创建一个新的内容"
+            }
+        },
+        "table": {
+        },
+        "modal": {
+            "title": "创建新的内容"
+        }
+    }
+}

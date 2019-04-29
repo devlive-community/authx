@@ -23,21 +23,21 @@
             <div [ngBusy]="loading"></div>
             <div class="card">
                 <div class="card-title">
-                    <a class="actions__item btn btn-primary btn-sm" tooltip="Create New System Role"
+                    <a class="actions__item btn btn-primary btn-sm" tooltip="{{ 'common.button.create.tip' | translate }}"
                        placement="bottom" (click)="startShowCreateAndUpdateModal()"><i class="zmdi zmdi-plus"></i>
-                        Create New</a>
+                        {{ 'common.button.create.title' | translate }}</a>
                 </div>
                 <div class="card-body">
                     <table class="table mb-0">
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
-                            <th>Code</th>
-                            <th>Description</th>
-                            <th>Create Time</th>
-                            <th>Update Time</th>
-                            <th>Action</th>
+                            <th>{{ "common.name" | translate }}</th>
+                            <th>{{ "common.code" | translate }}</th>
+                            <th>{{ "common.description" | translate }}</th>
+                            <th>{{ "common.createTime" | translate }}</th>
+                            <th>{{ "common.updateTime" | translate }}</th>
+                            <th>{{ "common.action.name" | translate }}</th>
                         </tr>
                         </thead>
                         <tbody *ngFor="let role of roles">
@@ -50,9 +50,9 @@
                             <td>{{role.updateTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                             <td>
                                 <a (click)="startShowCreateAndUpdateModal(role)"><i class="zmdi zmdi-edit"
-                                                                                    tooltip="Edit this item"></i></a>
+                                                                                    tooltip="{{ 'common.action.editItem' | translate }}"></i></a>
                                 <a (click)="startShowAssignmentMenusModal(role)"><i class="zmdi zmdi-assignment-check"
-                                                                                    tooltip="Assignment Menus"></i></a>
+                                                                                    tooltip="{{ 'common.action.assignmentMenu' | translate }}"></i></a>
                             </td>
                         </tr>
                         </tbody>
@@ -74,9 +74,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title pull-left">
-                    Create New System Role
-                </h5>
+                <h5 class="modal-title pull-left">{{ 'common.modal.title' | translate }}</h5>
             </div>
             <form #createSystemRoleForm="ngForm" (ngSubmit)="createAndUpdate()">
                 <div class="modal-body">
