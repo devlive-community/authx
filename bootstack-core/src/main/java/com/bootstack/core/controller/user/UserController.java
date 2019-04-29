@@ -65,7 +65,7 @@ public class UserController {
      * @param param user info
      * @return register response
      */
-//    @PostMapping(value = ControllerSupport.CONTROLLER_DEFAULT_PUBLIC + ControllerSupport.CONTROLLER_DEFAULT_ADD)
+//    @PostMapping(id = ControllerSupport.CONTROLLER_DEFAULT_PUBLIC + ControllerSupport.CONTROLLER_DEFAULT_ADD)
     @PostMapping(value = ControllerSupport.CONTROLLER_DEFAULT_ADD)
     CommonResponseModel add(@RequestBody @Validated UserBasicParam param) {
         log.info("add user action, user name is {}", param.getName());

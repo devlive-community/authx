@@ -37,7 +37,7 @@ public interface CacheManager {
      * put cache
      *
      * @param key   cache key
-     * @param cache cache value
+     * @param cache cache id
      */
     void put(String key, Cache cache);
 
@@ -45,7 +45,7 @@ public interface CacheManager {
      * put cache
      *
      * @param key     cache key
-     * @param cache   cache value
+     * @param cache   cache id
      * @param timeOut timeout
      */
     void put(String key, Object cache, long timeOut);
@@ -104,7 +104,7 @@ public interface CacheManager {
      * flush cache
      *
      * @param key   cache key
-     * @param cache cache value
+     * @param cache cache id
      */
     void refer(String key, Object cache);
 

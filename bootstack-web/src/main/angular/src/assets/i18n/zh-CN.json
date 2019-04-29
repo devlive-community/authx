@@ -23,7 +23,8 @@
         "table": {
         },
         "modal": {
-            "title": "创建新的内容"
+            "title": "创建新的内容",
+            "titleRole": "分配路由权限"
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.bootstack.service.system.menu; /**
+package com.bootstack.service.system.role; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -16,36 +16,32 @@ package com.bootstack.service.system.menu; /**
  * limitations under the License.
  */
 
-import com.bootstack.model.page.PageModel;
-import com.bootstack.model.system.menu.SystemMenuModel;
 import com.bootstack.model.system.menu.SystemMenuTypeModel;
-import com.bootstack.service.BaseService;
-import org.springframework.data.domain.Pageable;
+import com.bootstack.model.system.role.SystemMenuTreeModel;
+import com.bootstack.model.system.role.SystemRoleModel;
+
+import java.util.List;
 
 /**
- * <p> SystemMenuService </p>
- * <p> Description : SystemMenuService </p>
+ * <p> SystemRoleSeniorService </p>
+ * <p> Description : SystemRoleSeniorService </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-26 15:40 </p>
+ * <p> Create Time : 2019-04-29 13:54 </p>
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface SystemMenuService extends BaseService {
+public interface SystemRoleSeniorService {
 
     /**
-     * get all model by parent
-     *
-     * @param parent parent id
-     * @return all model from parent
+     * Query the menu by the permission ID
+     * @param id
+     * @param flag
+     * @return
      */
-    PageModel<SystemMenuModel> getAllByParent(Long parent, Pageable pageable);
+    List<SystemMenuTreeModel> findTreeMenuById(SystemRoleModel roleModel, SystemMenuTypeModel typeModel);
 
-    /**
-     * find model by type
-     *
-     * @param type type info
-     * @return model from type
-     */
-    Iterable<SystemMenuModel> getByType(SystemMenuTypeModel type);
+    List<SystemMenuTreeModel> findMenuById(Long id);
+
+    List<SystemMenuTreeModel> findMenuByIds(List<SystemRoleModel> roles);
 
 }

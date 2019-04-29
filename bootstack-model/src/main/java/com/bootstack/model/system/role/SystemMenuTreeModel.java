@@ -15,33 +15,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.common.date;
+package com.bootstack.model.system.role;
 
-import com.bootstack.common.support.DateSuooprt;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
 
 /**
- * <p> DateUtils </p>
- * <p> Description : DateUtils </p>
+ * <p> SystemMenuTreeModel </p>
+ * <p> Description : SystemMenuTreeModel </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-24 11:35 </p>
- * <p> Author Email: : <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ * <p> Create Time : 2019-04-29 13:56 </p>
+ * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public class DateUtils {
+@Data
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+public class SystemMenuTreeModel {
 
-    private final static SimpleDateFormat format = new SimpleDateFormat();
-
-    /**
-     * format date to yyyy-mm-dd hh:mm:ss
-     *
-     * @return formart date id
-     */
-    public static String formatYmdhms() {
-        format.applyPattern(DateSuooprt.DATE_FORMAT_YYYY_MM_DD_HH_MM_SS);
-        return format.format(new Date());
-    }
+    private Long id; // menu id
+    private String value; // menu name
+    private String url;
+    private Integer sorted;
+    private Boolean newd;
+    private String icon;
+    private Boolean checked = false; // is checked
+    List<SystemMenuTreeModel> children; // sub menu
 
 }

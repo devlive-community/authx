@@ -34,7 +34,7 @@ public enum SystemMessageEnums {
     SYSTEM_PARAMS_VALIDATE_ERROR(4003, "param validation error, please check"),
     SYSTEM_BODY_MUST_NULL(4004, "required request body is missing"),
     SYSTEM_MEDIA_TYPE_NOT_SUPPORT(4005, "media type not supported or media type must not null"),
-    SYSTEM_METHOD_CONVERT_NOT_SUPPORT(4006, "failed to convert value type"),
+    SYSTEM_METHOD_CONVERT_NOT_SUPPORT(4006, "failed to convert id type"),
     SYSTEM_PARAM_MUST_NULL(4007, "required request param is missing"),
     SYSTEM_PARAM_PATH_MUST_NULL(4008, "required request path param is missing"),
     SYSTEM_USER_EXISTS(4009, "user exists, please replace user name"),

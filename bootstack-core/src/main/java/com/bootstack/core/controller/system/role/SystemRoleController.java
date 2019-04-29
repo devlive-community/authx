@@ -22,12 +22,15 @@ import com.bootstack.core.controller.ControllerSupport;
 import com.bootstack.core.support.ParamSupport;
 import com.bootstack.model.common.CommonResponseModel;
 import com.bootstack.model.system.menu.SystemMenuModel;
+import com.bootstack.model.system.menu.SystemMenuTypeModel;
 import com.bootstack.model.system.role.SystemRoleModel;
+import com.bootstack.param.common.CommonMenuAndRoleParam;
 import com.bootstack.param.page.PageParam;
 import com.bootstack.param.system.role.SystemRoleBasicParam;
 import com.bootstack.param.system.role.SystemRoleMenuParam;
 import com.bootstack.param.system.role.SystemRoleSetMenuParam;
 import com.bootstack.param.system.role.SystemRoleSetParam;
+import com.bootstack.service.system.role.SystemRoleSeniorService;
 import com.bootstack.service.system.role.SystemRoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -56,6 +59,9 @@ public class SystemRoleController {
 
     @Autowired
     private SystemRoleService systemRoleService;
+
+    @Autowired
+    private SystemRoleSeniorService systemRoleSeniorService;
 
     /**
      * find all model
@@ -128,6 +134,22 @@ public class SystemRoleController {
         menus.addAll(temp);
         model.setMenuList(menus);
         return CommonResponseModel.success(this.systemRoleService.insertModel(model));
+    }
+
+    /**
+     * Assign system permissions menu list
+     *
+     * @param id   role id
+     * @param flag 菜单标识 true：菜单，false：api接口
+     * @return 菜单列表
+     */
+    @GetMapping(value = "menu/tree")
+    public CommonResponseModel findAllByRoleAndMenuType(@Validated CommonMenuAndRoleParam param) {
+        SystemMenuTypeModel menuTypeModel = new SystemMenuTypeModel();
+        menuTypeModel.setId(Long.valueOf(param.getMenuType()));
+        SystemRoleModel roleModel = new SystemRoleModel();
+        roleModel.setId(Long.valueOf(param.getRole()));
+        return CommonResponseModel.success(this.systemRoleSeniorService.findTreeMenuById(roleModel, menuTypeModel));
     }
 
 }

@@ -31,7 +31,7 @@ import lombok.ToString;
 public class Cache {
 
     private String key; // cache key
-    private Object value; // cache value
+    private Object value; // cache id
     private long firstTime = System.currentTimeMillis(); // cache time
     private long timeOut = 0; // cache dead time, 0 not dead
     private long lastRefer = System.currentTimeMillis(); // last flush time

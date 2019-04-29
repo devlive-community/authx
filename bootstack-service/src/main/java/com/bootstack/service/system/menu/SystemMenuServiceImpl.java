@@ -19,6 +19,7 @@ package com.bootstack.service.system.menu;
 
 import com.bootstack.model.page.PageModel;
 import com.bootstack.model.system.menu.SystemMenuModel;
+import com.bootstack.model.system.menu.SystemMenuTypeModel;
 import com.bootstack.repository.system.menu.SystemMenuRepository;
 import com.bootstack.service.ServiceSupport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +67,11 @@ public class SystemMenuServiceImpl implements SystemMenuService {
     public PageModel<SystemMenuModel> getAllByParent(Long parent, Pageable pageable) {
         Page<SystemMenuModel> pageModel = this.systemMenuRepository.findAllByParent(parent, pageable);
         return new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements());
+    }
+
+    @Override
+    public Iterable<SystemMenuModel> getByType(SystemMenuTypeModel type) {
+        return this.systemMenuRepository.findByType(type);
     }
 
 }

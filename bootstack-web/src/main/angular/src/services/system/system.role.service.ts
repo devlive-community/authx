@@ -27,6 +27,7 @@ import {HttpUtils} from "../../app/shared/utils/http.util";
 import {ApiConfig} from "../../config/api.config";
 import {ResponseUtils} from "../../app/shared/utils/response.util";
 import {SystemRoleParam} from "../../app/shared/param/system/role/system.role.param";
+import {SystemMenuRoleParam} from "../../app/shared/param/system/menu/system.menu.role.param";
 
 /**
  * System Role Service
@@ -64,6 +65,19 @@ export class SystemRoleService implements BaseService {
         const options = HttpUtils.getDefaultRequestOptionsByTokenAndJSON();
         return this.http.put(ApiConfig.API_SYSTEM_ROLE, JSON.stringify(param), options)
             .map(ResponseUtils.extractData);
+    }
+
+    /**
+     * get menu tree list by role and type
+     * @param page
+     */
+    getTreeListByRoleAndType(param: SystemMenuRoleParam): Observable<CommonResponseModel> {
+        const options = HttpUtils.getDefaultRequestOptionsByTokenAndJSON();
+        const params = HttpUtils.getParams();
+        params.append('role', param.role.toString());
+        params.append('menuType', param.menuType.toString());
+        options.params = params;
+        return this.http.get(ApiConfig.API_SYSTEM_ROLE_TREE, options).map(ResponseUtils.extractData);
     }
 
 }

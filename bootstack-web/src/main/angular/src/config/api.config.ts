@@ -31,6 +31,7 @@ export class ApiConfig {
      * system role interface
      */
     public static readonly API_SYSTEM_ROLE = ApiConfig.API_VERSION_V1 + 'system/role';
+    public static readonly API_SYSTEM_ROLE_TREE = ApiConfig.API_VERSION_V1 + 'system/role/menu/tree';
 
     /**
      * system menu type interface

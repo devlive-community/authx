@@ -23,11 +23,13 @@ import {TooltipModule} from 'ngx-bootstrap/tooltip';
 import {CustomFormsModule} from 'ng2-validation';
 import {ToastyModule} from 'ng2-toasty';
 import {BusyModule} from 'angular2-busy';
-import { TranslateModule } from '@ngx-translate/core';
+import {TranslateModule} from '@ngx-translate/core';
+import {TabsModule} from 'ngx-bootstrap/tabs';
 
 import {SystemRoleComponent} from "./system.role.component";
 import {SystemRoleService} from "../../../../services/system/system.role.service";
 import {ModalModule, PaginationModule} from "ngx-bootstrap";
+import {SystemMenuTypeService} from "../../../../services/system/system.menu.type.service";
 
 const SYSTEM_ROLE_ROUTES: Routes = [
     {path: '', component: SystemRoleComponent}
@@ -41,6 +43,7 @@ const SYSTEM_ROLE_ROUTES: Routes = [
         CustomFormsModule,
         BusyModule,
         TranslateModule,
+        TabsModule.forRoot(),
         TooltipModule.forRoot(),
         ToastyModule.forRoot(),
         PaginationModule.forRoot(),
@@ -52,7 +55,8 @@ const SYSTEM_ROLE_ROUTES: Routes = [
         SystemRoleComponent
     ],
     providers: [
-        SystemRoleService
+        SystemRoleService,
+        SystemMenuTypeService,
     ],
 })
 export class SystemRoleModule {

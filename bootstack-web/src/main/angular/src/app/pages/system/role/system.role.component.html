@@ -23,7 +23,8 @@
             <div [ngBusy]="loading"></div>
             <div class="card">
                 <div class="card-title">
-                    <a class="actions__item btn btn-primary btn-sm" tooltip="{{ 'common.button.create.tip' | translate }}"
+                    <a class="actions__item btn btn-primary btn-sm"
+                       tooltip="{{ 'common.button.create.tip' | translate }}"
                        placement="bottom" (click)="startShowCreateAndUpdateModal()"><i class="zmdi zmdi-plus"></i>
                         {{ 'common.button.create.title' | translate }}</a>
                 </div>
@@ -110,26 +111,16 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title pull-left">
-                    Assignment Menu For {{param.name}} Role
+                    {{ 'common.modal.titleRole' | translate }}
                 </h5>
             </div>
             <form #createSystemRoleForm="ngForm" (ngSubmit)="createAndUpdate()">
                 <div class="modal-body">
-                    <div class="form-group form-group--centered">
-                        <input type="hidden" [(ngModel)]="param.id" name="id" #id="ngModel" [value]="param.id"/>
-                        <input type="text" [(ngModel)]="param.name" name="name" #name="ngModel"
-                               class="form-control" required placeholder="Please enter a role name"/>
-                        <p class="text-danger" *ngIf="name.errors?.rangeLength">The input character length is between
-                            5-9</p>
-                    </div>
-                    <div class="form-group form-group--centered">
-                        <input type="text" [(ngModel)]="param.description" name="description" #description="ngModel"
-                               class="form-control" required placeholder="Please enter role description"/>
-                        <!--[rangeLength]="[8, 20]" -->
-                        <p class="text-danger" *ngIf="description.errors?.rangeLength">Passwords cannot be less than 8
-                            bits,
-                            and cannot be more than 20 bits</p>
-                    </div>
+                    <div [ngBusy]="mtLoading"></div>
+                    <tabset class="tab-container--amber" [justified]="true">
+                        <tab *ngFor="let type of types" heading="{{type.name}}" (select)="selectType(type)" style="margin-top: 10px;">
+                        </tab>
+                    </tabset>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-link" (click)="assignmentMenuModal.hide()">Close</button>
