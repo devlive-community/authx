@@ -72,4 +72,9 @@ public class UserServiceImpl implements UserService {
         return this.userRepository.findByName(name);
     }
 
+    @Override
+    public UserModel getDistinctById(Long id) {
+        return this.userRepository.findDistinctById(id);
+    }
+
 }

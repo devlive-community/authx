@@ -118,7 +118,12 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
 
     @Override
     public List<SystemMenuTreeModel> findMenuByIds(List<SystemRoleModel> roles) {
-        return null;
+        List<SystemMenuModel> list = new ArrayList<>();
+        roles.forEach(role -> {
+            List<SystemMenuModel> menus = role.getMenuList().stream().filter(v -> v.getType().getId() == 3).collect(Collectors.toList());
+            list.addAll(menus);
+        });
+        return this.getTree(list.stream().distinct().collect(Collectors.toList()));
     }
 
     /**

@@ -24,14 +24,17 @@ import com.bootstack.model.common.CommonResponseModel;
 import com.bootstack.model.system.menu.SystemMenuModel;
 import com.bootstack.model.system.menu.SystemMenuTypeModel;
 import com.bootstack.model.system.role.SystemRoleModel;
+import com.bootstack.model.user.UserModel;
 import com.bootstack.param.common.CommonMenuAndRoleParam;
 import com.bootstack.param.page.PageParam;
 import com.bootstack.param.system.role.SystemRoleBasicParam;
 import com.bootstack.param.system.role.SystemRoleMenuParam;
 import com.bootstack.param.system.role.SystemRoleSetMenuParam;
 import com.bootstack.param.system.role.SystemRoleSetParam;
+import com.bootstack.service.system.menu.SystemMenuService;
 import com.bootstack.service.system.role.SystemRoleSeniorService;
 import com.bootstack.service.system.role.SystemRoleService;
+import com.bootstack.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +46,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p> SystemRoleController </p>
@@ -62,6 +66,12 @@ public class SystemRoleController {
 
     @Autowired
     private SystemRoleSeniorService systemRoleSeniorService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private SystemMenuService systemMenuService;
 
     /**
      * find all model
@@ -121,18 +131,26 @@ public class SystemRoleController {
     public CommonResponseModel setMenu(@RequestBody @Validated SystemRoleMenuParam param) {
         List<SystemMenuModel> menus = new ArrayList<>();
         List<String> menuId = param.getValue();
+        SystemRoleModel model = this.systemRoleService.getModelById(Long.valueOf(param.getKey()));
         if (!ObjectUtils.isEmpty(menuId)) {
-            menuId.forEach(v -> {
+            menuId.stream().distinct().collect(Collectors.toList()).forEach(v -> {
+                Long id = Long.valueOf(v);
                 SystemMenuModel menu = new SystemMenuModel();
-                menu.setId(Long.valueOf(v));
+                menu.setId(id);
                 menus.add(menu);
+                // 如果未传递父菜单的话,自动将父菜单添加进来,防止转换菜单出现递归错误
+                SystemMenuModel systemMenuModel = (SystemMenuModel) this.systemMenuService.getModelById(id);
+                if (systemMenuModel.getParent() != 0) {
+                    SystemMenuModel parent = new SystemMenuModel();
+                    parent.setId(systemMenuModel.getParent());
+                    menus.add(parent);
+                }
             });
         }
-        SystemRoleModel model = this.systemRoleService.getModelById(Long.valueOf(param.getKey()));
         BeanUtils.copyProperties(param, model);
         List<SystemMenuModel> temp = model.getMenuList();
         menus.addAll(temp);
-        model.setMenuList(menus);
+        model.setMenuList(menus.stream().distinct().collect(Collectors.toList()));
         return CommonResponseModel.success(this.systemRoleService.insertModel(model));
     }
 
@@ -150,6 +168,19 @@ public class SystemRoleController {
         SystemRoleModel roleModel = new SystemRoleModel();
         roleModel.setId(Long.valueOf(param.getRole()));
         return CommonResponseModel.success(this.systemRoleSeniorService.findTreeMenuById(roleModel, menuTypeModel));
+    }
+
+    /**
+     * 获取系统左侧导航菜单
+     *
+     * @param id 权限标识
+     * @return 导航菜单
+     */
+    @GetMapping(value = "menu")
+    public CommonResponseModel getMenu(@RequestParam Long id) {
+        UserModel user = (UserModel) this.userService.getDistinctById(id);
+        // TODO: 判断权限的等级
+        return CommonResponseModel.success(this.systemRoleSeniorService.findMenuByIds(user.getRoles()));
     }
 
 }

@@ -33,6 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.util.ObjectUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -83,7 +84,11 @@ public class SystemMenuController {
             methods.add(method);
         });
         systemMenuModel.setMethods(methods);
-        systemMenuModel.setParent(param.getParent());
+        if (ObjectUtils.isEmpty(param.getParent())) {
+            systemMenuModel.setParent(0L);
+        } else {
+            systemMenuModel.setParent(param.getParent());
+        }
         return CommonResponseModel.success(this.systemMenuService.insertModel(systemMenuModel));
     }
 
