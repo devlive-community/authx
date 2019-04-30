@@ -17,7 +17,8 @@
         "button": {
             "create": {
                 "title": "创建",
-                "tip": "创建一个新的内容"
+                "tip": "创建一个新的内容",
+                "allocation": "分配"
             }
         },
         "table": {

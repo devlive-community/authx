@@ -19,6 +19,7 @@ package com.bootstack.service.system.role;
 
 import com.bootstack.model.system.menu.SystemMenuModel;
 import com.bootstack.model.system.menu.SystemMenuTypeModel;
+import com.bootstack.model.system.role.SysteMenuTreeItemModel;
 import com.bootstack.model.system.role.SystemMenuTreeModel;
 import com.bootstack.model.system.role.SystemRoleModel;
 import com.bootstack.service.system.menu.SystemMenuService;
@@ -69,12 +70,16 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
         // Sets the parent menu sort
         menuList.forEach(menu -> {
             SystemMenuTreeModel parent = new SystemMenuTreeModel();
+            SysteMenuTreeItemModel item = SysteMenuTreeItemModel.buildNew();
+            item.setPhrase(menu.getId());
+            parent.setItem(item);
             if (menu.getParent() == 0) {
                 // The main menu
                 parent.setId(menu.getId());
-                parent.setValue(menu.getName());
+                parent.setName(menu.getName());
                 if (!ObjectUtils.isEmpty(roleMenus.get(menu.getId()))) {
                     parent.setChecked(Boolean.TRUE);
+                    parent.setSelected(Boolean.TRUE);
                 }
                 treeMap.put(menu.getId(), parent);
             } else {
@@ -87,9 +92,13 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
                 }
                 SystemMenuTreeModel children = new SystemMenuTreeModel();
                 children.setId(menu.getId());
-                children.setValue(menu.getName());
+                children.setName(menu.getName());
+                SysteMenuTreeItemModel childrenItem = SysteMenuTreeItemModel.buildNew();
+                childrenItem.setPhrase(menu.getId());
+                children.setItem(item);
                 if (!ObjectUtils.isEmpty(roleMenus.get(menu.getId()))) {
                     children.setChecked(Boolean.TRUE);
+                    children.setSelected(Boolean.TRUE);
                 }
                 childrens.add(children);
                 temp.setChildren(childrens);

@@ -22,11 +22,13 @@ import {TranslateService} from '@ngx-translate/core';
 import {SystemRoleService} from "../../../../services/system/system.role.service";
 import {CommonPageModel} from "../../../shared/model/common/response/page.model";
 import {Subscription} from "rxjs";
+import {TreeMode} from 'tree-ngx';
 import {CodeConfig} from "../../../../config/code.config";
 import {ModalDirective} from "ngx-bootstrap";
 import {SystemRoleParam} from "../../../shared/param/system/role/system.role.param";
 import {SystemMenuRoleParam} from "../../../shared/param/system/menu/system.menu.role.param";
 import {SystemMenuTypeService} from "../../../../services/system/system.menu.type.service";
+import {SystemRoleMenuParam} from "../../../shared/param/system/role/system.role.menu.param";
 
 @Component({
     selector: 'bootstack-system-role',
@@ -44,6 +46,15 @@ export class SystemRoleComponent implements OnInit {
     public currentPage: number;
     // menu type
     public types: any;
+    public treeNodes: any;
+
+    private menuNodes: any;
+
+    public treeOptions = {
+        mode: TreeMode.MultiSelect,
+        checkboxes: true,
+        alwaysEmitSelected: true
+    }
 
     // system role param info
     public param: SystemRoleParam;
@@ -72,6 +83,8 @@ export class SystemRoleComponent implements OnInit {
 
     ngOnInit() {
         this.roles = this.initRoles(this.page);
+        this.initRoleMenuTree();
+        this.menuNodes = [];
     }
 
     /**
@@ -92,12 +105,14 @@ export class SystemRoleComponent implements OnInit {
     }
 
     initRoleMenuTree() {
-        this.menuAndType.role = this.param.id;
+        this.menuAndType.role = 1;
+        // this.menuAndType.role = this.param.id;
         this.mtLoading = this.systemRoleService.getTreeListByRoleAndType(this.menuAndType).subscribe(
             response => {
                 if (response.code !== CodeConfig.SUCCESS) {
                     this.toastyService.error(response.message);
                 } else {
+                    this.treeNodes = response.data;
                 }
             }
         );
@@ -184,7 +199,33 @@ export class SystemRoleComponent implements OnInit {
 
     selectType(type: any) {
         this.menuAndType.menuType = type.id;
+        this.menuNodes = [];
         this.initRoleMenuTree();
+    }
+
+    selectedItems(event: any[]) {
+        event.forEach(v => {
+            this.menuNodes.push(v.phrase);
+        })
+    }
+
+    /**
+     * 分配权限
+     */
+    assignmentMenus() {
+        let param = new SystemRoleMenuParam();
+        param.key = this.param.id;
+        param.value = this.menuNodes;
+        this.systemRoleService.updateRoleMenu(param).subscribe(
+            response => {
+                if (response.code !== CodeConfig.SUCCESS) {
+                    this.toastyService.error(response.message);
+                } else {
+                    this.assignmentMenuModal.hide();
+                    this.toastyService.error(response.message);
+                }
+            }
+        );
     }
 
 }

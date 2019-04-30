@@ -114,17 +114,22 @@
                     {{ 'common.modal.titleRole' | translate }}
                 </h5>
             </div>
-            <form #createSystemRoleForm="ngForm" (ngSubmit)="createAndUpdate()">
+            <form #createSystemRoleForm="ngForm" (ngSubmit)="assignmentMenus()">
                 <div class="modal-body">
                     <div [ngBusy]="mtLoading"></div>
                     <tabset class="tab-container--amber" [justified]="true">
                         <tab *ngFor="let type of types" heading="{{type.name}}" (select)="selectType(type)" style="margin-top: 10px;">
+                            <tree-ngx
+                                (selectedItems)="selectedItems($event)"
+                                [nodeItems]="treeNodes"
+                                [options]="treeOptions">
+                            </tree-ngx>
                         </tab>
                     </tabset>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-link" (click)="assignmentMenuModal.hide()">Close</button>
-                    <button type="submit" class="btn btn-warning" [disabled]="!createSystemRoleForm.form.valid">Save
+                    <button type="submit" class="btn btn-warning" [disabled]="!createSystemRoleForm.form.valid"> {{ 'common.button.create.allocation' | translate }}
                     </button>
                 </div>
             </form>

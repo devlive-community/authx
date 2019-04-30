@@ -17,36 +17,28 @@
  */
 package com.bootstack.model.system.role;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.List;
-
 /**
- * <p> SystemMenuTreeModel </p>
- * <p> Description : SystemMenuTreeModel </p>
+ * <p> SysteMenuTreeItemModel </p>
+ * <p> Description : 针对于tree-ngx插件定制 </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-04-29 13:56 </p>
+ * <p> Create Time : 2019-04-30 11:50 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @Data
 @ToString
-@NoArgsConstructor
-@AllArgsConstructor
-public class SystemMenuTreeModel {
+public class SysteMenuTreeItemModel {
 
-    private Long id; // menu id
-    private String name; // menu name
-    private String url;
-    private Integer sorted;
-    private Boolean newd;
-    private String icon;
-    private Boolean checked = false; // is checked
-    private Boolean selected = false; // is checked
-    private SysteMenuTreeItemModel item;
-    List<SystemMenuTreeModel> children; // sub menu
+    private Long phrase;
+
+    private SysteMenuTreeItemModel() {
+    }
+
+    public static SysteMenuTreeItemModel buildNew() {
+        return new SysteMenuTreeItemModel();
+    }
 
 }

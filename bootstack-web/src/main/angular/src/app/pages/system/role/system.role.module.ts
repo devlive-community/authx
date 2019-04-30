@@ -30,6 +30,7 @@ import {SystemRoleComponent} from "./system.role.component";
 import {SystemRoleService} from "../../../../services/system/system.role.service";
 import {ModalModule, PaginationModule} from "ngx-bootstrap";
 import {SystemMenuTypeService} from "../../../../services/system/system.menu.type.service";
+import {TreeNgxModule} from 'tree-ngx';
 
 const SYSTEM_ROLE_ROUTES: Routes = [
     {path: '', component: SystemRoleComponent}
@@ -43,6 +44,7 @@ const SYSTEM_ROLE_ROUTES: Routes = [
         CustomFormsModule,
         BusyModule,
         TranslateModule,
+        TreeNgxModule,
         TabsModule.forRoot(),
         TooltipModule.forRoot(),
         ToastyModule.forRoot(),
