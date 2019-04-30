@@ -83,7 +83,6 @@ export class SystemRoleComponent implements OnInit {
 
     ngOnInit() {
         this.roles = this.initRoles(this.page);
-        this.initRoleMenuTree();
         this.menuNodes = [];
     }
 
@@ -105,8 +104,7 @@ export class SystemRoleComponent implements OnInit {
     }
 
     initRoleMenuTree() {
-        this.menuAndType.role = 1;
-        // this.menuAndType.role = this.param.id;
+        this.menuAndType.role = this.param.id;
         this.mtLoading = this.systemRoleService.getTreeListByRoleAndType(this.menuAndType).subscribe(
             response => {
                 if (response.code !== CodeConfig.SUCCESS) {
@@ -205,8 +203,11 @@ export class SystemRoleComponent implements OnInit {
 
     selectedItems(event: any[]) {
         event.forEach(v => {
-            this.menuNodes.push(v.phrase);
+            if (!this.menuNodes.hasOwnProperty(v.phrase)) {
+                this.menuNodes.push(v.phrase);
+            }
         })
+        this.menuNodes = this.unique(this.menuNodes);
     }
 
     /**
@@ -226,6 +227,14 @@ export class SystemRoleComponent implements OnInit {
                 }
             }
         );
+    }
+
+    unique(array) {
+        var n = [];
+        for (var i = 0; i < array.length; i++) {
+            if (n.indexOf(array[i]) == -1) n.push(array[i]);
+        }
+        return n;
     }
 
 }

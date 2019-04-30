@@ -119,7 +119,7 @@
                     <div [ngBusy]="mtLoading"></div>
                     <tabset class="tab-container--amber" [justified]="true">
                         <tab *ngFor="let type of types" heading="{{type.name}}" (select)="selectType(type)" style="margin-top: 10px;">
-                            <tree-ngx
+                            <tree-ngx *ngIf="treeNodes"
                                 (selectedItems)="selectedItems($event)"
                                 [nodeItems]="treeNodes"
                                 [options]="treeOptions">
