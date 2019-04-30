@@ -23,10 +23,11 @@
             <div [ngBusy]="loading"></div>
             <div class="card">
                 <div class="card-title">
-                    <a class="actions__item btn btn-primary btn-sm" tooltip="Create New System Menu"
+                    <a class="actions__item btn btn-primary btn-sm"
+                        tooltip="{{ 'common.button.create.tip' | translate }}"
                        placement="bottom" (click)="startShowCreateAndUpdateModal()">
                         <i class="zmdi zmdi-plus"></i>
-                        Create New
+                        {{ 'common.button.create.title' | translate }}
                     </a>
                 </div>
                 <div class="card-body">
@@ -170,17 +171,22 @@
                                 </div>
                             </div>
                         </wizard-step>
-                        <wizard-step stepTitle="Menu Config" (stepEnter)="initStepDataModels($event)" navigationSymbol="&#xf085;"
+                        <wizard-step stepTitle="Menu Config" (stepEnter)="initStepDataModels($event)"
+                                     navigationSymbol="&#xf085;"
                                      navigationSymbolFontFamily="FontAwesome">
                             <div class="card-block mr-center" style="margin-top: 10px;">
                                 <div class="form-group form-group--centered">
                                     <select2 #methodFields [data]="methodOptions" [options]="multipleOptions" [value]="value" (valueChanged)="methodChanged($event)"></select2>
                                 </div>
                                 <div class="form-group form-group--centered">
-                                    <select2 #menuTypeFields [data]="menuTypeOptions" [value]="value" (valueChanged)="menuTypeChanged($event)" width="100%"></select2>
+                                    <select [name]="param.type" (change)="menuTypeChange($event.target.value)">
+                                        <option *ngFor="let option of menuTypeOptions" value="{{option.id}}">{{option.text}}</option>
+                                    </select>
                                 </div>
                                 <div class="form-group form-group--centered">
-                                    <select2 #menuParentFields [data]="menuParentOptions" [value]="value" (valueChanged)="menuParentChanged($event)" width="100%"></select2>
+                                    <select [name]="param.parent" (change)="menuParentChange($event.target.value)">
+                                        <option *ngFor="let option of menuParentOptions" value="{{option.id}}">{{option.text}}</option>
+                                    </select>
                                 </div>
                                 <div class="card-footer d-flex px-4 py-3">
                                     <div class="mr-auto">

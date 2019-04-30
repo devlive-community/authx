@@ -19,6 +19,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {ToastyService} from 'ng2-toasty';
 import {Subscription} from "rxjs";
+import {TranslateService} from '@ngx-translate/core';
 import {Select2Component, Select2OptionData} from 'ng2-select2';
 import {CommonPageModel} from "../../../shared/model/common/response/page.model";
 import {CodeConfig} from "../../../../config/code.config";
@@ -53,12 +54,8 @@ export class SystemMenuComponent implements OnInit {
     methodOptions: Array<Select2OptionData>;
     @ViewChild('methodFields')
     methodFields: Select2Component;
-    menuTypeOptions: Array<Select2OptionData>;
-    @ViewChild('menuTypeFields')
-    menuTypeFields: Select2Component;
-    menuParentOptions: Array<Select2OptionData>;
-    @ViewChild('menuParentFields')
-    menuParentFields: Select2Component;
+    menuTypeOptions: any;
+    menuParentOptions: any;
 
     @ViewChild('createAndUpdateModal')
     public createAndUpdateModal: ModalDirective;
@@ -68,9 +65,14 @@ export class SystemMenuComponent implements OnInit {
 
     constructor(private router: Router,
                 private toastyService: ToastyService,
+                private translate: TranslateService,
                 private systemSettingsMethodService: SystemSettingsMethodService,
                 private systemMenuTypeService: SystemMenuTypeService,
                 private systemMenuService: SystemMenuService) {
+        translate.addLangs(['zh-CN', 'en']);
+        translate.setDefaultLang('zh-CN');
+        let broswerLang = translate.getBrowserLang();
+        translate.use(broswerLang.match(/en|zh-CN/) ? broswerLang : 'zh-CN');
         this.page = new CommonPageModel();
         this.param = new SystemMenuParam();
     }
@@ -159,10 +161,6 @@ export class SystemMenuComponent implements OnInit {
      */
     generateOptions(temps) {
         const fields = [];
-        fields.push({
-            'id': 0,
-            'text': 'please select data'
-        })
         for (const x in temps) {
             let content = temps[x].name;
             const v = {
@@ -222,15 +220,15 @@ export class SystemMenuComponent implements OnInit {
 
     // select method change
     methodChanged(data: { value: string[] }) {
-        this.param.method = data.value
+        this.param.method = data.value;
     }
 
-    menuTypeChanged(data: { value: string[] }) {
-        this.param.type = data.value
+    menuTypeChange(data: any) {
+        this.param.type = data;
     }
 
-    menuParentChanged(data: { value: string[] }) {
-        this.param.parent = data.value
+    menuParentChange(data: any) {
+        this.param.parent = data;
     }
 
 }
