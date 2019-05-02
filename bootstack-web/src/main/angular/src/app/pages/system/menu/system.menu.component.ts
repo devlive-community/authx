@@ -179,6 +179,7 @@ export class SystemMenuComponent implements OnInit {
     }
 
     createAndUpdate() {
+        this.page.type = 1;
         if (this.param.type === '0') {
             this.toastyService.error('menu type is must null');
             return

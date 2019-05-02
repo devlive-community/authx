@@ -105,7 +105,7 @@ public class SecurityAccessDecisionManager implements AccessDecisionManager {
                     return;
                 }
             } else {
-                if (requestMethod.contains(role.getMethod()) && requestUrl.equalsIgnoreCase(role.getUrl())) {
+                if (role.getMethod().contains(requestMethod) && requestUrl.equalsIgnoreCase(role.getUrl())) {
                     return;
                 }
             }

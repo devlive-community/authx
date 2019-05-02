@@ -83,7 +83,6 @@ export class SystemMenuTypeComponent implements OnInit {
     }
 
     createAndUpdate() {
-        console.log(this.param);
         if (this.param.id) {
             this.systemMenuTypeService.update(this.param).subscribe(
                 response => {

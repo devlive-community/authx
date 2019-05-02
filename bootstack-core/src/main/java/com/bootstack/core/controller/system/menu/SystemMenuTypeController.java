@@ -23,8 +23,10 @@ import com.bootstack.model.page.PageModel;
 import com.bootstack.model.system.menu.SystemMenuTypeModel;
 import com.bootstack.param.page.PageParam;
 import com.bootstack.param.system.menu.SystemMenuTypeBasicParam;
+import com.bootstack.param.system.menu.SystemMenuTypeSetParam;
 import com.bootstack.service.system.menu.SystemMenuTypeService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.ObjectUtils;
@@ -73,6 +75,15 @@ public class SystemMenuTypeController {
         }
         systemRole.setDescription(param.getDescription());
         systemRole.setName(param.getName());
+        systemRole.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
+        return CommonResponseModel.success(this.systemMenuTypeService.insertModel(systemRole));
+    }
+
+    @PutMapping
+    CommonResponseModel put(@RequestBody @Validated SystemMenuTypeSetParam param) {
+        SystemMenuTypeModel systemRole = new SystemMenuTypeModel();
+        BeanUtils.copyProperties(param, systemRole);
+        systemRole.setId(Long.valueOf(param.getId()));
         systemRole.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
         return CommonResponseModel.success(this.systemMenuTypeService.insertModel(systemRole));
     }
