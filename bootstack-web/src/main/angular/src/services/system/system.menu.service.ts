@@ -81,4 +81,12 @@ export class SystemMenuService implements BaseService {
         return this.http.get(ApiConfig.API_SYSTEM_MENU + '/parent', options).map(ResponseUtils.extractData);
     }
 
+    getTreeListByUser(id: number): Observable<CommonResponseModel> {
+        const options = HttpUtils.getDefaultRequestOptionsByTokenAndJSON();
+        const params = HttpUtils.getParams();
+        params.append('id', id.toString());
+        options.params = params;
+        return this.http.get(ApiConfig.API_SYSTEM_ROLE_TREE, options).map(ResponseUtils.extractData);
+    }
+
 }

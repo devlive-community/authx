@@ -16,44 +16,15 @@
         </div>
         <!-- user info end -->
         <ul class="navigation">
-            <li routerLinkActive="navigation__active">
-                <a [routerLink]="['/system/role']">
-                    <i class="zmdi zmdi-flower"></i>
-                    Role Manager
-                </a>
-            </li>
-            <li routerLinkActive="navigation__sub--active" class="navigation__sub">
-                <a (click)="toggleNavigationSub('Settings', $event)">
-                    <i class="zmdi zmdi-settings"></i>
-                    Syetem Setting
-                </a>
-                <ul [@toggleHeight]="navigationSubState.Settings">
-                    <li routerLinkActive="navigation__active">
-                        <a [routerLink]="['/system/settings/interface']">
-                            System Interface
-                        </a>
-                    </li>
-                    <li routerLinkActive="navigation__active">
-                        <a [routerLink]="['/system/settings/method']">
-                            System Method
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li routerLinkActive="navigation__sub--active" class="navigation__sub">
+            <li routerLinkActive="navigation__sub--active" class="navigation__sub" *ngFor="let menu of menus">
                 <a (click)="toggleNavigationSub('Menus', $event)">
                     <i class="zmdi zmdi-menu"></i>
-                    Syetem Menu
+                    {{menu.name}}
                 </a>
-                <ul [@toggleHeight]="navigationSubState.Menus">
+                <ul [@toggleHeight]="navigationSubState.Menus" *ngFor="let c of menu.children">
                     <li routerLinkActive="navigation__active">
-                        <a [routerLink]="['/system/menu']">
-                            Menu Manager
-                        </a>
-                    </li>
-                    <li routerLinkActive="navigation__active">
-                        <a [routerLink]="['/system/menu-type']">
-                            Menu Type Manager
+                        <a [routerLink]="c.url">
+                            {{c.name}}
                         </a>
                     </li>
                 </ul>
