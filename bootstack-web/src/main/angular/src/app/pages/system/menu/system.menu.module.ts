@@ -26,6 +26,7 @@ import {BusyModule} from 'angular2-busy';
 import { ArchwizardModule } from 'ng2-archwizard';
 import {Select2Module} from 'ng2-select2';
 import {TranslateModule} from '@ngx-translate/core';
+import {TabsModule} from 'ngx-bootstrap/tabs';
 
 import {ModalModule, PaginationModule} from "ngx-bootstrap";
 import {SystemMenuComponent} from "./system.menu.component";
@@ -48,6 +49,7 @@ const SYSTEM_MENU_ROUTES: Routes = [
         Select2Module,
         TranslateModule,
         TooltipModule.forRoot(),
+        TabsModule.forRoot(),
         ToastyModule.forRoot(),
         PaginationModule.forRoot(),
         ModalModule.forRoot(),

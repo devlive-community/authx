@@ -74,4 +74,12 @@ public class SystemMenuServiceImpl implements SystemMenuService {
         return this.systemMenuRepository.findByType(type);
     }
 
+    @Override
+    public PageModel<SystemMenuModel> getByPageAndType(Long type, Pageable pageable) {
+        SystemMenuTypeModel typeModel = new SystemMenuTypeModel();
+        typeModel.setId(type);
+        Page<SystemMenuModel> pageModel = this.systemMenuRepository.findAllByType(typeModel, pageable);
+        return new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements());
+    }
+
 }

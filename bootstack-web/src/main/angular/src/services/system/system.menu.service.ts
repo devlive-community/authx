@@ -50,6 +50,7 @@ export class SystemMenuService implements BaseService {
         const params = HttpUtils.getParams();
         params.append('page', page.number.toString());
         params.append('size', page.size.toString());
+        params.append('type', page.type.toString())
         options.params = params;
         return this.http.get(ApiConfig.API_SYSTEM_MENU, options).map(ResponseUtils.extractData);
     }

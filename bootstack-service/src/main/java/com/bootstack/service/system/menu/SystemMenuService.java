@@ -48,4 +48,6 @@ public interface SystemMenuService extends BaseService {
      */
     Iterable<SystemMenuModel> getByType(SystemMenuTypeModel type);
 
+    PageModel<SystemMenuModel> getByPageAndType(Long type, Pageable pageable);
+
 }

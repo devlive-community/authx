@@ -31,6 +31,7 @@ export class CommonPageModel implements Serializable<CommonPageModel> {
     public number = 1;
     public first: number;
     public numberOfElements: number;
+    public type: number;
 
     public deserialize(input) {
         return this;

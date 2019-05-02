@@ -28,6 +28,7 @@ import {SystemMenuService} from "../../../../services/system/system.menu.service
 import {SystemMenuParam} from "../../../shared/param/system/menu/system.menu.param";
 import {SystemSettingsMethodService} from "../../../../services/system/settings/system.settings.method.service";
 import {SystemMenuTypeService} from "../../../../services/system/system.menu.type.service";
+import {SystemMenuRoleParam} from "../../../shared/param/system/menu/system.menu.role.param";
 
 @Component({
     selector: 'bootstack-system-menu',
@@ -60,6 +61,8 @@ export class SystemMenuComponent implements OnInit {
     @ViewChild('createAndUpdateModal')
     public createAndUpdateModal: ModalDirective;
 
+    public types: any;
+
     // model param info
     public param: SystemMenuParam;
 
@@ -75,10 +78,13 @@ export class SystemMenuComponent implements OnInit {
         translate.use(broswerLang.match(/en|zh-CN/) ? broswerLang : 'zh-CN');
         this.page = new CommonPageModel();
         this.param = new SystemMenuParam();
+        // TODO: fix this bug
+        this.page.type = 1;
     }
 
     ngOnInit() {
         this.models = this.initList(this.page, 1);
+        this.initMenuType();
     }
 
     initList(page: CommonPageModel, uid: number) {
@@ -229,6 +235,11 @@ export class SystemMenuComponent implements OnInit {
 
     menuParentChange(data: any) {
         this.param.parent = data;
+    }
+
+    selectType(type: any) {
+        this.page.type = type.id;
+        this.models = this.initList(this.page, 1);
     }
 
 }

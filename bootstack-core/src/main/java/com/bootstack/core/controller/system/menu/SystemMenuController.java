@@ -99,9 +99,10 @@ public class SystemMenuController {
      * @return all model by page
      */
     @GetMapping
-    CommonResponseModel list(@Validated PageParam param) {
+    CommonResponseModel list(@Validated PageParam param,
+                             @RequestParam(value = "type") Long type) {
         Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
-        return CommonResponseModel.success(this.systemMenuService.getAllByPage(pageable));
+        return CommonResponseModel.success(this.systemMenuService.getByPageAndType(type, pageable));
     }
 
     /**

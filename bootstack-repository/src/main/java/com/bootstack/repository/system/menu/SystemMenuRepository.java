@@ -52,4 +52,6 @@ public interface SystemMenuRepository extends PagingAndSortingRepository<SystemM
      */
     Iterable<SystemMenuModel> findByType(SystemMenuTypeModel type);
 
+    Page<SystemMenuModel> findAllByType(SystemMenuTypeModel type, Pageable pageable);
+
 }
