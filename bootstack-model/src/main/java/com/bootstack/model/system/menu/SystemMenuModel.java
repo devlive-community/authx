@@ -104,8 +104,8 @@ public class SystemMenuModel {
     private SystemMenuTypeModel type;
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "system_interface_method_relation",
-            joinColumns = @JoinColumn(name = "system_interface_id", referencedColumnName = "id"),
+    @JoinTable(name = "system_menu_method_relation",
+            joinColumns = @JoinColumn(name = "system_menu_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "system_method_id", referencedColumnName = "id"))
     private List<SystemMethodModel> methods;
 

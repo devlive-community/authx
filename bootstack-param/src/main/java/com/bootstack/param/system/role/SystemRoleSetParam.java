@@ -36,10 +36,16 @@ import org.hibernate.validator.constraints.NotEmpty;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class SystemRoleSetParam extends SystemRoleBasicParam {
+public class SystemRoleSetParam {
 
     @NotEmpty(message = "the role id must not null")
     @SystemRoleRequireValidation
     private String id;
+
+    @NotEmpty(message = "system role name must not null")
+    private String name;
+
+    @NotEmpty(message = "system role description must not null")
+    private String description;
 
 }

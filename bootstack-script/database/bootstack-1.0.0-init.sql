@@ -209,3 +209,11 @@ create table system_interface_method_relation (
     system_method_id    int
 ) comment 'system interface and system method relation table'
     default charset utf8;
+
+-- system menu and system method relation table
+drop table if exists system_menu_method_relation;
+create table system_menu_method_relation (
+    system_menu_id int,
+    system_method_id    int
+) comment 'system menu and system method relation table'
+    default charset utf8;

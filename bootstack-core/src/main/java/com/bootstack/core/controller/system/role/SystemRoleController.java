@@ -109,6 +109,9 @@ public class SystemRoleController {
         BeanUtils.copyProperties(param, systemRole);
         systemRole.setId(Long.valueOf(param.getId()));
         systemRole.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
+        SystemRoleModel temp = this.systemRoleService.getModelById(Long.valueOf(param.getId()));
+        // 将权限信息还原
+        systemRole.setMenuList(temp.getMenuList());
         return CommonResponseModel.success(this.systemRoleService.insertModel(systemRole));
     }
 
