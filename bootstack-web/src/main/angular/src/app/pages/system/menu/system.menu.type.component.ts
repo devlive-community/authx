@@ -19,6 +19,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {ToastyService} from 'ng2-toasty';
 import {Subscription} from "rxjs";
+import {TranslateService} from '@ngx-translate/core';
 import {SystemMenuTypeService} from "../../../../services/system/system.menu.type.service";
 import {CommonPageModel} from "../../../shared/model/common/response/page.model";
 import {CodeConfig} from "../../../../config/code.config";
@@ -47,7 +48,12 @@ export class SystemMenuTypeComponent implements OnInit {
 
     constructor(private router: Router,
                 private toastyService: ToastyService,
+                private translate: TranslateService,
                 private systemMenuTypeService: SystemMenuTypeService) {
+        translate.addLangs(['zh-CN', 'en']);
+        translate.setDefaultLang('zh-CN');
+        let broswerLang = translate.getBrowserLang();
+        translate.use(broswerLang.match(/en|zh-CN/) ? broswerLang : 'zh-CN');
         this.page = new CommonPageModel();
         this.param = new SystemMenuTypeParam();
     }

@@ -37,21 +37,12 @@
                     </tabset>
                     <table class="table mb-0 mr-center">
                         <thead>
-                            <!--<tr>-->
-                                <!--<th>#</th>-->
-                                <!--<th>Name</th>-->
-                                <!--<th>Code</th>-->
-                                <!--<th>Description</th>-->
-                                <!--<th>Active Status</th>-->
-                                <!--<th>Create Time</th>-->
-                                <!--<th>Update Time</th>-->
-                                <!--<th>Action</th>-->
-                            <!--</tr>-->
                             <tr>
                                 <th>#</th>
                                 <th>{{ "common.name" | translate }}</th>
                                 <th>{{ "common.code" | translate }}</th>
                                 <th>{{ "common.description" | translate }}</th>
+                                <th>{{ "common.activeStatus" | translate }}</th>
                                 <th>{{ "common.createTime" | translate }}</th>
                                 <th>{{ "common.updateTime" | translate }}</th>
                                 <th>{{ "common.action.name" | translate }}</th>
@@ -97,7 +88,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title pull-left">
-                    Create New System Menu
+                    {{ 'common.modal.title' | translate }}
                 </h5>
             </div>
             <form #createAndUpdateForm="ngForm" (ngSubmit)="createAndUpdate()">

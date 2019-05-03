@@ -9,6 +9,9 @@
         "description": "描述",
         "createTime": "创建时间",
         "updateTime": "更新时间",
+        "activeStatus": "激活状态",
+        "whiteStatus": "白名单状态",
+        "systemStatus": "系统状态",
         "action": {
             "name": "操作",
             "editItem": "编辑该选项",

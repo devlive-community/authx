@@ -23,22 +23,25 @@
             <div [ngBusy]="loading"></div>
             <div class="card">
                 <div class="card-title">
-                    <a class="actions__item btn btn-primary btn-sm" tooltip="Create New System Menu Type"
-                       placement="bottom" (click)="startShowCreateAndUpdateModal()"><i class="zmdi zmdi-plus"></i>
-                        Create New</a>
+                    <a class="actions__item btn btn-primary btn-sm"
+                        tooltip="{{ 'common.button.create.tip' | translate }}"
+                       placement="bottom" (click)="startShowCreateAndUpdateModal()">
+                        <i class="zmdi zmdi-plus"></i>
+                        {{ 'common.button.create.title' | translate }}
+                    </a>
                 </div>
                 <div class="card-body">
                     <table class="table mb-0 mr-center">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Name</th>
-                                <th>Code</th>
-                                <th>Description</th>
-                                <th>Active Status</th>
-                                <th>Create Time</th>
-                                <th>Update Time</th>
-                                <th>Action</th>
+                                <th>{{ "common.name" | translate }}</th>
+                                <th>{{ "common.code" | translate }}</th>
+                                <th>{{ "common.description" | translate }}</th>
+                                <th>{{ "common.activeStatus" | translate }}</th>
+                                <th>{{ "common.createTime" | translate }}</th>
+                                <th>{{ "common.updateTime" | translate }}</th>
+                                <th>{{ "common.action.name" | translate }}</th>
                             </tr>
                         </thead>
                         <tbody *ngFor="let model of models">
@@ -55,8 +58,10 @@
                                 <td>{{model.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                                 <td>{{model.updateTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                                 <td>
-                                    <a (click)="startShowCreateAndUpdateModal(model)"><i class="zmdi zmdi-edit"
-                                                                                         tooltip="Edit this item"></i></a>
+                                    <a (click)="startShowCreateAndUpdateModal(model)">
+                                        <i class="zmdi zmdi-edit"
+                                           tooltip="Edit this item"></i>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>
@@ -79,7 +84,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title pull-left">
-                    Create New System Menu Type
+                    {{ 'common.modal.title' | translate }}
                 </h5>
             </div>
             <form #createSystemRoleForm="ngForm" (ngSubmit)="createAndUpdate()">
@@ -88,7 +93,8 @@
                         <input type="text" [(ngModel)]="param.name" name="name" #name="ngModel"
                                class="form-control" required placeholder="Please enter a role name"/>
                         <p class="text-danger" *ngIf="name.errors?.rangeLength">The input character length is between
-                            5-9</p>
+                            5-9
+                        </p>
                     </div>
                     <div class="form-group form-group--centered">
                         <input type="text" [(ngModel)]="param.description" name="description" #description="ngModel"
@@ -96,7 +102,8 @@
                         <!--[rangeLength]="[8, 20]" -->
                         <p class="text-danger" *ngIf="description.errors?.rangeLength">Passwords cannot be less than 8
                             bits,
-                            and cannot be more than 20 bits</p>
+                            and cannot be more than 20 bits
+                        </p>
                     </div>
                 </div>
                 <div class="modal-footer">

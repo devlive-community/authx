@@ -101,7 +101,7 @@ public class SecurityAccessDecisionManager implements AccessDecisionManager {
         for (Long k : menus.keySet()) {
             Role role = menus.get(k);
             if (role.getUrl().contains("*")) {
-                if (requestMethod.contains(role.getMethod()) && requestUrl.startsWith(role.getUrl().replace("*", ""))) {
+                if (role.getMethod().contains(requestMethod) && requestUrl.startsWith(role.getUrl().replace("*", ""))) {
                     return;
                 }
             } else {

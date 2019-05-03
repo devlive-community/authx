@@ -21,6 +21,7 @@ import {ToastyService} from 'ng2-toasty';
 import {Subscription} from "rxjs";
 import {ModalDirective} from "ngx-bootstrap";
 import {Select2Component, Select2OptionData} from 'ng2-select2';
+import {TranslateService} from '@ngx-translate/core';
 import {CommonPageModel} from "../../../../shared/model/common/response/page.model";
 import {SystemSettingsInterfaceService} from "../../../../../services/system/settings/system.settings.interface.service";
 import {CodeConfig} from "../../../../../config/code.config";
@@ -62,9 +63,14 @@ export class SystemSettingsInterfaceComponent implements OnInit {
     public createAndUpdateModal: ModalDirective;
 
     constructor(private router: Router,
+                private translate: TranslateService,
                 private systemSettingsInterfaceService: SystemSettingsInterfaceService,
                 private systemSettingsMethodService: SystemSettingsMethodService,
                 private toastyService: ToastyService) {
+        translate.addLangs(['zh-CN', 'en']);
+        translate.setDefaultLang('zh-CN');
+        let broswerLang = translate.getBrowserLang();
+        translate.use(broswerLang.match(/en|zh-CN/) ? broswerLang : 'zh-CN');
         this.page = new CommonPageModel();
         this.param = new SystemSettingsInterfaceParam();
     }

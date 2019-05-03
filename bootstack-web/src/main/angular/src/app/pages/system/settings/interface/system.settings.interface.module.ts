@@ -24,6 +24,7 @@ import {CustomFormsModule} from 'ng2-validation';
 import {ToastyModule} from 'ng2-toasty';
 import {BusyModule} from 'angular2-busy';
 import {Select2Module} from 'ng2-select2';
+import {TranslateModule} from '@ngx-translate/core';
 
 import {SystemSettingsInterfaceComponent} from "./system.settings.interface.component";
 import {ModalModule, PaginationModule} from "ngx-bootstrap";
@@ -42,6 +43,7 @@ const SYSTEM_SETTINGS_INTERFACE_ROUTES: Routes = [
         CustomFormsModule,
         BusyModule,
         Select2Module,
+        TranslateModule,
         TooltipModule.forRoot(),
         ToastyModule.forRoot(),
         PaginationModule.forRoot(),

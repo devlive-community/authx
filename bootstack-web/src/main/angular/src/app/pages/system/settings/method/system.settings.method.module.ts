@@ -23,6 +23,7 @@ import {TooltipModule} from 'ngx-bootstrap/tooltip';
 import {CustomFormsModule} from 'ng2-validation';
 import {ToastyModule} from 'ng2-toasty';
 import {BusyModule} from 'angular2-busy';
+import {TranslateModule} from '@ngx-translate/core';
 
 import {ModalModule, PaginationModule} from "ngx-bootstrap";
 import {SystemSettingsMethodComponent} from "./system.settings.method.component";
@@ -39,6 +40,7 @@ const SYSTEM_SETTINGS_METHOD_ROUTES: Routes = [
         ReactiveFormsModule,
         CustomFormsModule,
         BusyModule,
+        TranslateModule,
         TooltipModule.forRoot(),
         ToastyModule.forRoot(),
         PaginationModule.forRoot(),
