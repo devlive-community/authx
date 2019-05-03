@@ -22,6 +22,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {TooltipModule} from 'ngx-bootstrap/tooltip';
 import {CustomFormsModule} from 'ng2-validation';
 import {ToastyModule} from 'ng2-toasty';
+import {TranslateModule} from '@ngx-translate/core';
 
 import {UserLoginComponent} from './user.login.component';
 import {UserService} from '../../../../services/user/user.service';
@@ -36,6 +37,7 @@ const USER_REGISTER_ROUTES: Routes = [
         FormsModule,
         ReactiveFormsModule,
         CustomFormsModule,
+        TranslateModule,
         TooltipModule.forRoot(),
         ToastyModule.forRoot(),
         RouterModule.forChild(USER_REGISTER_ROUTES)

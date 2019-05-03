@@ -21,9 +21,10 @@
     <div class="login__block active" id="l-login">
         <div class="login__block__header">
             <i class="zmdi zmdi-account-circle"></i>
-            Welcome To BootStack
+            {{ 'common.welcome' | translate }} {{ 'common.bootstack' | translate }}
             <a class="btn" [routerLink]="['/user/register']">
-                <i class="zmdi zmdi-plus-circle" tooltip="Click me register new user" placement="bottom"></i>
+                <i class="zmdi zmdi-plus-circle" tooltip="{{ 'page.user.login.tip' | translate}}"
+                   placement="bottom"></i>
             </a>
         </div>
         <div class="login__block__body">
@@ -32,13 +33,16 @@
             <form #loginForm="ngForm" (ngSubmit)="login()">
                 <div class="form-group form-group--float form-group--centered">
                     <input type="text" [(ngModel)]="user.username" name="username" #username="ngModel"
-                           class="form-control" required placeholder="Please enter a user name"/>
+                           class="form-control" required
+                           placeholder="{{ 'page.user.login.input.placeholder.username' | translate}}"/>
                     <p class="text-danger" *ngIf="username.errors?.rangeLength">The input character length is between
                         5-9</p>
                 </div>
                 <div class="form-group form-group--float form-group--centered">
-                    <input type="password" [(ngModel)]="user.password" name="password" #password="ngModel" class="form-control" required placeholder="Please enter password"/>
-                           <!--[rangeLength]="[8, 20]" -->
+                    <input type="password" [(ngModel)]="user.password" name="password" #password="ngModel"
+                           class="form-control" required
+                           placeholder="{{ 'page.user.login.input.placeholder.password' | translate}}"/>
+                    <!--[rangeLength]="[8, 20]" -->
                     <p class="text-danger" *ngIf="password.errors?.rangeLength">Passwords cannot be less than 8 bits,
                         and cannot be more than 20 bits</p>
                 </div>

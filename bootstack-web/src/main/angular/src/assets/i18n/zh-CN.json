@@ -12,6 +12,8 @@
         "activeStatus": "激活状态",
         "whiteStatus": "白名单状态",
         "systemStatus": "系统状态",
+        "welcome": "欢迎使用",
+        "bootstack": "BootStack",
         "action": {
             "name": "操作",
             "editItem": "编辑该选项",
@@ -29,6 +31,42 @@
         "modal": {
             "title": "创建新的内容",
             "titleRole": "分配路由权限"
+        }
+    },
+    "page": {
+        "user": {
+            "login": {
+                "tip": "点击我注册新用户",
+                "input": {
+                    "placeholder": {
+                        "username": "请输入用户名",
+                        "password": "请输入用户密码"
+                    }
+                }
+            },
+            "register": {
+                "tip": "已有用户去登录",
+                "input": {
+                    "placeholder": {
+                        "username": "请输入用户名",
+                        "password": "请输入用户密码",
+                        "email": "请输入邮箱",
+                        "repassword": "请输入确认密码"
+                    },
+                    "validation": {
+                        "email": {
+                            "incorrect": "无效的邮箱地址"
+                        },
+                        "username": {
+                            "length": "用户名长度必须在5-20位之间"
+                        },
+                        "password": {
+                            "length": "密码不能少于8位,且不能超过20位",
+                            "match": "两次输入的密码不一致"
+                        }
+                    }
+                }
+            }
         }
     }
 }

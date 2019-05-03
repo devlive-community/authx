@@ -20,6 +20,7 @@ import {Router} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
 import {CustomValidators} from 'ng2-validation';
 import {ToastyService} from 'ng2-toasty';
+import {TranslateService} from '@ngx-translate/core';
 
 import {UserParam} from '../../../shared/param/user/user.param';
 
@@ -39,7 +40,12 @@ export class UserRegisterComponent implements OnInit {
 
     constructor(private router: Router,
                 private userService: UserService,
+                private translate: TranslateService,
                 private toastyService: ToastyService) {
+        translate.addLangs(['zh-CN', 'en']);
+        translate.setDefaultLang('zh-CN');
+        let broswerLang = translate.getBrowserLang();
+        translate.use(broswerLang.match(/en|zh-CN/) ? broswerLang : 'zh-CN');
         this.form = new FormGroup({
             username: new FormControl('', CustomValidators.range([5, 20])),
             password: new FormControl('', CustomValidators.number)

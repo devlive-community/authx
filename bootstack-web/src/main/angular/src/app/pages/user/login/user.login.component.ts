@@ -20,6 +20,7 @@ import {Router} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
 import {CustomValidators} from 'ng2-validation';
 import {ToastyService} from 'ng2-toasty';
+import {TranslateService} from '@ngx-translate/core';
 
 import {UserLoginParam} from '../../../shared/param/user/user.login.param';
 
@@ -39,8 +40,13 @@ export class UserLoginComponent implements OnInit {
     public showAlertEmail = false;
 
     constructor(private router: Router,
+                private translate: TranslateService,
                 private userService: UserService,
                 private toastyService: ToastyService) {
+        translate.addLangs(['zh-CN', 'en']);
+        translate.setDefaultLang('zh-CN');
+        let broswerLang = translate.getBrowserLang();
+        translate.use(broswerLang.match(/en|zh-CN/) ? broswerLang : 'zh-CN');
         this.form = new FormGroup({
             username: new FormControl('', CustomValidators.range([5, 9])),
             // password: new FormControl('', CustomValidators.number)
