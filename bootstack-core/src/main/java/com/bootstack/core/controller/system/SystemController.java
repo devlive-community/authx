@@ -17,8 +17,6 @@
  */
 package com.bootstack.core.controller.system;
 
-import com.bootstack.model.common.CommonResponseModel;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -31,5 +29,4 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class SystemController {
-
 }
