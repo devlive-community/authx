@@ -55,8 +55,9 @@
                                     <i [ngClass]="model.active ? 'zmdi zmdi-stop' : 'zmdi zmdi-play'"></i>
                                 </a>
                             </td>
-                            <td><span class="badge badge-info" *ngFor="let k of model.roles"
-                                      [tooltip]="k.description">{{k.name}}</span></td>
+                            <td><span class="badge badge-info" *ngFor="let k of model.roles" style="margin-left: 3px;"
+                                      [tooltip]="k.description">{{k.name}}</span>
+                            </td>
                             <td>{{model.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                             <td>{{model.updateTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                             <td>

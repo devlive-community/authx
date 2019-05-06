@@ -106,7 +106,7 @@ export class UserComponent implements OnInit {
     /**
      * 初始化权限列表
      */
-    initRoleList(user: any) {
+    initRoleList() {
         this.page.size = 100;
         this.roleLoading = this.systemRoleService.getList(this.page).subscribe(
             response => {
@@ -186,7 +186,7 @@ export class UserComponent implements OnInit {
         this.param = user;
         this.assignmentRoleModal.show();
         if (!this.methodRoleOptions) {
-            this.initRoleList(user);
+            this.initRoleList();
         }
     }
 
@@ -204,6 +204,7 @@ export class UserComponent implements OnInit {
                 } else {
                     this.assignmentRoleModal.hide();
                     this.toastyService.error(response.message);
+                    this.initList(this.page);
                 }
             }
         );
