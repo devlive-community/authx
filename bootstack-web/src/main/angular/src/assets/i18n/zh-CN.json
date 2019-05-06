@@ -13,6 +13,7 @@
         "whiteStatus": "白名单状态",
         "systemStatus": "系统状态",
         "welcome": "欢迎使用",
+        "permission": "权限",
         "bootstack": "BootStack",
         "action": {
             "name": "操作",

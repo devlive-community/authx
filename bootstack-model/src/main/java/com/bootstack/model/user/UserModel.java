@@ -51,7 +51,7 @@ import java.util.List;
 @Table(name = "users")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonIgnoreProperties(value = {
-        "password"
+        "password",
 })
 public class UserModel {
 

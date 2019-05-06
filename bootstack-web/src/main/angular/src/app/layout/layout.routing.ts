@@ -66,6 +66,13 @@ const LAYOUT_ROUTES: Routes = [
             }
         ]
     },
+    {
+        path: 'userManager', component: LayoutComponent, canActivate: [AuthGuard], children: [
+            {path: '', redirectTo: 'index', pathMatch: 'full'},
+            {path: 'users', loadChildren: '../pages/user/user.module#UserModule'},
+            {path: 'menu-type', loadChildren: '../pages/system/menu/system.menu.type.module#SystemMenuTypeModule'},
+        ]
+    },
 ];
 
 export const LayoutRouting = RouterModule.forChild(LAYOUT_ROUTES);

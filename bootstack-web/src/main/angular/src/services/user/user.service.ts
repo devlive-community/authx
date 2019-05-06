@@ -122,7 +122,12 @@ export class UserService implements BaseService {
     }
 
     getList(page: CommonPageModel): Observable<CommonResponseModel> {
-        return undefined;
+        const options = HttpUtils.getDefaultRequestOptionsByTokenAndJSON();
+        const params = HttpUtils.getParams();
+        params.append('page', page.number.toString());
+        params.append('size', page.size.toString());
+        options.params = params;
+        return this.http.get(ApiConfig.API_USER, options).map(ResponseUtils.extractData);
     }
 
     update(param: Object): Observable<CommonResponseModel> {

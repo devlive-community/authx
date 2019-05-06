@@ -19,6 +19,7 @@ package com.bootstack.model.system.role;
 
 import com.bootstack.common.support.DateSuooprt;
 import com.bootstack.model.system.menu.SystemMenuModel;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -47,6 +48,9 @@ import java.util.List;
 @Entity
 @EntityListeners(value = AuditingEntityListener.class)
 @Table(name = "system_role")
+@JsonIgnoreProperties(value = {
+        "menuList"
+})
 public class SystemRoleModel {
 
     @Id
