@@ -134,4 +134,9 @@ export class UserService implements BaseService {
         return undefined;
     }
 
+    putRole(param: UserParam): Observable<CommonResponseModel> {
+        const options = HttpUtils.getDefaultRequestOptionsByTokenAndJSON();
+        return this.http.put(ApiConfig.API_USER_ROLE, JSON.stringify(param), options).map(ResponseUtils.extractData);
+    }
+
 }

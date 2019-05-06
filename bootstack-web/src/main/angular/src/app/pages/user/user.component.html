@@ -62,8 +62,9 @@
                             <td>
                                 <a (click)="startShowCreateAndUpdateModal(model)">
                                     <i class="zmdi zmdi-edit"
-                                       tooltip="Edit this item"></i>
-                                </a>
+                                       tooltip="{{ 'common.action.editItem' | translate }}"></i></a>
+                                <a (click)="startShowAssignmentRolesModal(model)"><i class="zmdi zmdi-assignment-check"
+                                                                                     tooltip="{{ 'common.action.assignmentRole' | translate }}"></i></a>
                             </td>
                         </tr>
                         </tbody>
@@ -136,3 +137,37 @@
     </div>
 </div>
 <!-- 创建/更新弹出框弹出框结束 -->
+<!-- 分配权限弹出框开始 -->
+<div bsModal #assignmentRoleModal="bs-modal" class="modal fade" [config]="{ ignoreBackdropClick: true }">
+    <div class="modal-dialog" style="width: 100%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title pull-left">
+                    {{ 'common.modal.titleUser' | translate }}
+                </h5>
+            </div>
+            <form #assignmentRolesForm="ngForm" (ngSubmit)="assignmentRoles()">
+                <div class="modal-body">
+                    <div [ngBusy]="roleLoading"></div>
+                    <!--<label class="custom-control custom-checkbox" *ngFor="let role of roleModels">-->
+                    <!--<input type="checkbox" class="custom-control-input" [checked]="isCheckRole(role.id)"-->
+                    <!--(click)="clickItem($event,role.id)">-->
+                    <!--<span class="custom-control-indicator"></span>-->
+                    <!--<span class="custom-control-description">{{role.name}}</span>-->
+                    <!--</label>-->
+                    <select2 #methodRoles [data]="methodRoleOptions" [options]="multipleOptions"
+                             [value]="roleAssignmentValues"
+                             (valueChanged)="methodRoleChanged($event)"></select2>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link"
+                            (click)="assignmentRoleModal.hide()">{{ "common.close" | translate }}</button>
+                    <button type="submit" class="btn btn-warning"
+                            [disabled]="!assignmentRolesForm.form.valid"> {{ 'common.button.create.allocation' | translate }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 分配权限弹出框结束 -->

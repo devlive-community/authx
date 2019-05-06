@@ -27,6 +27,7 @@ export class ApiConfig {
     public static readonly API_USER = ApiConfig.API_VERSION_V1 + 'user';
     public static readonly API_USER_REGISTER = ApiConfig.API_VERSION_V1 + 'user/register';
     public static readonly API_USER_INFO = ApiConfig.API_VERSION_V1 + 'user/info/';
+    public static readonly API_USER_ROLE = ApiConfig.API_VERSION_V1 + 'user/role';
 
     /**
      * system role interface

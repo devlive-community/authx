@@ -24,10 +24,12 @@ import {CustomFormsModule} from 'ng2-validation';
 import {ToastyModule} from 'ng2-toasty';
 import {BusyModule} from 'angular2-busy';
 import {TranslateModule} from '@ngx-translate/core';
+import {Select2Module} from 'ng2-select2';
 
 import {ModalModule, PaginationModule} from "ngx-bootstrap";
 import {UserComponent} from "./user.component";
 import {UserService} from "../../../services/user/user.service";
+import {SystemRoleService} from "../../../services/system/system.role.service";
 
 const USER_ROUTES: Routes = [
     {path: '', component: UserComponent}
@@ -41,6 +43,7 @@ const USER_ROUTES: Routes = [
         CustomFormsModule,
         BusyModule,
         TranslateModule,
+        Select2Module,
         TooltipModule.forRoot(),
         ToastyModule.forRoot(),
         PaginationModule.forRoot(),
@@ -52,7 +55,8 @@ const USER_ROUTES: Routes = [
         UserComponent
     ],
     providers: [
-        UserService
+        UserService,
+        SystemRoleService
     ],
 })
 export class UserModule {

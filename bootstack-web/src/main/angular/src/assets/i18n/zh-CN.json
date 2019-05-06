@@ -21,7 +21,8 @@
         "action": {
             "name": "操作",
             "editItem": "编辑该选项",
-            "assignmentMenu": "分配菜单"
+            "assignmentMenu": "分配菜单",
+            "assignmentRole": "分配权限"
         },
         "button": {
             "create": {
@@ -34,7 +35,8 @@
         },
         "modal": {
             "title": "创建新的内容",
-            "titleRole": "分配路由权限"
+            "titleRole": "分配路由权限",
+            "titleUser": "分配用户权限"
         }
     },
     "page": {

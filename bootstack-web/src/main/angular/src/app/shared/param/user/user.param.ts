@@ -22,5 +22,6 @@ export class UserParam {
     public password: string;
     public repassword: string;
     public email: string;
+    public values: any;
 
 }
