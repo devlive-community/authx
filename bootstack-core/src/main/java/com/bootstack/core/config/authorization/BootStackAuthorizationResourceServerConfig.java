@@ -19,6 +19,7 @@ package com.bootstack.core.config.authorization;
 
 import com.bootstack.core.config.handler.BootStackAccessDeniedHandler;
 import com.bootstack.core.config.point.BootStackAuthenticationEntryPoint;
+import com.bootstack.model.system.method.SystemMethodModel;
 import com.bootstack.service.system.interfaces.SystemInterfaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -28,6 +29,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
+
+import java.util.List;
 
 /**
  * <p> BootStackAuthorizationResourceServerConfig </p>
@@ -61,11 +64,10 @@ public class BootStackAuthorizationResourceServerConfig extends ResourceServerCo
     public void configure(HttpSecurity http) throws Exception {
         HttpSecurity.RequestMatcherConfigurer configurer = http.requestMatchers();
         this.systemInterfaceService.getAllByWhiteIsTrueAndActiveTrueAndSystemTrue().forEach(v -> {
-            // split path by ,
-            String[] paths = v.getPath().split(",");
-            for (String path : paths) {
+            List<SystemMethodModel> methods = v.getMethods();
+            for (SystemMethodModel method : methods) {
                 try {
-                    configurer.and().authorizeRequests().antMatchers(getMethod(path), v.getPath()).permitAll();
+                    configurer.and().authorizeRequests().antMatchers(getMethod(method.getMethod()), v.getPath()).permitAll();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

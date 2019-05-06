@@ -91,4 +91,13 @@ public interface SystemInterfaceRepository extends PagingAndSortingRepository<Sy
      */
     SystemInterfaceModel findByPathAndSystemFalseAndMethodsIn(String path, List<SystemMethodModel> methods);
 
+    /**
+     * 根据请求路径和请求方式查询数据
+     *
+     * @param path    请求路径
+     * @param methods 请求方式列表
+     * @return 当前查询条件返回数据
+     */
+    SystemInterfaceModel findByPathAndSystemTrueAndWhiteTrueAndActiveTrueAndMethodsIn(String path, List<SystemMethodModel> methods);
+
 }

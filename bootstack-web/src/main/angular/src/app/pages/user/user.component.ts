@@ -24,6 +24,7 @@ import {CommonPageModel} from "../../shared/model/common/response/page.model";
 import {CodeConfig} from "../../../config/code.config";
 import {ModalDirective} from "ngx-bootstrap";
 import {UserService} from "../../../services/user/user.service";
+import {UserParam} from "../../shared/param/user/user.param";
 
 @Component({
     selector: 'bootstack-user',
@@ -42,6 +43,8 @@ export class UserComponent implements OnInit {
     @ViewChild('createAndUpdateModal')
     public createAndUpdateModal: ModalDirective;
 
+    public param: UserParam;
+
     constructor(private router: Router,
                 private toastyService: ToastyService,
                 private translate: TranslateService,
@@ -51,6 +54,7 @@ export class UserComponent implements OnInit {
         let broswerLang = translate.getBrowserLang();
         translate.use(broswerLang.match(/en|zh-CN/) ? broswerLang : 'zh-CN');
         this.page = new CommonPageModel();
+        this.param = new UserParam();
     }
 
     ngOnInit() {
@@ -75,8 +79,40 @@ export class UserComponent implements OnInit {
         );
     }
 
+    /**
+     * 显示新增数据弹出框
+     */
     startShowCreateAndUpdateModal(model: any) {
+        if (model) {
+            this.param = model;
+        }
         this.createAndUpdateModal.show();
+    }
+
+    createAndUpdate() {
+        if (this.param.id) {
+            this.userService.update(this.param).subscribe(
+                response => {
+                    if (response.code !== CodeConfig.SUCCESS) {
+                        this.toastyService.error(response.message);
+                    } else {
+                        this.initList(this.page);
+                        this.createAndUpdateModal.hide();
+                    }
+                }
+            );
+        } else {
+            this.userService.register(this.param).subscribe(
+                response => {
+                    if (response.code !== CodeConfig.SUCCESS) {
+                        this.toastyService.error(response.message);
+                    } else {
+                        this.initList(this.page);
+                        this.createAndUpdateModal.hide();
+                    }
+                }
+            );
+        }
     }
 
     /**

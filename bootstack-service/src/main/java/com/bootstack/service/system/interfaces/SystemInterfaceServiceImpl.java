@@ -101,7 +101,7 @@ public class SystemInterfaceServiceImpl implements SystemInterfaceService {
 
     @Override
     public SystemInterfaceModel getByPathAndMethodsIn(String path, SystemMethodModel... methods) {
-        return this.systemInterfaceRepository.findByPathAndSystemFalseAndMethodsIn(path, Arrays.asList(methods));
+        return this.systemInterfaceRepository.findByPathAndSystemTrueAndWhiteTrueAndActiveTrueAndMethodsIn(path, Arrays.asList(methods));
     }
 
 }

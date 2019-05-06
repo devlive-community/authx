@@ -17,12 +17,10 @@
  */
 export class UserParam {
 
+    public id: number;
     public name: string;
     public password: string;
     public repassword: string;
     public email: string;
-
-    constructor() {
-    }
 
 }
