@@ -1,4 +1,4 @@
-/**
+package com.bootstack.repository.system.log; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -15,30 +15,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.controller;
 
-import com.bootstack.model.common.CommonResponseModel;
-import com.bootstack.param.page.PageParam;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.bootstack.model.system.log.SystemLogModel;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
- * <p> BaseController </p>
- * <p> Description : BaseController </p>
+ * <p> SystemLogTypeRepository </p>
+ * <p> Description : SystemLogTypeRepository </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-05-06 14:41 </p>
- * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ * <p> Create Time : 2019-05-07 14:29 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface BaseController {
-
-    /**
-     * 根据分页信息查询列表
-     *
-     * @param param 分页信息
-     * @return 当前页数的所有信息
-     */
-    @GetMapping
-    CommonResponseModel getAll(@Validated PageParam param);
-
+public interface SystemLogRepository extends PagingAndSortingRepository<SystemLogModel, Long> {
 }

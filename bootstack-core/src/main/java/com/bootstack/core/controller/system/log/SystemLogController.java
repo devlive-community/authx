@@ -24,7 +24,7 @@ import com.bootstack.model.system.log.SystemLogTypeModel;
 import com.bootstack.param.page.PageParam;
 import com.bootstack.param.system.log.SystemLogTypeCreateParam;
 import com.bootstack.param.system.log.SystemLogTypeSetParam;
-import com.bootstack.service.system.log.SystemLogTypeService;
+import com.bootstack.service.system.log.SystemLogService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,17 +41,17 @@ import org.springframework.web.bind.annotation.*;
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @RestController
-@RequestMapping(value = "${bootstack.api.path}/${bootstack.api.version}/system/log/type")
+@RequestMapping(value = "${bootstack.api.path}/${bootstack.api.version}/system/log")
 @Slf4j
-public class SystemLogTypeController {
+public class SystemLogController {
 
     @Autowired
-    private SystemLogTypeService systemLogTypeService;
+    private SystemLogService systemLogService;
 
     @GetMapping
     CommonResponseModel getAll(@Validated PageParam param) {
         Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
-        return CommonResponseModel.success(this.systemLogTypeService.getAllByPage(pageable));
+        return CommonResponseModel.success(this.systemLogService.getAllByPage(pageable));
     }
 
     @PostMapping
@@ -59,7 +59,7 @@ public class SystemLogTypeController {
         SystemLogTypeModel logType = new SystemLogTypeModel();
         BeanUtils.copyProperties(param, logType);
         logType.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
-        return CommonResponseModel.success(this.systemLogTypeService.insertModel(logType));
+        return CommonResponseModel.success(this.systemLogService.insertModel(logType));
     }
 
     @PutMapping
@@ -68,7 +68,7 @@ public class SystemLogTypeController {
         BeanUtils.copyProperties(param, logType);
         logType.setId(Long.valueOf(param.getId()));
         logType.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
-        return CommonResponseModel.success(this.systemLogTypeService.insertModel(logType));
+        return CommonResponseModel.success(this.systemLogService.insertModel(logType));
     }
 
 }

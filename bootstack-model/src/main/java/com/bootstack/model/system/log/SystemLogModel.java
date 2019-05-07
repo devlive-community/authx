@@ -18,6 +18,7 @@
 package com.bootstack.model.system.log;
 
 import com.bootstack.common.support.DateSuooprt;
+import com.bootstack.model.user.UserModel;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -54,17 +55,23 @@ public class SystemLogModel {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "title")
-    private String title;
+    @Column(name = "remote_ip")
+    private String remoteIp; // 访问客户端地址
 
     @Column(name = "url")
-    private String url;
+    private String url; // 访问地址
 
     @Column(name = "method")
-    private String method;
+    private String method; // 请求方式
 
-    @Column(name = "active")
-    private Boolean active;
+    @Column(name = "class")
+    private String clazz; // 访问的程序中的哪个类
+
+    @Column(name = "class_method")
+    private String classMethod; // 访问的程序中的哪个类的哪个方法
+
+    @Column(name = "args")
+    private String args; // 请求参数
 
     @Column(name = "create_time")
     @CreatedDate
@@ -75,6 +82,12 @@ public class SystemLogModel {
     @LastModifiedDate
     @DateTimeFormat(pattern = DateSuooprt.DATE_FORMAT_YYYY_MM_DD_HH_MM_SS)
     private Date updateTime;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinTable(name = "system_log_users_relation",
+            joinColumns = @JoinColumn(name = "system_log_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"))
+    private UserModel user;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinTable(name = "system_log_type_relation",

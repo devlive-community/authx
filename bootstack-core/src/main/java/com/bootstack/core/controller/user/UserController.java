@@ -19,7 +19,6 @@ package com.bootstack.core.controller.user;
 
 import com.bootstack.common.encryption.EncryptionShaUtils;
 import com.bootstack.common.enums.SystemMessageEnums;
-import com.bootstack.core.controller.BaseController;
 import com.bootstack.core.controller.ControllerSupport;
 import com.bootstack.model.common.CommonResponseModel;
 import com.bootstack.model.page.PageModel;
@@ -54,7 +53,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping(value = "${bootstack.api.path}/${bootstack.api.version}/user")
 @Slf4j
-public class UserController implements BaseController {
+public class UserController {
 
     @Autowired
     private UserService userService;
@@ -62,8 +61,8 @@ public class UserController implements BaseController {
     @Autowired
     private SystemRoleService systemRoleService;
 
-    @Override
-    public CommonResponseModel getAll(@Validated PageParam param) {
+    @GetMapping
+    CommonResponseModel getAll(@Validated PageParam param) {
         Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
         return CommonResponseModel.success(this.userService.getAllByPage(pageable));
     }

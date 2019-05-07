@@ -159,13 +159,16 @@ insert into system_log_type(name, code, description) VALUE ('User Login Log', 'U
 # system log table
 drop table if exists system_log;
 create table system_log (
-    id          int auto_increment,
-    title       varchar(100) comment 'system log title',
-    url         varchar(200) comment 'system log url',
-    method      varchar(100) comment 'system log method',
-    active      boolean comment 'active status' default true,
-    create_time timestamp                       default current_timestamp comment 'create time',
-    update_time timestamp                       default current_timestamp comment 'update time',
+    id           int auto_increment,
+    remote_ip    varchar(100) comment '访问客户端地址',
+    url          varchar(200) comment '访问地址',
+    method       varchar(100) comment '请求方式',
+    class        varchar(100) comment '访问的程序中的哪个类',
+    class_method varchar(100) comment '访问的程序中的哪个类的哪个方法',
+    args         varchar(100) comment '请求参数',
+    active       boolean comment 'active status' default true,
+    create_time  timestamp                       default current_timestamp comment 'create time',
+    update_time  timestamp                       default current_timestamp comment 'update time',
     primary key (id)
 ) comment 'system log table'
     default charset utf8;
@@ -213,7 +216,15 @@ create table system_interface_method_relation (
 -- system menu and system method relation table
 drop table if exists system_menu_method_relation;
 create table system_menu_method_relation (
-    system_menu_id int,
-    system_method_id    int
+    system_menu_id   int,
+    system_method_id int
 ) comment 'system menu and system method relation table'
+    default charset utf8;
+
+-- 系统日志与用户关系表
+drop table if exists system_log_users_relation;
+create table system_log_users_relation (
+    system_log_id int comment '系统日志表唯一标志,唯一主键',
+    users_id      int comment '用户表唯一标志,唯一主键'
+) comment '系统日志与用户关系表'
     default charset utf8;
