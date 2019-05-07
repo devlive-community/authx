@@ -17,10 +17,16 @@
         <!-- user info end -->
         <ul class="navigation">
             <li routerLinkActive="navigation__sub--active" class="navigation__sub" *ngFor="let menu of menus">
-                <a (click)="toggleNavigationSub('Menus', $event)">
+                <a *ngIf="menu.children;else noChildren" (click)="toggleNavigationSub('Menus', $event)">
                     <i class="zmdi zmdi-menu"></i>
                     {{menu.name}}
                 </a>
+                <ng-template #noChildren>
+                    <a [routerLink]="[menu.url]">
+                        <i class="zmdi zmdi-calendar"></i>
+                        {{menu.name}}
+                    </a>
+                </ng-template>
                 <ul [@toggleHeight]="navigationSubState.Menus" *ngFor="let c of menu.children">
                     <li routerLinkActive="navigation__active">
                         <a [routerLink]="c.url">
