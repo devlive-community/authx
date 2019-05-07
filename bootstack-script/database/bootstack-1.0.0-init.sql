@@ -165,7 +165,7 @@ create table system_log (
     method       varchar(100) comment '请求方式',
     class        varchar(100) comment '访问的程序中的哪个类',
     class_method varchar(100) comment '访问的程序中的哪个类的哪个方法',
-    args         varchar(100) comment '请求参数',
+    args         text comment '请求参数',
     active       boolean comment 'active status' default true,
     create_time  timestamp                       default current_timestamp comment 'create time',
     update_time  timestamp                       default current_timestamp comment 'update time',

@@ -44,6 +44,11 @@ export class ApiConfig {
     /**
      * 日志管理API请求接口地址
      */
+    public static readonly API_SYSTEM_LOG = ApiConfig.API_VERSION_V1 + 'system/log';
+
+    /**
+     * 日志类型管理API请求接口地址
+     */
     public static readonly API_SYSTEM_LOG_TYPE = ApiConfig.API_VERSION_V1 + 'system/log/type';
 
     /**

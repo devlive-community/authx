@@ -76,7 +76,7 @@ const LAYOUT_ROUTES: Routes = [
     {
         path: 'logManager', component: LayoutComponent, canActivate: [AuthGuard], children: [
             {path: '', redirectTo: 'index', pathMatch: 'full'},
-            {path: 'logs', loadChildren: '../pages/user/user.module#UserModule'},
+            {path: 'logs', loadChildren: '../pages/logs/logs.module#LogsModule'},
             {path: 'logs/type', loadChildren: '../pages/logs/type/logs.type.module#LogsTypeModule'},
         ]
     },
