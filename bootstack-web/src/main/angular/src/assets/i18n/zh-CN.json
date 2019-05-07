@@ -164,6 +164,23 @@
                         }
                     }
                 }
+            },
+            "log": {
+                "input": {
+                },
+                "type": {
+                    "input": {
+                        "placeholder": {
+                            "name": "请输入日志类型名称",
+                            "description": "请输入日志类型描述"
+                        },
+                        "validation": {
+                            "name": {
+                                "length": "日志类型名称长度必须在5-20位之间"
+                            }
+                        }
+                    }
+                }
             }
         }
     }

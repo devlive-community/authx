@@ -73,6 +73,13 @@ const LAYOUT_ROUTES: Routes = [
             {path: 'menu-type', loadChildren: '../pages/system/menu/system.menu.type.module#SystemMenuTypeModule'},
         ]
     },
+    {
+        path: 'logManager', component: LayoutComponent, canActivate: [AuthGuard], children: [
+            {path: '', redirectTo: 'index', pathMatch: 'full'},
+            {path: 'logs', loadChildren: '../pages/user/user.module#UserModule'},
+            {path: 'logs/type', loadChildren: '../pages/logs/type/logs.type.module#LogsTypeModule'},
+        ]
+    },
 ];
 
 export const LayoutRouting = RouterModule.forChild(LAYOUT_ROUTES);

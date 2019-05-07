@@ -42,6 +42,11 @@ export class ApiConfig {
     public static readonly API_SYSTEM_MENU_TYPE = ApiConfig.API_VERSION_V1 + 'system/menu/type';
 
     /**
+     * 日志管理API请求接口地址
+     */
+    public static readonly API_SYSTEM_LOG_TYPE = ApiConfig.API_VERSION_V1 + 'system/log/type';
+
+    /**
      * system menu interface
      */
     public static readonly API_SYSTEM_MENU = ApiConfig.API_VERSION_V1 + 'system/menu';
