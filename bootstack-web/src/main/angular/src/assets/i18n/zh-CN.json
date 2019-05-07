@@ -30,6 +30,9 @@
         "classMethod": "访问类方法",
         "remoteIp": "远程服务器IP",
         "url": "路径",
+        "logout": "退出",
+        "login": "登录",
+        "register": "注册",
         "action": {
             "name": "操作",
             "editItem": "编辑该选项",

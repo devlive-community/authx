@@ -31,10 +31,10 @@
         </ng-container>
         <ng-template #noAuth>
             <li class="d-none d-sm-inline-block">
-                <a [routerLink]="['/user/login']" class="btn btn-info waves-effect">Login</a>
+                <a [routerLink]="['/user/login']" class="btn btn-info waves-effect">{{ 'common.login' | translate }}</a>
             </li>
             <li class="d-none d-sm-inline-block">
-                <a [routerLink]="['/user/register']" class="btn btn-primary waves-effect">Register</a>
+                <a [routerLink]="['/user/register']" class="btn btn-primary waves-effect">{{ 'common.register' | translate }}</a>
             </li>
         </ng-template>
         <li class="d-none d-sm-inline-block">
