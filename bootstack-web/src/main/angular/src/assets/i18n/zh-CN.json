@@ -18,6 +18,8 @@
         "save": "保存",
         "close": "关闭",
         "email": "邮箱",
+        "yes": "是",
+        "no": "否",
         "permission": "权限",
         "bootstack": "BootStack",
         "previousStep": "上一步",
@@ -97,6 +99,20 @@
                     "placeholder": {
                         "name": "请输入路由名称",
                         "description": "请输入路由描述"
+                    },
+                    "validation": {
+                        "name": {
+                            "length": "路由名长度必须在5-20位之间"
+                        }
+                    }
+                }
+            },
+            "interface": {
+                "input": {
+                    "placeholder": {
+                        "name": "请输入接口名称",
+                        "description": "请输入接口描述",
+                        "path": "请输入接口地址"
                     },
                     "validation": {
                         "name": {

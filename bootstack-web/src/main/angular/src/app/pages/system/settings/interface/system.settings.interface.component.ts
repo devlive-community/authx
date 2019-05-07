@@ -45,7 +45,7 @@ export class SystemSettingsInterfaceComponent implements OnInit {
     multipleOptions: any = {
         multiple: true,
         dropdownAutoWidth: true,
-        placeholder: 'please select your option',
+        placeholder: '请选择接口请求方式',
         width: '100%',
         containerCssClass: 'select2-selection--alt',
         dropdownCssClass: 'select2-dropdown--alt'
