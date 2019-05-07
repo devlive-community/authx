@@ -28,7 +28,6 @@ import {SystemMenuService} from "../../../../services/system/system.menu.service
 import {SystemMenuParam} from "../../../shared/param/system/menu/system.menu.param";
 import {SystemSettingsMethodService} from "../../../../services/system/settings/system.settings.method.service";
 import {SystemMenuTypeService} from "../../../../services/system/system.menu.type.service";
-import {SystemMenuRoleParam} from "../../../shared/param/system/menu/system.menu.role.param";
 
 @Component({
     selector: 'bootstack-system-menu',
@@ -47,7 +46,7 @@ export class SystemMenuComponent implements OnInit {
     multipleOptions: any = {
         multiple: true,
         dropdownAutoWidth: true,
-        placeholder: 'please select your option',
+        placeholder: '请选择请求方式',
         width: '100%',
         containerCssClass: 'select2-selection--alt',
         dropdownCssClass: 'select2-dropdown--alt'

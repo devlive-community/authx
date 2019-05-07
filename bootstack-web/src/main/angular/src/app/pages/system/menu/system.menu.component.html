@@ -96,29 +96,30 @@
                 <div class="modal-body">
                     <wizard navBarLayout="large-empty-symbols">
                         <!-- basic config -->
-                        <wizard-step stepTitle="Menu Basic" navigationSymbol="&#xf0b1;"
-                                     navigationSymbolFontFamily="FontAwesome">
+                        <wizard-step stepTitle="{{ 'page.system.menu.step.basic' | translate}}"
+                            navigationSymbol="&#xf0b1;"
+                            navigationSymbolFontFamily="FontAwesome">
                             <div style="margin-top: 10px;">
                                 <div class="form-group form-group--centered">
                                     <input type="text" [(ngModel)]="param.name" name="name" #name="ngModel"
-                                           class="form-control" required placeholder="Please enter a name"/>
+                                           class="form-control"
+                                           required placeholder="{{ 'page.system.menu.input.placeholder.name' | translate}}"/>
                                 </div>
                                 <div class="form-group form-group--centered">
                                     <input type="text" [(ngModel)]="param.url" name="url" #url="ngModel"
-                                           class="form-control" required placeholder="Please enter url"/>
-                                    <p class="text-danger" *ngIf="url.errors?.rangeLength">url cannot be less than 8
-                                        bits,
-                                        and cannot be more than 20 bits
-                                    </p>
+                                           class="form-control"
+                                           required placeholder="{{ 'page.system.menu.input.placeholder.url' | translate}}"/>
                                 </div>
                                 <div class="form-group form-group--centered">
                                     <input type="text" [(ngModel)]="param.tips" name="tips" #tips="ngModel"
-                                           class="form-control" required placeholder="Please enter tips"/>
+                                           class="form-control"
+                                           required placeholder="{{ 'page.system.menu.input.placeholder.tip' | translate}}"/>
                                 </div>
                                 <div class="form-group form-group--centered">
                                     <input type="text" [(ngModel)]="param.description"
                                            name="description" #sorted="ngModel"
-                                           class="form-control" required placeholder="Please enter description"/>
+                                           class="form-control"
+                                           required placeholder="{{ 'page.system.menu.input.placeholder.description' | translate}}"/>
                                 </div>
                             </div>
                             <div class="card-footer d-flex px-4 py-3">
@@ -131,39 +132,40 @@
                             </div>
                         </wizard-step>
                         <!-- custom config -->
-                        <wizard-step stepTitle="Menu  Custom" navigationSymbol="&#xf0b1;"
-                                     navigationSymbolFontFamily="FontAwesome">
+                        <wizard-step stepTitle="{{ 'page.system.menu.step.custom' | translate}}"
+                            navigationSymbol="&#xf0b1;"
+                            navigationSymbolFontFamily="FontAwesome">
                             <div class="card-block" style="margin-top: 10px;">
                                 <div class="clearfix mt-2"></div>
                                 <div class="form-group form-group--centered">
                                     <input type="text" [(ngModel)]="param.icon" name="icon" #icon="ngModel"
                                            class="form-control" required
-                                           placeholder="Please enter icon, support fa icons"/>
+                                        placeholder="{{ 'page.system.menu.input.placeholder.icon' | translate}}"/>
                                 </div>
                                 <div class="form-group form-group--centered">
                                     <input type="text" [(ngModel)]="param.level" name="level" #level="ngModel"
                                            class="form-control" required
-                                           placeholder="Please enter level, The higher the number, the higher the level"/>
+                                        placeholder="{{ 'page.system.menu.input.placeholder.level' | translate}}"/>
                                 </div>
                                 <div class="form-group form-group--centered">
                                     <input type="text" [(ngModel)]="param.sorted" name="sorted" #sorted="ngModel"
                                            class="form-control" required
-                                           placeholder="Please enter sorted, The higher the number, the higher the level"/>
+                                        placeholder="{{ 'page.system.menu.input.placeholder.sorted' | translate}}"/>
                                 </div>
                                 <div class="form-group form-group--centered">
-                                    News:
+                                    {{ 'common.newd' | translate}}:
                                     <label class="custom-control custom-radio">
                                         <input type="radio" [(ngModel)]="param.news" name="news" value="true"
                                                class="custom-control-input">
                                         <span class="custom-control-indicator"></span>
-                                        <span class="custom-control-description">Yes</span>
+                                        <span class="custom-control-description"> {{ 'common.yes' | translate}}</span>
                                     </label>
                                     <label class="custom-control custom-radio">
                                         <input type="radio" [(ngModel)]="param.news" name="news" value="false"
                                                checked="checked"
                                                class="custom-control-input">
                                         <span class="custom-control-indicator"></span>
-                                        <span class="custom-control-description">No</span>
+                                        <span class="custom-control-description"> {{ 'common.no' | translate}}:</span>
                                     </label>
                                 </div>
                             </div>
@@ -177,22 +179,24 @@
                                 </div>
                             </div>
                         </wizard-step>
-                        <wizard-step stepTitle="Menu Config" (stepEnter)="initStepDataModels($event)"
-                                     navigationSymbol="&#xf085;"
-                                     navigationSymbolFontFamily="FontAwesome">
+                        <wizard-step stepTitle="{{ 'page.system.menu.step.comprehensive' | translate}}" (stepEnter)="initStepDataModels($event)"
+                            navigationSymbol="&#xf085;"
+                            navigationSymbolFontFamily="FontAwesome">
                             <div class="card-block mr-center" style="margin-top: 10px;">
                                 <div class="form-group form-group--centered">
                                     <select2 #methodFields [data]="methodOptions" [options]="multipleOptions" [value]="value" (valueChanged)="methodChanged($event)"></select2>
                                 </div>
                                 <div class="form-group form-group--centered">
                                     <select (change)="menuTypeChange($event.target.value)">
-                                        <option value="0">Please select option</option>
+                                        <option
+                                            value="0">{{ 'page.system.menu.select.placeholder.type' | translate}}</option>
                                         <option *ngFor="let option of menuTypeOptions" value="{{option.id}}">{{option.text}}</option>
                                     </select>
                                 </div>
                                 <div class="form-group form-group--centered">
                                     <select (change)="menuParentChange($event.target.value)">
-                                        <option value="0">Please select option</option>
+                                        <option
+                                            value="0">{{ 'page.system.menu.select.placeholder.parent' | translate}}</option>
                                         <option *ngFor="let option of menuParentOptions" value="{{option.id}}">{{option.text}}</option>
                                     </select>
                                 </div>

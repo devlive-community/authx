@@ -20,6 +20,7 @@
         "email": "邮箱",
         "yes": "是",
         "no": "否",
+        "newd": "新功能",
         "permission": "权限",
         "bootstack": "BootStack",
         "previousStep": "上一步",
@@ -85,12 +86,41 @@
                 "input": {
                     "placeholder": {
                         "name": "请输入菜单名称",
-                        "description": "请输入菜单描述"
+                        "description": "请输入菜单描述",
+                        "url": "请输入菜单地址",
+                        "tip": "请输入菜单提示信息",
+                        "icon": "请输入菜单图标,支持fa",
+                        "level": "请输入菜单级别",
+                        "sorted": "请输入菜单排序,数值越大排序越靠后"
                     },
                     "validation": {
                         "name": {
                             "length": "菜单名长度必须在5-20位之间"
                         }
+                    }
+                },
+                "step": {
+                    "basic": "基本设置",
+                    "custom": "自定义设置",
+                    "comprehensive": "综合设置"
+                },
+                "type": {
+                    "input": {
+                        "placeholder": {
+                            "name": "请输入菜单类型名称",
+                            "description": "请输入菜单类型描述"
+                        },
+                        "validation": {
+                            "name": {
+                                "length": "菜单类型名长度必须在5-20位之间"
+                            }
+                        }
+                    }
+                },
+                "select": {
+                    "placeholder": {
+                        "type": "请选择菜单类型",
+                        "parent": "请选择父菜单节点"
                     }
                 }
             },
