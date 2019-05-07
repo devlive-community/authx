@@ -25,6 +25,7 @@
         "title": "BootStack",
         "previousStep": "上一步",
         "nextStep": "下一步",
+        "method": "请求方式",
         "action": {
             "name": "操作",
             "editItem": "编辑该选项",

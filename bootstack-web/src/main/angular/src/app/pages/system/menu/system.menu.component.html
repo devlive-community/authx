@@ -44,6 +44,7 @@
                                 <th>{{ "common.code" | translate }}</th>
                                 <th>{{ "common.description" | translate }}</th>
                                 <th>{{ "common.activeStatus" | translate }}</th>
+                                <th>{{ "common.method" | translate }}</th>
                                 <th>{{ "common.createTime" | translate }}</th>
                                 <th>{{ "common.updateTime" | translate }}</th>
                                 <th>{{ "common.action.name" | translate }}</th>
@@ -59,6 +60,11 @@
                                     <a [tooltip]="model.active ? 'current status is actived' : 'current status is not actived'">
                                         <i [ngClass]="model.active ? 'zmdi zmdi-stop' : 'zmdi zmdi-play'"></i>
                                     </a>
+                                </td>
+                                <td>
+                                    <span class="badge badge-info" *ngFor="let k of model.methods"
+                                          style="margin-left: 3px; margin-top: 3px;"
+                                        [tooltip]="k.description">{{k.name}}</span>
                                 </td>
                                 <td>{{model.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                                 <td>{{model.updateTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
@@ -219,7 +225,6 @@
                             navigationSymbolFontFamily="FontAwesome">
                             <div class="card-block mr-center" style="margin-top: 10px;">
                                 <div class="form-group form-group--centered">
-
                                     <select2 #methodFields [data]="methodOptions" [options]="multipleOptions" [value]="value" (valueChanged)="methodChanged($event)"></select2>
                                 </div>
                                 <div class="form-group form-group--centered">

@@ -62,6 +62,8 @@ export class SystemMenuComponent implements OnInit {
 
     public types: any;
 
+    private methodType;
+
     // model param info
     public param: SystemMenuParam;
 
@@ -211,6 +213,7 @@ export class SystemMenuComponent implements OnInit {
     pageChanged(event: any) {
         this.page.number = event.page;
         this.page.size = event.itemsPerPage;
+        this.page.type = this.methodType;
         this.loading = this.systemMenuService.getList(this.page).subscribe(
             response => {
                 if (response.code !== CodeConfig.SUCCESS) {
@@ -240,6 +243,7 @@ export class SystemMenuComponent implements OnInit {
 
     selectType(type: any) {
         this.page.type = type.id;
+        this.methodType = type.id;
         this.models = this.initList(this.page, 1);
     }
 
