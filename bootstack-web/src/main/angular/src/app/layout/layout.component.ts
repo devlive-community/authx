@@ -18,6 +18,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SharedService} from '../shared/services/shared.service';
 import {CookieUtils} from "../shared/utils/cookie.util";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
     selector: 'app-layout',
@@ -29,10 +30,15 @@ export class LayoutComponent implements OnInit {
     // user token
     token: String;
 
-    constructor(private sharedService: SharedService) {
+    constructor(private sharedService: SharedService,
+                private translate: TranslateService,) {
         sharedService.maThemeSubject.subscribe((value) => {
             this.maTheme = value;
         });
+        translate.addLangs(['zh-CN', 'en']);
+        translate.setDefaultLang('zh-CN');
+        let broswerLang = translate.getBrowserLang();
+        translate.use(broswerLang.match(/en|zh-CN/) ? broswerLang : 'zh-CN');
     }
 
     ngOnInit() {

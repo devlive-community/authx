@@ -39,6 +39,7 @@ import {ErrorForiddeComponent} from "../pages/error/403/403.component";
 import {ErrorNotFoundComponent} from "../pages/error/404/404.component";
 import {NavigationComponent} from "./header/navigation/navigation.component";
 import {SystemMenuService} from "../../services/system/system.menu.service";
+import {TranslateModule} from "@ngx-translate/core";
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -66,6 +67,7 @@ export function busyConfigFactory() {
         LayoutRouting,
         FormsModule,
         BusyModule,
+        TranslateModule,
         CustomFormsModule,
         BsDropdownModule.forRoot(),
         ProgressbarModule.forRoot(),
