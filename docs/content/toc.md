@@ -3,4 +3,4 @@ layout: toc
 ---
 
 ## Getting Started
-  * [Quickstart](tutorials/quickstart.html)
+  * [Quickstart](/content/tutorials/quickstart.html)

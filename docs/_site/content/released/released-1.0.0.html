@@ -40,7 +40,7 @@
 <meta name="description" content="">
 <meta name="author" content="bootstack">
 
-<title>BootStack | </title>
+<title>BootStack | 1.0.0</title>
 
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
@@ -64,7 +64,7 @@
   limitations under the License.
 -->
 <!-- Start page_header include -->
-<div class="navbar navbar-inverse navbar-static-top druid-nav">
+<div class="navbar navbar-inverse navbar-static-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -76,7 +76,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li ><a href="/">BootStack</a></li>
-                <li ><a href="released/index.html">发布日志</a></li>
+                <li ><a href="/content/released/index.html">发布日志</a></li>
                 <li ><a href="http://wiki.ttxit.com/display/bootstack">文档</a></li>
             </ul>
         </div>
@@ -93,7 +93,92 @@
 <div class="container">
     <div class="row">
         <div class="col-md-9 doc-content">
-            
+            <h4 id="bootstack">BootStack简介</h4>
+
+<hr>
+
+<p>BootStack是一个开源的权限管理平台。</p>
+
+<p>BootStack核心使用SpringBoot进行平台的开发，使用Angular进行前端页面的展示，使用Security，Oauth2，JWT进行权限以及Rest API的校验。</p>
+
+<p>BootStack也是一个SpringBoot脚手架，核心宗旨为让所有程序员拥有一套开箱即用的后台权限管理平台。</p>
+
+<p><br /></p>
+
+<h4 id="bootstack">BootStack功能描述</h4>
+
+<hr>
+
+<ul>
+<li><p>菜单管理</p>
+
+<ul>
+<li>菜单管理</li>
+<li>菜单类型管理</li>
+</ul></li>
+<li><p>系统设置</p>
+
+<ul>
+<li>权限管理</li>
+<li>系统接口</li>
+<li>请求方式</li>
+</ul></li>
+</ul>
+
+<p><br /></p>
+
+<h4 id="bootstack">BootStack全面貌</h4>
+
+<hr>
+
+<ul>
+<li>登录页面</li>
+</ul>
+
+<p><img src="../../images/snapshot/1.0.0/page-login.jpg" width="800" /></p>
+
+<ul>
+<li>注册页面</li>
+</ul>
+
+<p><img src="../../images/snapshot/1.0.0/page-register.jpg" width="800" /></p>
+
+<ul>
+<li>接口页面</li>
+</ul>
+
+<p><img src="../../images/snapshot/1.0.0/page-interface.jpg" width="800" /></p>
+
+<ul>
+<li>菜单页面</li>
+</ul>
+
+<p><img src="../../images/snapshot/1.0.0/page-menu.jpg" width="800" /></p>
+
+<ul>
+<li>菜单接口页面</li>
+</ul>
+
+<p><img src="../../images/snapshot/1.0.0/page-menu-interface.jpg" width="800" /></p>
+
+<ul>
+<li>菜单类型页面</li>
+</ul>
+
+<p><img src="../../images/snapshot/1.0.0/page-menu-type.jpg" width="800" /></p>
+
+<ul>
+<li>权限页面</li>
+</ul>
+
+<p><img src="../../images/snapshot/1.0.0/page-role.jpg" width="800" /></p>
+
+<ul>
+<li>请求方式页面</li>
+</ul>
+
+<p><img src="../../images/snapshot/1.0.0/page-method.jpg" width="800" /></p>
+
         </div>
         <div class="col-md-3 toc" id="toc">
         </div>
@@ -118,15 +203,34 @@
   limitations under the License.
 -->
 <!-- Start page_footer include -->
-<div class="container">
-    <footer>
-        <div class="container">
+<div class="container-fluid">
+        <div class="container-fluid">
+            <footer class="bootstack-footer" style="padding: 32px 0; background-color: #f3f3f3;
+    border-top: 1px solid white;
+    margin-top: 50px;">
+                <div class="container">
+                    <div class="text-center">
+                        <p>
+                            <a href="">Community</a>&ensp;·&ensp;
+                            <a href="/downloads.html">Download</a>&ensp;·&ensp;
+                            <a href="/faq">FAQ</a>
+                        </p>
+                    </div>
+                    <div class="text-center">
+                    </div>
+                    <div class="text-center license">
+                        Except where otherwise noted, licensed under <a rel="license"
+                                                                        href="http://creativecommons.org/licenses/by-sa/4.0/">CC
+                        BY-SA 4.0</a>
+                    </div>
+                </div>
+            </footer>
         </div>
-    </footer>
 </div>
 <script src="http://code.jquery.com/jquery.min.js"></script>
 </script>
 <!-- stop page_footer include -->
+
 
 <script>
     $(function () {
