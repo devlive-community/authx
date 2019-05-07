@@ -12,12 +12,16 @@
         "activeStatus": "激活状态",
         "whiteStatus": "白名单状态",
         "systemStatus": "系统状态",
+        "currentActiveStatus": "当前为激活状态",
+        "currentDisableStatus": "当前为禁止状态",
         "welcome": "欢迎使用",
         "save": "保存",
         "close": "关闭",
         "email": "邮箱",
         "permission": "权限",
         "bootstack": "BootStack",
+        "previousStep": "上一步",
+        "nextStep": "下一步",
         "action": {
             "name": "操作",
             "editItem": "编辑该选项",
@@ -69,6 +73,21 @@
                         "password": {
                             "length": "密码不能少于8位,且不能超过20位",
                             "match": "两次输入的密码不一致"
+                        }
+                    }
+                }
+            }
+        },
+        "system": {
+            "menu": {
+                "input": {
+                    "placeholder": {
+                        "name": "请输入菜单名称",
+                        "description": "请输入菜单描述"
+                    },
+                    "validation": {
+                        "name": {
+                            "length": "用户名长度必须在5-20位之间"
                         }
                     }
                 }

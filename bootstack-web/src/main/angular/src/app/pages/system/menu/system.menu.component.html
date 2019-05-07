@@ -32,7 +32,8 @@
                 </div>
                 <div class="card-body">
                     <tabset class="tab-container--amber" [justified]="true">
-                        <tab *ngFor="let type of menuTypeOptions" heading="{{type.text}}" (select)="selectType(type)" style="margin-top: 10px;">
+                        <tab *ngFor="let type of menuTypeOptions" heading="{{type.text}}" (select)="selectType(type)"
+                            style="margin-top: 10px;">
                         </tab>
                     </tabset>
                     <table class="table mb-0 mr-center">
@@ -64,7 +65,7 @@
                                 <td>
                                     <a (click)="startShowCreateAndUpdateModal(model)">
                                         <i class="zmdi zmdi-edit"
-                                           tooltip="Edit this item"></i>
+                                            tooltip="{{ 'common.action.editItem' | translate }}"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -124,7 +125,7 @@
                                 <div class="mr-auto"></div>
                                 <div class="ml-4">
                                     <a class="btn btn-info" [ngClass]="{'disabled': !param.name || !param.url}"
-                                       nextStep>Next Step
+                                       nextStep>{{ "common.nextStep" | translate }}
                                     </a>
                                 </div>
                             </div>
@@ -168,10 +169,11 @@
                             </div>
                             <div class="card-footer d-flex px-4 py-3">
                                 <div class="mr-auto">
-                                    <a class="btn btn-secondary" previousStep>Previous Step</a>
+                                    <a class="btn btn-secondary"
+                                       previousStep>{{ "common.previousStep" | translate }}</a>
                                 </div>
                                 <div class="ml-4">
-                                    <a class="btn btn-info" nextStep>Next Step</a>
+                                    <a class="btn btn-info" nextStep>{{ "common.nextStep" | translate }}</a>
                                 </div>
                             </div>
                         </wizard-step>
@@ -196,10 +198,12 @@
                                 </div>
                                 <div class="card-footer d-flex px-4 py-3">
                                     <div class="mr-auto">
-                                        <a class="btn btn-secondary" previousStep>Previous Step</a>
+                                        <a class="btn btn-secondary"
+                                           previousStep>{{ "common.previousStep" | translate }}</a>
                                     </div>
                                     <div class="ml-4">
-                                        <button class="btn btn-info" type="submit">Save</button>
+                                        <button class="btn btn-info"
+                                                type="submit">{{ "common.save" | translate }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -207,7 +211,8 @@
                     </wizard>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-link" (click)="createAndUpdateModal.hide()">Close</button>
+                    <button type="button"
+                            class="btn btn-link" (click)="createAndUpdateModal.hide()">{{ "common.close" | translate }}</button>
                 </div>
             </form>
         </div>
