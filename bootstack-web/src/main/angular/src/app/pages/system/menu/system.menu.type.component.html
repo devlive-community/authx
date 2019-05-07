@@ -90,16 +90,22 @@
             <form #createSystemRoleForm="ngForm" (ngSubmit)="createAndUpdate()">
                 <div class="modal-body">
                     <div class="form-group form-group--centered">
-                        <input type="text" [(ngModel)]="param.name" name="name" #name="ngModel"
-                               class="form-control"
-                               required placeholder="{{ 'page.system.menu.type.input.placeholder.name' | translate}}"/>
-                        <p class="text-danger" *ngIf="name.errors?.rangeLength">{{ 'page.system.menu.type.input.validation.name.length' | translate}}
-                        </p>
+                        {{ 'page.system.menu.type.label.title.name' | translate}}:
+                        <label class="custom-control">
+                            <input type="text" [(ngModel)]="param.name" name="name" #name="ngModel"
+                                   class="form-control"
+                                   required placeholder="{{ 'page.system.menu.type.input.placeholder.name' | translate}}"/>
+                            <p class="text-danger" *ngIf="name.errors?.rangeLength">{{ 'page.system.menu.type.input.validation.name.length' | translate}}
+                            </p>
+                        </label>
                     </div>
                     <div class="form-group form-group--centered">
-                        <input type="text" [(ngModel)]="param.description" name="description" #description="ngModel"
-                               class="form-control"
-                               required placeholder="{{ 'page.system.menu.type.input.placeholder.description' | translate}}"/>
+                        {{ 'page.system.menu.type.label.title.description' | translate}}:
+                        <label class="custom-control">
+                            <input type="text" [(ngModel)]="param.description" name="description" #description="ngModel"
+                                   class="form-control"
+                                   required placeholder="{{ 'page.system.menu.type.input.placeholder.description' | translate}}"/>
+                        </label>
                     </div>
                 </div>
                 <div class="modal-footer">

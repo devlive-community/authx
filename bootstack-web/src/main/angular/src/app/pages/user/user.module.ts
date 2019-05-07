@@ -25,6 +25,7 @@ import {ToastyModule} from 'ng2-toasty';
 import {BusyModule} from 'angular2-busy';
 import {TranslateModule} from '@ngx-translate/core';
 import {Select2Module} from 'ng2-select2';
+import {PopoverModule} from 'ngx-bootstrap/popover';
 
 import {ModalModule, PaginationModule} from "ngx-bootstrap";
 import {UserComponent} from "./user.component";
@@ -44,6 +45,7 @@ const USER_ROUTES: Routes = [
         BusyModule,
         TranslateModule,
         Select2Module,
+        PopoverModule.forRoot(),
         TooltipModule.forRoot(),
         ToastyModule.forRoot(),
         PaginationModule.forRoot(),
