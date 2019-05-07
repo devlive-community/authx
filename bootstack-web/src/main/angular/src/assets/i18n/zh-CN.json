@@ -87,7 +87,20 @@
                     },
                     "validation": {
                         "name": {
-                            "length": "用户名长度必须在5-20位之间"
+                            "length": "菜单名长度必须在5-20位之间"
+                        }
+                    }
+                }
+            },
+            "role": {
+                "input": {
+                    "placeholder": {
+                        "name": "请输入路由名称",
+                        "description": "请输入路由描述"
+                    },
+                    "validation": {
+                        "name": {
+                            "length": "路由名长度必须在5-20位之间"
                         }
                     }
                 }

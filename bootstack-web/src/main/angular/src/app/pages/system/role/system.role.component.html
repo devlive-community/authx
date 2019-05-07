@@ -72,7 +72,7 @@
 </section>
 <!-- create and update modal start -->
 <div bsModal #createAndUpdateModal="bs-modal" class="modal fade" [config]="{ ignoreBackdropClick: true }">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="width: 100%;">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title pull-left">{{ 'common.modal.title' | translate }}</h5>
@@ -82,22 +82,20 @@
                     <div class="form-group form-group--centered">
                         <input type="hidden" [(ngModel)]="param.id" name="id" #id="ngModel" [value]="param.id"/>
                         <input type="text" [(ngModel)]="param.name" name="name" #name="ngModel"
-                               class="form-control" required placeholder="Please enter a role name"/>
-                        <p class="text-danger" *ngIf="name.errors?.rangeLength">The input character length is between
-                            5-9</p>
+                               class="form-control" required
+                               placeholder="{{ 'page.system.role.input.placeholder.name' | translate}}"/>
                     </div>
                     <div class="form-group form-group--centered">
                         <input type="text" [(ngModel)]="param.description" name="description" #description="ngModel"
-                               class="form-control" required placeholder="Please enter role description"/>
-                        <!--[rangeLength]="[8, 20]" -->
-                        <p class="text-danger" *ngIf="description.errors?.rangeLength">Passwords cannot be less than 8
-                            bits,
-                            and cannot be more than 20 bits</p>
+                               class="form-control" required
+                               placeholder="{{ 'page.system.role.input.placeholder.description' | translate}}"/>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-link" (click)="createAndUpdateModal.hide()">Close</button>
-                    <button type="submit" class="btn btn-warning" [disabled]="!createSystemRoleForm.form.valid">Save
+                    <button type="button" class="btn btn-link"
+                            (click)="createAndUpdateModal.hide()">{{ "common.close" | translate }}</button>
+                    <button type="submit" class="btn btn-warning"
+                            [disabled]="!createSystemRoleForm.form.valid">{{ "common.save" | translate }}
                     </button>
                 </div>
             </form>
@@ -118,18 +116,21 @@
                 <div class="modal-body">
                     <div [ngBusy]="mtLoading"></div>
                     <tabset class="tab-container--amber" [justified]="true">
-                        <tab *ngFor="let type of types" heading="{{type.name}}" (select)="selectType(type)" style="margin-top: 10px;">
+                        <tab *ngFor="let type of types" heading="{{type.name}}" (select)="selectType(type)"
+                             style="margin-top: 10px;">
                             <tree-ngx *ngIf="treeNodes"
-                                (selectedItems)="selectedItems($event)"
-                                [nodeItems]="treeNodes"
-                                [options]="treeOptions">
+                                      (selectedItems)="selectedItems($event)"
+                                      [nodeItems]="treeNodes"
+                                      [options]="treeOptions">
                             </tree-ngx>
                         </tab>
                     </tabset>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-link" (click)="assignmentMenuModal.hide()">Close</button>
-                    <button type="submit" class="btn btn-warning" [disabled]="!createSystemRoleForm.form.valid"> {{ 'common.button.create.allocation' | translate }}
+                    <button type="button" class="btn btn-link"
+                            (click)="assignmentMenuModal.hide()">{{ "common.close" | translate }}</button>
+                    <button type="submit" class="btn btn-warning"
+                            [disabled]="!createSystemRoleForm.form.valid"> {{ 'common.button.create.allocation' | translate }}
                     </button>
                 </div>
             </form>
