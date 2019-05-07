@@ -107,6 +107,17 @@
                         }
                     }
                 },
+                "label": {
+                    "title": {
+                        "name": "菜单名称",
+                        "description": "菜单描述",
+                        "url": "菜单地址",
+                        "tip": "提示信息",
+                        "icon": "菜单图标",
+                        "level": "菜单级别",
+                        "sorted": "菜单排序"
+                    }
+                },
                 "step": {
                     "basic": "基本设置",
                     "custom": "自定义设置",

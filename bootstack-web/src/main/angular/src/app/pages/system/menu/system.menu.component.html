@@ -100,26 +100,46 @@
                             navigationSymbol="&#xf0b1;"
                             navigationSymbolFontFamily="FontAwesome">
                             <div style="margin-top: 10px;">
-                                <div class="form-group form-group--centered">
-                                    <input type="text" [(ngModel)]="param.name" name="name" #name="ngModel"
-                                           class="form-control"
-                                           required placeholder="{{ 'page.system.menu.input.placeholder.name' | translate}}"/>
+                                <div
+                                    class="form-group form-group--centered"> {{ 'page.system.menu.label.title.name' | translate}}
+                                    :
+                                    <label class="custom-control">
+                                        <input type="text" [(ngModel)]="param.name" name="name" #name="ngModel"
+                                               class="form-control"
+                                               required placeholder="{{ 'page.system.menu.input.placeholder.name' | translate}}"/>
+                                        <i class="form-group__bar"></i>
+                                    </label>
+                                </div>
+                                <div
+                                    class="form-group form-group--centered">{{ 'page.system.menu.label.title.url' | translate}}
+                                    :
+                                    <label class="custom-control">
+                                        <input type="text" [(ngModel)]="param.url" name="url" #url="ngModel"
+                                               class="form-control"
+                                               required placeholder="{{ 'page.system.menu.input.placeholder.url' | translate}}"/>
+                                        <i class="form-group__bar"></i>
+                                    </label>
+                                </div>
+                                <div
+                                    class="form-group form-group--centered">{{ 'page.system.menu.label.title.tip' | translate}}
+                                    :
+                                    <label class="custom-control">
+                                        <input type="text" [(ngModel)]="param.tips" name="tips" #tips="ngModel"
+                                               class="form-control"
+                                               required placeholder="{{ 'page.system.menu.input.placeholder.tip' | translate}}"/>
+                                        <i class="form-group__bar"></i>
+                                    </label>
                                 </div>
                                 <div class="form-group form-group--centered">
-                                    <input type="text" [(ngModel)]="param.url" name="url" #url="ngModel"
-                                           class="form-control"
-                                           required placeholder="{{ 'page.system.menu.input.placeholder.url' | translate}}"/>
-                                </div>
-                                <div class="form-group form-group--centered">
-                                    <input type="text" [(ngModel)]="param.tips" name="tips" #tips="ngModel"
-                                           class="form-control"
-                                           required placeholder="{{ 'page.system.menu.input.placeholder.tip' | translate}}"/>
-                                </div>
-                                <div class="form-group form-group--centered">
-                                    <input type="text" [(ngModel)]="param.description"
-                                           name="description" #sorted="ngModel"
-                                           class="form-control"
-                                           required placeholder="{{ 'page.system.menu.input.placeholder.description' | translate}}"/>
+                                    {{ 'page.system.menu.label.title.description' | translate}}
+                                    :
+                                    <label class="custom-control">
+                                        <input type="text" [(ngModel)]="param.description"
+                                               name="description" #sorted="ngModel"
+                                               class="form-control"
+                                               required placeholder="{{ 'page.system.menu.input.placeholder.description' | translate}}"/>
+                                        <i class="form-group__bar"></i>
+                                    </label>
                                 </div>
                             </div>
                             <div class="card-footer d-flex px-4 py-3">
@@ -138,19 +158,34 @@
                             <div class="card-block" style="margin-top: 10px;">
                                 <div class="clearfix mt-2"></div>
                                 <div class="form-group form-group--centered">
-                                    <input type="text" [(ngModel)]="param.icon" name="icon" #icon="ngModel"
-                                           class="form-control" required
-                                        placeholder="{{ 'page.system.menu.input.placeholder.icon' | translate}}"/>
+                                    {{ 'page.system.menu.label.title.icon' | translate}}
+                                    :
+                                    <label class="custom-control">
+                                        <input type="text" [(ngModel)]="param.icon" name="icon" #icon="ngModel"
+                                               class="form-control" required
+                                            placeholder="{{ 'page.system.menu.input.placeholder.icon' | translate}}"/>
+                                        <i class="form-group__bar"></i>
+                                    </label>
                                 </div>
                                 <div class="form-group form-group--centered">
-                                    <input type="text" [(ngModel)]="param.level" name="level" #level="ngModel"
-                                           class="form-control" required
-                                        placeholder="{{ 'page.system.menu.input.placeholder.level' | translate}}"/>
+                                    {{ 'page.system.menu.label.title.level' | translate}}
+                                    :
+                                    <label class="custom-control">
+                                        <input type="text" [(ngModel)]="param.level" name="level" #level="ngModel"
+                                               class="form-control" required
+                                            placeholder="{{ 'page.system.menu.input.placeholder.level' | translate}}"/>
+                                        <i class="form-group__bar"></i>
+                                    </label>
                                 </div>
                                 <div class="form-group form-group--centered">
-                                    <input type="text" [(ngModel)]="param.sorted" name="sorted" #sorted="ngModel"
-                                           class="form-control" required
-                                        placeholder="{{ 'page.system.menu.input.placeholder.sorted' | translate}}"/>
+                                    {{ 'page.system.menu.label.title.sorted' | translate}}
+                                    :
+                                    <label class="custom-control">
+                                        <input type="text" [(ngModel)]="param.sorted" name="sorted" #sorted="ngModel"
+                                               class="form-control" required
+                                            placeholder="{{ 'page.system.menu.input.placeholder.sorted' | translate}}"/>
+                                        <i class="form-group__bar"></i>
+                                    </label>
                                 </div>
                                 <div class="form-group form-group--centered">
                                     {{ 'common.newd' | translate}}:
@@ -184,6 +219,7 @@
                             navigationSymbolFontFamily="FontAwesome">
                             <div class="card-block mr-center" style="margin-top: 10px;">
                                 <div class="form-group form-group--centered">
+
                                     <select2 #methodFields [data]="methodOptions" [options]="multipleOptions" [value]="value" (valueChanged)="methodChanged($event)"></select2>
                                 </div>
                                 <div class="form-group form-group--centered">
