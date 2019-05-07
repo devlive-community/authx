@@ -120,6 +120,20 @@
                         }
                     }
                 }
+            },
+            "method": {
+                "input": {
+                    "placeholder": {
+                        "name": "请输入请求方式名称",
+                        "description": "请输入请求方式描述",
+                        "method": "请输入请求方式"
+                    },
+                    "validation": {
+                        "name": {
+                            "length": "请求方式长度必须在5-20位之间"
+                        }
+                    }
+                }
             }
         }
     }
