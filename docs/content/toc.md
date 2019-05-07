@@ -1,5 +1,6 @@
 ---
+layout: toc
 ---
 
 ## Getting Started
-  * [Quickstart](/docs/VERSION/tutorials/quickstart.html)
+  * [Quickstart](tutorials/quickstart.html)
