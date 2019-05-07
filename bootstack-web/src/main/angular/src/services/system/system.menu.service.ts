@@ -72,11 +72,14 @@ export class SystemMenuService implements BaseService {
      * @param page page info
      * @param parent parent id, default 0
      */
-    getListByParent(page: CommonPageModel, parent: number): Observable<CommonResponseModel> {
+    getListByParent(page: CommonPageModel, parent: number, type: number): Observable<CommonResponseModel> {
         const options = HttpUtils.getDefaultRequestOptionsByTokenAndJSON();
         const params = HttpUtils.getParams();
         params.append('page', page.number.toString());
         params.append('size', page.size.toString());
+        if (type && type > 0) {
+            params.append('type', type.toString());
+        }
         options.params = params;
         return this.http.get(ApiConfig.API_SYSTEM_MENU + '/parent', options).map(ResponseUtils.extractData);
     }

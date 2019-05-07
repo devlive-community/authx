@@ -119,7 +119,7 @@ export class SystemMenuComponent implements OnInit {
     initStepDataModels(event) {
         this.initMethod();
         this.initMenuType();
-        this.initMenuParent();
+        // this.initMenuParent();
     }
 
     /**
@@ -151,9 +151,9 @@ export class SystemMenuComponent implements OnInit {
     /**
      * init menu parent list
      */
-    initMenuParent() {
+    initMenuParent(type: number) {
         this.page.size = 100;
-        this.systemMenuService.getListByParent(this.page, 0).subscribe(
+        this.systemMenuService.getListByParent(this.page, 0, type).subscribe(
             response => {
                 const temps = response.data.content;
                 this.menuParentOptions = this.generateOptions(temps);
@@ -231,6 +231,7 @@ export class SystemMenuComponent implements OnInit {
 
     menuTypeChange(data: any) {
         this.param.type = data;
+        this.initMenuParent(data);
     }
 
     menuParentChange(data: any) {

@@ -45,6 +45,16 @@ public interface SystemMenuRepository extends PagingAndSortingRepository<SystemM
     Page<SystemMenuModel> findAllByParent(Long parent, Pageable pageable);
 
     /**
+     * 根据菜单父节点,菜单类型查询所有菜单数据并进行分页
+     *
+     * @param parent   菜单父节点
+     * @param type     菜单类型
+     * @param pageable 分页信息
+     * @return 返回的数据
+     */
+    Page<SystemMenuModel> findAllByParentAndType(Long parent, SystemMenuTypeModel type, Pageable pageable);
+
+    /**
      * find model by type
      *
      * @param type type info

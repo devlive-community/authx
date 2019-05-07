@@ -70,6 +70,12 @@ public class SystemMenuServiceImpl implements SystemMenuService {
     }
 
     @Override
+    public PageModel<SystemMenuModel> getAllByParentAndType(Long parent, SystemMenuTypeModel type, Pageable pageable) {
+        Page<SystemMenuModel> pageModel = this.systemMenuRepository.findAllByParentAndType(parent, type, pageable);
+        return new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements());
+    }
+
+    @Override
     public Iterable<SystemMenuModel> getByType(SystemMenuTypeModel type) {
         return this.systemMenuRepository.findByType(type);
     }
