@@ -77,6 +77,7 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
                 // The main menu
                 parent.setId(menu.getId());
                 parent.setName(menu.getName());
+                parent.setTips(menu.getTips());
                 if (!ObjectUtils.isEmpty(roleMenus.get(menu.getId()))) {
                     parent.setChecked(Boolean.TRUE);
                     parent.setSelected(Boolean.TRUE);
@@ -93,6 +94,7 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
                 SystemMenuTreeModel children = new SystemMenuTreeModel();
                 children.setId(menu.getId());
                 children.setName(menu.getName());
+                children.setTips(menu.getTips());
                 SysteMenuTreeItemModel childrenItem = SysteMenuTreeItemModel.buildNew();
                 childrenItem.setPhrase(menu.getId());
                 children.setItem(item);

@@ -44,6 +44,7 @@ public class SystemMenuTreeModel {
     private Integer sorted;
     private Boolean newd;
     private String icon;
+    private String tips;
     private Boolean checked = false; // is checked
     private Boolean selected = false; // is checked
     private SysteMenuTreeItemModel item;

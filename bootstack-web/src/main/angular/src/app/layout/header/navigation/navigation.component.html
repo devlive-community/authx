@@ -17,19 +17,19 @@
         <!-- user info end -->
         <ul class="navigation">
             <li routerLinkActive="navigation__sub--active" class="navigation__sub" *ngFor="let menu of menus">
-                <a *ngIf="menu.children;else noChildren" (click)="toggleNavigationSub('Menus', $event)">
+                <a *ngIf="menu.children;else noChildren" (click)="toggleNavigationSub('Menus', $event)" tooltip="{{menu.tips}}">
                     <i class="{{menu.icon}}"></i>
                     {{menu.name}}
                 </a>
                 <ng-template #noChildren>
-                    <a [routerLink]="[menu.url]">
+                    <a [routerLink]="[menu.url]" tooltip="{{menu.tips}}">
                         <i class="{{menu.icon}}"></i>
                         {{menu.name}}
                     </a>
                 </ng-template>
                 <ul [@toggleHeight]="navigationSubState.Menus" *ngFor="let c of menu.children">
                     <li routerLinkActive="navigation__active">
-                        <a [routerLink]="c.url">
+                        <a [routerLink]="c.url" tooltip="{{menu.tips}}">
                             {{c.name}}
                         </a>
                     </li>

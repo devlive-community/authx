@@ -29,6 +29,7 @@ import {ModalModule} from 'ngx-bootstrap/modal';
 import {BusyConfig, BusyModule} from 'angular2-busy';
 import {ToastyModule, ToastyService} from 'ng2-toasty';
 import {CustomFormsModule} from 'ng2-validation';
+import {TooltipModule} from 'ngx-bootstrap/tooltip';
 
 import {LayoutComponent} from './layout.component';
 import {HeaderComponent} from './header/header.component';
@@ -69,6 +70,7 @@ export function busyConfigFactory() {
         BusyModule,
         TranslateModule,
         CustomFormsModule,
+        TooltipModule.forRoot(),
         BsDropdownModule.forRoot(),
         ProgressbarModule.forRoot(),
         ButtonsModule.forRoot(),
