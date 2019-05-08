@@ -224,6 +224,29 @@
                         }
                     }
                 }
+            },
+            "icon": {
+                "input": {
+                },
+                "type": {
+                    "input": {
+                        "placeholder": {
+                            "name": "请输入图标类型名称",
+                            "description": "请输入图标类型描述"
+                        },
+                        "validation": {
+                            "name": {
+                                "length": "图标类型名称长度必须在5-20位之间"
+                            }
+                        }
+                    },
+                    "label": {
+                        "title": {
+                            "name": "图标类型名称",
+                            "description": "图标类型描述"
+                        }
+                    }
+                }
             }
         }
     }

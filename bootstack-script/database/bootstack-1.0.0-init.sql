@@ -228,3 +228,17 @@ create table system_log_users_relation (
     users_id      int comment '用户表唯一标志,唯一主键'
 ) comment '系统日志与用户关系表'
     default charset utf8;
+
+# ICON图标表
+drop table if exists icon_type;
+create table icon_type (
+    id          int auto_increment,
+    name        varchar(100) comment '图标类型名称',
+    code        varchar(100) comment '图标类型编码',
+    description varchar(200) comment '图标类型描述',
+    active      boolean comment '激活状态' default true,
+    create_time timestamp              default current_timestamp comment '创建时间',
+    update_time timestamp              default current_timestamp comment '更新时间',
+    primary key (id)
+) comment 'ICON图标表'
+    default charset utf8;
