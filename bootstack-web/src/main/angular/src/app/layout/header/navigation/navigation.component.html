@@ -20,17 +20,20 @@
                 <a *ngIf="menu.children;else noChildren" (click)="toggleNavigationSub('Menus', $event)" tooltip="{{menu.tips}}">
                     <i class="{{menu.icon}}"></i>
                     {{menu.name}}
+                    <span class="badge badge-danger" *ngIf="menu.newd">{{ 'common.new' | translate }}</span>
                 </a>
                 <ng-template #noChildren>
                     <a [routerLink]="[menu.url]" tooltip="{{menu.tips}}">
                         <i class="{{menu.icon}}"></i>
                         {{menu.name}}
+                        <span class="badge badge-danger" *ngIf="menu.newd">{{ 'common.new' | translate }}</span>
                     </a>
                 </ng-template>
                 <ul [@toggleHeight]="navigationSubState.Menus" *ngFor="let c of menu.children">
                     <li routerLinkActive="navigation__active">
                         <a [routerLink]="c.url" tooltip="{{menu.tips}}">
                             {{c.name}}
+                            <span class="badge badge-danger" *ngIf="menu.newd">{{ 'common.new' | translate }}</span>
                         </a>
                     </li>
                 </ul>
