@@ -57,6 +57,7 @@ export class ApiConfig {
      */
     public static readonly API_ICON = ApiConfig.API_VERSION_V1 + 'icon';
     public static readonly API_ICON_TYPE = ApiConfig.API_VERSION_V1 + 'icon/type';
+    public static readonly API_ICON_USAGE = ApiConfig.API_VERSION_V1 + 'icon/usage';
 
     /**
      * system menu interface

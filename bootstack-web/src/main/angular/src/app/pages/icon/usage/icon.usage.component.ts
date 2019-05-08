@@ -24,30 +24,27 @@ import {CommonPageModel} from "../../../shared/model/common/response/page.model"
 import {CodeConfig} from "../../../../config/code.config";
 import {ModalDirective} from "ngx-bootstrap";
 import {SystemMenuTypeParam} from "../../../shared/param/system/menu/system.menu.type.param";
-import {IconTypeService} from "../../../../services/icon/icon.type.service";
-import {IconTypeParam} from "../../../shared/param/icon/icon.type.param";
+import {IconUsageService} from "../../../../services/icon/icon.usage.service";
+import {IconUsageParam} from "../../../shared/param/icon/icon.usage.param";
 
 @Component({
-    selector: 'bootstack-icon-type',
-    templateUrl: './icon.type.component.html'
+    selector: 'bootstack-icon-usage',
+    templateUrl: './icon.usage.component.html'
 })
-export class IconTypeComponent implements OnInit {
+export class IconUsageComponent implements OnInit {
 
     public loading: Subscription;
-    // page model
     public page: CommonPageModel;
-    // current page number
     public currentPage: number;
     @ViewChild('createAndUpdateModal')
     public createAndUpdateModal: ModalDirective;
-    public param: IconTypeParam;
-    // menu list
+    public param: IconUsageParam;
     private models;
 
     constructor(private router: Router,
                 private toastyService: ToastyService,
                 private translate: TranslateService,
-                private iconTypeService: IconTypeService) {
+                private service: IconUsageService) {
         translate.addLangs(['zh-CN', 'en']);
         translate.setDefaultLang('zh-CN');
         let broswerLang = translate.getBrowserLang();
@@ -61,7 +58,7 @@ export class IconTypeComponent implements OnInit {
     }
 
     initList(page: CommonPageModel, uid: number) {
-        this.loading = this.iconTypeService.getList(page).subscribe(
+        this.loading = this.service.getList(page).subscribe(
             response => {
                 if (response.code !== CodeConfig.SUCCESS) {
                     this.toastyService.error(response.message);
@@ -88,7 +85,7 @@ export class IconTypeComponent implements OnInit {
 
     createAndUpdate() {
         if (this.param.id) {
-            this.iconTypeService.update(this.param).subscribe(
+            this.service.update(this.param).subscribe(
                 response => {
                     if (response.code !== CodeConfig.SUCCESS) {
                         this.toastyService.error(response.message);
@@ -99,7 +96,7 @@ export class IconTypeComponent implements OnInit {
                 }
             );
         } else {
-            this.iconTypeService.register(this.param).subscribe(
+            this.service.register(this.param).subscribe(
                 response => {
                     if (response.code !== CodeConfig.SUCCESS) {
                         this.toastyService.error(response.message);
@@ -115,7 +112,7 @@ export class IconTypeComponent implements OnInit {
     pageChanged(event: any) {
         this.page.number = event.page;
         this.page.size = event.itemsPerPage;
-        this.loading = this.iconTypeService.getList(this.page).subscribe(
+        this.loading = this.service.getList(this.page).subscribe(
             response => {
                 if (response.code !== CodeConfig.SUCCESS) {
                     this.toastyService.error(response.message);

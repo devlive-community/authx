@@ -85,6 +85,7 @@ const LAYOUT_ROUTES: Routes = [
             {path: '', redirectTo: 'index', pathMatch: 'full'},
             {path: 'icon', loadChildren: '../pages/icon/icon.module#IconModule'},
             {path: 'icon/type', loadChildren: '../pages/icon/type/icon.type.module#IconTypeModule'},
+            {path: 'icon/usage', loadChildren: '../pages/icon/usage/icon.usage.module#IconUsageModule'},
         ]
     },
 ];

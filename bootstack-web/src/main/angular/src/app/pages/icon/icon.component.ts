@@ -35,18 +35,16 @@ export class IconComponent implements OnInit {
 
     public loading: Subscription;
     public typeLoading: Subscription;
-    // menu list
-    private models;
     // page model
     public page: CommonPageModel;
     // current page number
     public currentPage: number;
-
     @ViewChild('createAndUpdateModal')
     public createAndUpdateModal: ModalDirective;
-
     public param: IconParam;
     public iconTypeOptions: any;
+    // menu list
+    private models;
 
     constructor(private router: Router,
                 private toastyService: ToastyService,
