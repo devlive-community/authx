@@ -17,6 +17,8 @@
 -->
 <main class="main main--alt" [attr.data-ma-theme]="maTheme">
     <bootstack-header></bootstack-header>
+    <!-- 左侧菜单开始 -->
     <bootstack-navigation *ngIf="token"></bootstack-navigation>
+    <!-- 左侧菜单结束 -->
     <router-outlet></router-outlet>
 </main>

@@ -18,31 +18,40 @@
 <ng2-toasty [position]="'top-center'"></ng2-toasty>
 <header class="header">
     <navigation-trigger></navigation-trigger>
-    <div class="header__logo">
-        <h1>
-            <a [routerLink]="['/']">{{ "common.title" | translate }}</a>
-        </h1>
+    <div class="header__logo hidden-sm-down">
+        <h1><a [routerLink]="['/']">{{ "common.title" | translate }}</a></h1>
     </div>
-    <!-- login and register -->
+    <!-- 顶部搜索功能开始 -->
+    <!--<form class="search">-->
+    <!--<div class="search__inner">-->
+    <!--<input type="text" class="search__text" placeholder="Search for people, files, documents...">-->
+    <!--<i class="zmdi zmdi-search search__helper" data-ma-action="search-close"></i>-->
+    <!--</div>-->
+    <!--</form>-->
+    <!-- 顶部搜索功能结束 -->
     <ul class="top-nav">
         <ng-container *ngIf="token; else noAuth">
-            <li dropdown [autoClose]="false" triggers="mouseover">
-            </li>
+
         </ng-container>
         <ng-template #noAuth>
-            <li class="d-none d-sm-inline-block">
-                <a [routerLink]="['/user/login']" class="btn btn-info waves-effect">{{ 'common.login' | translate }}</a>
+            <li class="dropdown hidden-xs-down">
+                <a [routerLink]="['/user/login']" tooltip="{{ 'common.login' | translate }}" placement="bottom"><i
+                    class="zmdi zmdi-sign-in"></i></a>
             </li>
-            <li class="d-none d-sm-inline-block">
-                <a [routerLink]="['/user/register']" class="btn btn-primary waves-effect">{{ 'common.register' | translate }}</a>
+            <li class="dropdown hidden-xs-down">
+                <a [routerLink]="['/user/register']" tooltip="{{ 'common.register' | translate }}" placement="bottom"><i
+                    class="zmdi zmdi-plus-circle"></i></a>
             </li>
         </ng-template>
-        <li class="d-none d-sm-inline-block">
-            <a href="https://github.com/springstack/bootstack" class="btn" target="_blank"><i
-                class="zmdi zmdi-github"></i></a>
+        <li class="dropdown top-nav__notifications">
+            <a href="https://github.com/springstack/bootstack" class="top-nav__notify btn" target="_blank">
+                GitHub
+            </a>
         </li>
-        <li class="d-none d-sm-inline-block">
-            <a href="https://gitee.com/Spring-Stack/bootstack" class="btn" target="_blank">Gitee</a>
+        <li class="dropdown top-nav__notifications">
+            <a href="https://gitee.com/Spring-Stack/bootstack" class="top-nav__notify btn" target="_blank">
+                Gitee
+            </a>
         </li>
     </ul>
 </header>

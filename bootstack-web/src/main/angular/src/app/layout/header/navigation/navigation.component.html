@@ -1,20 +1,20 @@
-<!-- menu start -->
 <aside class="sidebar" [class.toggled]="sidebarVisible">
     <perfect-scrollbar>
-        <!-- user info start -->
+        <!-- 用户信息开始 -->
         <div class="user" dropdown>
             <div class="user__info" dropdownToggle>
                 <img class="user__img" [src]="user?.avatar" [alt]="user?.name">
                 <div>
                     <div class="user__name">{{ user?.name }}</div>
-                    <!--<div class="user__email">{{ user.userToken }}</div>-->
+                    <div class="user__email">{{ user?.email }}</div>
                 </div>
             </div>
             <div *dropdownMenu class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item" (click)="logout()">{{ 'common.logout' | translate }}</a>
             </div>
         </div>
-        <!-- user info end -->
+        <!-- 用户信息结束 -->
+        <!-- 系统菜单开始 -->
         <ul class="navigation">
             <li routerLinkActive="navigation__sub--active" class="navigation__sub" *ngFor="let menu of menus">
                 <a *ngIf="menu.children;else noChildren" (click)="toggleNavigationSub('Menus', $event)" tooltip="{{menu.tips}}">
@@ -39,6 +39,6 @@
                 </ul>
             </li>
         </ul>
+        <!-- 系统菜单结束 -->
     </perfect-scrollbar>
 </aside>
-<!-- menu end -->
