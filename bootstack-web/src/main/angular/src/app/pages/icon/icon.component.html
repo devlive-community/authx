@@ -35,11 +35,9 @@
                         <thead>
                         <tr>
                             <th>#</th>
+                            <th>{{ "common.name" | translate }}</th>
                             <th>{{ "common.url" | translate }}</th>
-                            <th>{{ "common.remoteIp" | translate }}</th>
-                            <th>{{ "common.class" | translate }}</th>
-                            <th>{{ "common.method" | translate }}</th>
-                            <th>{{ "common.classMethod" | translate }}</th>
+                            <th>{{ "common.description" | translate }}</th>
                             <th>{{ "common.createTime" | translate }}</th>
                             <th>{{ "common.updateTime" | translate }}</th>
                             <th>{{ "common.action.name" | translate }}</th>
@@ -48,17 +46,15 @@
                         <tbody *ngFor="let model of models">
                         <tr>
                             <th scope="row">{{model.id}}</th>
-                            <td>{{model.url}}</td>
-                            <td>{{model.remoteIp}}</td>
-                            <td>{{model.clazz}}</td>
-                            <td>{{model.method}}</td>
-                            <td class="center">{{model.classMethod}} </td>
+                            <td>{{model.name}}</td>
+                            <td>{{model.code}}</td>
+                            <td>{{model.description}}</td>
                             <td>{{model.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                             <td>{{model.updateTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                             <td>
-                                <a (click)="startShowDetailModal(model)">
-                                    <i class="zmdi zmdi-eye"
-                                       tooltip="{{ 'common.action.lookDetails' | translate }}"></i>
+                                <a (click)="startShowCreateAndUpdateModal(model)">
+                                    <i class="zmdi zmdi-edit"
+                                       tooltip="{{ 'common.action.editItem' | translate }}"></i>
                                 </a>
                             </td>
                         </tr>
@@ -115,7 +111,7 @@
                             class="form-group form-group--centered">{{ 'page.system.icon.label.title.icon' | translate}}
                             :
                             <label class="custom-control">
-                                <input type="text" [(ngModel)]="param.icon" name="url" #url="ngModel"
+                                <input type="text" [(ngModel)]="param.code" name="code" #code="ngModel"
                                        class="form-control"
                                        required
                                        placeholder="{{ 'page.system.icon.input.placeholder.icon' | translate}}"/>
@@ -127,10 +123,25 @@
                             :
                             <label class="custom-control">
                                 <div class="select">
-                                    <select (change)="menuParentChange($event.target.value)" class="form-control">
+                                    <select (change)="iconTypeChange($event.target.value)" class="form-control">
                                         <option
                                             value="0">{{ 'page.system.icon.select.placeholder.type' | translate}}</option>
                                         <option *ngFor="let option of iconTypeOptions"
+                                                value="{{option.id}}">{{option.text}}</option>
+                                    </select>
+                                    <i class="form-group__bar"></i>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-group form-group--centered">
+                            {{ 'page.system.icon.label.title.usage' | translate}}
+                            :
+                            <label class="custom-control">
+                                <div class="select">
+                                    <select (change)="iconUsageChange($event.target.value)" class="form-control">
+                                        <option
+                                            value="0">{{ 'page.system.icon.select.placeholder.usage' | translate}}</option>
+                                        <option *ngFor="let option of iconUsageOptions"
                                                 value="{{option.id}}">{{option.text}}</option>
                                     </select>
                                     <i class="form-group__bar"></i>

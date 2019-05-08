@@ -26,6 +26,7 @@ import {CodeConfig} from "../../../config/code.config";
 import {IconService} from "../../../services/icon/icon.service";
 import {IconParam} from "../../shared/param/icon/icon.param";
 import {IconTypeService} from "../../../services/icon/icon.type.service";
+import {IconUsageService} from "../../../services/icon/icon.usage.service";
 
 @Component({
     selector: 'bootstack-icon',
@@ -43,6 +44,7 @@ export class IconComponent implements OnInit {
     public createAndUpdateModal: ModalDirective;
     public param: IconParam;
     public iconTypeOptions: any;
+    public iconUsageOptions: any;
     // menu list
     private models;
 
@@ -50,7 +52,8 @@ export class IconComponent implements OnInit {
                 private toastyService: ToastyService,
                 private translate: TranslateService,
                 private service: IconService,
-                private typeService: IconTypeService) {
+                private typeService: IconTypeService,
+                private usageService: IconUsageService) {
         translate.addLangs(['zh-CN', 'en']);
         translate.setDefaultLang('zh-CN');
         let broswerLang = translate.getBrowserLang();
@@ -76,6 +79,24 @@ export class IconComponent implements OnInit {
                     this.toastyService.error(response.message);
                 } else {
                     this.iconTypeOptions = this.generateOptions(response.data.content);
+                }
+            }
+        );
+    }
+
+    /**
+     * 初始化用途类型
+     */
+    initUsage() {
+        let page = new CommonPageModel();
+        page.number = 1;
+        page.size = 100;
+        this.typeLoading = this.usageService.getList(page).subscribe(
+            response => {
+                if (response.code !== CodeConfig.SUCCESS) {
+                    this.toastyService.error(response.message);
+                } else {
+                    this.iconUsageOptions = this.generateOptions(response.data.content);
                 }
             }
         );
@@ -122,6 +143,7 @@ export class IconComponent implements OnInit {
             this.param = new IconParam();
         }
         this.initType();
+        this.initUsage();
         this.createAndUpdateModal.show();
     }
 
@@ -168,6 +190,14 @@ export class IconComponent implements OnInit {
                 }
             );
         }
+    }
+
+    iconUsageChange(data: any) {
+        this.param.usage = data;
+    }
+
+    iconTypeChange(data: any) {
+        this.param.type = data;
     }
 
 }

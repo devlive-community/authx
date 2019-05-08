@@ -29,6 +29,7 @@ import {ModalModule, PaginationModule} from "ngx-bootstrap";
 import {IconComponent} from "./icon.component";
 import {IconService} from "../../../services/icon/icon.service";
 import {IconTypeService} from "../../../services/icon/icon.type.service";
+import {IconUsageService} from "../../../services/icon/icon.usage.service";
 
 const LOGS_ROUTES: Routes = [
     {path: '', component: IconComponent}
@@ -54,7 +55,8 @@ const LOGS_ROUTES: Routes = [
     ],
     providers: [
         IconService,
-        IconTypeService
+        IconTypeService,
+        IconUsageService
     ],
 })
 export class IconModule {

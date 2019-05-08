@@ -18,6 +18,7 @@
 package com.bootstack.param.icon;
 
 import com.bootstack.validation.icon.IconTypeRequireValidation;
+import com.bootstack.validation.icon.IconUsageRequireValidation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -54,5 +55,9 @@ public class IconBasicParam {
     @NotEmpty(message = "icon type id must not null")
     @IconTypeRequireValidation
     private String type; // 图标类型id
+
+    @NotEmpty(message = "icon usage id must not null")
+    @IconUsageRequireValidation
+    private String usage; // 图标类型id
 
 }

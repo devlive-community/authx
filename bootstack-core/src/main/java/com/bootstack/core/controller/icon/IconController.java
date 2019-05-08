@@ -21,6 +21,7 @@ import com.bootstack.common.pinyin.PinYinUtils;
 import com.bootstack.model.common.CommonResponseModel;
 import com.bootstack.model.icon.IconModel;
 import com.bootstack.model.icon.IconTypeModel;
+import com.bootstack.model.icon.IconUsageModel;
 import com.bootstack.model.page.PageModel;
 import com.bootstack.param.icon.IconCreateParam;
 import com.bootstack.param.icon.IconSetParam;
@@ -63,9 +64,12 @@ public class IconController {
     CommonResponseModel add(@RequestBody @Validated IconCreateParam param) {
         IconModel model = new IconModel();
         BeanUtils.copyProperties(param, model);
-        model.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
-        IconTypeModel type = (IconTypeModel) this.iconTypeService.getModelById(Long.valueOf(param.getType()));
+        IconTypeModel type = new IconTypeModel();
+        type.setId(Long.valueOf(param.getType()));
         model.setType(type);
+        IconUsageModel usage = new IconUsageModel();
+        usage.setId(Long.valueOf(param.getUsage()));
+        model.setUsage(usage);
         return CommonResponseModel.success(this.service.insertModel(model));
     }
 
@@ -74,7 +78,6 @@ public class IconController {
         IconModel model = new IconModel();
         BeanUtils.copyProperties(param, model);
         model.setId(Long.valueOf(param.getId()));
-        model.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
         IconTypeModel type = (IconTypeModel) this.iconTypeService.getModelById(Long.valueOf(param.getType()));
         model.setType(type);
         return CommonResponseModel.success(this.service.insertModel(model));
