@@ -42,6 +42,7 @@
                             <th>{{ "common.classMethod" | translate }}</th>
                             <th>{{ "common.createTime" | translate }}</th>
                             <th>{{ "common.updateTime" | translate }}</th>
+                            <th>{{ "common.action.name" | translate }}</th>
                         </tr>
                         </thead>
                         <tbody *ngFor="let model of models">
@@ -54,6 +55,12 @@
                             <td class="center">{{model.classMethod}} </td>
                             <td>{{model.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                             <td>{{model.updateTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                            <td>
+                                <a (click)="startShowDetailModal(model)">
+                                    <i class="zmdi zmdi-eye"
+                                       tooltip="{{ 'common.action.lookDetails' | translate }}"></i>
+                                </a>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -69,3 +76,60 @@
         <!-- context end -->
     </div>
 </section>
+<!-- 查看详情弹出框开始 -->
+<div bsModal #showDetailModal="bs-modal" class="modal fade" [config]="{ ignoreBackdropClick: true }">
+    <div class="modal-dialog" style="width: 100%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title pull-left">
+                    {{ 'common.modal.details' | translate }}
+                </h5>
+            </div>
+            <div [ngBusy]="detailsLoading"></div>
+            <div class="modal-body center" *ngIf="details">
+                <div class="form-group form-group--centered">
+                    {{ "common.url" | translate }}:
+                    <label class="custom-control">
+                        {{details.url}}
+                    </label>
+                </div>
+                <div class="form-group form-group--centered">
+                    {{ "common.remoteIp" | translate }}:
+                    <label class="custom-control">
+                        {{details.remoteIp}}
+                    </label>
+                </div>
+                <div class="form-group form-group--centered">
+                    {{ "common.class" | translate }}:
+                    <label class="custom-control">
+                        {{details.clazz}}
+                    </label>
+                </div>
+                <div class="form-group form-group--centered">
+                    {{ "common.classMethod" | translate }}:
+                    <label class="custom-control">
+                        {{details.classMethod}}
+                    </label>
+                </div>
+                <div class="form-group form-group--centered">
+                    {{ "common.user" | translate }}:
+                    <label class="custom-control">
+                        {{details.user.name}}
+                    </label>
+                </div>
+                <div class="form-group form-group--centered">
+                    {{ "common.method" | translate }}:
+                    <label class="custom-control">
+                        {{details.method}}
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-link"
+                        (click)="showDetailModal.hide()">{{ "common.close" | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 查看详情弹出框结束-->

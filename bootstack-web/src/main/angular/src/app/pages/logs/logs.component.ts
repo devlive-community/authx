@@ -32,6 +32,7 @@ import {CodeConfig} from "../../../config/code.config";
 export class LogsComponent implements OnInit {
 
     public loading: Subscription;
+    public detailsLoading: Subscription;
     // menu list
     private models;
     // page model
@@ -39,8 +40,11 @@ export class LogsComponent implements OnInit {
     // current page number
     public currentPage: number;
 
-    @ViewChild('createAndUpdateModal')
-    public createAndUpdateModal: ModalDirective;
+    @ViewChild('showDetailModal')
+    public showDetailModal: ModalDirective;
+
+    // 详情数据
+    public details;
 
     constructor(private router: Router,
                 private toastyService: ToastyService,
@@ -85,6 +89,23 @@ export class LogsComponent implements OnInit {
                 }
             }
         );
+    }
+
+    /**
+     * 显示详情弹出框
+     * @param model 数据信息,唯一标志
+     */
+    startShowDetailModal(model: any) {
+        this.detailsLoading = this.systemLogService.getInfo(model.id).subscribe(
+            response => {
+                if (response.code !== CodeConfig.SUCCESS) {
+                    this.toastyService.error(response.message);
+                } else {
+                    this.details = response.data;
+                }
+            }
+        );
+        this.showDetailModal.show();
     }
 
 }

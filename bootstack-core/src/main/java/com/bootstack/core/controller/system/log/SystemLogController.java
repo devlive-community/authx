@@ -71,4 +71,15 @@ public class SystemLogController {
         return CommonResponseModel.success(this.systemLogService.insertModel(logType));
     }
 
+    /**
+     * 查询日志详情
+     *
+     * @param primaryKey 数据主键
+     * @return 日志详情
+     */
+    @GetMapping(value = "/details")
+    CommonResponseModel infoDetail(@RequestParam(value = "primaryKey") Long primaryKey) {
+        return CommonResponseModel.success(this.systemLogService.getModelById(primaryKey));
+    }
+
 }

@@ -42,7 +42,11 @@ export class SystemLogService implements BaseService {
     }
 
     getInfo(primaryKey: Object): Observable<CommonResponseModel> {
-        return undefined;
+        const options = HttpUtils.getDefaultRequestOptionsByTokenAndJSON();
+        const params = HttpUtils.getParams();
+        params.append('primaryKey', primaryKey.toString());
+        options.params = params;
+        return this.http.get(ApiConfig.API_SYSTEM_LOG_DETAILS, options).map(ResponseUtils.extractData);
     }
 
     getList(page: CommonPageModel): Observable<CommonResponseModel> {

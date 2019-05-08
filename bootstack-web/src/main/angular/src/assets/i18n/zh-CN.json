@@ -33,11 +33,13 @@
         "logout": "退出",
         "login": "登录",
         "register": "注册",
+        "user": "用户",
         "action": {
             "name": "操作",
             "editItem": "编辑该选项",
             "assignmentMenu": "分配菜单",
-            "assignmentRole": "分配权限"
+            "assignmentRole": "分配权限",
+            "lookDetails": "查看详情"
         },
         "button": {
             "create": {
@@ -51,7 +53,8 @@
         "modal": {
             "title": "创建新的内容",
             "titleRole": "分配路由权限",
-            "titleUser": "分配用户权限"
+            "titleUser": "分配用户权限",
+            "details": "查看详情"
         }
     },
     "page": {
