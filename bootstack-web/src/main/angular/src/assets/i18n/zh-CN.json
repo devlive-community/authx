@@ -35,6 +35,7 @@
         "register": "注册",
         "user": "用户",
         "new": "新",
+        "preview": "预览",
         "action": {
             "name": "操作",
             "editItem": "编辑该选项",
