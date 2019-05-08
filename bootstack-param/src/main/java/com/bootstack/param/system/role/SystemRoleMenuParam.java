@@ -17,6 +17,7 @@
  */
 package com.bootstack.param.system.role;
 
+import com.bootstack.validation.system.menu.SystemMenuTypeRequireValidation;
 import com.bootstack.validation.system.role.SystemRoleRequireValidation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -46,6 +47,8 @@ public class SystemRoleMenuParam {
 
     private List<String> value; // menu list
 
-    private Boolean flag; // true：menu false：api
+    @NotEmpty(message = "menu type must not null")
+    @SystemMenuTypeRequireValidation
+    private String menuType;
 
 }

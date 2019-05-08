@@ -48,7 +48,7 @@ export class SystemRoleComponent implements OnInit {
     public types: any;
     public treeNodes: any;
 
-    private menuNodes: any;
+    public menuNodesJson: any;
 
     public treeOptions = {
         mode: TreeMode.MultiSelect,
@@ -83,7 +83,6 @@ export class SystemRoleComponent implements OnInit {
 
     ngOnInit() {
         this.roles = this.initRoles(this.page);
-        this.menuNodes = [];
     }
 
     /**
@@ -197,26 +196,22 @@ export class SystemRoleComponent implements OnInit {
 
     selectType(type: any) {
         this.menuAndType.menuType = type.id;
-        this.menuNodes = [];
         this.initRoleMenuTree();
-    }
-
-    selectedItems(event: any[]) {
-        event.forEach(v => {
-            if (!this.menuNodes.hasOwnProperty(v.phrase)) {
-                this.menuNodes.push(v.phrase);
-            }
-        })
-        this.menuNodes = this.unique(this.menuNodes);
     }
 
     /**
      * 分配权限
      */
     assignmentMenus() {
+        console.log(this.menuNodesJson);
+        let menuNodes = [];
+        for (var i in this.menuNodesJson) {
+            menuNodes.push(this.menuNodesJson[i].phrase);
+        }
         let param = new SystemRoleMenuParam();
         param.key = this.param.id;
-        param.value = this.menuNodes;
+        param.value = menuNodes;
+        param.menuType = this.menuAndType.menuType;
         this.systemRoleService.updateRoleMenu(param).subscribe(
             response => {
                 if (response.code !== CodeConfig.SUCCESS) {
@@ -227,14 +222,6 @@ export class SystemRoleComponent implements OnInit {
                 }
             }
         );
-    }
-
-    unique(array) {
-        var n = [];
-        for (var i = 0; i < array.length; i++) {
-            if (n.indexOf(array[i]) == -1) n.push(array[i]);
-        }
-        return n;
     }
 
 }

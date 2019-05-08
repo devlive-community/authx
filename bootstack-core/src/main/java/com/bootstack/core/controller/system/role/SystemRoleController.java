@@ -151,9 +151,11 @@ public class SystemRoleController {
             });
         }
         BeanUtils.copyProperties(param, model);
+        // 抽取原有菜单并移除当前更新的权限类型数据,然后添加到授权菜单中
         List<SystemMenuModel> temp = model.getMenuList();
+        temp = temp.stream().distinct().collect(Collectors.toList()).stream().filter(v -> v.getType().getId() != Long.valueOf(param.getMenuType())).collect(Collectors.toList());
         menus.addAll(temp);
-        model.setMenuList(menus.stream().distinct().collect(Collectors.toList()));
+        model.setMenuList(menus);
         return CommonResponseModel.success(this.systemRoleService.insertModel(model));
     }
 

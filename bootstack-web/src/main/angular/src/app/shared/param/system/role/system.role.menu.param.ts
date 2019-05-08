@@ -19,6 +19,7 @@ export class SystemRoleMenuParam {
 
     public key: number;
     public value: any[];
+    public menuType: number;
 
     constructor() {
     }

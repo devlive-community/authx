@@ -118,11 +118,11 @@
                     <tabset class="tab-container--amber" [justified]="true">
                         <tab *ngFor="let type of types" heading="{{type.name}}" (select)="selectType(type)"
                              style="margin-top: 10px;">
-                            <tree-ngx *ngIf="treeNodes"
-                                      (selectedItems)="selectedItems($event)"
+                            <tree-ngx *ngIf="treeNodes" (selectedItems)="menuNodesJson = $event"
                                       [nodeItems]="treeNodes"
                                       [options]="treeOptions">
                             </tree-ngx>
+                            <input type="hidden" value="{{menuNodesJson | json}}">
                         </tab>
                     </tabset>
                 </div>
