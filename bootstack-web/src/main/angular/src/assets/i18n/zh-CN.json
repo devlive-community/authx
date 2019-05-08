@@ -227,6 +227,24 @@
             },
             "icon": {
                 "input": {
+                    "placeholder": {
+                        "name": "请输入图标名称",
+                        "description": "请输入图标类型描述",
+                        "icon": "请输入图标地址"
+                    }
+                },
+                "label": {
+                    "title": {
+                        "name": "图标名称",
+                        "description": "图标描述",
+                        "icon": "图标地址",
+                        "type": "图标类型"
+                    }
+                },
+                "select": {
+                    "placeholder": {
+                        "type": "请选择图标类型"
+                    }
                 },
                 "type": {
                     "input": {

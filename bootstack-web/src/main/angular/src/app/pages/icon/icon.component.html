@@ -1,0 +1,153 @@
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<ng2-toasty [position]="'top-center'"></ng2-toasty>
+<section class="content">
+    <div class="row">
+        <!-- context start -->
+        <div class="col-md-12">
+            <div [ngBusy]="loading"></div>
+            <div class="card">
+                <div class="card-title">
+                    <a class="actions__item btn btn-primary btn-sm"
+                       tooltip="{{ 'common.button.create.tip' | translate }}"
+                       placement="bottom" (click)="startShowCreateAndUpdateModal()">
+                        <i class="zmdi zmdi-plus"></i>
+                        {{ 'common.button.create.title' | translate }}
+                    </a>
+                </div>
+                <div class="card-body">
+                    <table class="table mb-0 mr-center">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{ "common.url" | translate }}</th>
+                            <th>{{ "common.remoteIp" | translate }}</th>
+                            <th>{{ "common.class" | translate }}</th>
+                            <th>{{ "common.method" | translate }}</th>
+                            <th>{{ "common.classMethod" | translate }}</th>
+                            <th>{{ "common.createTime" | translate }}</th>
+                            <th>{{ "common.updateTime" | translate }}</th>
+                            <th>{{ "common.action.name" | translate }}</th>
+                        </tr>
+                        </thead>
+                        <tbody *ngFor="let model of models">
+                        <tr>
+                            <th scope="row">{{model.id}}</th>
+                            <td>{{model.url}}</td>
+                            <td>{{model.remoteIp}}</td>
+                            <td>{{model.clazz}}</td>
+                            <td>{{model.method}}</td>
+                            <td class="center">{{model.classMethod}} </td>
+                            <td>{{model.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                            <td>{{model.updateTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                            <td>
+                                <a (click)="startShowDetailModal(model)">
+                                    <i class="zmdi zmdi-eye"
+                                       tooltip="{{ 'common.action.lookDetails' | translate }}"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="mr-center">
+                <pagination *ngIf="models?.length && page" [(ngModel)]="currentPage" totalItems="{{page.totalElements}}"
+                            maxSize="{{page.size}}"
+                            (pageChanged)="pageChanged($event)" [boundaryLinks]="true">
+                </pagination>
+            </div>
+        </div>
+        <!-- context end -->
+    </div>
+</section>
+<!-- 创建数据弹出框开始 -->
+<div bsModal #createAndUpdateModal="bs-modal" class="modal fade" [config]="{ ignoreBackdropClick: true }">
+    <div class="modal-dialog" style="width: 100%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title pull-left">
+                    {{ 'common.modal.title' | translate }}
+                </h5>
+            </div>
+            <div [ngBusy]="detailsLoading"></div>
+            <form #createAndUpdateForm="ngForm" (ngSubmit)="createAndUpdate()">
+                <div class="modal-body">
+                    <div style="margin-top: 10px;">
+                        <div
+                            class="form-group form-group--centered"> {{ 'page.system.icon.label.title.name' | translate}}
+                            :
+                            <label class="custom-control">
+                                <input type="text" [(ngModel)]="param.name" name="name" #name="ngModel"
+                                       class="form-control"
+                                       required
+                                       placeholder="{{ 'page.system.icon.input.placeholder.name' | translate}}"/>
+                                <i class="form-group__bar"></i>
+                            </label>
+                        </div>
+                        <div
+                            class="form-group form-group--centered">{{ 'page.system.icon.label.title.description' | translate}}
+                            :
+                            <label class="custom-control">
+                                <input type="text" [(ngModel)]="param.description" name="tips" #tips="ngModel"
+                                       class="form-control"
+                                       required
+                                       placeholder="{{ 'page.system.icon.input.placeholder.description' | translate}}"/>
+                                <i class="form-group__bar"></i>
+                            </label>
+                        </div>
+                        <div
+                            class="form-group form-group--centered">{{ 'page.system.icon.label.title.icon' | translate}}
+                            :
+                            <label class="custom-control">
+                                <input type="text" [(ngModel)]="param.icon" name="url" #url="ngModel"
+                                       class="form-control"
+                                       required
+                                       placeholder="{{ 'page.system.icon.input.placeholder.icon' | translate}}"/>
+                                <i class="form-group__bar"></i>
+                            </label>
+                        </div>
+                        <div class="form-group form-group--centered">
+                            {{ 'page.system.icon.label.title.type' | translate}}
+                            :
+                            <label class="custom-control">
+                                <div class="select">
+                                    <select (change)="menuParentChange($event.target.value)" class="form-control">
+                                        <option
+                                            value="0">{{ 'page.system.icon.select.placeholder.type' | translate}}</option>
+                                        <option *ngFor="let option of iconTypeOptions"
+                                                value="{{option.id}}">{{option.text}}</option>
+                                    </select>
+                                    <i class="form-group__bar"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button"
+                            class="btn btn-link"
+                            (click)="createAndUpdateModal.hide()">{{ "common.close" | translate }}</button>
+                    <button class="btn btn-info"
+                            type="submit">{{ "common.save" | translate }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 创建数据弹出框结束-->

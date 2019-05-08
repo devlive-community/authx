@@ -229,7 +229,7 @@ create table system_log_users_relation (
 ) comment '系统日志与用户关系表'
     default charset utf8;
 
-# ICON图标表
+# ICON图标类型表
 drop table if exists icon_type;
 create table icon_type (
     id          int auto_increment,
@@ -240,5 +240,51 @@ create table icon_type (
     create_time timestamp              default current_timestamp comment '创建时间',
     update_time timestamp              default current_timestamp comment '更新时间',
     primary key (id)
+) comment 'ICON图标类型表'
+    default charset utf8;
+
+# ICON图标表
+drop table if exists icon;
+create table icon (
+    id          int auto_increment,
+    name        varchar(100) comment '图标名称',
+    code        varchar(100) comment '图标编码',
+    zh_name     varchar(100) comment '图标中文名',
+    icon        varchar(100) comment '图标',
+    description varchar(200) comment '图标描述',
+    active      boolean comment '激活状态' default true,
+    create_time timestamp              default current_timestamp comment '创建时间',
+    update_time timestamp              default current_timestamp comment '更新时间',
+    primary key (id)
 ) comment 'ICON图标表'
+    default charset utf8;
+
+-- 图标与图标类型关系表
+drop table if exists icon_type_icon_relation;
+create table icon_type_icon_relation (
+    icon_id      int comment '图标表唯一标志,唯一主键',
+    icon_type_id int comment '图标类型表唯一标志,唯一主键'
+) comment '图标与图标类型关系表'
+    default charset utf8;
+
+# ICON图标用途表
+drop table if exists icon_usage;
+create table icon_usage (
+    id          int auto_increment,
+    name        varchar(100) comment '图标类型名称',
+    code        varchar(100) comment '图标类型编码',
+    description varchar(200) comment '图标类型描述',
+    active      boolean comment '激活状态' default true,
+    create_time timestamp              default current_timestamp comment '创建时间',
+    update_time timestamp              default current_timestamp comment '更新时间',
+    primary key (id)
+) comment 'ICON图标用途表'
+    default charset utf8;
+
+-- 图标与图标用途关系表
+drop table if exists icon_usage_icon_relation;
+create table icon_usage_icon_relation (
+    icon_id       int comment '图标表唯一标志,唯一主键',
+    icon_usage_id int comment '图标用途表唯一标志,唯一主键'
+) comment '图标与图标用途关系表'
     default charset utf8;

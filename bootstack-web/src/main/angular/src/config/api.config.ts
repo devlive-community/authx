@@ -53,8 +53,9 @@ export class ApiConfig {
     public static readonly API_SYSTEM_LOG_TYPE = ApiConfig.API_VERSION_V1 + 'system/log/type';
 
     /**
-     * 图标类型管理API请求接口地址
+     * 图标/类型管理API请求接口地址
      */
+    public static readonly API_ICON = ApiConfig.API_VERSION_V1 + 'icon';
     public static readonly API_ICON_TYPE = ApiConfig.API_VERSION_V1 + 'icon/type';
 
     /**

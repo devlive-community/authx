@@ -29,10 +29,10 @@ import {ResponseUtils} from "../../app/shared/utils/response.util";
 import {SystemMenuTypeParam} from "../../app/shared/param/system/menu/system.menu.type.param";
 
 /**
- * Icon图标类型后台查询服务
+ * Icon图标后台查询服务
  */
 @Injectable()
-export class IconTypeService implements BaseService {
+export class IconService implements BaseService {
 
     constructor(
         private http: Http,
@@ -51,18 +51,18 @@ export class IconTypeService implements BaseService {
         params.append('page', page.number.toString());
         params.append('size', page.size.toString());
         options.params = params;
-        return this.http.get(ApiConfig.API_ICON_TYPE, options).map(ResponseUtils.extractData);
+        return this.http.get(ApiConfig.API_ICON, options).map(ResponseUtils.extractData);
     }
 
     register(param: SystemMenuTypeParam): Observable<CommonResponseModel> {
         const options = HttpUtils.getDefaultRequestOptionsByTokenAndJSON();
-        return this.http.post(ApiConfig.API_ICON_TYPE, JSON.stringify(param), options)
+        return this.http.post(ApiConfig.API_ICON, JSON.stringify(param), options)
             .map(ResponseUtils.extractData);
     }
 
     update(param: SystemMenuTypeParam): Observable<CommonResponseModel> {
         const options = HttpUtils.getDefaultRequestOptionsByTokenAndJSON();
-        return this.http.put(ApiConfig.API_ICON_TYPE, JSON.stringify(param), options)
+        return this.http.put(ApiConfig.API_ICON, JSON.stringify(param), options)
             .map(ResponseUtils.extractData);
     }
 

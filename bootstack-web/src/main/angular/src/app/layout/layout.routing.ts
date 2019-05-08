@@ -83,7 +83,7 @@ const LAYOUT_ROUTES: Routes = [
     {
         path: 'iconManager', component: LayoutComponent, canActivate: [AuthGuard], children: [
             {path: '', redirectTo: 'index', pathMatch: 'full'},
-            {path: 'logs', loadChildren: '../pages/logs/logs.module#LogsModule'},
+            {path: 'icon', loadChildren: '../pages/icon/icon.module#IconModule'},
             {path: 'icon/type', loadChildren: '../pages/icon/type/icon.type.module#IconTypeModule'},
         ]
     },
