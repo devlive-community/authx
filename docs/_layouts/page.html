@@ -24,26 +24,16 @@
 {% include page_header.html %}
 
 <div class="header">
-    <div class="container">
+    <div class="container-fluid">
     </div>
 </div>
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-9 doc-content">
             {{ content }}
-        </div>
-        <div class="col-md-3 toc" id="toc">
-        </div>
     </div>
 </div>
 
 {% include page_footer.html %}
-
-<script>
-    $(function () {
-        $(".toc").load("toc.html");
-    });
-</script>
 </body>
 </html>
