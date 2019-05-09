@@ -5,5 +5,4 @@ markdown: redcarpet
 redcarpet:
   extensions: ["tables", "no_intra_emphasis", "fenced_code_blocks", "with_toc_data"]
 
-highlighter: pygments
 theme: jekyll-theme-cayman
