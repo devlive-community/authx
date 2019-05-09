@@ -21,7 +21,6 @@ export class IconParam {
     public name: string;
     public code: string;
     public description: string;
-    public code: string;
     public zhName: string;
     public type: number; // 图标类型id
     public usage: number; // 图标用途id
