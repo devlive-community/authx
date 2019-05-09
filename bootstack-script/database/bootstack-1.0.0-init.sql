@@ -288,3 +288,11 @@ create table icon_usage_icon_relation (
     icon_usage_id int comment '图标用途表唯一标志,唯一主键'
 ) comment '图标与图标用途关系表'
     default charset utf8;
+
+-- 菜单与图标关系表
+drop table if exists system_menu_icon_relation;
+create table system_menu_icon_relation (
+    system_menu_id int comment '菜单表唯一标志,唯一主键',
+    icon_id        int comment '图标表唯一标志,唯一主键'
+) comment '菜单与图标关系表'
+    default charset utf8;

@@ -23,11 +23,12 @@ import {TranslateService} from '@ngx-translate/core';
 import {Select2Component, Select2OptionData} from 'ng2-select2';
 import {CommonPageModel} from "../../../shared/model/common/response/page.model";
 import {CodeConfig} from "../../../../config/code.config";
-import {ModalDirective} from "ngx-bootstrap";
+import {ModalDirective, PopoverDirective} from "ngx-bootstrap";
 import {SystemMenuService} from "../../../../services/system/system.menu.service";
 import {SystemMenuParam} from "../../../shared/param/system/menu/system.menu.param";
 import {SystemSettingsMethodService} from "../../../../services/system/settings/system.settings.method.service";
 import {SystemMenuTypeService} from "../../../../services/system/system.menu.type.service";
+import {IconService} from "../../../../services/icon/icon.service";
 
 @Component({
     selector: 'bootstack-system-menu',
@@ -36,6 +37,7 @@ import {SystemMenuTypeService} from "../../../../services/system/system.menu.typ
 export class SystemMenuComponent implements OnInit {
 
     public loading: Subscription;
+    public iconLoading: Subscription;
     // menu list
     public models;
     // page model
@@ -60,7 +62,12 @@ export class SystemMenuComponent implements OnInit {
     @ViewChild('createAndUpdateModal')
     public createAndUpdateModal: ModalDirective;
 
+    @ViewChild('popIcon')
+    public popIcon: PopoverDirective;
+
     public types: any;
+    public iconModels;
+    public iconRadio;
 
     private methodType;
 
@@ -72,7 +79,8 @@ export class SystemMenuComponent implements OnInit {
                 private translate: TranslateService,
                 private systemSettingsMethodService: SystemSettingsMethodService,
                 private systemMenuTypeService: SystemMenuTypeService,
-                private systemMenuService: SystemMenuService) {
+                private systemMenuService: SystemMenuService,
+                private iconService: IconService) {
         translate.addLangs(['zh-CN', 'en']);
         translate.setDefaultLang('zh-CN');
         let broswerLang = translate.getBrowserLang();
@@ -164,6 +172,22 @@ export class SystemMenuComponent implements OnInit {
     }
 
     /**
+     * 初始化图标数据
+     * @param page 分页信息
+     */
+    initIconList(page: CommonPageModel) {
+        this.iconLoading = this.iconService.getList(page).subscribe(
+            response => {
+                if (response.code !== CodeConfig.SUCCESS) {
+                    this.toastyService.error(response.message);
+                } else {
+                    this.iconModels = response.data.content;
+                }
+            }
+        );
+    }
+
+    /**
      * generate select options
      */
     generateOptions(temps) {
@@ -245,6 +269,25 @@ export class SystemMenuComponent implements OnInit {
         this.page.type = type.id;
         this.methodType = type.id;
         this.models = this.initList(this.page, 1);
+    }
+
+    /**
+     * 启动加载图标列表
+     */
+    startIconPopover() {
+        let param = new CommonPageModel();
+        param.size = 100;
+        param.number = 1;
+        this.initIconList(param);
+    }
+
+    /**
+     * 图标修改
+     * @param data icon图标信息
+     */
+    radioChange(data: any) {
+        this.param.icon = data.code;
+        this.param.iconId = data.id;
     }
 
 }

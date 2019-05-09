@@ -19,6 +19,7 @@ package com.bootstack.core.controller.system.menu;
 
 import com.bootstack.common.pinyin.PinYinUtils;
 import com.bootstack.model.common.CommonResponseModel;
+import com.bootstack.model.icon.IconModel;
 import com.bootstack.model.page.PageModel;
 import com.bootstack.model.system.menu.SystemMenuModel;
 import com.bootstack.model.system.menu.SystemMenuTypeModel;
@@ -89,6 +90,9 @@ public class SystemMenuController {
         } else {
             systemMenuModel.setParent(param.getParent());
         }
+        IconModel icon = new IconModel();
+        icon.setId(Long.valueOf(param.getIconId()));
+        systemMenuModel.setIcon(icon);
         return CommonResponseModel.success(this.systemMenuService.insertModel(systemMenuModel));
     }
 

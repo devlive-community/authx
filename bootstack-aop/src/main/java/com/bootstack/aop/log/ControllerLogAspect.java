@@ -29,6 +29,7 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -62,8 +63,13 @@ public class ControllerLogAspect {
         // 接收到请求，记录请求内容
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
-        // TODO: 后期加入到懒缓冲中
-        UserModel user = this.userService.getModelByName(request.getUserPrincipal().getName());
+        UserModel user = null;
+        if (ObjectUtils.isEmpty(request.getUserPrincipal())) {
+            // 使用匿名用户
+        } else {
+            // TODO: 后期加入到懒缓冲中
+            user = this.userService.getModelByName(request.getUserPrincipal().getName());
+        }
         SystemLogModel log = new SystemLogModel();
         log.setUrl(request.getServletPath());
         log.setArgs(Arrays.toString(joinPoint.getArgs()));

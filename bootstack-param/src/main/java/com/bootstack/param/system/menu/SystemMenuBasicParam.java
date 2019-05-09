@@ -17,7 +17,7 @@
  */
 package com.bootstack.param.system.menu;
 
-import com.bootstack.validation.system.menu.SystemMenuRequireValidation;
+import com.bootstack.validation.icon.IconRequireValidation;
 import com.bootstack.validation.system.menu.SystemMenuTypeRequireValidation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -72,5 +72,9 @@ public class SystemMenuBasicParam {
     @NotEmpty(message = "system menu type must not null")
     @SystemMenuTypeRequireValidation
     private String type;
+
+    @NotEmpty(message = "icon id must not null")
+    @IconRequireValidation
+    private String iconId;
 
 }

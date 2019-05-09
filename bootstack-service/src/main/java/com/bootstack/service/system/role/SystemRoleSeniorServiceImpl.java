@@ -75,6 +75,9 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
             parent.setItem(item);
             if (menu.getParent() == 0) {
                 // The main menu
+                if (!ObjectUtils.isEmpty(menu.getIcon())) {
+                    parent.setIcon(menu.getIcon().getCode());
+                }
                 parent.setId(menu.getId());
                 parent.setName(menu.getName());
                 parent.setTips(menu.getTips());
@@ -95,6 +98,9 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
                 children.setId(menu.getId());
                 children.setName(menu.getName());
                 children.setTips(menu.getTips());
+                if (!ObjectUtils.isEmpty(menu.getIcon())) {
+                    children.setIcon(menu.getIcon().getCode());
+                }
                 SysteMenuTreeItemModel childrenItem = SysteMenuTreeItemModel.buildNew();
                 childrenItem.setPhrase(menu.getId());
                 children.setItem(item);
@@ -142,10 +148,16 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
             if (menu.getParent() == 0) {
                 // The main menu
                 BeanUtils.copyProperties(menu, parent);
+                if (!ObjectUtils.isEmpty(menu.getIcon())) {
+                    parent.setIcon(menu.getIcon().getCode());
+                }
                 treeMap.put(menu.getId(), parent);
             } else {
                 SystemMenuTreeModel children = new SystemMenuTreeModel();
                 BeanUtils.copyProperties(menu, children);
+                if (!ObjectUtils.isEmpty(menu.getIcon())) {
+                    children.setIcon(menu.getIcon().getCode());
+                }
                 // Sub menu
                 SystemMenuTreeModel temp = treeMap.get(menu.getParent());
                 // The parent menu of the current submenu is not buffered

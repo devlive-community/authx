@@ -23,16 +23,18 @@ import {TooltipModule} from 'ngx-bootstrap/tooltip';
 import {CustomFormsModule} from 'ng2-validation';
 import {ToastyModule} from 'ng2-toasty';
 import {BusyModule} from 'angular2-busy';
-import { ArchwizardModule } from 'ng2-archwizard';
+import {ArchwizardModule} from 'ng2-archwizard';
 import {Select2Module} from 'ng2-select2';
 import {TranslateModule} from '@ngx-translate/core';
 import {TabsModule} from 'ngx-bootstrap/tabs';
+import {PopoverModule} from 'ngx-bootstrap/popover';
 
 import {ModalModule, PaginationModule} from "ngx-bootstrap";
 import {SystemMenuComponent} from "./system.menu.component";
 import {SystemMenuService} from "../../../../services/system/system.menu.service";
 import {SystemSettingsMethodService} from "../../../../services/system/settings/system.settings.method.service";
 import {SystemMenuTypeService} from "../../../../services/system/system.menu.type.service";
+import {IconService} from "../../../../services/icon/icon.service";
 
 const SYSTEM_MENU_ROUTES: Routes = [
     {path: '', component: SystemMenuComponent}
@@ -53,6 +55,7 @@ const SYSTEM_MENU_ROUTES: Routes = [
         ToastyModule.forRoot(),
         PaginationModule.forRoot(),
         ModalModule.forRoot(),
+        PopoverModule.forRoot(),
         RouterModule.forChild(SYSTEM_MENU_ROUTES)
     ],
     exports: [],
@@ -62,7 +65,8 @@ const SYSTEM_MENU_ROUTES: Routes = [
     providers: [
         SystemMenuService,
         SystemSettingsMethodService,
-        SystemMenuTypeService
+        SystemMenuTypeService,
+        IconService
     ],
 })
 export class SystemMenuModule {

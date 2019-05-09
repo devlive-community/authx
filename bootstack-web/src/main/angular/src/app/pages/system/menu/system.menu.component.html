@@ -167,11 +167,36 @@
                                     {{ 'page.system.menu.label.title.icon' | translate}}
                                     :
                                     <label class="custom-control">
-                                        <input type="text" [(ngModel)]="param.icon" name="icon" #icon="ngModel"
+                                        <input type="text" [(ngModel)]="param.icon"
+                                               name="icon" #icon="ngModel"  #popIcon="bs-popover"
                                                class="form-control" required
-                                            placeholder="{{ 'page.system.menu.input.placeholder.icon' | translate}}"/>
+                                            placeholder="{{ 'page.system.menu.input.placeholder.icon' | translate}}" [popover]="popTemplate"
+                                               triggers="click" placement="bottom"
+                                            (click)="startIconPopover()"/>
                                         <i class="form-group__bar"></i>
+                                        <i class="{{param.icon}}"></i>
                                     </label>
+                                    <template #popTemplate>
+                                        <div [ngBusy]="iconLoading"></div>
+                                        <div class="row">
+                                            <div class="col-sm-4" *ngFor="let icon of iconModels">
+                                                <label class="custom-control custom-radio">
+                                                    <input
+                                                        type="radio"
+                                                        name="iconRadio"  value="{{icon.id}}"
+                                                        class="custom-control-input" (click)="radioChange(icon)">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span>
+                                                        <i class="{{icon.code}}"></i>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!--<div align="right" style="margin-top: 15px;">-->
+                                        <!--<button type="button"-->
+                                        <!--class="btn btn-sm btn-outline-info" (click)="allot()">{{ 'common.determine' | translate }}</button>-->
+                                        <!--</div>-->
+                                    </template>
                                 </div>
                                 <div class="form-group form-group--centered">
                                     {{ 'page.system.menu.label.title.level' | translate}}
@@ -268,3 +293,4 @@
     </div>
 </div>
 <!-- create and update modal end -->
+<!-- 图标弹出框结束 -->

@@ -18,6 +18,7 @@
 package com.bootstack.model.system.menu;
 
 import com.bootstack.common.support.DateSuooprt;
+import com.bootstack.model.icon.IconModel;
 import com.bootstack.model.system.method.SystemMethodModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -63,9 +64,6 @@ public class SystemMenuModel {
     @Column(name = "url")
     private String url;
 
-    @Column(name = "icon")
-    private String icon;
-
     @Column(name = "sorted")
     private Integer sorted;
 
@@ -108,6 +106,12 @@ public class SystemMenuModel {
             joinColumns = @JoinColumn(name = "system_menu_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "system_method_id", referencedColumnName = "id"))
     private List<SystemMethodModel> methods;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinTable(name = "system_menu_icon_relation",
+            joinColumns = @JoinColumn(name = "system_menu_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "icon_id", referencedColumnName = "id"))
+    private IconModel icon;
 
     public SystemMenuModel(Long id) {
         this.id = id;
