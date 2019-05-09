@@ -17,9 +17,12 @@ package com.bootstack.repository.system.interfaces; /**
  */
 
 import com.bootstack.model.system.interfaces.SystemInterfaceModel;
+import com.bootstack.model.system.method.SystemMethodModel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
+
+import java.util.List;
 
 /**
  * <p> SystemInterfaceRepository </p>
@@ -40,11 +43,61 @@ public interface SystemInterfaceRepository extends PagingAndSortingRepository<Sy
     Page<SystemInterfaceModel> findAllByWhiteTrueAndActiveTrue(Pageable pageable);
 
     /**
+     * get all whilte list
+     *
+     * @return all white list
+     */
+    Iterable<SystemInterfaceModel> findAllByWhiteIsTrueAndActiveTrueAndSystemTrue();
+
+    /**
      * find by path like ?
      *
      * @param path path
      * @return info
      */
     SystemInterfaceModel findByPathLike(String path);
+
+    /**
+     * get all model by path like ?
+     *
+     * @param path path
+     * @return all model for path like ?
+     */
+    Iterable<SystemInterfaceModel> findAllByPathLike(String path);
+
+    /**
+     * find by path like ? and system default is false
+     *
+     * @param path path
+     * @return info
+     */
+    SystemInterfaceModel findByPathLikeAndSystemFalse(String path);
+
+    /**
+     * find by path like ? and method in method list
+     *
+     * @param path    path
+     * @param methods method list
+     * @return info
+     */
+    SystemInterfaceModel findByPathLikeAndMethodsInAndSystemFalse(String path, List<SystemMethodModel> methods);
+
+    /**
+     * find by path and method in method list
+     *
+     * @param path    path
+     * @param methods method list
+     * @return info
+     */
+    SystemInterfaceModel findByPathAndSystemFalseAndMethodsIn(String path, List<SystemMethodModel> methods);
+
+    /**
+     * 根据请求路径和请求方式查询数据
+     *
+     * @param path    请求路径
+     * @param methods 请求方式列表
+     * @return 当前查询条件返回数据
+     */
+    SystemInterfaceModel findByPathAndSystemTrueAndWhiteTrueAndActiveTrueAndMethodsIn(String path, List<SystemMethodModel> methods);
 
 }

@@ -14,7 +14,7 @@ bootstack is a open source privilege management platform
 |Spring Security|-|
 |Spring Security Oauth2|-|
 |Spring Data JPA|-|
-|Angular|7.1.x|
+|Angular|4.x.x|
 
 ### Contributors(In no particular order)
 
@@ -26,7 +26,7 @@ bootstack is a open source privilege management platform
 
 ---
 
-- [Internal](https://git.edurt.com/SpringStack/bootstack.git)
+- [Internal](https://gitqub.com/SpringStack/bootstack.git)
 - [GitHub](https://github.com/springstack/bootstack.git)
 - [Gitee](https://gitee.com/Spring-Stack/bootstack.git)
 
@@ -49,4 +49,5 @@ bootstack is a open source privilege management platform
 |Name|Value|Remarks|
 |:---:|---|---|
 |QQ Group|324412218|BootStack|
-|WeChat|2663|BootStack(Face-to-face additive group)|
+
+

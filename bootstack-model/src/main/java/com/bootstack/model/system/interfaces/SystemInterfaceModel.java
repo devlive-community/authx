@@ -18,6 +18,8 @@
 package com.bootstack.model.system.interfaces;
 
 import com.bootstack.common.support.DateSuooprt;
+import com.bootstack.model.system.menu.SystemMenuModel;
+import com.bootstack.model.system.method.SystemMethodModel;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,6 +32,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p> SystemInterfaceModel </p>
@@ -69,11 +72,14 @@ public class SystemInterfaceModel {
     @Column(name = "white")
     private Boolean white; // is white list
 
+    @Column(name = "system")
+    private Boolean system; // system default
+
     @Column(name = "path")
     private String path;
 
-    @Column(name = "method")
-    private String method; // multiple method split by ,
+//    @Column(name = "method")
+//    private String method; // multiple method split by ,
 
     @Column(name = "create_time")
     @CreatedDate
@@ -84,5 +90,11 @@ public class SystemInterfaceModel {
     @LastModifiedDate
     @DateTimeFormat(pattern = DateSuooprt.DATE_FORMAT_YYYY_MM_DD_HH_MM_SS)
     private Date updateTime;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "system_interface_method_relation",
+            joinColumns = @JoinColumn(name = "system_interface_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "system_method_id", referencedColumnName = "id"))
+    private List<SystemMethodModel> methods;
 
 }

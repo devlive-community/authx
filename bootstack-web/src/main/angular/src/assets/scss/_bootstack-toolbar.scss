@@ -1,0 +1,99 @@
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+// 工具条样式
+.toolbar {
+  display: flex;
+  flex-direction: row;
+  height: 4.5rem;
+  align-items: center;
+  padding: 0.05rem 2rem 0;
+  position: relative;
+  margin-bottom: $grid-gutter-width-base;
+
+  &:not(.toolbar--inner) {
+    @include card();
+  }
+
+  .actions {
+    margin: 0.05rem -0.8rem 0 auto;
+  }
+}
+
+.toolbar--inner {
+  border-bottom: 1px solid #f6f6f6;
+}
+
+.toolbar__nav {
+  white-space: nowrap;
+  overflow-x: auto;
+  margin-right: 1rem;
+
+  & > a {
+    text-transform: uppercase;
+    font-weight: $font-weight-bold;
+    color: lighten($body-color, 25%);
+    display: inline-block;
+    @include transition(color 300ms);
+
+    & + a {
+      padding-left: 1rem;
+    }
+
+    &.active,
+    &:hover {
+      color: $body-color;
+    }
+  }
+}
+
+.toolbar__search {
+  position: absolute;
+  left: 0;
+  top: 0;
+  @include size(100%, 100%);
+  background-color: $white;
+  border-radius: $border-radius;
+  padding-left: 3rem;
+  display: none;
+
+  input[type=text] {
+    @include size(100%, 100%);
+    border: 0;
+    padding: 0 1.6rem;
+    font-size: 1.2rem;
+  }
+}
+
+.toolbar__search__close {
+  @include transition(color 300ms);
+  cursor: pointer;
+  position: absolute;
+  top: 1.5rem;
+  left: 1.8rem;
+  font-size: 1.5rem;
+  color: lighten($body-color, 15%);
+
+  &:hover {
+    color: $body-color;
+  }
+}
+
+.toolbar__label {
+  margin: 0;
+  font-size: 1.1rem;
+}

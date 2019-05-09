@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public PageModel findAllByPage(Pageable pageable) {
+    public PageModel getAllByPage(Pageable pageable) {
         Page<UserModel> pageModel = this.userRepository.findAll(pageable);
         return new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements());
     }
@@ -70,6 +70,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserModel getModelByName(String name) {
         return this.userRepository.findByName(name);
+    }
+
+    @Override
+    public UserModel getDistinctById(Long id) {
+        return this.userRepository.findDistinctById(id);
     }
 
 }

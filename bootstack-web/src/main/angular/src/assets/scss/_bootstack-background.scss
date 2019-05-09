@@ -1,0 +1,81 @@
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+// 背景样式
+.bg-none {
+  background: none !important;
+}
+
+.bg-eee {
+  background: #eee !important;
+}
+
+.bg-faded {
+  background: $bg-faded !important;
+}
+
+.bg-facebook,
+.bg-hv-facebook:hover {
+  background-color: $brand-facebook !important;
+  color: #fff !important;
+}
+
+.bg-twitter,
+.bg-hv-twitter:hover {
+  background-color: $brand-twitter !important;
+  color: #fff !important;
+}
+
+.bg-google-plus,
+.bg-hv-google-plus:hover {
+  background-color: $brand-google-plus !important;
+  color: #fff !important;
+}
+
+.bg-youtube,
+.bg-hv-youtube:hover {
+  background-color: $brand-youtube !important;
+  color: #fff !important;
+}
+
+.bg-linkedin,
+.bg-hv-linkedin:hover {
+  background-color: $brand-linkedin !important;
+  color: #fff !important;
+}
+
+.bg-flickr,
+.bg-hv-flickr:hover {
+  background-color: $brand-flickr !important;
+  color: #fff !important;
+}
+
+.bg-tumblr,
+.bg-hv-tumblr:hover {
+  background-color: $brand-tumblr !important;
+  color: #fff !important;
+}
+
+.bg-dribbble,
+.bg-hv-dribbble:hover {
+  background-color: $brand-dribbble !important;
+  color: #fff !important;
+}
+
+@each $color, $value in $colors {
+  @include bg-variant('.bg-#{$color}', $value);
+}

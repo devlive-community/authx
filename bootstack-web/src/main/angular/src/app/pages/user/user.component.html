@@ -1,0 +1,191 @@
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!-- 提示信息 -->
+<ng2-toasty [position]="'top-center'"></ng2-toasty>
+<section class="content content--row">
+    <div class="row">
+        <div class="col-md-12">
+            <div [ngBusy]="loading"></div>
+            <!-- 数据列表开始 -->
+            <div class="card">
+                <div class="card-title">
+                    <a class="actions__item btn btn-primary btn-sm"
+                       tooltip="{{ 'common.button.create.tip' | translate }}"
+                       placement="bottom" (click)="startShowCreateAndUpdateModal()">
+                        <i class="zmdi zmdi-plus"></i>
+                        {{ 'common.button.create.title' | translate }}
+                    </a>
+                </div>
+                <div class="card-body">
+                    <table class="table mb-0 mr-center">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{ "common.name" | translate }}</th>
+                            <th>{{ "common.email" | translate }}</th>
+                            <th>{{ "common.activeStatus" | translate }}</th>
+                            <th>{{ "common.permission" | translate }}</th>
+                            <th>{{ "common.createTime" | translate }}</th>
+                            <th>{{ "common.updateTime" | translate }}</th>
+                            <th>{{ "common.action.name" | translate }}</th>
+                        </tr>
+                        </thead>
+                        <tbody *ngFor="let model of models">
+                        <tr>
+                            <th scope="row">{{model.id}}</th>
+                            <td>{{model.name}}</td>
+                            <td>{{model.email}}</td>
+                            <td class="center">
+                                <a [tooltip]="model.active ? 'current status is actived' : 'current status is not actived'">
+                                    <i [ngClass]="model.active ? 'zmdi zmdi-stop' : 'zmdi zmdi-play'"></i>
+                                </a>
+                            </td>
+                            <td><span class="badge badge-info" *ngFor="let k of model.roles" style="margin-left: 3px;"
+                                      [tooltip]="k.description">{{k.name}}</span>
+                            </td>
+                            <td>{{model.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                            <td>{{model.updateTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                            <td>
+                                <a (click)="startShowCreateAndUpdateModal(model)">
+                                    <i class="zmdi zmdi-edit"
+                                       tooltip="{{ 'common.action.editItem' | translate }}"></i></a>
+                                <a (click)="startShowAssignmentRolesModal(model)"><i class="zmdi zmdi-assignment-check"
+                                                                                     tooltip="{{ 'common.action.assignmentRole' | translate }}"></i></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- 数据列表结束 -->
+            <!-- 分页信息开始 -->
+            <div class="mr-center">
+                <pagination *ngIf="models?.length && page" [(ngModel)]="currentPage" totalItems="{{page.totalElements}}"
+                            maxSize="{{page.size}}"
+                            (pageChanged)="pageChanged($event)" [boundaryLinks]="true">
+                </pagination>
+            </div>
+            <!-- 分页信息结束 -->
+        </div>
+    </div>
+</section>
+<!-- 创建/更新弹出框开始 -->
+<div bsModal #createAndUpdateModal="bs-modal" class="modal fade" [config]="{ ignoreBackdropClick: true }">
+    <div class="modal-dialog" style="width: 100%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title pull-left">
+                    {{ 'common.modal.title' | translate }}
+                </h5>
+            </div>
+            <form #createAndUpdateForm="ngForm" (ngSubmit)="createAndUpdate()">
+                <div class="modal-body">
+                    <div class="form-group form-group--centered">
+                        {{ 'page.user.register.label.title.username' | translate}}:
+                        <label class="custom-control">
+                            <input type="text" [(ngModel)]="param.name" name="name" #name="ngModel"
+                                   class="form-control" required [ngClass]="email.errors?.email ? 'is-invalid' : ''"
+                                   popover="{{ 'page.user.register.input.validation.username.length' | translate}}"
+                                   triggers="mouseenter:mouseleave"
+                                   placeholder="{{ 'page.user.register.input.placeholder.username' | translate}}"/>
+                            <i class="form-group__bar"></i>
+                        </label>
+                    </div>
+                    <div class="form-group form-group--centered">
+                        {{ 'page.user.register.label.title.email' | translate}}:
+                        <label class="custom-control">
+                            <input type="email" [(ngModel)]="param.email" name="email" #email="ngModel" email
+                                   class="form-control" required [ngClass]="email.errors?.email ? 'is-invalid' : ''"
+                                   popover="{{ 'page.user.register.input.validation.email.incorrect' | translate}}"
+                                   triggers="mouseenter:mouseleave"
+                                   placeholder="{{ 'page.user.register.input.placeholder.email' | translate}}"/>
+                            <i class="form-group__bar"></i>
+                        </label>
+                    </div>
+                    <div class="form-group form-group--centered">
+                        {{ 'page.user.register.label.title.password' | translate}}:
+                        <label class="custom-control">
+                            <input type="password" [(ngModel)]="param.password" name="password" #password="ngModel"
+                                   [rangeLength]="[8, 20]" class="form-control" required
+                                   [ngClass]="email.errors?.email ? 'is-invalid' : ''"
+                                   placeholder="{{ 'page.user.register.input.placeholder.password' | translate}}"/>
+                            <i class="form-group__bar"></i>
+                        </label>
+                        <p class="text-danger"
+                           *ngIf="password.errors?.rangeLength">{{ 'page.user.register.input.validation.password.length' | translate}}</p>
+                    </div>
+                    <div class="form-group form-group--centered">
+                        {{ 'page.user.register.label.title.repassword' | translate}}:
+                        <label class="custom-control">
+                            <input type="password" [(ngModel)]="param.repassword" name="repassword"
+                                   #repassword="ngModel"
+                                   class="form-control" required [equalTo]="password"
+                                   [ngClass]="email.errors?.email ? 'is-invalid' : ''"
+                                   placeholder="{{ 'page.user.register.input.placeholder.repassword' | translate}}"/>
+                            <i class="form-group__bar"></i>
+                        </label>
+                        <p class="text-danger"
+                           *ngIf="repassword.errors?.equalTo">{{ 'page.user.register.input.validation.password.match' | translate}}</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link"
+                            (click)="createAndUpdateModal.hide()">{{ "common.close" | translate }}</button>
+                    <button type="submit" class="btn btn-warning"
+                            [disabled]="!createAndUpdateForm.form.valid">{{ "common.save" | translate }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 创建/更新弹出框弹出框结束 -->
+<!-- 分配权限弹出框开始 -->
+<div bsModal #assignmentRoleModal="bs-modal" class="modal fade" [config]="{ ignoreBackdropClick: true }">
+    <div class="modal-dialog" style="width: 100%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title pull-left">
+                    {{ 'common.modal.titleUser' | translate }}
+                </h5>
+            </div>
+            <form #assignmentRolesForm="ngForm" (ngSubmit)="assignmentRoles()">
+                <div class="modal-body">
+                    <div [ngBusy]="roleLoading"></div>
+                    <!--<label class="custom-control custom-checkbox" *ngFor="let role of roleModels">-->
+                    <!--<input type="checkbox" class="custom-control-input" [checked]="isCheckRole(role.id)"-->
+                    <!--(click)="clickItem($event,role.id)">-->
+                    <!--<span class="custom-control-indicator"></span>-->
+                    <!--<span class="custom-control-description">{{role.name}}</span>-->
+                    <!--</label>-->
+                    <select2 #methodRoles [data]="methodRoleOptions" [options]="multipleOptions"
+                             [value]="roleAssignmentValues"
+                             (valueChanged)="methodRoleChanged($event)"></select2>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link"
+                            (click)="assignmentRoleModal.hide()">{{ "common.close" | translate }}</button>
+                    <button type="submit" class="btn btn-warning"
+                            [disabled]="!assignmentRolesForm.form.valid"> {{ 'common.button.create.allocation' | translate }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 分配权限弹出框结束 -->

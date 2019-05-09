@@ -37,7 +37,7 @@ public class DateUtils {
     /**
      * format date to yyyy-mm-dd hh:mm:ss
      *
-     * @return formart date value
+     * @return formart date id
      */
     public static String formatYmdhms() {
         format.applyPattern(DateSuooprt.DATE_FORMAT_YYYY_MM_DD_HH_MM_SS);

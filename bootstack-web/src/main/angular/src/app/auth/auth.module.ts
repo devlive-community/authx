@@ -15,29 +15,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {NgModule} from '@angular/core';
-import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
-import {TooltipModule} from 'ngx-bootstrap/tooltip';
+import { NgModule } from '@angular/core';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
-import {SharedModule} from '../shared/shared.module';
+import { SharedModule } from '../shared/shared.module';
 
-import {AuthGuard} from './auth.guard';
+import { AuthGuard } from './auth.guard';
 
-import {UserService} from '../../services/user.service';
+import { UserService } from '../../services/user/user.service';
 
 @NgModule({
-  imports: [
-    SharedModule,
-    TooltipModule.forRoot(),
-    BsDropdownModule.forRoot()
-  ],
-  declarations: [],
-  providers: [
-    AuthGuard,
-    UserService
-  ],
-  exports: []
+    imports: [
+        SharedModule,
+        TooltipModule.forRoot(),
+        BsDropdownModule.forRoot()
+    ],
+    declarations: [
+    ],
+    providers: [
+        AuthGuard,
+        UserService
+    ],
+    exports: [
+    ]
 })
 
-export class AuthModule {
-}
+export class AuthModule { }

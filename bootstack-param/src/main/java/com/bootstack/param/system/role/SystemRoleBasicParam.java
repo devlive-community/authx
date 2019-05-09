@@ -17,6 +17,7 @@
  */
 package com.bootstack.param.system.role;
 
+import com.bootstack.validation.system.role.SystemRoleNameValidation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,6 +39,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class SystemRoleBasicParam {
 
     @NotEmpty(message = "system role name must not null")
+    @SystemRoleNameValidation
     private String name;
 
     @NotEmpty(message = "system role description must not null")

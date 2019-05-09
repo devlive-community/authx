@@ -1,3 +1,9 @@
+# create database user and privilege
+create user bootstack identified by 'BooT@23StacK';
+grant all privileges on bootstack.* to 'bootstack'@'%' identified by 'BooT@23StacK' with grant option;
+flush privileges;
+
+# create database
 create database bootstack default charset utf8;
 
 # user table
@@ -25,24 +31,31 @@ create table system_interface (
     name        varchar(100) comment 'interface name',
     code        varchar(100) comment 'interface code',
     description varchar(200) comment 'interface description',
-    white       boolean comment 'white list'    default true,
+    white       boolean comment 'white list'     default true,
     path        varchar(200) comment 'interface path',
     method      varchar(200) comment 'interface method multiple method split by ,',
-    active      boolean comment 'active status' default true,
-    create_time timestamp                       default current_timestamp comment 'create time',
-    update_time timestamp                       default current_timestamp comment 'update time',
+    active      boolean comment 'active status'  default true,
+    system      boolean comment 'system default' default false,
+    create_time timestamp                        default current_timestamp comment 'create time',
+    update_time timestamp                        default current_timestamp comment 'update time',
     primary key (id)
 ) comment 'system interface table'
     default charset utf8;
 
-insert into system_interface(name, code, description, white, path, method, active) value ('user interface', 'ui',
-                                                                                          'user interface', true,
-                                                                                          '/api/v1/user',
-                                                                                          'get,post,put', true);
-insert into system_interface(name, code, description, white, path, method, active) value ('user oauth token', 'uot',
-                                                                                          'user oauth token', true,
-                                                                                          '/oauth/token',
-                                                                                          'get,post,put', true);
+insert into system_interface(name, code, description, white, path, method, active, system) value ('user interface',
+                                                                                                  'ui',
+                                                                                                  'user interface',
+                                                                                                  true,
+                                                                                                  '/api/v1/user',
+                                                                                                  'get,post,put', true,
+                                                                                                  true);
+insert into system_interface(name, code, description, white, path, method, active, system) value ('user oauth token',
+                                                                                                  'uot',
+                                                                                                  'user oauth token',
+                                                                                                  true,
+                                                                                                  '/oauth/token',
+                                                                                                  'get,post,put', true,
+                                                                                                  true);
 
 # system menu type table
 drop table if exists system_menu_type;
@@ -146,13 +159,16 @@ insert into system_log_type(name, code, description) VALUE ('User Login Log', 'U
 # system log table
 drop table if exists system_log;
 create table system_log (
-    id          int auto_increment,
-    title       varchar(100) comment 'system log title',
-    url         varchar(200) comment 'system log url',
-    method      varchar(100) comment 'system log method',
-    active      boolean comment 'active status' default true,
-    create_time timestamp                       default current_timestamp comment 'create time',
-    update_time timestamp                       default current_timestamp comment 'update time',
+    id           int auto_increment,
+    remote_ip    varchar(100) comment '访问客户端地址',
+    url          varchar(200) comment '访问地址',
+    method       varchar(100) comment '请求方式',
+    class        varchar(100) comment '访问的程序中的哪个类',
+    class_method varchar(100) comment '访问的程序中的哪个类的哪个方法',
+    args         text comment '请求参数',
+    active       boolean comment 'active status' default true,
+    create_time  timestamp                       default current_timestamp comment 'create time',
+    update_time  timestamp                       default current_timestamp comment 'update time',
     primary key (id)
 ) comment 'system log table'
     default charset utf8;
@@ -173,3 +189,110 @@ create table system_role_menu_relation (
 ) comment 'system role and system menu relation table'
     default charset utf8;
 
+-- system method table
+drop table if exists system_method;
+create table system_method (
+    id          int auto_increment,
+    name        varchar(100) comment 'method name',
+    code        varchar(100) comment 'method code',
+    description varchar(200) comment 'method description',
+    method      varchar(200) comment 'interface method multiple method split by ,',
+    active      boolean comment 'active status'  default true,
+    system      boolean comment 'system default' default false,
+    create_time timestamp                        default current_timestamp comment 'create time',
+    update_time timestamp                        default current_timestamp comment 'update time',
+    primary key (id)
+) comment 'system method table'
+    default charset utf8;
+
+-- system interface and system method relation table
+drop table if exists system_interface_method_relation;
+create table system_interface_method_relation (
+    system_interface_id int,
+    system_method_id    int
+) comment 'system interface and system method relation table'
+    default charset utf8;
+
+-- system menu and system method relation table
+drop table if exists system_menu_method_relation;
+create table system_menu_method_relation (
+    system_menu_id   int,
+    system_method_id int
+) comment 'system menu and system method relation table'
+    default charset utf8;
+
+-- 系统日志与用户关系表
+drop table if exists system_log_users_relation;
+create table system_log_users_relation (
+    system_log_id int comment '系统日志表唯一标志,唯一主键',
+    users_id      int comment '用户表唯一标志,唯一主键'
+) comment '系统日志与用户关系表'
+    default charset utf8;
+
+# ICON图标类型表
+drop table if exists icon_type;
+create table icon_type (
+    id          int auto_increment,
+    name        varchar(100) comment '图标类型名称',
+    code        varchar(100) comment '图标类型编码',
+    description varchar(200) comment '图标类型描述',
+    active      boolean comment '激活状态' default true,
+    create_time timestamp              default current_timestamp comment '创建时间',
+    update_time timestamp              default current_timestamp comment '更新时间',
+    primary key (id)
+) comment 'ICON图标类型表'
+    default charset utf8;
+
+# ICON图标表
+drop table if exists icon;
+create table icon (
+    id          int auto_increment,
+    name        varchar(100) comment '图标名称',
+    code        varchar(100) comment '图标编码',
+    zh_name     varchar(100) comment '图标中文名',
+    icon        varchar(100) comment '图标',
+    description varchar(200) comment '图标描述',
+    active      boolean comment '激活状态' default true,
+    create_time timestamp              default current_timestamp comment '创建时间',
+    update_time timestamp              default current_timestamp comment '更新时间',
+    primary key (id)
+) comment 'ICON图标表'
+    default charset utf8;
+
+-- 图标与图标类型关系表
+drop table if exists icon_type_icon_relation;
+create table icon_type_icon_relation (
+    icon_id      int comment '图标表唯一标志,唯一主键',
+    icon_type_id int comment '图标类型表唯一标志,唯一主键'
+) comment '图标与图标类型关系表'
+    default charset utf8;
+
+# ICON图标用途表
+drop table if exists icon_usage;
+create table icon_usage (
+    id          int auto_increment,
+    name        varchar(100) comment '图标类型名称',
+    code        varchar(100) comment '图标类型编码',
+    description varchar(200) comment '图标类型描述',
+    active      boolean comment '激活状态' default true,
+    create_time timestamp              default current_timestamp comment '创建时间',
+    update_time timestamp              default current_timestamp comment '更新时间',
+    primary key (id)
+) comment 'ICON图标用途表'
+    default charset utf8;
+
+-- 图标与图标用途关系表
+drop table if exists icon_usage_icon_relation;
+create table icon_usage_icon_relation (
+    icon_id       int comment '图标表唯一标志,唯一主键',
+    icon_usage_id int comment '图标用途表唯一标志,唯一主键'
+) comment '图标与图标用途关系表'
+    default charset utf8;
+
+-- 菜单与图标关系表
+drop table if exists system_menu_icon_relation;
+create table system_menu_icon_relation (
+    system_menu_id int comment '菜单表唯一标志,唯一主键',
+    icon_id        int comment '图标表唯一标志,唯一主键'
+) comment '菜单与图标关系表'
+    default charset utf8;

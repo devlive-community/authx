@@ -27,4 +27,5 @@ import com.bootstack.service.BaseService;
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 public interface SystemMenuTypeService extends BaseService {
+
 }

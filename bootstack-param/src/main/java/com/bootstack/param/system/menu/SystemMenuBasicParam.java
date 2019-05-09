@@ -17,6 +17,8 @@
  */
 package com.bootstack.param.system.menu;
 
+import com.bootstack.validation.icon.IconRequireValidation;
+import com.bootstack.validation.system.menu.SystemMenuTypeRequireValidation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +26,7 @@ import lombok.ToString;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Min;
+import java.util.List;
 
 /**
  * <p> SystemRoleBasicParam </p>
@@ -62,8 +65,16 @@ public class SystemMenuBasicParam {
     private Long parent; // TODO: not set
 
     @NotEmpty(message = "system menu method must not null")
-    private String method; // get, put, delete, post, and other
+    private List<String> method; // get, put, delete, post, and other
 
     private String description;
+
+    @NotEmpty(message = "system menu type must not null")
+    @SystemMenuTypeRequireValidation
+    private String type;
+
+    @NotEmpty(message = "icon id must not null")
+    @IconRequireValidation
+    private String iconId;
 
 }

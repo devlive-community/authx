@@ -17,9 +17,61 @@
  */
 export class ApiConfig {
 
-  public static AUTHORIZATION_API = '/oauth/token';
+    public static AUTHORIZATION_API = '/oauth/token';
 
-  private static V1_API_ROOT = '/api/v1/';
-  private static V1_API_ROOT_PUBLIC = ApiConfig.V1_API_ROOT + 'public';
+    private static API_VERSION_V1 = '/api/v1/';
+
+    /**
+     * user api interface
+     */
+    public static readonly API_USER = ApiConfig.API_VERSION_V1 + 'user';
+    public static readonly API_USER_REGISTER = ApiConfig.API_VERSION_V1 + 'user/register';
+    public static readonly API_USER_INFO = ApiConfig.API_VERSION_V1 + 'user/info/';
+    public static readonly API_USER_ROLE = ApiConfig.API_VERSION_V1 + 'user/role';
+
+    /**
+     * system role interface
+     */
+    public static readonly API_SYSTEM_ROLE = ApiConfig.API_VERSION_V1 + 'system/role';
+    public static readonly API_SYSTEM_ROLE_TREE_LIST = ApiConfig.API_VERSION_V1 + 'system/role/menu/tree';
+    public static readonly API_SYSTEM_ROLE_TREE = ApiConfig.API_VERSION_V1 + 'system/role/menu';
+
+    /**
+     * system menu type interface
+     */
+    public static readonly API_SYSTEM_MENU_TYPE = ApiConfig.API_VERSION_V1 + 'system/menu/type';
+
+    /**
+     * 日志管理API请求接口地址
+     */
+    public static readonly API_SYSTEM_LOG = ApiConfig.API_VERSION_V1 + 'system/log';
+    public static readonly API_SYSTEM_LOG_DETAILS = ApiConfig.API_VERSION_V1 + 'system/log/details';
+
+    /**
+     * 日志类型管理API请求接口地址
+     */
+    public static readonly API_SYSTEM_LOG_TYPE = ApiConfig.API_VERSION_V1 + 'system/log/type';
+
+    /**
+     * 图标/类型管理API请求接口地址
+     */
+    public static readonly API_ICON = ApiConfig.API_VERSION_V1 + 'icon';
+    public static readonly API_ICON_TYPE = ApiConfig.API_VERSION_V1 + 'icon/type';
+    public static readonly API_ICON_USAGE = ApiConfig.API_VERSION_V1 + 'icon/usage';
+
+    /**
+     * system menu interface
+     */
+    public static readonly API_SYSTEM_MENU = ApiConfig.API_VERSION_V1 + 'system/menu';
+
+    /**
+     * system settings interface
+     */
+    public static readonly API_SYSTEM_SETTINGS_INTERFACE = ApiConfig.API_VERSION_V1 + 'system/interface';
+
+    /**
+     * system settings method
+     */
+    public static readonly API_SYSTEM_SETTINGS_METHOD = ApiConfig.API_VERSION_V1 + 'system/method';
 
 }

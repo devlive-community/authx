@@ -16,7 +16,11 @@ package com.bootstack.service.system.menu; /**
  * limitations under the License.
  */
 
+import com.bootstack.model.page.PageModel;
+import com.bootstack.model.system.menu.SystemMenuModel;
+import com.bootstack.model.system.menu.SystemMenuTypeModel;
 import com.bootstack.service.BaseService;
+import org.springframework.data.domain.Pageable;
 
 /**
  * <p> SystemMenuService </p>
@@ -27,4 +31,33 @@ import com.bootstack.service.BaseService;
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 public interface SystemMenuService extends BaseService {
+
+    /**
+     * get all model by parent
+     *
+     * @param parent parent id
+     * @return all model from parent
+     */
+    PageModel<SystemMenuModel> getAllByParent(Long parent, Pageable pageable);
+
+    /**
+     * 根据菜单父节点,菜单类型查询所有菜单数据并进行分页
+     *
+     * @param parent   菜单父节点
+     * @param type     菜单类型
+     * @param pageable 分页信息
+     * @return 返回的数据
+     */
+    PageModel<SystemMenuModel> getAllByParentAndType(Long parent, SystemMenuTypeModel type, Pageable pageable);
+
+    /**
+     * find model by type
+     *
+     * @param type type info
+     * @return model from type
+     */
+    Iterable<SystemMenuModel> getByType(SystemMenuTypeModel type);
+
+    PageModel<SystemMenuModel> getByPageAndType(Long type, Pageable pageable);
+
 }

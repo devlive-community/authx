@@ -17,10 +17,7 @@
  */
 package com.bootstack.model.page;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 
 import java.util.List;
 
@@ -58,6 +55,22 @@ public class PageModel<T> extends PageImpl<T> implements Page<T> {
     @Override
     public int getNumber() {
         return super.getNumber() + 1;
+    }
+
+    public static Pageable getPageable(Integer page, Integer size) {
+        return PageModel.request(new PageRequest(page, size));
+    }
+
+    /**
+     * get pageable info from page info and sort
+     *
+     * @param page page number
+     * @param size page size
+     * @param sort data sort
+     * @return pageable info
+     */
+    public static Pageable getPageableAndSort(Integer page, Integer size, Sort sort) {
+        return PageModel.request(new PageRequest(page, size, sort));
     }
 
 }

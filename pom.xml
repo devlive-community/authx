@@ -5,7 +5,7 @@
     <groupId>com.bootstack</groupId>
     <artifactId>incubator-bootstack</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0</version>
+    <version>1.0.3</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -25,7 +25,48 @@
         <module>bootstack-service</module>
         <module>bootstack-param</module>
         <module>bootstack-validation</module>
+        <module>bootstack-aop</module>
+        <module>docs</module>
     </modules>
+
+    <!-- url -->
+    <url>http://www.bootstack.com</url>
+
+    <!-- scm -->
+    <scm>
+        <url>https://gitqub.com/SpringStack/bootstack.git</url>
+    </scm>
+
+    <!-- licenses -->
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <!-- developer -->
+    <developers>
+        <developer>
+            <name>qianmoQ</name>
+            <roles>
+                <role>owner</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <!-- organization -->
+    <organization>
+        <name>Apache Software Foundation</name>
+        <url>http://www.apache.org</url>
+    </organization>
+
+    <!-- issueManagement -->
+    <issueManagement>
+        <system>jira</system>
+        <url>http://jira.ttxit.com/projects/BOOTSTACK</url>
+    </issueManagement>
 
     <name>bootstack parent</name>
     <description>bootstack</description>
@@ -45,10 +86,15 @@
         <dependency.nekohtml.version>1.9.22</dependency.nekohtml.version>
         <dependency.httpclient.version>4.4.1</dependency.httpclient.version>
         <dependency.spring.context.version>4.3.12.RELEASE</dependency.spring.context.version>
+        <dependency.commons.lang3.version>3.8.1</dependency.commons.lang3.version>
+        <dependency.servlet.api.version>2.5</dependency.servlet.api.version>
+        <dependency.commons.version>3.2.2</dependency.commons.version>
+        <dependency.google.collections.version>1.0</dependency.google.collections.version>
         <!-- plugin config -->
         <plugin.maven.compiler.version>3.3</plugin.maven.compiler.version>
         <plugin.maven.javadoc.version>2.10.4</plugin.maven.javadoc.version>
         <plugin.maven.checkstyle.version>2.17</plugin.maven.checkstyle.version>
+        <plugin.maven.docker.version>0.23.0</plugin.maven.docker.version>
         <plugin.frontend.version>0.0.27</plugin.frontend.version>
         <plugin.springboot.version>1.5.6.RELEASE</plugin.springboot.version>
         <!-- environment config -->
@@ -58,6 +104,8 @@
         <!-- node & npm -->
         <system.node.version>v8.9.4</system.node.version>
         <system.npm.version>5.4.2</system.npm.version>
+        <!-- docker -->
+        <docker.image.prefix>bootstack</docker.image.prefix>
     </properties>
 
     <dependencies>
@@ -105,6 +153,11 @@
             <dependency>
                 <groupId>com.bootstack</groupId>
                 <artifactId>bootstack-cache</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.bootstack</groupId>
+                <artifactId>bootstack-aop</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!-- springboot -->
@@ -183,10 +236,51 @@
                 <artifactId>spring-context</artifactId>
                 <version>${dependency.spring.context.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${dependency.spring.context.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aspects</artifactId>
+                <version>${dependency.spring.context.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${dependency.commons.lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>${dependency.servlet.api.version}</version>
+            </dependency>
+            <!-- commons -->
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>${dependency.commons.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.collections</groupId>
+                <artifactId>google-collections</artifactId>
+                <version>${dependency.google.collections.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <!-- docker -->
+                <plugin>
+                    <groupId>io.fabric8</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>${plugin.maven.docker.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

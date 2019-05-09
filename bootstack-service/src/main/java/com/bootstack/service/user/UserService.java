@@ -47,4 +47,6 @@ public interface UserService extends BaseService {
      */
     UserModel getModelByName(String name);
 
+    UserModel getDistinctById(Long id);;
+
 }

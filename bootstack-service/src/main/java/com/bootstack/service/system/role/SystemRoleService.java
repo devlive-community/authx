@@ -16,7 +16,9 @@ package com.bootstack.service.system.role; /**
  * limitations under the License.
  */
 
+import com.bootstack.model.page.PageModel;
 import com.bootstack.model.system.role.SystemRoleModel;
+import org.springframework.data.domain.Pageable;
 
 /**
  * <p> SystemRoleService </p>
@@ -28,8 +30,36 @@ import com.bootstack.model.system.role.SystemRoleModel;
  */
 public interface SystemRoleService {
 
+    /**
+     * insert model
+     *
+     * @param model model info
+     * @return insert result
+     */
     Long insertModel(SystemRoleModel model);
 
+    /**
+     * get model by id
+     *
+     * @param id id
+     * @return model response id
+     */
     SystemRoleModel getModelById(Long id);
+
+    /**
+     * get all model
+     *
+     * @param pageable page info
+     * @return all model
+     */
+    PageModel<SystemRoleModel> getAll(Pageable pageable);
+
+    /**
+     * get model by name
+     *
+     * @param name name
+     * @return model response by name
+     */
+    SystemRoleModel getModelByName(String name);
 
 }

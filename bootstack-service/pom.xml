@@ -6,7 +6,7 @@
     <parent>
         <artifactId>incubator-bootstack</artifactId>
         <groupId>com.bootstack</groupId>
-        <version>1.0.0</version>
+        <version>1.0.3</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -17,6 +17,14 @@
     <description>bootstack core service</description>
 
     <dependencies>
+        <dependency>
+            <groupId>com.google.collections</groupId>
+            <artifactId>google-collections</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.bootstack</groupId>
             <artifactId>bootstack-repository</artifactId>

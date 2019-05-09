@@ -47,4 +47,6 @@ public interface UserRepository extends PagingAndSortingRepository<UserModel, Lo
      */
     UserModel findByName(String name);
 
+    UserModel findDistinctById(Long id);
+
 }

@@ -28,4 +28,13 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 public interface SystemRoleRepository extends PagingAndSortingRepository<SystemRoleModel, Long> {
+
+    /**
+     * find model by name
+     *
+     * @param name name
+     * @return model
+     */
+    SystemRoleModel findByName(String name);
+
 }

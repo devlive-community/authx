@@ -1,0 +1,57 @@
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+  <p>
+  http://www.apache.org/licenses/LICENSE-2.0
+  <p>
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<ng2-toasty [position]="'top-center'"></ng2-toasty>
+<header class="header">
+    <navigation-trigger></navigation-trigger>
+    <div class="header__logo hidden-sm-down">
+        <h1><a [routerLink]="['/']">{{ "common.title" | translate }}</a></h1>
+    </div>
+    <!-- 顶部搜索功能开始 -->
+    <!--<form class="search">-->
+    <!--<div class="search__inner">-->
+    <!--<input type="text" class="search__text" placeholder="Search for people, files, documents...">-->
+    <!--<i class="zmdi zmdi-search search__helper" data-ma-action="search-close"></i>-->
+    <!--</div>-->
+    <!--</form>-->
+    <!-- 顶部搜索功能结束 -->
+    <ul class="top-nav">
+        <ng-container *ngIf="token; else noAuth">
+
+        </ng-container>
+        <ng-template #noAuth>
+            <li class="dropdown hidden-xs-down">
+                <a [routerLink]="['/user/login']" tooltip="{{ 'common.login' | translate }}" placement="bottom"><i
+                    class="zmdi zmdi-sign-in"></i></a>
+            </li>
+            <li class="dropdown hidden-xs-down">
+                <a [routerLink]="['/user/register']" tooltip="{{ 'common.register' | translate }}" placement="bottom"><i
+                    class="zmdi zmdi-plus-circle"></i></a>
+            </li>
+        </ng-template>
+        <li class="dropdown top-nav__notifications">
+            <a href="https://github.com/springstack/bootstack" class="top-nav__notify btn" target="_blank">
+                GitHub
+            </a>
+        </li>
+        <li class="dropdown top-nav__notifications">
+            <a href="https://gitee.com/Spring-Stack/bootstack" class="top-nav__notify btn" target="_blank">
+                Gitee
+            </a>
+        </li>
+    </ul>
+</header>

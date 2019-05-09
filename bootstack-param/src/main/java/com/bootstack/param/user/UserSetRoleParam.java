@@ -17,13 +17,14 @@
  */
 package com.bootstack.param.user;
 
-import com.bootstack.validation.system.role.SystemRoleRequireValidation;
 import com.bootstack.validation.user.UserRequireValidation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import java.util.List;
 
 /**
  * <p> UserBasicParam </p>
@@ -41,10 +42,10 @@ public class UserSetRoleParam {
 
     @NotEmpty(message = "user id must not null")
     @UserRequireValidation
-    private String userId;
+    private String id;
 
     @NotEmpty(message = "role id must not null")
-    @SystemRoleRequireValidation
-    private String roleId;
+//    @SystemRoleRequireValidation
+    private List<Object> values;
 
 }

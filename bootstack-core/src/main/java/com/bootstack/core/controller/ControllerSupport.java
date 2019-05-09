@@ -30,4 +30,6 @@ public class ControllerSupport {
     public static final String CONTROLLER_DEFAULT_ADD = "register";
     public static final String CONTROLLER_DEFAULT_SET = "set";
 
+    public static final String CONTROLLER_DEFAULT_PUBLIC = "public/";
+
 }

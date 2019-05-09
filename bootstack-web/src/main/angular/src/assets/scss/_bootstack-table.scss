@@ -1,0 +1,110 @@
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+.table {
+  tr[class*="table-"] {
+    td,
+    th,
+    & + tr td,
+    & + tr th {
+      border: 0;
+    }
+  }
+
+  th {
+    font-weight: 500;
+  }
+}
+
+.table-fixed {
+  table-layout: fixed;
+}
+
+.data-table {
+  table {
+    th {
+      user-select: none;
+      cursor: pointer;
+      position: relative;
+
+      & > i.fa {
+        position: absolute;
+        font-style: normal;
+        right: 0.3rem;
+        bottom: 0.6rem;
+        font-size: 1.4rem;
+
+        &:before {
+          font-family: $font-family-icon;
+        }
+
+        &.fa-chevron-up:before {
+          content: '\f1ce';
+        }
+
+        &.fa-chevron-down:before {
+          content: '\f1cd';
+        }
+      }
+    }
+  }
+
+  tr {
+    & > td,
+    & > th {
+      &:first-child {
+        padding-left: $card-spacer-x;
+      }
+
+      &:last-child {
+        padding-right: $card-spacer-x;
+      }
+    }
+  }
+}
+
+.data-table__header {
+  padding: 0 0 2rem;
+}
+
+.data-table__filter {
+  max-width: 500px;
+
+  .form-control {
+    padding-left: 2rem;
+  }
+
+  &:before {
+    content: '\f1c3';
+    font-family: $font-family-icon;
+    font-size: 1.5rem;
+    position: absolute;
+    left: 0;
+    bottom: 0.263rem;
+  }
+}
+
+.data-table__footer {
+  text-align: center;
+  padding: $card-spacer-y 0;
+}
+
+.td-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

@@ -18,15 +18,21 @@
 package com.bootstack.core.controller.user;
 
 import com.bootstack.common.encryption.EncryptionShaUtils;
+import com.bootstack.common.enums.SystemMessageEnums;
+import com.bootstack.core.controller.ControllerSupport;
 import com.bootstack.model.common.CommonResponseModel;
+import com.bootstack.model.page.PageModel;
 import com.bootstack.model.system.role.SystemRoleModel;
 import com.bootstack.model.user.UserModel;
+import com.bootstack.param.page.PageParam;
 import com.bootstack.param.user.UserBasicParam;
 import com.bootstack.param.user.UserSetRoleParam;
 import com.bootstack.service.system.role.SystemRoleService;
 import com.bootstack.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.util.ObjectUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,9 +61,24 @@ public class UserController {
     @Autowired
     private SystemRoleService systemRoleService;
 
-    @PostMapping(value = "register")
+    @GetMapping
+    CommonResponseModel getAll(@Validated PageParam param) {
+        Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
+        return CommonResponseModel.success(this.userService.getAllByPage(pageable));
+    }
+
+    /**
+     * register user
+     *
+     * @param param user info
+     * @return register response
+     */
+    @PostMapping(value = ControllerSupport.CONTROLLER_DEFAULT_ADD)
     CommonResponseModel add(@RequestBody @Validated UserBasicParam param) {
         log.info("add user action, user name is {}", param.getName());
+        if (!ObjectUtils.isEmpty(this.userService.getModelByName(param.getName()))) {
+            return CommonResponseModel.error(SystemMessageEnums.SYSTEM_USER_EXISTS);
+        }
         UserModel user = new UserModel();
         user.setName(param.getName());
         user.setPassword(EncryptionShaUtils.hash256(param.getPassword()));
@@ -71,18 +92,41 @@ public class UserController {
         return CommonResponseModel.success(this.userService.getModelByName(name));
     }
 
+    /**
+     * 分配用户权限
+     *
+     * @param param 分配权限参数(用户id, 权限id列表)
+     * @return 分配状态
+     */
     @PutMapping(value = "role")
     CommonResponseModel setRole(@RequestBody @Validated UserSetRoleParam param) {
-        UserModel user = (UserModel) this.userService.getModelById(Long.valueOf(param.getUserId()));
+        UserModel user = (UserModel) this.userService.getModelById(Long.valueOf(param.getId()));
+        // 抽取用户原有权限
         List<SystemRoleModel> systemRoles = user.getRoles();
-        // add new role to source role list
-        systemRoles.add(this.systemRoleService.getModelById(Long.valueOf(param.getRoleId())));
-        // distinct role
+        // 去除由于JPA导致的重复数据
         systemRoles = systemRoles.stream().collect(
                 Collectors.collectingAndThen(Collectors.toCollection(() ->
                                 new TreeSet<>(Comparator.comparingLong(SystemRoleModel::getId))),
                         ArrayList::new));
-        user.setRoles(systemRoles);
+        // 使用原有权限和现有权限做去重排查,防止用户调用api接口进行权限损坏
+        List<Object> newRoles = param.getValues();
+        systemRoles.forEach(v -> {
+            for (int i = 0; i < newRoles.size(); i++) {
+                if (String.valueOf(v.getId()).equalsIgnoreCase(String.valueOf(newRoles.get(i)))) {
+                    // 如果原有权限中拥有新的权限信息,则删除新权限,保证数据只有一次落地
+                    newRoles.remove(i);
+                }
+            }
+        });
+        List<SystemRoleModel> newRole = new ArrayList<>();
+        newRole.addAll(systemRoles);
+        // 创建新权限信息落地到数据库中
+        newRoles.forEach(v -> {
+            SystemRoleModel temp = new SystemRoleModel();
+            temp.setId(Long.valueOf(String.valueOf(v)));
+            newRole.add(temp);
+        });
+        user.setRoles(newRole);
         return CommonResponseModel.success(this.userService.insertModel(user));
     }
 

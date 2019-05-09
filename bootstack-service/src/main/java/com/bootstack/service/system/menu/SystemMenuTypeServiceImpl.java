@@ -18,8 +18,14 @@
 package com.bootstack.service.system.menu;
 
 import com.bootstack.model.page.PageModel;
+import com.bootstack.model.system.menu.SystemMenuTypeModel;
+import com.bootstack.repository.system.menu.SystemMenuTypeRepository;
+import com.bootstack.service.ServiceSupport;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 /**
  * <p> SystemMenuTypeServiceImpl </p>
@@ -32,19 +38,28 @@ import org.springframework.stereotype.Service;
 @Service(value = "systemMenuTypeService")
 public class SystemMenuTypeServiceImpl implements SystemMenuTypeService {
 
+    @Autowired
+    private SystemMenuTypeRepository systemMenuTypeRepository;
+
     @Override
     public Long insertModel(Object model) {
-        return null;
+        SystemMenuTypeModel source = (SystemMenuTypeModel) model;
+        SystemMenuTypeModel temp = this.systemMenuTypeRepository.save(source);
+        if (!ObjectUtils.isEmpty(temp)) {
+            return temp.getId();
+        }
+        return ServiceSupport.DEFAULT_ID;
     }
 
     @Override
     public Object getModelById(Long id) {
-        return null;
+        return this.systemMenuTypeRepository.findOne(id);
     }
 
     @Override
-    public PageModel findAllByPage(Pageable pageable) {
-        return null;
+    public PageModel getAllByPage(Pageable pageable) {
+        Page<SystemMenuTypeModel> models = this.systemMenuTypeRepository.findAll(pageable);
+        return new PageModel<>(models.getContent(), pageable, models.getTotalElements());
     }
 
 }

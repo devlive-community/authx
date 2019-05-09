@@ -1,0 +1,108 @@
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+// 文章样式
+.article__user__info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 0.9rem;
+  padding: 0.2rem;
+  border-radius: $border-radius;
+  @include transition(background-color 300ms);
+}
+
+.article__user__img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  margin-right: 0.8rem;
+}
+
+.article__user__name {
+  min-width: 0;
+}
+
+.article__user__name > p {
+  overflow: hidden;
+}
+
+.poster {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.poster-bg {
+  height: 100%;
+  width: 100%;
+}
+
+.poster-overlay {
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  display: flex;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+}
+
+.poster-overlay-icon {
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1000px;
+  border: 10px solid rgba(0, 0, 0, .2);
+  background: #fff;
+  color: none;
+}
+
+.border-b-1 {
+  border-bottom: 1px solid #eee !important;
+}
+
+.mr-center {
+  text-align: center;
+}
+
+.ma {
+  margin: 0px auto;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mr-right {
+  text-align: right;
+}
+
+.ml-10 {
+  margin-left: 10px;
+}
+
+.ml-2 {
+  margin-left: 2px;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}

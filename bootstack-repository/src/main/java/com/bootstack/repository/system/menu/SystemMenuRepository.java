@@ -17,6 +17,9 @@ package com.bootstack.repository.system.menu; /**
  */
 
 import com.bootstack.model.system.menu.SystemMenuModel;
+import com.bootstack.model.system.menu.SystemMenuTypeModel;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
@@ -28,4 +31,37 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 public interface SystemMenuRepository extends PagingAndSortingRepository<SystemMenuModel, Long> {
+
+    Page<SystemMenuModel> findAllByActiveTrue(Pageable pageable);
+
+    Page<SystemMenuModel> findAllByActiveTrueAndType(SystemMenuTypeModel model, Pageable pageable);
+
+    /**
+     * find all model by parent
+     *
+     * @param parent parent id
+     * @return all model from parent
+     */
+    Page<SystemMenuModel> findAllByParent(Long parent, Pageable pageable);
+
+    /**
+     * 根据菜单父节点,菜单类型查询所有菜单数据并进行分页
+     *
+     * @param parent   菜单父节点
+     * @param type     菜单类型
+     * @param pageable 分页信息
+     * @return 返回的数据
+     */
+    Page<SystemMenuModel> findAllByParentAndType(Long parent, SystemMenuTypeModel type, Pageable pageable);
+
+    /**
+     * find model by type
+     *
+     * @param type type info
+     * @return model from type
+     */
+    Iterable<SystemMenuModel> findByType(SystemMenuTypeModel type);
+
+    Page<SystemMenuModel> findAllByType(SystemMenuTypeModel type, Pageable pageable);
+
 }

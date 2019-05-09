@@ -19,13 +19,18 @@ package com.bootstack.core.config.authorization;
 
 import com.bootstack.core.config.handler.BootStackAccessDeniedHandler;
 import com.bootstack.core.config.point.BootStackAuthenticationEntryPoint;
+import com.bootstack.model.system.method.SystemMethodModel;
+import com.bootstack.service.system.interfaces.SystemInterfaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
+
+import java.util.List;
 
 /**
  * <p> BootStackAuthorizationResourceServerConfig </p>
@@ -45,6 +50,9 @@ public class BootStackAuthorizationResourceServerConfig extends ResourceServerCo
     @Autowired
     private BootStackAccessDeniedHandler bootStackAccessDeniedHandler;
 
+    @Autowired
+    private SystemInterfaceService systemInterfaceService;
+
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) {
         resources.resourceId(BootStackAuthorizationOauth2Support.SECURITY_RESOURCE_ID).tokenServices(resourceServerTokenServices)
@@ -54,11 +62,43 @@ public class BootStackAuthorizationResourceServerConfig extends ResourceServerCo
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.requestMatchers()
-                .and()
-                .authorizeRequests()
-                .antMatchers("/api/v1/user/register").permitAll()
-                .antMatchers("/**").authenticated();
+        HttpSecurity.RequestMatcherConfigurer configurer = http.requestMatchers();
+        this.systemInterfaceService.getAllByWhiteIsTrueAndActiveTrueAndSystemTrue().forEach(v -> {
+            List<SystemMethodModel> methods = v.getMethods();
+            for (SystemMethodModel method : methods) {
+                try {
+                    configurer.and().authorizeRequests().antMatchers(getMethod(method.getMethod()), v.getPath()).permitAll();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        configurer.and().authorizeRequests().antMatchers("/**").authenticated();
+    }
+
+    /**
+     * get http method form db
+     *
+     * @param method method string
+     * @return http method
+     */
+    private HttpMethod getMethod(String method) {
+        HttpMethod httpMethod = null;
+        switch (method.toLowerCase()) {
+            case "get":
+                httpMethod = HttpMethod.GET;
+                break;
+            case "post":
+                httpMethod = HttpMethod.POST;
+                break;
+            case "put":
+                httpMethod = HttpMethod.PUT;
+                break;
+            case "delete":
+                httpMethod = HttpMethod.DELETE;
+                break;
+        }
+        return httpMethod;
     }
 
 }
