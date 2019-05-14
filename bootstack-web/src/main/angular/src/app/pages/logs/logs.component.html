@@ -68,8 +68,7 @@
             </div>
             <div class="mr-center">
                 <pagination *ngIf="models?.length && page" [(ngModel)]="currentPage" totalItems="{{page.totalElements}}"
-                            maxSize="{{page.size}}"
-                            (pageChanged)="pageChanged($event)" [boundaryLinks]="true">
+                            (pageChanged)="pageChanged($event)" [boundaryLinks]="true" [rotate]="true" [maxSize]="5">
                 </pagination>
             </div>
         </div>
