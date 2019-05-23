@@ -62,7 +62,7 @@ public class UserController {
     private SystemRoleService systemRoleService;
 
     @GetMapping
-    CommonResponseModel getAll(@Validated PageParam param) {
+    public CommonResponseModel getAll(@Validated PageParam param) {
         Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
         return CommonResponseModel.success(this.userService.getAllByPage(pageable));
     }
@@ -74,7 +74,7 @@ public class UserController {
      * @return register response
      */
     @PostMapping(value = ControllerSupport.CONTROLLER_DEFAULT_ADD)
-    CommonResponseModel add(@RequestBody @Validated UserBasicParam param) {
+    public CommonResponseModel add(@RequestBody @Validated UserBasicParam param) {
         log.info("add user action, user name is {}", param.getName());
         if (!ObjectUtils.isEmpty(this.userService.getModelByName(param.getName()))) {
             return CommonResponseModel.error(SystemMessageEnums.SYSTEM_USER_EXISTS);
@@ -88,7 +88,7 @@ public class UserController {
     }
 
     @GetMapping(value = "info/{name}")
-    CommonResponseModel info(@PathVariable String name) {
+    public CommonResponseModel info(@PathVariable String name) {
         return CommonResponseModel.success(this.userService.getModelByName(name));
     }
 
@@ -99,7 +99,7 @@ public class UserController {
      * @return 分配状态
      */
     @PutMapping(value = "role")
-    CommonResponseModel setRole(@RequestBody @Validated UserSetRoleParam param) {
+    public CommonResponseModel setRole(@RequestBody @Validated UserSetRoleParam param) {
         UserModel user = (UserModel) this.userService.getModelById(Long.valueOf(param.getId()));
         // 抽取用户原有权限
         List<SystemRoleModel> systemRoles = user.getRoles();

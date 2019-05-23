@@ -37,11 +37,6 @@
             <groupId>com.bootstack</groupId>
             <artifactId>bootstack-service</artifactId>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>com.bootstack</groupId>-->
-            <!--<artifactId>bootstack-core</artifactId>-->
-            <!--<version>${project.version}</version>-->
-        <!--</dependency>-->
     </dependencies>
 
 </project>

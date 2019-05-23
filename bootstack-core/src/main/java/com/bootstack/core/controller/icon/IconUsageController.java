@@ -49,13 +49,13 @@ public class IconUsageController {
     private IconUsageService service;
 
     @GetMapping
-    CommonResponseModel getAll(@Validated PageParam param) {
+    public CommonResponseModel getAll(@Validated PageParam param) {
         Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
         return CommonResponseModel.success(this.service.getAllByPage(pageable));
     }
 
     @PostMapping
-    CommonResponseModel add(@RequestBody @Validated IconUsageCreateParam param) {
+    public CommonResponseModel add(@RequestBody @Validated IconUsageCreateParam param) {
         IconUsageModel model = new IconUsageModel();
         BeanUtils.copyProperties(param, model);
         model.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
@@ -63,7 +63,7 @@ public class IconUsageController {
     }
 
     @PutMapping
-    CommonResponseModel put(@RequestBody @Validated IconUsageSetParam param) {
+    public CommonResponseModel put(@RequestBody @Validated IconUsageSetParam param) {
         IconUsageModel model = new IconUsageModel();
         BeanUtils.copyProperties(param, model);
         model.setId(Long.valueOf(param.getId()));

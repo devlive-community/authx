@@ -21,6 +21,7 @@ import com.bootstack.core.config.handler.BootStackAccessDeniedHandler;
 import com.bootstack.core.config.point.BootStackAuthenticationEntryPoint;
 import com.bootstack.model.system.method.SystemMethodModel;
 import com.bootstack.service.system.interfaces.SystemInterfaceService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -42,6 +43,7 @@ import java.util.List;
  */
 @Configuration
 @EnableResourceServer
+@Slf4j
 public class BootStackAuthorizationResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Autowired
@@ -69,7 +71,7 @@ public class BootStackAuthorizationResourceServerConfig extends ResourceServerCo
                 try {
                     configurer.and().authorizeRequests().antMatchers(getMethod(method.getMethod()), v.getPath()).permitAll();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    log.error("authorize request error", e.getMessage());
                 }
             }
         });

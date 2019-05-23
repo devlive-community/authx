@@ -17,7 +17,6 @@
  */
 package com.bootstack.core.controller.icon;
 
-import com.bootstack.common.pinyin.PinYinUtils;
 import com.bootstack.model.common.CommonResponseModel;
 import com.bootstack.model.icon.IconModel;
 import com.bootstack.model.icon.IconTypeModel;
@@ -55,13 +54,13 @@ public class IconController {
     private IconTypeService iconTypeService;
 
     @GetMapping
-    CommonResponseModel getAll(@Validated PageParam param) {
+    public CommonResponseModel getAll(@Validated PageParam param) {
         Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
         return CommonResponseModel.success(this.service.getAllByPage(pageable));
     }
 
     @PostMapping
-    CommonResponseModel add(@RequestBody @Validated IconCreateParam param) {
+    public CommonResponseModel add(@RequestBody @Validated IconCreateParam param) {
         IconModel model = new IconModel();
         BeanUtils.copyProperties(param, model);
         IconTypeModel type = new IconTypeModel();
@@ -74,7 +73,7 @@ public class IconController {
     }
 
     @PutMapping
-    CommonResponseModel put(@RequestBody @Validated IconSetParam param) {
+    public CommonResponseModel put(@RequestBody @Validated IconSetParam param) {
         IconModel model = new IconModel();
         BeanUtils.copyProperties(param, model);
         model.setId(Long.valueOf(param.getId()));

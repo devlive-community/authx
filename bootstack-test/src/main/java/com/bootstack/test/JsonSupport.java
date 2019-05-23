@@ -27,9 +27,9 @@ package com.bootstack.test;
  */
 public class JsonSupport {
 
-    public static String source = "{\"msg\":\"ok\",\"dataObject\":[{\"avg\":39737,\"count\":78647,\"time\":\"20190516\",\"total\":3125242938}],\"success\":true,\"sessionId\":\"sessionId\"}";
-    public static String sourceEmpty = "";
-    public static String prettySource = "{\n" +
+    public final static String source = "{\"msg\":\"ok\",\"dataObject\":[{\"avg\":39737,\"count\":78647,\"time\":\"20190516\",\"total\":3125242938}],\"success\":true,\"sessionId\":\"sessionId\"}";
+    public final static String sourceEmpty = "";
+    public final static String prettySource = "{\n" +
             "  \"msg\": \"ok\",\n" +
             "  \"dataObject\": [\n" +
             "    {\n" +
@@ -42,6 +42,6 @@ public class JsonSupport {
             "  \"success\": true,\n" +
             "  \"sessionId\": \"sessionId\"\n" +
             "}";
-    public static String prettySourceEmpty = "";
+    public final static String prettySourceEmpty = "";
 
 }

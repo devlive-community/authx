@@ -54,7 +54,7 @@ public class SystemMethodController {
      * @return all model for page
      */
     @GetMapping
-    CommonResponseModel list(@Validated PageParam param) {
+    public CommonResponseModel list(@Validated PageParam param) {
         Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
         return CommonResponseModel.success(this.systemMethodService.getAllByPage(pageable));
     }
@@ -66,7 +66,7 @@ public class SystemMethodController {
      * @return add response
      */
     @PostMapping
-    CommonResponseModel add(@RequestBody @Validated SystemMethodCreateParam param) {
+    public CommonResponseModel add(@RequestBody @Validated SystemMethodCreateParam param) {
         SystemMethodModel model = new SystemMethodModel();
         BeanUtils.copyProperties(param, model);
         model.setActive(Boolean.TRUE);
