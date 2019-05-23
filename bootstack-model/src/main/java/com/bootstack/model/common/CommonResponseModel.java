@@ -22,6 +22,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 
 /**
  * <p> CommonResponseModel </p>
@@ -87,6 +89,19 @@ public class CommonResponseModel<T> {
 
     public static <T> CommonResponseModel error(SystemMessageEnums message) {
         return error(message, null);
+    }
+
+    /**
+     * 校验参数是否为空
+     *
+     * @param object 校验的参数
+     * @return 校验结果
+     */
+    public static CommonResponseModel validateCheck(Object object) {
+        if (ObjectUtils.isEmpty(object) || StringUtils.isEmpty(object)) {
+            return CommonResponseModel.error(SystemMessageEnums.SYSTEM_PARAMS_NOT_NULL);
+        }
+        return null;
     }
 
     private void setCodeMessage(SystemMessageEnums enums) {

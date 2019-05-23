@@ -26,6 +26,7 @@
         <module>bootstack-param</module>
         <module>bootstack-validation</module>
         <module>bootstack-aop</module>
+        <module>bootstack-test</module>
         <module>docs</module>
     </modules>
 
@@ -95,6 +96,7 @@
         <plugin.maven.javadoc.version>2.10.4</plugin.maven.javadoc.version>
         <plugin.maven.checkstyle.version>2.17</plugin.maven.checkstyle.version>
         <plugin.maven.docker.version>0.23.0</plugin.maven.docker.version>
+        <plugin.maven.sonar.version>3.3.0.603</plugin.maven.sonar.version>
         <plugin.frontend.version>0.0.27</plugin.frontend.version>
         <plugin.springboot.version>1.5.6.RELEASE</plugin.springboot.version>
         <!-- environment config -->
@@ -106,6 +108,8 @@
         <system.npm.version>5.4.2</system.npm.version>
         <!-- docker -->
         <docker.image.prefix>bootstack</docker.image.prefix>
+        <!-- sonar -->
+        <sonar.host.url>https://sonar.edurt.com</sonar.host.url>
     </properties>
 
     <dependencies>
@@ -158,6 +162,11 @@
             <dependency>
                 <groupId>com.bootstack</groupId>
                 <artifactId>bootstack-aop</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.bootstack</groupId>
+                <artifactId>bootstack-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!-- springboot -->
@@ -316,6 +325,11 @@
                 <configuration>
                     <configLocation>google_checks.xml</configLocation>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>${plugin.maven.sonar.version}</version>
             </plugin>
         </plugins>
     </build>

@@ -13,6 +13,9 @@
 
     <artifactId>bootstack-aop</artifactId>
 
+    <name>bootstack aop module</name>
+    <description>bootstack core aop</description>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
