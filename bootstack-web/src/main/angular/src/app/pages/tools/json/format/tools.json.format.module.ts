@@ -24,7 +24,7 @@ import {CustomFormsModule} from 'ng2-validation';
 import {ToastyModule} from 'ng2-toasty';
 import {BusyModule} from 'angular2-busy';
 import {TranslateModule} from '@ngx-translate/core';
-import { AceEditorModule } from 'ng2-ace-editor';
+import {AceEditorModule} from 'ng2-ace-editor';
 
 import {ModalModule, PaginationModule} from "ngx-bootstrap";
 import {ToolsJsonFormatComponent} from "./tools.json.format.component";

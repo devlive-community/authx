@@ -24,7 +24,7 @@ import {AuthGuard} from "../auth/auth.guard";
 const LAYOUT_ROUTES: Routes = [
     {
         path: '', component: LayoutComponent, children: [
-            {path: '', redirectTo: 'home', pathMatch: 'full'},
+            {path: '', redirectTo: '/dashboard/index', pathMatch: 'full'},
             {path: 'home', loadChildren: '../pages/home/home.module#HomeModule'},
         ]
     },

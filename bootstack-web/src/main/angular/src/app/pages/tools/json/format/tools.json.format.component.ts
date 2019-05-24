@@ -33,8 +33,6 @@ export class ToolsJsonFormatComponent implements OnInit {
 
     public loading: Subscription;
     public options: any = {printMargin: false, wrap: 'free'};
-    // menu list
-    private models;
     // page model
     public page: CommonPageModel;
     // current page number
@@ -46,9 +44,6 @@ export class ToolsJsonFormatComponent implements OnInit {
     public inputEditor;
     @ViewChild('outputEditor')
     public outputEditor;
-
-    // 详情数据
-    public details;
 
     constructor(private router: Router,
                 private toastyService: ToastyService,

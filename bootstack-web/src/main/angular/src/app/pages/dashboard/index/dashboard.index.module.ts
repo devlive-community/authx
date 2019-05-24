@@ -26,7 +26,6 @@ import {ModalModule} from 'ngx-bootstrap/modal';
 
 import {DashboardIndexComponent} from "./dashboard.index.component";
 
-
 const DASHBOARD_INDEX_ROUTE = [
     {path: '', component: DashboardIndexComponent}
 ];
