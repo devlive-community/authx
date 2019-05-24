@@ -69,7 +69,7 @@ public class SystemMenuController {
      * @return create result
      */
     @PostMapping
-    CommonResponseModel add(@RequestBody @Validated SystemMenuCreateParam param) {
+    public CommonResponseModel add(@RequestBody @Validated SystemMenuCreateParam param) {
         SystemMenuModel systemMenuModel = new SystemMenuModel();
         BeanUtils.copyProperties(param, systemMenuModel);
         systemMenuModel.setActive(Boolean.TRUE);
@@ -103,8 +103,8 @@ public class SystemMenuController {
      * @return all model by page
      */
     @GetMapping
-    CommonResponseModel list(@Validated PageParam param,
-                             @RequestParam(value = "type") Long type) {
+    public CommonResponseModel list(@Validated PageParam param,
+                                    @RequestParam(value = "type") Long type) {
         Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
         return CommonResponseModel.success(this.systemMenuService.getByPageAndType(type, pageable));
     }
@@ -116,7 +116,7 @@ public class SystemMenuController {
      * @return all model by parent
      */
     @GetMapping(value = "parent")
-    CommonResponseModel getByParent(@Validated PageParam param,
+    public CommonResponseModel getByParent(@Validated PageParam param,
                                     @RequestParam(value = "parent", defaultValue = "0") Long parent,
                                     @RequestParam(value = "type", defaultValue = "0") Long type) {
         Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());

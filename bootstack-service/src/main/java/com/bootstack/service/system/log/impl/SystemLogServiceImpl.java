@@ -15,12 +15,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.service.icon;
+package com.bootstack.service.system.log.impl;
 
-import com.bootstack.model.icon.IconModel;
 import com.bootstack.model.page.PageModel;
-import com.bootstack.repository.icon.IconRepository;
+import com.bootstack.model.system.log.SystemLogModel;
+import com.bootstack.repository.system.log.SystemLogRepository;
 import com.bootstack.service.ServiceSupport;
+import com.bootstack.service.system.log.SystemLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,38 +29,43 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 /**
- * <p> IconServiceImpl </p>
- * <p> Description : IconServiceImpl </p>
+ * <p> SystemLogTypeServiceImpl </p>
+ * <p> Description : SystemLogTypeServiceImpl </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-05-08 18:59 </p>
+ * <p> Create Time : 2019-05-07 14:31 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@Service(value = "iconService")
-public class IconServiceImpl implements IconService {
+@Service(value = "systemLogService")
+public class SystemLogServiceImpl implements SystemLogService {
 
     @Autowired
-    private IconRepository repository;
+    private SystemLogRepository systemLogRepository;
 
     @Override
     public Long insertModel(Object model) {
-        IconModel source = (IconModel) model;
-        IconModel temp = this.repository.save(source);
-        if (!ObjectUtils.isEmpty(temp)) {
-            return temp.getId();
+        SystemLogModel source = (SystemLogModel) model;
+        SystemLogModel user = this.systemLogRepository.save(source);
+        if (!ObjectUtils.isEmpty(user)) {
+            return user.getId();
         }
         return ServiceSupport.DEFAULT_ID;
     }
 
     @Override
     public Object getModelById(Long id) {
-        return this.repository.findOne(id);
+        return this.systemLogRepository.findOne(id);
     }
 
     @Override
     public PageModel getAllByPage(Pageable pageable) {
-        Page<IconModel> pageModel = this.repository.findAll(pageable);
+        Page<SystemLogModel> pageModel = this.systemLogRepository.findAll(pageable);
         return new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements());
+    }
+
+    @Override
+    public long getCount() {
+        return this.systemLogRepository.count();
     }
 
 }

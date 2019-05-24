@@ -15,51 +15,63 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.service.icon;
+package com.bootstack.service.json.impl;
 
-import com.bootstack.model.icon.IconUsageModel;
+import com.bootstack.common.json.JsonUtils;
+import com.bootstack.model.common.CommonResponseModel;
 import com.bootstack.model.page.PageModel;
-import com.bootstack.repository.icon.IconUsageRepository;
-import com.bootstack.service.ServiceSupport;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
+import com.bootstack.service.json.JsonService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 /**
- * <p> IconUsageServiceImpl </p>
- * <p> Description : IconUsageServiceImpl </p>
+ * <p> JsonServiceImpl </p>
+ * <p> Description : JsonServiceImpl </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-05-08 17:51 </p>
+ * <p> Create Time : 2019-05-21 18:36 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@Service(value = "iconUsageService")
-public class IconUsageServiceImpl implements IconUsageService {
-
-    @Autowired
-    private IconUsageRepository repository;
+@Service(value = "jsonService")
+public class JsonServiceImpl implements JsonService {
 
     @Override
     public Long insertModel(Object model) {
-        IconUsageModel source = (IconUsageModel) model;
-        IconUsageModel temp = this.repository.save(source);
-        if (!ObjectUtils.isEmpty(temp)) {
-            return temp.getId();
-        }
-        return ServiceSupport.DEFAULT_ID;
+        return null;
     }
 
     @Override
     public Object getModelById(Long id) {
-        return this.repository.findOne(id);
+        return null;
     }
 
     @Override
     public PageModel getAllByPage(Pageable pageable) {
-        Page<IconUsageModel> pageModel = this.repository.findAll(pageable);
-        return new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements());
+        return null;
+    }
+
+    @Override
+    public CommonResponseModel formatPretty(String source) {
+        CommonResponseModel response = CommonResponseModel.validateCheck(source);
+        if (!ObjectUtils.isEmpty(response)) {
+            return response;
+        }
+        return CommonResponseModel.success(JsonUtils.formatPretty(source));
+    }
+
+    @Override
+    public CommonResponseModel compression(String source) {
+        CommonResponseModel response = CommonResponseModel.validateCheck(source);
+        if (!ObjectUtils.isEmpty(response)) {
+            return response;
+        }
+        return CommonResponseModel.success(JsonUtils.compression(source));
+    }
+
+    @Override
+    public long getCount() {
+        return 0;
     }
 
 }

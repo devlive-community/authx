@@ -49,13 +49,13 @@ public class SystemLogController {
     private SystemLogService systemLogService;
 
     @GetMapping
-    CommonResponseModel getAll(@Validated PageParam param) {
+    public CommonResponseModel getAll(@Validated PageParam param) {
         Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
         return CommonResponseModel.success(this.systemLogService.getAllByPage(pageable));
     }
 
     @PostMapping
-    CommonResponseModel add(@RequestBody @Validated SystemLogTypeCreateParam param) {
+    public CommonResponseModel add(@RequestBody @Validated SystemLogTypeCreateParam param) {
         SystemLogTypeModel logType = new SystemLogTypeModel();
         BeanUtils.copyProperties(param, logType);
         logType.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
@@ -63,7 +63,7 @@ public class SystemLogController {
     }
 
     @PutMapping
-    CommonResponseModel put(@RequestBody @Validated SystemLogTypeSetParam param) {
+    public CommonResponseModel put(@RequestBody @Validated SystemLogTypeSetParam param) {
         SystemLogTypeModel logType = new SystemLogTypeModel();
         BeanUtils.copyProperties(param, logType);
         logType.setId(Long.valueOf(param.getId()));
@@ -78,7 +78,7 @@ public class SystemLogController {
      * @return 日志详情
      */
     @GetMapping(value = "/details")
-    CommonResponseModel infoDetail(@RequestParam(value = "primaryKey") Long primaryKey) {
+    public CommonResponseModel infoDetail(@RequestParam(value = "primaryKey") Long primaryKey) {
         return CommonResponseModel.success(this.systemLogService.getModelById(primaryKey));
     }
 

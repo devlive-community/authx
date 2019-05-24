@@ -80,7 +80,7 @@ public class SystemRoleController {
      * @return all model for page
      */
     @GetMapping
-    CommonResponseModel list(@Validated PageParam param) {
+    public CommonResponseModel list(@Validated PageParam param) {
         Pageable pageable = ParamSupport.getPageable(param);
         return CommonResponseModel.success(this.systemRoleService.getAll(pageable));
     }
@@ -92,7 +92,7 @@ public class SystemRoleController {
      * @return add response
      */
     @PostMapping
-    CommonResponseModel add(@RequestBody @Validated SystemRoleBasicParam param) {
+    public CommonResponseModel add(@RequestBody @Validated SystemRoleBasicParam param) {
         SystemRoleModel systemRole = new SystemRoleModel();
         if (ObjectUtils.isEmpty(param.getActive())) {
             systemRole.setActive(Boolean.TRUE);
@@ -104,7 +104,7 @@ public class SystemRoleController {
     }
 
     @PutMapping
-    CommonResponseModel set(@RequestBody @Validated SystemRoleSetParam param) {
+    public CommonResponseModel set(@RequestBody @Validated SystemRoleSetParam param) {
         SystemRoleModel systemRole = new SystemRoleModel();
         BeanUtils.copyProperties(param, systemRole);
         systemRole.setId(Long.valueOf(param.getId()));
@@ -116,7 +116,7 @@ public class SystemRoleController {
     }
 
     @PutMapping(value = ControllerSupport.CONTROLLER_DEFAULT_SET + "/menu")
-    CommonResponseModel setMenus(@RequestBody @Validated SystemRoleSetMenuParam param) {
+    public CommonResponseModel setMenus(@RequestBody @Validated SystemRoleSetMenuParam param) {
         SystemRoleModel systemRole = this.systemRoleService.getModelById(Long.valueOf(param.getId()));
         List<SystemMenuModel> menuList = new ArrayList<>();
         Arrays.asList(param.getMenu().split(",")).forEach(v -> menuList.add(new SystemMenuModel(Long.valueOf(v))));
@@ -162,8 +162,6 @@ public class SystemRoleController {
     /**
      * Assign system permissions menu list
      *
-     * @param id   role id
-     * @param flag 菜单标识 true：菜单，false：api接口
      * @return 菜单列表
      */
     @GetMapping(value = "menu/tree")

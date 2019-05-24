@@ -15,12 +15,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.service.user;
+package com.bootstack.service.user.impl;
 
 import com.bootstack.model.page.PageModel;
 import com.bootstack.model.user.UserModel;
 import com.bootstack.repository.user.UserRepository;
 import com.bootstack.service.ServiceSupport;
+import com.bootstack.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -40,7 +41,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
-
+    
     @Override
     public Long insertModel(Object model) {
         UserModel source = (UserModel) model;
@@ -75,6 +76,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserModel getDistinctById(Long id) {
         return this.userRepository.findDistinctById(id);
+    }
+
+    @Override
+    public long getCount() {
+        return this.userRepository.count();
     }
 
 }

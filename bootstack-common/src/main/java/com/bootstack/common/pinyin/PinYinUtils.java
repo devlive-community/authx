@@ -17,6 +17,7 @@
  */
 package com.bootstack.common.pinyin;
 
+import lombok.extern.slf4j.Slf4j;
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
@@ -34,6 +35,7 @@ import java.util.Arrays;
  * <p> Create Time : 2019-01-26 16:25 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
+@Slf4j
 public class PinYinUtils {
 
     private final static String EMPTY = "";
@@ -76,7 +78,7 @@ public class PinYinUtils {
                         stringBuilder.append(temp[0].charAt(0));
                     }
                 } catch (BadHanyuPinyinOutputFormatCombination e) {
-                    e.printStackTrace();
+                    log.error("format pinyin error", e.getMessage());
                 }
             } else {
                 stringBuilder.append(c);
@@ -102,7 +104,7 @@ public class PinYinUtils {
                 try {
                     stringBuilder.append(PinyinHelper.toHanyuPinyinStringArray(c, defaultFormat)[0]);
                 } catch (BadHanyuPinyinOutputFormatCombination e) {
-                    e.printStackTrace();
+                    log.error("format pinyin error", e.getMessage());
                 }
             } else {
                 stringBuilder.append(c);

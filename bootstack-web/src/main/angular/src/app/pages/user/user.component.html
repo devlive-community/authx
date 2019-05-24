@@ -76,7 +76,7 @@
             <!-- 分页信息开始 -->
             <div class="mr-center">
                 <pagination *ngIf="models?.length && page" [(ngModel)]="currentPage" totalItems="{{page.totalElements}}"
-                            maxSize="{{page.size}}"
+                            [rotate]="true" [maxSize]="5"
                             (pageChanged)="pageChanged($event)" [boundaryLinks]="true">
                 </pagination>
             </div>

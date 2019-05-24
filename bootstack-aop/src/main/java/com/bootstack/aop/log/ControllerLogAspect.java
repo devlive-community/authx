@@ -17,10 +17,14 @@
  */
 package com.bootstack.aop.log;
 
+import com.bootstack.model.system.interfaces.SystemInterfaceModel;
 import com.bootstack.model.system.log.SystemLogModel;
 import com.bootstack.model.system.log.SystemLogTypeModel;
+import com.bootstack.model.system.method.SystemMethodModel;
 import com.bootstack.model.user.UserModel;
+import com.bootstack.service.system.interfaces.SystemInterfaceService;
 import com.bootstack.service.system.log.SystemLogService;
+import com.bootstack.service.system.method.SystemMethodService;
 import com.bootstack.service.user.UserService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -54,6 +58,12 @@ public class ControllerLogAspect {
     @Autowired
     private SystemLogService systemLogService;
 
+    @Autowired
+    private SystemInterfaceService systemInterfaceService;
+
+    @Autowired
+    private SystemMethodService systemMethodService;
+
     @Pointcut("execution(* com.bootstack.core.controller..*.*(..))")
     private void controller() {
     }
@@ -64,11 +74,19 @@ public class ControllerLogAspect {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         UserModel user = null;
-        if (ObjectUtils.isEmpty(request.getUserPrincipal())) {
-            // 使用匿名用户
-        } else {
+        if (!ObjectUtils.isEmpty(request.getUserPrincipal())) {
             // TODO: 后期加入到懒缓冲中
             user = this.userService.getModelByName(request.getUserPrincipal().getName());
+        } else {
+            // 抽取系统白名单数据
+            SystemMethodModel systemMethodModel = this.systemMethodService.getByMethod(request.getMethod());
+            // 系统白名单数据使用系统默认用户
+            if (!ObjectUtils.isEmpty(systemMethodModel)) {
+                SystemInterfaceModel systemInterfaceModel = this.systemInterfaceService.getByPathAndMethodsIn(request.getServletPath(), systemMethodModel);
+                if (!ObjectUtils.isEmpty(systemInterfaceModel)) {
+                    user = (UserModel) this.userService.getModelById(1L);
+                }
+            }
         }
         SystemLogModel log = new SystemLogModel();
         log.setUrl(request.getServletPath());

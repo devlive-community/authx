@@ -24,7 +24,7 @@ import {AuthGuard} from "../auth/auth.guard";
 const LAYOUT_ROUTES: Routes = [
     {
         path: '', component: LayoutComponent, children: [
-            {path: '', redirectTo: 'home', pathMatch: 'full'},
+            {path: '', redirectTo: '/dashboard/index', pathMatch: 'full'},
             {path: 'home', loadChildren: '../pages/home/home.module#HomeModule'},
         ]
     },
@@ -88,6 +88,19 @@ const LAYOUT_ROUTES: Routes = [
             {path: 'icon/usage', loadChildren: '../pages/icon/usage/icon.usage.module#IconUsageModule'},
         ]
     },
+    {
+        path: 'toolsManager', component: LayoutComponent, canActivate: [AuthGuard], children: [
+            {path: '', redirectTo: 'index', pathMatch: 'full'},
+            {
+                path: 'json', children: [
+                    {
+                        path: 'format',
+                        loadChildren: '../pages/tools/json/format/tools.json.format.module#ToolsJsonFormatModule'
+                    }
+                ]
+            },
+        ]
+    }
 ];
 
 export const LayoutRouting = RouterModule.forChild(LAYOUT_ROUTES);

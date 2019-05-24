@@ -129,7 +129,7 @@ export class SystemMenuComponent implements OnInit {
     initStepDataModels(event) {
         this.initMethod();
         this.initMenuType();
-        // this.initMenuParent();
+        // this.initMenuParent(0);
     }
 
     /**

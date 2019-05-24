@@ -15,12 +15,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.service.system.log;
+package com.bootstack.service.system.log.impl;
 
 import com.bootstack.model.page.PageModel;
 import com.bootstack.model.system.log.SystemLogTypeModel;
 import com.bootstack.repository.system.log.SystemLogTypeRepository;
 import com.bootstack.service.ServiceSupport;
+import com.bootstack.service.system.log.SystemLogTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -60,6 +61,11 @@ public class SystemLogTypeServiceImpl implements SystemLogTypeService {
     public PageModel getAllByPage(Pageable pageable) {
         Page<SystemLogTypeModel> pageModel = this.systemLogTypeRepository.findAll(pageable);
         return new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements());
+    }
+
+    @Override
+    public long getCount() {
+        return this.systemLogTypeRepository.count();
     }
 
 }

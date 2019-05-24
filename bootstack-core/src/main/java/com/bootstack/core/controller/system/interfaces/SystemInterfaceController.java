@@ -59,7 +59,7 @@ public class SystemInterfaceController {
      * @return all model for page
      */
     @GetMapping
-    CommonResponseModel list(@Validated PageParam param) {
+    public CommonResponseModel list(@Validated PageParam param) {
         Pageable pageable = ParamSupport.getPageable(param);
         return CommonResponseModel.success(this.systemInterfaceService.getAll(pageable));
     }
@@ -71,7 +71,7 @@ public class SystemInterfaceController {
      * @return add response
      */
     @PostMapping
-    CommonResponseModel add(@RequestBody @Validated SystemInterfaceCreateParam param) {
+    public CommonResponseModel add(@RequestBody @Validated SystemInterfaceCreateParam param) {
         SystemInterfaceModel model = new SystemInterfaceModel();
         BeanUtils.copyProperties(param, model);
         model.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
@@ -86,7 +86,7 @@ public class SystemInterfaceController {
     }
 
     @PutMapping
-    CommonResponseModel set(@RequestBody @Validated SystemInterfaceSetParam param) {
+    public CommonResponseModel set(@RequestBody @Validated SystemInterfaceSetParam param) {
         SystemInterfaceModel model = new SystemInterfaceModel();
         model.setId(Long.valueOf(param.getId()));
         BeanUtils.copyProperties(param, model);

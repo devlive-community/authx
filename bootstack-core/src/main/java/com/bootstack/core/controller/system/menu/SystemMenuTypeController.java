@@ -56,7 +56,7 @@ public class SystemMenuTypeController {
      * @return all menu by page and user
      */
     @GetMapping
-    CommonResponseModel list(@Validated PageParam param) {
+    public CommonResponseModel list(@Validated PageParam param) {
         Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
         return CommonResponseModel.success(this.systemMenuTypeService.getAllByPage(pageable));
     }
@@ -68,7 +68,7 @@ public class SystemMenuTypeController {
      * @return add response
      */
     @PostMapping
-    CommonResponseModel add(@RequestBody @Validated SystemMenuTypeBasicParam param) {
+    public CommonResponseModel add(@RequestBody @Validated SystemMenuTypeBasicParam param) {
         SystemMenuTypeModel systemRole = new SystemMenuTypeModel();
         if (ObjectUtils.isEmpty(param.getActive())) {
             systemRole.setActive(Boolean.TRUE);
@@ -80,7 +80,7 @@ public class SystemMenuTypeController {
     }
 
     @PutMapping
-    CommonResponseModel put(@RequestBody @Validated SystemMenuTypeSetParam param) {
+    public CommonResponseModel put(@RequestBody @Validated SystemMenuTypeSetParam param) {
         SystemMenuTypeModel systemRole = new SystemMenuTypeModel();
         BeanUtils.copyProperties(param, systemRole);
         systemRole.setId(Long.valueOf(param.getId()));

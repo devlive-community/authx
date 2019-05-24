@@ -15,13 +15,16 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<ng2-toasty [position]="'top-center'"></ng2-toasty>
+<section class="content">
+    <div class="row quick-stats">
+        <div *ngFor="let model of models" class="col-sm-6 col-md-3">
+            <div class="quick-stats__item bg-{{ model.color }}">
+                <div class="quick-stats__info">
+                    <h2>{{ model.value }}</h2>
+                    <small>{{ model.title }}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

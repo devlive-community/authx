@@ -54,4 +54,11 @@ public interface BaseService<T> {
      */
     PageModel<T> getAllByPage(Pageable pageable);
 
+    /**
+     * 获取数据总数
+     *
+     * @return 数据总数
+     */
+    long getCount();
+
 }

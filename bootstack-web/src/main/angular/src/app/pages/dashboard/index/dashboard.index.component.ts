@@ -16,6 +16,10 @@
  * limitations under the License.
  */
 import {Component, OnInit} from '@angular/core';
+import {OverviewService} from "../../../../services/overview/overview.service";
+import {CodeConfig} from "../../../../config/code.config";
+import {ToastyService} from "ng2-toasty";
+import {Subscription} from "rxjs";
 
 @Component({
     selector: 'bootstack-dashboard-index',
@@ -27,7 +31,36 @@ import {Component, OnInit} from '@angular/core';
 
 export class DashboardIndexComponent implements OnInit {
 
+    loading: Subscription;
+    options: any;
+    quickStatChartOptions: any; // Quick Stats Chart Options
+    models: any; // Quick Stats Chart Data
+
+    constructor(private toastyService: ToastyService,
+                private overviewService: OverviewService) {
+        this.quickStatChartOptions = {
+            type: 'bar',
+            height: '36px',
+            barWidth: 3,
+            barColor: 'rgba(255,255,255,0.8)',
+            barSpacing: 2
+        }
+    }
+
     ngOnInit() {
+        this.initCount();
+    }
+
+    initCount() {
+        this.loading = this.overviewService.getCount().subscribe(
+            response => {
+                if (response.code !== CodeConfig.SUCCESS) {
+                    this.toastyService.error(response.message);
+                } else {
+                    this.models = response.data;
+                }
+            }
+        );
     }
 
 }

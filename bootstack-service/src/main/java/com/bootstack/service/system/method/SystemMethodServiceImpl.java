@@ -39,12 +39,12 @@ import org.springframework.util.ObjectUtils;
 public class SystemMethodServiceImpl implements SystemMethodService {
 
     @Autowired
-    private SystemMethodRepository systemMethodRepository;
+    private SystemMethodRepository repository;
 
     @Override
     public Long insertModel(Object model) {
         SystemMethodModel source = (SystemMethodModel) model;
-        SystemMethodModel temp = this.systemMethodRepository.save(source);
+        SystemMethodModel temp = this.repository.save(source);
         if (!ObjectUtils.isEmpty(temp)) {
             return temp.getId();
         }
@@ -58,13 +58,18 @@ public class SystemMethodServiceImpl implements SystemMethodService {
 
     @Override
     public PageModel getAllByPage(Pageable pageable) {
-        Page<SystemMethodModel> models = this.systemMethodRepository.findAll(pageable);
+        Page<SystemMethodModel> models = this.repository.findAll(pageable);
         return new PageModel<>(models.getContent(), pageable, models.getTotalElements());
     }
 
     @Override
+    public long getCount() {
+        return this.repository.count();
+    }
+
+    @Override
     public SystemMethodModel getByMethod(String method) {
-        return this.systemMethodRepository.findByMethod(method);
+        return this.repository.findByMethod(method);
     }
 
 }

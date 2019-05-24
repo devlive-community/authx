@@ -25,7 +25,8 @@ import {AngularEchartsModule} from 'ngx-echarts';
 import {ModalModule} from 'ngx-bootstrap/modal';
 
 import {DashboardIndexComponent} from "./dashboard.index.component";
-
+import {OverviewService} from "../../../../services/overview/overview.service";
+import {ToastyModule} from "ng2-toasty";
 
 const DASHBOARD_INDEX_ROUTE = [
     {path: '', component: DashboardIndexComponent}
@@ -42,9 +43,12 @@ const DASHBOARD_INDEX_ROUTE = [
         BsDropdownModule.forRoot(),
         BsDatepickerModule.forRoot(),
         ModalModule.forRoot(),
+        ToastyModule.forRoot(),
         RouterModule.forChild(DASHBOARD_INDEX_ROUTE)
     ],
-    providers: []
+    providers: [
+        OverviewService
+    ]
 })
 
 export class DashboardIndexModule {

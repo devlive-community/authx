@@ -32,14 +32,13 @@ import java.util.Date;
  */
 public class DateUtils {
 
-    private final static SimpleDateFormat format = new SimpleDateFormat();
-
     /**
      * format date to yyyy-mm-dd hh:mm:ss
      *
      * @return formart date id
      */
     public static String formatYmdhms() {
+        SimpleDateFormat format = new SimpleDateFormat();
         format.applyPattern(DateSuooprt.DATE_FORMAT_YYYY_MM_DD_HH_MM_SS);
         return format.format(new Date());
     }
