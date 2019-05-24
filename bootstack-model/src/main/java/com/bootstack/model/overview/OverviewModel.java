@@ -1,4 +1,3 @@
-package com.bootstack.service;
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -16,49 +15,29 @@ package com.bootstack.service;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.bootstack.model.overview;
 
-import com.bootstack.model.page.PageModel;
-import org.springframework.data.domain.Pageable;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
- * <p> BaseService </p>
- * <p> Description : BaseService </p>
+ * <p> OverviewModel </p>
+ * <p> Description : OverviewModel </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-02-12 14:38 </p>
- * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ * <p> Create Time : 2019-05-24 14:22 </p>
+ * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface BaseService<T> {
+@Data
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+public class OverviewModel {
 
-    /**
-     * add model
-     *
-     * @param model model info
-     * @return insert count
-     */
-    Long insertModel(T model);
-
-    /**
-     * get model by id
-     *
-     * @param id model id
-     * @return model
-     */
-    T getModelById(Long id);
-
-    /**
-     * get all model by page
-     *
-     * @param pageable page info
-     * @return all model for page
-     */
-    PageModel<T> getAllByPage(Pageable pageable);
-
-    /**
-     * 获取数据总数
-     *
-     * @return 数据总数
-     */
-    long getCount();
+    private String title; // 显示名称
+    private Long value; // 显示数据值
+    private String color; // 显示模块颜色,部分主题可以使用
 
 }

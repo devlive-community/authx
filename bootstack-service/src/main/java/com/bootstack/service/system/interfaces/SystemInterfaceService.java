@@ -110,7 +110,7 @@ public interface SystemInterfaceService {
      * find by path and method in method
      *
      * @param path   path
-     * @param method method info
+     * @param methods method info
      * @return info
      */
     SystemInterfaceModel getByPathAndMethodsIn(String path, SystemMethodModel... methods);

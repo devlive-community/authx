@@ -15,11 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.test.json;
+package com.bootstack.test.service.overview;
 
 import com.bootstack.core.BootStackBootstrap;
-import com.bootstack.service.json.JsonService;
-import com.bootstack.test.JsonSupport;
+import com.bootstack.service.overview.OverviewService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,11 +29,11 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- * <p> JsonServiceTest </p>
- * <p> Description : JsonServiceTest </p>
+ * <p> OverviewServiceTest </p>
+ * <p> Description : OverviewServiceTest </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-05-21 18:44 </p>
+ * <p> Create Time : 2019-05-24 14:05 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @Slf4j
@@ -47,42 +46,19 @@ import org.springframework.test.context.junit4.SpringRunner;
         "classpath:bootstack-database.properties",
         "classpath:bootstack-api.properties"
 })
-public class JsonServiceTest {
+public class OverviewServiceTest {
 
     @Autowired
-    private JsonService jsonService;
-
-    private String source;
-    private String sourceEmpty;
-    private String prettySource;
-    private String prettySourceEmpty;
+    private OverviewService overviewService;
 
     @Before
     public void init() {
-        source = JsonSupport.source;
-        sourceEmpty = JsonSupport.sourceEmpty;
-        prettySource = JsonSupport.prettySource;
-        prettySourceEmpty = JsonSupport.prettySourceEmpty;
+
     }
 
     @Test
-    public void testFormatPrettyEmpty() {
-        log.info(jsonService.formatPretty(sourceEmpty).toString());
-    }
-
-    @Test
-    public void testFormatPrettyNotEmpty() {
-        log.info(jsonService.formatPretty(source).toString());
-    }
-
-    @Test
-    public void testCompressionEmpty() {
-        log.info(jsonService.compression(prettySourceEmpty).toString());
-    }
-
-    @Test
-    public void testCompressionNotEmpty() {
-        log.info(jsonService.compression(prettySource).toString());
+    public void testGetOverviewByCount() {
+        log.info(overviewService.getOverviewByCount().toString());
     }
 
 }

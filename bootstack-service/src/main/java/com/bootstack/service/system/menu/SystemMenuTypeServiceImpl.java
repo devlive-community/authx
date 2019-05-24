@@ -39,12 +39,12 @@ import org.springframework.util.ObjectUtils;
 public class SystemMenuTypeServiceImpl implements SystemMenuTypeService {
 
     @Autowired
-    private SystemMenuTypeRepository systemMenuTypeRepository;
+    private SystemMenuTypeRepository repository;
 
     @Override
     public Long insertModel(Object model) {
         SystemMenuTypeModel source = (SystemMenuTypeModel) model;
-        SystemMenuTypeModel temp = this.systemMenuTypeRepository.save(source);
+        SystemMenuTypeModel temp = this.repository.save(source);
         if (!ObjectUtils.isEmpty(temp)) {
             return temp.getId();
         }
@@ -53,13 +53,18 @@ public class SystemMenuTypeServiceImpl implements SystemMenuTypeService {
 
     @Override
     public Object getModelById(Long id) {
-        return this.systemMenuTypeRepository.findOne(id);
+        return this.repository.findOne(id);
     }
 
     @Override
     public PageModel getAllByPage(Pageable pageable) {
-        Page<SystemMenuTypeModel> models = this.systemMenuTypeRepository.findAll(pageable);
+        Page<SystemMenuTypeModel> models = this.repository.findAll(pageable);
         return new PageModel<>(models.getContent(), pageable, models.getTotalElements());
+    }
+
+    @Override
+    public long getCount() {
+        return this.repository.count();
     }
 
 }

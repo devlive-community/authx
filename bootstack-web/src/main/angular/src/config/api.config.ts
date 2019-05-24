@@ -81,4 +81,9 @@ export class ApiConfig {
     public static readonly API_TOOLS_JSON_FORMAT = ApiConfig.API_TOOLS_JSON + '/format';
     public static readonly API_TOOLS_JSON_COMPRESSION = ApiConfig.API_TOOLS_JSON + '/compression';
 
+    /**
+     * 概览API请求接口地址
+     */
+    public static readonly API_OVERVIEW = ApiConfig.API_VERSION_V1 + 'overview';
+
 }

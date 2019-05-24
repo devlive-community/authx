@@ -15,12 +15,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.service.icon;
+package com.bootstack.service.icon.impl;
 
-import com.bootstack.model.icon.IconUsageModel;
+import com.bootstack.model.icon.IconModel;
 import com.bootstack.model.page.PageModel;
-import com.bootstack.repository.icon.IconUsageRepository;
+import com.bootstack.repository.icon.IconRepository;
 import com.bootstack.service.ServiceSupport;
+import com.bootstack.service.icon.IconService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,23 +29,23 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 /**
- * <p> IconUsageServiceImpl </p>
- * <p> Description : IconUsageServiceImpl </p>
+ * <p> IconServiceImpl </p>
+ * <p> Description : IconServiceImpl </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-05-08 17:51 </p>
+ * <p> Create Time : 2019-05-08 18:59 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@Service(value = "iconUsageService")
-public class IconUsageServiceImpl implements IconUsageService {
+@Service(value = "iconService")
+public class IconServiceImpl implements IconService {
 
     @Autowired
-    private IconUsageRepository repository;
+    private IconRepository repository;
 
     @Override
     public Long insertModel(Object model) {
-        IconUsageModel source = (IconUsageModel) model;
-        IconUsageModel temp = this.repository.save(source);
+        IconModel source = (IconModel) model;
+        IconModel temp = this.repository.save(source);
         if (!ObjectUtils.isEmpty(temp)) {
             return temp.getId();
         }
@@ -58,8 +59,13 @@ public class IconUsageServiceImpl implements IconUsageService {
 
     @Override
     public PageModel getAllByPage(Pageable pageable) {
-        Page<IconUsageModel> pageModel = this.repository.findAll(pageable);
+        Page<IconModel> pageModel = this.repository.findAll(pageable);
         return new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements());
+    }
+
+    @Override
+    public long getCount() {
+        return this.repository.count();
     }
 
 }

@@ -15,12 +15,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.service.icon;
+package com.bootstack.service.icon.impl;
 
-import com.bootstack.model.icon.IconModel;
+import com.bootstack.model.icon.IconTypeModel;
 import com.bootstack.model.page.PageModel;
-import com.bootstack.repository.icon.IconRepository;
+import com.bootstack.repository.icon.IconTypeRepository;
 import com.bootstack.service.ServiceSupport;
+import com.bootstack.service.icon.IconTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,25 +29,25 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 /**
- * <p> IconServiceImpl </p>
- * <p> Description : IconServiceImpl </p>
+ * <p> IconTypeServiceImpl </p>
+ * <p> Description : IconTypeServiceImpl </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-05-08 18:59 </p>
+ * <p> Create Time : 2019-05-08 17:51 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@Service(value = "iconService")
-public class IconServiceImpl implements IconService {
+@Service(value = "iconTypeService")
+public class IconTypeServiceImpl implements IconTypeService {
 
     @Autowired
-    private IconRepository repository;
+    private IconTypeRepository repository;
 
     @Override
     public Long insertModel(Object model) {
-        IconModel source = (IconModel) model;
-        IconModel temp = this.repository.save(source);
-        if (!ObjectUtils.isEmpty(temp)) {
-            return temp.getId();
+        IconTypeModel source = (IconTypeModel) model;
+        IconTypeModel user = this.repository.save(source);
+        if (!ObjectUtils.isEmpty(user)) {
+            return user.getId();
         }
         return ServiceSupport.DEFAULT_ID;
     }
@@ -58,8 +59,13 @@ public class IconServiceImpl implements IconService {
 
     @Override
     public PageModel getAllByPage(Pageable pageable) {
-        Page<IconModel> pageModel = this.repository.findAll(pageable);
+        Page<IconTypeModel> pageModel = this.repository.findAll(pageable);
         return new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements());
+    }
+
+    @Override
+    public long getCount() {
+        return this.repository.count();
     }
 
 }

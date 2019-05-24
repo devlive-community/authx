@@ -1,5 +1,4 @@
-package com.bootstack.service;
-/**
+package com.bootstack.service.overview; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -17,48 +16,23 @@ package com.bootstack.service;
  * limitations under the License.
  */
 
-import com.bootstack.model.page.PageModel;
-import org.springframework.data.domain.Pageable;
+import com.bootstack.model.common.CommonResponseModel;
 
 /**
- * <p> BaseService </p>
- * <p> Description : BaseService </p>
+ * <p> OverviewService </p>
+ * <p> Description : OverviewService </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-02-12 14:38 </p>
+ * <p> Create Time : 2019-05-24 14:04 </p>
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface BaseService<T> {
+public interface OverviewService {
 
     /**
-     * add model
+     * 获取数据概览信息(统计)
      *
-     * @param model model info
-     * @return insert count
+     * @return 概览信息(统计)
      */
-    Long insertModel(T model);
-
-    /**
-     * get model by id
-     *
-     * @param id model id
-     * @return model
-     */
-    T getModelById(Long id);
-
-    /**
-     * get all model by page
-     *
-     * @param pageable page info
-     * @return all model for page
-     */
-    PageModel<T> getAllByPage(Pageable pageable);
-
-    /**
-     * 获取数据总数
-     *
-     * @return 数据总数
-     */
-    long getCount();
+    CommonResponseModel getOverviewByCount();
 
 }

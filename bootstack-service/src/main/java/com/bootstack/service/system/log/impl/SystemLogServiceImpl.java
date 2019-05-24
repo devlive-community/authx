@@ -15,12 +15,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.service.system.log;
+package com.bootstack.service.system.log.impl;
 
 import com.bootstack.model.page.PageModel;
-import com.bootstack.model.system.log.SystemLogTypeModel;
-import com.bootstack.repository.system.log.SystemLogTypeRepository;
+import com.bootstack.model.system.log.SystemLogModel;
+import com.bootstack.repository.system.log.SystemLogRepository;
 import com.bootstack.service.ServiceSupport;
+import com.bootstack.service.system.log.SystemLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -35,16 +36,16 @@ import org.springframework.util.ObjectUtils;
  * <p> Create Time : 2019-05-07 14:31 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@Service(value = "systemLogTypeService")
-public class SystemLogTypeServiceImpl implements SystemLogTypeService {
+@Service(value = "systemLogService")
+public class SystemLogServiceImpl implements SystemLogService {
 
     @Autowired
-    private SystemLogTypeRepository systemLogTypeRepository;
+    private SystemLogRepository systemLogRepository;
 
     @Override
     public Long insertModel(Object model) {
-        SystemLogTypeModel source = (SystemLogTypeModel) model;
-        SystemLogTypeModel user = this.systemLogTypeRepository.save(source);
+        SystemLogModel source = (SystemLogModel) model;
+        SystemLogModel user = this.systemLogRepository.save(source);
         if (!ObjectUtils.isEmpty(user)) {
             return user.getId();
         }
@@ -53,13 +54,18 @@ public class SystemLogTypeServiceImpl implements SystemLogTypeService {
 
     @Override
     public Object getModelById(Long id) {
-        return this.systemLogTypeRepository.findOne(id);
+        return this.systemLogRepository.findOne(id);
     }
 
     @Override
     public PageModel getAllByPage(Pageable pageable) {
-        Page<SystemLogTypeModel> pageModel = this.systemLogTypeRepository.findAll(pageable);
+        Page<SystemLogModel> pageModel = this.systemLogRepository.findAll(pageable);
         return new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements());
+    }
+
+    @Override
+    public long getCount() {
+        return this.systemLogRepository.count();
     }
 
 }

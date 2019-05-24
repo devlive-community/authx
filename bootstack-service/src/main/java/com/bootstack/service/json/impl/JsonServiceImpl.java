@@ -69,4 +69,9 @@ public class JsonServiceImpl implements JsonService {
         return CommonResponseModel.success(JsonUtils.compression(source));
     }
 
+    @Override
+    public long getCount() {
+        return 0;
+    }
+
 }

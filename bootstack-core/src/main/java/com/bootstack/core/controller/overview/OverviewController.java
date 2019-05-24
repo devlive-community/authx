@@ -15,38 +15,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.service.user;
+package com.bootstack.core.controller.overview;
 
-import com.bootstack.model.user.UserModel;
-import com.bootstack.service.BaseService;
+import com.bootstack.model.common.CommonResponseModel;
+import com.bootstack.service.overview.OverviewService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
- * <p> UserService </p>
- * <p> Description : UserService </p>
+ * <p> OverviewController </p>
+ * <p> Description : OverviewController </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-25 09:50 </p>
+ * <p> Create Time : 2019-05-24 15:00 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface UserService extends BaseService {
+@RestController
+@RequestMapping(value = "${bootstack.api.path}/${bootstack.api.version}/overview")
+@Slf4j
+public class OverviewController {
 
-    /**
-     * get model by username and password
-     *
-     * @param name     username
-     * @param password password
-     * @return user model
-     */
-    UserModel getModelByNameAndPassword(String name, String password);
+    @Autowired
+    private OverviewService overviewService;
 
-    /**
-     * get model by username
-     *
-     * @param name username
-     * @return user model
-     */
-    UserModel getModelByName(String name);
-
-    UserModel getDistinctById(Long id);
+    @GetMapping
+    public CommonResponseModel getOverviewByCount() {
+        return this.overviewService.getOverviewByCount();
+    }
 
 }

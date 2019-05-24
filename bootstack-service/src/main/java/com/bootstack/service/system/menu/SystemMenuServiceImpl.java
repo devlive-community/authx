@@ -64,6 +64,11 @@ public class SystemMenuServiceImpl implements SystemMenuService {
     }
 
     @Override
+    public long getCount() {
+        return this.systemMenuRepository.count();
+    }
+
+    @Override
     public PageModel<SystemMenuModel> getAllByParent(Long parent, Pageable pageable) {
         Page<SystemMenuModel> pageModel = this.systemMenuRepository.findAllByParent(parent, pageable);
         return new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements());
