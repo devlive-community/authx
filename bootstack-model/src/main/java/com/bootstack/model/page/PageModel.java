@@ -49,14 +49,6 @@ public class PageModel<T> extends PageImpl<T> implements Page<T> {
         return new PageRequest(pageable.getPageNumber() - 1, pageable.getPageSize(), pageable.getSort());
     }
 
-    /**
-     * Rewrite the current page, add 1 to the current page and return to the front desk after adding 0 to 1 to the start page of spring data JPA
-     */
-    @Override
-    public int getNumber() {
-        return super.getNumber() + 1;
-    }
-
     public static Pageable getPageable(Integer page, Integer size) {
         return PageModel.request(new PageRequest(page, size));
     }
@@ -71,6 +63,14 @@ public class PageModel<T> extends PageImpl<T> implements Page<T> {
      */
     public static Pageable getPageableAndSort(Integer page, Integer size, Sort sort) {
         return PageModel.request(new PageRequest(page, size, sort));
+    }
+
+    /**
+     * Rewrite the current page, add 1 to the current page and return to the front desk after adding 0 to 1 to the start page of spring data JPA
+     */
+    @Override
+    public int getNumber() {
+        return super.getNumber() + 1;
     }
 
 }

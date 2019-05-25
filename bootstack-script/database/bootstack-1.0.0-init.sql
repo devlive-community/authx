@@ -296,3 +296,8 @@ create table system_menu_icon_relation (
     icon_id        int comment '图标表唯一标志,唯一主键'
 ) comment '菜单与图标关系表'
     default charset utf8;
+
+ALTER TABLE users
+    ADD COLUMN locked boolean DEFAULT false COMMENT '是否锁定,锁定后用户无法登录' ,
+    ADD COLUMN email varchar(100) COMMENT '邮箱地址' ,
+    ADD COLUMN systemed boolean DEFAULT false COMMENT '是否为系统默认,系统默认用户无法做任何操作';

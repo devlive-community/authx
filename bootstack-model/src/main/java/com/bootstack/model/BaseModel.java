@@ -15,85 +15,54 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.model.system.interfaces;
+package com.bootstack.model;
 
 import com.bootstack.common.support.DateSuooprt;
-import com.bootstack.model.system.method.SystemMethodModel;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 /**
- * <p> SystemInterfaceModel </p>
- * <p> Description : SystemInterfaceModel </p>
+ * <p> BaseModel </p>
+ * <p> Description : BaseModel </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-25 14:54 </p>
+ * <p> Create Time : 2019-05-25 20:45 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @Data
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@EntityListeners(value = AuditingEntityListener.class)
-@Table(name = "system_interface")
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class SystemInterfaceModel {
+@MappedSuperclass
+public class BaseModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Long id; // 唯一标志
 
     @Column(name = "name")
-    private String name;
-
-    @Column(name = "code")
-    private String code;
-
-    @Column(name = "description")
-    private String description;
+    private String name; // 名称
 
     @Column(name = "active")
-    private Boolean active;
-
-    @Column(name = "white")
-    private Boolean white; // is white list
-
-    @Column(name = "system")
-    private Boolean system; // system default
-
-    @Column(name = "path")
-    private String path;
-
-//    @Column(name = "method")
-//    private String method; // multiple method split by ,
+    private Boolean active = true; // 激活状态
 
     @Column(name = "create_time")
     @CreatedDate
     @DateTimeFormat(pattern = DateSuooprt.DATE_FORMAT_YYYY_MM_DD_HH_MM_SS)
-    private Date createTime;
+    private Date createTime; // 创建时间
 
     @Column(name = "update_time")
     @LastModifiedDate
     @DateTimeFormat(pattern = DateSuooprt.DATE_FORMAT_YYYY_MM_DD_HH_MM_SS)
-    private Date updateTime;
-
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "system_interface_method_relation",
-            joinColumns = @JoinColumn(name = "system_interface_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "system_method_id", referencedColumnName = "id"))
-    private List<SystemMethodModel> methods;
+    private Date updateTime; // 更新时间
 
 }

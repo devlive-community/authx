@@ -1,4 +1,4 @@
-/**
+package com.bootstack.repository; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -15,39 +15,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.model.system.role;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
-import java.util.List;
 
 /**
- * <p> SystemMenuTreeModel </p>
- * <p> Description : SystemMenuTreeModel </p>
+ * <p> BaseRepository </p>
+ * <p> Description : BaseRepository </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-04-29 13:56 </p>
- * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ * <p> Create Time : 2019-05-25 21:00 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@Data
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
-public class SystemMenuTreeModel {
-
-    List<SystemMenuTreeModel> children; // sub menu
-    private Long id; // menu id
-    private String name; // menu name
-    private String url;
-    private Integer sorted;
-    private Boolean newd;
-    private String icon;
-    private String tips;
-    private Boolean checked = false; // is checked
-    private Boolean selected = false; // is checked
-    private SysteMenuTreeItemModel item;
+public interface BaseRepository {
 
 }
