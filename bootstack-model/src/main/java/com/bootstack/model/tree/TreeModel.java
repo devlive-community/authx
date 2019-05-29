@@ -15,8 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.model.system.role;
+package com.bootstack.model.tree;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,18 +37,20 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class SystemMenuTreeModel {
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class TreeModel {
 
-    List<SystemMenuTreeModel> children; // sub menu
-    private Long id; // menu id
-    private String name; // menu name
-    private String url;
-    private Integer sorted;
-    private Boolean newd;
-    private String icon;
-    private String tips;
-    private Boolean checked = false; // is checked
-    private Boolean selected = false; // is checked
-    private SysteMenuTreeItemModel item;
+    private Long id; // 数据唯一标志
+    private String name; // 数据名称
+    private String url; // 数据连接地址
+    private Integer sorted; // 数据排序规则
+    private Boolean newd; // 数据新旧标志
+    private String icon; // 数据图标
+    private String tips; // 数据提示内容
+    private String code; // 数据唯一编码
+    private Boolean checked = false; // 是否选中
+    private Boolean selected = false; // 是否选中
+    List<TreeModel> children; // 子数据
+    private TreeItemModel item;// 针对于tree-ngx插件定制
 
 }

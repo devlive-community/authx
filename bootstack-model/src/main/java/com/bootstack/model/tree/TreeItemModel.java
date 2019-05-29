@@ -1,4 +1,4 @@
-package com.bootstack.service.system.role; /**
+/**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -15,33 +15,30 @@ package com.bootstack.service.system.role; /**
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.bootstack.model.tree;
 
-import com.bootstack.model.system.menu.SystemMenuTypeModel;
-import com.bootstack.model.tree.TreeModel;
-import com.bootstack.model.system.role.SystemRoleModel;
-
-import java.util.List;
+import lombok.Data;
+import lombok.ToString;
 
 /**
- * <p> SystemRoleSeniorService </p>
- * <p> Description : SystemRoleSeniorService </p>
+ * <p> SysteMenuTreeItemModel </p>
+ * <p> Description : 针对于tree-ngx插件定制 </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-04-29 13:54 </p>
- * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ * <p> Create Time : 2019-04-30 11:50 </p>
+ * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface SystemRoleSeniorService {
+@Data
+@ToString
+public class TreeItemModel {
 
-    /**
-     * Query the menu by the permission ID
-     * @param id
-     * @param flag
-     * @return
-     */
-    List<TreeModel> findTreeMenuById(SystemRoleModel roleModel, SystemMenuTypeModel typeModel);
+    private Long phrase;
 
-    List<TreeModel> findMenuById(Long id);
+    private TreeItemModel() {
+    }
 
-    List<TreeModel> findMenuByIds(List<SystemRoleModel> roles);
+    public static TreeItemModel buildNew() {
+        return new TreeItemModel();
+    }
 
 }
