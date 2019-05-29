@@ -1,4 +1,4 @@
-/**
+package com.bootstack.service.system; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -15,18 +15,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.controller.system;
 
-import org.springframework.web.bind.annotation.RestController;
+import com.bootstack.model.system.SystemSettingsModel;
+import com.bootstack.service.BaseService;
 
 /**
- * <p> SystemController </p>
- * <p> Description : SystemController </p>
+ * <p> SystemSettingsService </p>
+ * <p> Description : SystemSettingsService </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-25 14:41 </p>
- * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ * <p> Create Time : 2019-05-29 20:38 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@RestController
-public class SystemController {
+public interface SystemSettingsService extends BaseService {
+
+    /**
+     * 根据名称查询数据
+     *
+     * @param name 名称
+     * @return 当前名称对应的数据
+     */
+    SystemSettingsModel getModelByName(String name);
+
+    /**
+     * 获取当前激活的数据
+     *
+     * @return 当前激活的数据
+     */
+    SystemSettingsModel getModelByActiveTrue();
+
 }

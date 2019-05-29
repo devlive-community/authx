@@ -15,42 +15,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.test.pinyin;
+package com.bootstack.model.system;
 
-import com.bootstack.common.pinyin.PinYinUtils;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import com.bootstack.model.BaseModel;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.Table;
 
 /**
- * <p> PinYinUtilsTest </p>
- * <p> Description : PinYinUtilsTest </p>
+ * <p> SystemModel </p>
+ * <p> Description : SystemModel </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-05-21 01:58 </p>
+ * <p> Create Time : 2019-05-29 20:18 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public class PinYinUtilsTest {
+@Data
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@EntityListeners(value = AuditingEntityListener.class)
+@Table(name = "system_settings")
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class SystemSettingsModel extends BaseModel {
 
-    private String chinese;
-    private String prefix;
-    private String fullPrefix;
-
-    @Before
-    public void init() {
-        chinese = "测试中文";
-        prefix = "C";
-        fullPrefix = "CDZW";
-    }
-
-    @Test
-    public void testGetFirstOneSpell() {
-        Assert.assertEquals(PinYinUtils.getFirstOneSpell(chinese), prefix);
-    }
-
-    @Test
-    public void testGetFirstOneSpellToUpper() {
-        Assert.assertEquals(PinYinUtils.getFirstOneSpellToUpper(chinese), prefix);
-    }
+    private String code; // 编码
+    private String label; // 显示名称
+    private String value; // 数据值
 
 }
