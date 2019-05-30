@@ -52,6 +52,7 @@ const LAYOUT_ROUTES: Routes = [
             {path: 'role', loadChildren: '../pages/system/role/system.role.module#SystemRoleModule'},
             {path: 'menu-type', loadChildren: '../pages/system/menu/system.menu.type.module#SystemMenuTypeModule'},
             {path: 'menu', loadChildren: '../pages/system/menu/system.menu.module#SystemMenuModule'},
+            {path: 'settings', loadChildren: '../pages/system/settings/system.settings.module#SystemSettingsModule'},
             {
                 path: 'settings', children: [
                     {
