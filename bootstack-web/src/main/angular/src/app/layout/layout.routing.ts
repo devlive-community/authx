@@ -62,6 +62,14 @@ const LAYOUT_ROUTES: Routes = [
                     {
                         path: 'method',
                         loadChildren: '../pages/system/settings/method/system.settings.method.module#SystemSettingsMethodModule'
+                    },
+                    {
+                        path: 'table', children: [
+                            {
+                                path: 'row',
+                                loadChildren: '../pages/system/settings/method/system.settings.method.module#SystemSettingsMethodModule'
+                            }
+                        ]
                     }
                 ]
             }
