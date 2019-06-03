@@ -31,9 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -68,6 +66,7 @@ public class TableRowController extends BaseController {
         BeanUtils.copyProperties(param, model);
         model.setChecked(param.getChecked());
         model.setActive(param.getActive());
+        model.setName(param.getProperties());
         // 封装关联的菜单信息
         List<SystemMenuModel> menus = new ArrayList<>();
         Arrays.asList(param.getMenus()).forEach(v -> {
@@ -78,6 +77,13 @@ public class TableRowController extends BaseController {
         });
         model.setMenus(menus);
         return CommonResponseModel.success(this.service.insertModel(model));
+    }
+
+    @GetMapping(value = "{menu}")
+    public CommonResponseModel getByMenu(@PathVariable(value = "menu") String menu,
+                                         @Validated PageParam param) {
+        Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
+        return this.service.getAllByMenus(pageable, menu);
     }
 
 }

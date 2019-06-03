@@ -16,7 +16,9 @@ package com.bootstack.service.table; /**
  * limitations under the License.
  */
 
+import com.bootstack.model.common.CommonResponseModel;
 import com.bootstack.service.BaseService;
+import org.springframework.data.domain.Pageable;
 
 /**
  * <p> TableRowService </p>
@@ -27,4 +29,14 @@ import com.bootstack.service.BaseService;
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 public interface TableRowService extends BaseService {
+
+    /**
+     * 根据菜单查询菜单的表头信息
+     *
+     * @param menus    菜单信息
+     * @param pageable 分页信息
+     * @return 表头信息
+     */
+    CommonResponseModel getAllByMenus(Pageable pageable, String... menus);
+
 }

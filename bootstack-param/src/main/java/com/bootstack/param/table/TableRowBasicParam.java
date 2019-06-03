@@ -38,7 +38,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class TableRowBasicParam {
 
     @NotEmpty(message = "表头名称不能为空")
-    private String name;
+    private String title;
 
     @NotEmpty(message = "表头对应数据的字段不能为空")
     private String properties; // 对应数据的字段

@@ -36,11 +36,18 @@ import {SystemMenuService} from "../../../../../services/system/system.menu.serv
 export class SystemSettingsTableComponent implements OnInit {
 
     public loading: Subscription;
-    private models;
     public param; // 创建数据模型
     public page: CommonPageModel;
     public currentPage: number;
     public menus: any;
+    // 数据信息
+    public tableRows: Array<any> = [];
+    public tableColumns: Array<any> = [];
+    public config: any = {
+        paging: true,
+        sorting: {columns: this.tableColumns},
+        filtering: {filterString: '', columnName: 'position'}
+    };
 
     @ViewChild('createAndUpdateModal')
     public createAndUpdateModal: ModalDirective;
@@ -68,10 +75,10 @@ export class SystemSettingsTableComponent implements OnInit {
         translate.use(broswerLang.match(/en|zh-CN/) ? broswerLang : 'zh-CN');
         this.page = new CommonPageModel();
         this.param = new SystemSettingsTableRowParam();
+        this.initMenu();
     }
 
     ngOnInit() {
-        this.models = this.initModels(this.page);
     }
 
     /**
@@ -83,7 +90,7 @@ export class SystemSettingsTableComponent implements OnInit {
                 if (response.code !== CodeConfig.SUCCESS) {
                     this.toastyService.error(response.message);
                 } else {
-                    this.models = response.data.content;
+                    this.tableRows = response.data.content;
                     this.page = CommonPageModel.getPage(response.data);
                     this.currentPage = this.page.number;
                 }
@@ -105,6 +112,41 @@ export class SystemSettingsTableComponent implements OnInit {
                 } else {
                     const temps = response.data.content;
                     this.methodOptions = this.generateOptions(temps);
+                }
+            }
+        );
+    }
+
+    /**
+     * 初始化当前菜单信息
+     */
+    initMenu() {
+        this.systemMenuService.getByUrl(window.location.href.split("#")[1]).subscribe(
+            response => {
+                if (response.code !== CodeConfig.SUCCESS) {
+                    this.toastyService.error(response.message);
+                } else {
+                    this.initTableRow(response.data);
+                }
+            }
+        );
+    }
+
+    /**
+     * 初始化表头信息
+     */
+    initTableRow(menu: any) {
+        let page = new CommonPageModel();
+        page.size = 20;
+        this.tableRowService.getListByMenu(menu.id, page).subscribe(
+            response => {
+                if (response.code !== CodeConfig.SUCCESS) {
+                    this.toastyService.error(response.message);
+                } else {
+                    this.tableColumns = response.data.content;
+                    if (this.tableColumns) {
+                        this.initModels(this.page);
+                    }
                 }
             }
         );
@@ -143,17 +185,6 @@ export class SystemSettingsTableComponent implements OnInit {
 
     createAndUpdate() {
         if (this.param.id) {
-            // this.param.menus = this.menus;
-            // this.systemSettingsInterfaceService.update(this.param).subscribe(
-            //     response => {
-            //         if (response.code !== CodeConfig.SUCCESS) {
-            //             this.toastyService.error(response.message);
-            //         } else {
-            //             this.initModels(this.page);
-            //             this.createAndUpdateModal.hide();
-            //         }
-            //     }
-            // );
         } else {
             this.param.menus = this.menus;
             this.tableRowService.register(this.param).subscribe(

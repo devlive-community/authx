@@ -60,4 +60,18 @@ export class TableRowService implements BaseService {
             .map(ResponseUtils.extractData);
     }
 
+    /**
+     * 根据菜单获取表头信息
+     * @param menu 菜单信息
+     * @param page 分页信息
+     */
+    getListByMenu(menu: string, page: CommonPageModel): Observable<CommonResponseModel> {
+        const options = HttpUtils.getDefaultRequestOptionsByTokenAndJSON();
+        const params = HttpUtils.getParams();
+        params.append('page', page.number.toString());
+        params.append('size', page.size.toString());
+        options.params = params;
+        return this.http.get(ApiConfig.API_TABLE_ROW + '/' + menu, options).map(ResponseUtils.extractData);
+    }
+
 }

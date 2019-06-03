@@ -47,6 +47,7 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class TableRowModel extends BaseModel {
 
+    private String title; // 名称
     private Boolean checked = false; // 选中状态
     private String properties; // 对应数据的字段
     private String type; // 字段类型,后期支持排序等功能

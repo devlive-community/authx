@@ -92,4 +92,16 @@ export class SystemMenuService implements BaseService {
         return this.http.get(ApiConfig.API_SYSTEM_ROLE_TREE, options).map(ResponseUtils.extractData);
     }
 
+    /**
+     * 根据路径获取详情
+     * @param path 路径地址
+     */
+    getByUrl(path: string): Observable<CommonResponseModel> {
+        const options = HttpUtils.getDefaultRequestOptionsByTokenAndJSON();
+        const params = HttpUtils.getParams();
+        params.append('path', path);
+        options.params = params;
+        return this.http.get(ApiConfig.API_SYSTEM_MENU + '/detail', options).map(ResponseUtils.extractData);
+    }
+
 }

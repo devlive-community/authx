@@ -16,8 +16,13 @@ package com.bootstack.repository.table; /**
  * limitations under the License.
  */
 
+import com.bootstack.model.system.menu.SystemMenuModel;
 import com.bootstack.model.table.TableRowModel;
 import com.bootstack.repository.BaseRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 
 /**
  * <p> TableRowRepository </p>
@@ -28,5 +33,14 @@ import com.bootstack.repository.BaseRepository;
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 public interface TableRowRepository extends BaseRepository<TableRowModel, Long> {
+
+    /**
+     * 根据菜单查询菜单的表头信息
+     *
+     * @param menus    菜单信息
+     * @param pageable 分页信息
+     * @return 表头信息
+     */
+    Page<TableRowModel> findAllByMenus(List<SystemMenuModel> menus, Pageable pageable);
 
 }

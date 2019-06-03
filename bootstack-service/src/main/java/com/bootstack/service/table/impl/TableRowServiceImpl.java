@@ -17,7 +17,9 @@
  */
 package com.bootstack.service.table.impl;
 
+import com.bootstack.model.common.CommonResponseModel;
 import com.bootstack.model.page.PageModel;
+import com.bootstack.model.system.menu.SystemMenuModel;
 import com.bootstack.model.table.TableRowModel;
 import com.bootstack.repository.table.TableRowRepository;
 import com.bootstack.service.ServiceSupport;
@@ -27,6 +29,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * <p> TableRowServiceImpl </p>
@@ -66,6 +72,18 @@ public class TableRowServiceImpl implements TableRowService {
     @Override
     public long getCount() {
         return this.repository.count();
+    }
+
+    @Override
+    public CommonResponseModel getAllByMenus(Pageable pageable, String... menus) {
+        List<SystemMenuModel> models = new ArrayList<>();
+        Arrays.asList(menus).forEach(v -> {
+            SystemMenuModel menu = new SystemMenuModel();
+            menu.setId(Long.valueOf(v));
+            models.add(menu);
+        });
+        Page<TableRowModel> pageModel = this.repository.findAllByMenus(models, pageable);
+        return CommonResponseModel.success(new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements()));
     }
 
 }

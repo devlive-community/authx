@@ -29,45 +29,49 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <table class="table mb-0 mr-center">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>{{ "common.name" | translate }}</th>
-                            <th>{{ "common.code" | translate }}</th>
-                            <th>{{ "common.description" | translate }}</th>
-                            <th>{{ "common.activeStatus" | translate }}</th>
-                            <th>{{ "common.createTime" | translate }}</th>
-                            <th>{{ "common.updateTime" | translate }}</th>
-                            <th>{{ "common.action.name" | translate }}</th>
-                        </tr>
-                        </thead>
-                        <tbody *ngFor="let model of models">
-                        <tr>
-                            <th scope="row">{{model.id}}</th>
-                            <td>{{model.name}}</td>
-                            <td>{{model.code}}</td>
-                            <td>{{model.description}}</td>
-                            <td class="center">
-                                <a [tooltip]="model.active ? 'current status is actived' : 'current status is not actived'">
-                                    <i [ngClass]="model.active ? 'zmdi zmdi-stop' : 'zmdi zmdi-play'"></i>
-                                </a>
-                            </td>
-                            <td>{{model.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                            <td>{{model.updateTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                            <td>
-                                <a (click)="startShowCreateAndUpdateModal(model)"><i class="zmdi zmdi-edit"
-                                                                                     tooltip="{{ 'common.action.editItem' | translate }}"></i></a>
-                            </td>
-                        </tr>
-                        </tbody>
-                        <!-- no data show -->
-                        <tbody *ngIf="models?.length <= 0">
-                        <tr>
-                            <th rowspan="10">No Data Found</th>
-                        </tr>
-                        </tbody>
-                    </table>
+
+                    <ng-table [config]="config.sorting" [rows]="tableRows" [columns]="tableColumns">
+                    </ng-table>
+
+                    <!--<table class="table mb-0 mr-center">-->
+                        <!--<thead>-->
+                        <!--<tr>-->
+                            <!--<th>#</th>-->
+                            <!--<th>{{ "common.name" | translate }}</th>-->
+                            <!--<th>{{ "common.code" | translate }}</th>-->
+                            <!--<th>{{ "common.description" | translate }}</th>-->
+                            <!--<th>{{ "common.activeStatus" | translate }}</th>-->
+                            <!--<th>{{ "common.createTime" | translate }}</th>-->
+                            <!--<th>{{ "common.updateTime" | translate }}</th>-->
+                            <!--<th>{{ "common.action.name" | translate }}</th>-->
+                        <!--</tr>-->
+                        <!--</thead>-->
+                        <!--<tbody *ngFor="let model of models">-->
+                        <!--<tr>-->
+                            <!--<th scope="row">{{model.id}}</th>-->
+                            <!--<td>{{model.name}}</td>-->
+                            <!--<td>{{model.code}}</td>-->
+                            <!--<td>{{model.description}}</td>-->
+                            <!--<td class="center">-->
+                                <!--<a [tooltip]="model.active ? 'current status is actived' : 'current status is not actived'">-->
+                                    <!--<i [ngClass]="model.active ? 'zmdi zmdi-stop' : 'zmdi zmdi-play'"></i>-->
+                                <!--</a>-->
+                            <!--</td>-->
+                            <!--<td>{{model.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>-->
+                            <!--<td>{{model.updateTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>-->
+                            <!--<td>-->
+                                <!--<a (click)="startShowCreateAndUpdateModal(model)"><i class="zmdi zmdi-edit"-->
+                                                                                     <!--tooltip="{{ 'common.action.editItem' | translate }}"></i></a>-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                        <!--</tbody>-->
+                        <!--&lt;!&ndash; no data show &ndash;&gt;-->
+                        <!--<tbody *ngIf="models?.length <= 0">-->
+                        <!--<tr>-->
+                            <!--<th rowspan="10">No Data Found</th>-->
+                        <!--</tr>-->
+                        <!--</tbody>-->
+                    <!--</table>-->
                 </div>
             </div>
             <div class="mr-center">
@@ -96,7 +100,7 @@
                         <div class="form-group form-group--centered">
                             {{ 'page.system.table.row.label.title.name' | translate}}:
                             <label class="custom-control">
-                                <input type="text" [(ngModel)]="param.name" name="name" #name="ngModel"
+                                <input type="text" [(ngModel)]="param.title" name="name" #name="ngModel"
                                        class="form-control" required [ngClass]="name.errors?.name ? 'is-invalid' : ''"
                                        placeholder="{{ 'page.system.table.row.input.placeholder.name' | translate}}"/>
                                 <i class="form-group__bar"></i>

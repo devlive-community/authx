@@ -223,4 +223,5 @@ public abstract class BaseController<T> implements Serializable {
      */
     @PostMapping
     public abstract CommonResponseModel add(@RequestBody @Validated TableRowCreateParam param);
+
 }

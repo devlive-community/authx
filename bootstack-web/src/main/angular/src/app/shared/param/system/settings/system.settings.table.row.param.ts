@@ -18,7 +18,7 @@
 export class SystemSettingsTableRowParam {
 
     public id: number;
-    public name: string;
+    public title: string;
     public properties: string; // 对应数据的字段
     public checked: boolean = false; // 选中状态
     public type: number = 0; // 字段类型,后期支持排序等功能

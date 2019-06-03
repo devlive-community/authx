@@ -322,6 +322,7 @@ drop table if exists table_row;
 create table table_row (
     id          int auto_increment,
     name        varchar(100) comment '名称',
+    title       varchar(100) comment '名称',
     active      boolean comment '激活状态' default true,
     checked     boolean comment '选中状态' default false,
     properties  varchar(10) comment '对应数据的字段',

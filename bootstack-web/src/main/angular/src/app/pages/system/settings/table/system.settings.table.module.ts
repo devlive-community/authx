@@ -30,6 +30,7 @@ import {ModalModule, PaginationModule} from "ngx-bootstrap";
 import {SystemSettingsTableComponent} from "./system.settings.table.component";
 import {TableRowService} from "../../../../../services/table/table.row.service";
 import {SystemMenuService} from "../../../../../services/system/system.menu.service";
+import {Ng2TableModule} from "ng2-dynamic-table";
 
 const SYSTEM_SETTINGS_TABLE_ROUTES: Routes = [
     {path: '', component: SystemSettingsTableComponent}
@@ -44,6 +45,7 @@ const SYSTEM_SETTINGS_TABLE_ROUTES: Routes = [
         BusyModule,
         TranslateModule,
         Select2Module,
+        Ng2TableModule,
         TooltipModule.forRoot(),
         ToastyModule.forRoot(),
         PaginationModule.forRoot(),

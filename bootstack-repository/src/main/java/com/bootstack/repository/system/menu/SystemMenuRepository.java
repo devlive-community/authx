@@ -64,4 +64,12 @@ public interface SystemMenuRepository extends PagingAndSortingRepository<SystemM
 
     Page<SystemMenuModel> findAllByType(SystemMenuTypeModel type, Pageable pageable);
 
+    /**
+     * 根据url获取详情
+     *
+     * @param url url地址
+     * @return 详情
+     */
+    SystemMenuModel findByUrl(String url);
+
 }

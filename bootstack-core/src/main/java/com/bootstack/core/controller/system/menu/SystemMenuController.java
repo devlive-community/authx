@@ -117,8 +117,8 @@ public class SystemMenuController {
      */
     @GetMapping(value = "parent")
     public CommonResponseModel getByParent(@Validated PageParam param,
-                                    @RequestParam(value = "parent", defaultValue = "0") Long parent,
-                                    @RequestParam(value = "type", defaultValue = "0") Long type) {
+                                           @RequestParam(value = "parent", defaultValue = "0") Long parent,
+                                           @RequestParam(value = "type", defaultValue = "0") Long type) {
         Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
         if (type > 0) {
             SystemMenuTypeModel typeModel = new SystemMenuTypeModel();
@@ -126,6 +126,11 @@ public class SystemMenuController {
             return CommonResponseModel.success(this.systemMenuService.getAllByParentAndType(parent, typeModel, pageable));
         }
         return CommonResponseModel.success(this.systemMenuService.getAllByParent(parent, pageable));
+    }
+
+    @GetMapping(value = "detail")
+    public CommonResponseModel getByPath(@RequestParam(value = "path") String path) {
+        return CommonResponseModel.success(this.systemMenuService.getModeByPath(path));
     }
 
 //    /**
