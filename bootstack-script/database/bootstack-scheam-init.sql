@@ -316,3 +316,27 @@ create table system_settings (
     primary key (id)
 ) comment '系统配置表'
     default charset utf8;
+
+# 表格(头)配置表
+drop table if exists table_row;
+create table table_row (
+    id          int auto_increment,
+    name        varchar(100) comment '名称',
+    active      boolean comment '激活状态' default true,
+    checked     boolean comment '选中状态' default false,
+    properties  varchar(10) comment '对应数据的字段',
+    type        varchar(10) comment '字段类型',
+    sorted      int comment '排列顺序',
+    create_time timestamp              default current_timestamp comment '创建时间',
+    update_time timestamp              default current_timestamp comment '更新时间',
+    primary key (id)
+) comment '表格(头)配置表'
+    default charset utf8;
+
+-- 表格(头)与菜单关系表
+drop table if exists table_row_system_menu_relation;
+create table table_row_system_menu_relation (
+    system_menu_id int comment '菜单表唯一标志,唯一主键',
+    table_row_id   int comment '表格(头)表唯一标志,唯一主键'
+) comment '表格(头)与菜单关系表'
+    default charset utf8;

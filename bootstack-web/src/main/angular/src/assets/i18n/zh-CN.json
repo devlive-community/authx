@@ -271,6 +271,53 @@
                         }
                     }
                 }
+            },
+            "table": {
+                "row": {
+                    "input": {
+                        "placeholder": {
+                            "name": "请输入表头名称",
+                            "properties": "请输入对应数据的字段",
+                            "sorted": "请输入排列顺序",
+                            "type": "请输入字段类型"
+                        }
+                    },
+                    "label": {
+                        "title": {
+                            "name": "表头名称",
+                            "properties": "对应字段",
+                            "checked": "选中状态",
+                            "sorted": "排列顺序",
+                            "type": "字段类型",
+                            "menu": "使用菜单"
+                        }
+                    },
+                    "select": {
+                        "placeholder": {
+                            "type": "请选择图标类型",
+                            "usage": "请选择图标用途"
+                        }
+                    },
+                    "type": {
+                        "input": {
+                            "placeholder": {
+                                "name": "请输入图标类型名称",
+                                "description": "请输入图标类型描述"
+                            },
+                            "validation": {
+                                "name": {
+                                    "length": "图标类型名称长度必须在5-20位之间"
+                                }
+                            }
+                        },
+                        "label": {
+                            "title": {
+                                "name": "图标类型名称",
+                                "description": "图标类型描述"
+                            }
+                        }
+                    }
+                }
             }
         }
     }

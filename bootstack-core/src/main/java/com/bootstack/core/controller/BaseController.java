@@ -21,6 +21,167 @@
  * <p> Version : 1.0 </p>
  * <p> Create Time : 2019-05-25 21:25 </p>
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ *
+ * <p> BaseController </p>
+ * <p> Description : BaseController </p>
+ * <p> Author : qianmoQ </p>
+ * <p> Version : 1.0 </p>
+ * <p> Create Time : 2019-05-25 21:25 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ *
+ * <p> BaseController </p>
+ * <p> Description : BaseController </p>
+ * <p> Author : qianmoQ </p>
+ * <p> Version : 1.0 </p>
+ * <p> Create Time : 2019-05-25 21:25 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ *
+ * <p> BaseController </p>
+ * <p> Description : BaseController </p>
+ * <p> Author : qianmoQ </p>
+ * <p> Version : 1.0 </p>
+ * <p> Create Time : 2019-05-25 21:25 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ *
+ * <p> BaseController </p>
+ * <p> Description : BaseController </p>
+ * <p> Author : qianmoQ </p>
+ * <p> Version : 1.0 </p>
+ * <p> Create Time : 2019-05-25 21:25 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ *
+ * <p> BaseController </p>
+ * <p> Description : BaseController </p>
+ * <p> Author : qianmoQ </p>
+ * <p> Version : 1.0 </p>
+ * <p> Create Time : 2019-05-25 21:25 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ *
+ * <p> BaseController </p>
+ * <p> Description : BaseController </p>
+ * <p> Author : qianmoQ </p>
+ * <p> Version : 1.0 </p>
+ * <p> Create Time : 2019-05-25 21:25 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ *
+ * <p> BaseController </p>
+ * <p> Description : BaseController </p>
+ * <p> Author : qianmoQ </p>
+ * <p> Version : 1.0 </p>
+ * <p> Create Time : 2019-05-25 21:25 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ *
+ * <p> BaseController </p>
+ * <p> Description : BaseController </p>
+ * <p> Author : qianmoQ </p>
+ * <p> Version : 1.0 </p>
+ * <p> Create Time : 2019-05-25 21:25 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ *
+ * <p> BaseController </p>
+ * <p> Description : BaseController </p>
+ * <p> Author : qianmoQ </p>
+ * <p> Version : 1.0 </p>
+ * <p> Create Time : 2019-05-25 21:25 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ *
+ * <p> BaseController </p>
+ * <p> Description : BaseController </p>
+ * <p> Author : qianmoQ </p>
+ * <p> Version : 1.0 </p>
+ * <p> Create Time : 2019-05-25 21:25 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ *
+ * <p> BaseController </p>
+ * <p> Description : BaseController </p>
+ * <p> Author : qianmoQ </p>
+ * <p> Version : 1.0 </p>
+ * <p> Create Time : 2019-05-25 21:25 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ *
+ * <p> BaseController </p>
+ * <p> Description : BaseController </p>
+ * <p> Author : qianmoQ </p>
+ * <p> Version : 1.0 </p>
+ * <p> Create Time : 2019-05-25 21:25 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ *
+ * <p> BaseController </p>
+ * <p> Description : BaseController </p>
+ * <p> Author : qianmoQ </p>
+ * <p> Version : 1.0 </p>
+ * <p> Create Time : 2019-05-25 21:25 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ *
+ * <p> BaseController </p>
+ * <p> Description : BaseController </p>
+ * <p> Author : qianmoQ </p>
+ * <p> Version : 1.0 </p>
+ * <p> Create Time : 2019-05-25 21:25 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ *
+ * <p> BaseController </p>
+ * <p> Description : BaseController </p>
+ * <p> Author : qianmoQ </p>
+ * <p> Version : 1.0 </p>
+ * <p> Create Time : 2019-05-25 21:25 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ *
+ * <p> BaseController </p>
+ * <p> Description : BaseController </p>
+ * <p> Author : qianmoQ </p>
+ * <p> Version : 1.0 </p>
+ * <p> Create Time : 2019-05-25 21:25 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ *
+ * <p> BaseController </p>
+ * <p> Description : BaseController </p>
+ * <p> Author : qianmoQ </p>
+ * <p> Version : 1.0 </p>
+ * <p> Create Time : 2019-05-25 21:25 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ *
+ * <p> BaseController </p>
+ * <p> Description : BaseController </p>
+ * <p> Author : qianmoQ </p>
+ * <p> Version : 1.0 </p>
+ * <p> Create Time : 2019-05-25 21:25 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ *
+ * <p> BaseController </p>
+ * <p> Description : BaseController </p>
+ * <p> Author : qianmoQ </p>
+ * <p> Version : 1.0 </p>
+ * <p> Create Time : 2019-05-25 21:25 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ *
+ * <p> BaseController </p>
+ * <p> Description : BaseController </p>
+ * <p> Author : qianmoQ </p>
+ * <p> Version : 1.0 </p>
+ * <p> Create Time : 2019-05-25 21:25 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ *
+ * <p> BaseController </p>
+ * <p> Description : BaseController </p>
+ * <p> Author : qianmoQ </p>
+ * <p> Version : 1.0 </p>
+ * <p> Create Time : 2019-05-25 21:25 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ *
+ * <p> BaseController </p>
+ * <p> Description : BaseController </p>
+ * <p> Author : qianmoQ </p>
+ * <p> Version : 1.0 </p>
+ * <p> Create Time : 2019-05-25 21:25 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ *
+ * <p> BaseController </p>
+ * <p> Description : BaseController </p>
+ * <p> Author : qianmoQ </p>
+ * <p> Version : 1.0 </p>
+ * <p> Create Time : 2019-05-25 21:25 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 
 /**
@@ -33,6 +194,33 @@
  */
 package com.bootstack.core.controller;
 
-public abstract class BaseController<T> {
+import com.bootstack.model.common.CommonResponseModel;
+import com.bootstack.param.page.PageParam;
+import com.bootstack.param.table.TableRowCreateParam;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import java.io.Serializable;
+
+public abstract class BaseController<T> implements Serializable {
+
+    /**
+     * 根据分页信息获取分页数据
+     * @param param 分页信息
+     * @return 当前分页信息的所有数据
+     */
+    @GetMapping
+    public CommonResponseModel getAll(@Validated PageParam param) {
+        return null;
+    }
+
+    /**
+     * 添加信息
+     * @param param 信息详情
+     * @return 添加状态
+     */
+    @PostMapping
+    public abstract CommonResponseModel add(@RequestBody @Validated TableRowCreateParam param);
 }

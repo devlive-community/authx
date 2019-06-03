@@ -86,4 +86,9 @@ export class ApiConfig {
      */
     public static readonly API_OVERVIEW = ApiConfig.API_VERSION_V1 + 'overview';
 
+    /**
+     * Table API请求接口地址
+     */
+    public static readonly API_TABLE_ROW = ApiConfig.API_VERSION_V1 + 'table/row';
+
 }
