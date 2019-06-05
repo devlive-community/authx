@@ -325,7 +325,7 @@ create table table_row (
     title       varchar(100) comment '名称',
     active      boolean comment '激活状态' default true,
     checked     boolean comment '选中状态' default false,
-    properties  varchar(10) comment '对应数据的字段',
+    properties  varchar(100) comment '对应数据的字段',
     type        varchar(10) comment '字段类型',
     sorted      int comment '排列顺序',
     create_time timestamp              default current_timestamp comment '创建时间',

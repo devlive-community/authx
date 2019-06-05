@@ -200,4 +200,18 @@ export class SystemSettingsTableComponent implements OnInit {
         }
     }
 
+    /**
+     * 点击表格进行数据展示
+     * @param data 展示的数据
+     */
+    onCellClick(data: any) {
+        this.startShowCreateAndUpdateModal(data.row);
+    }
+
+    pageChanged(event: any) {
+        this.page.number = event.page;
+        this.page.size = event.itemsPerPage;
+        this.initModels(this.page);
+    }
+
 }

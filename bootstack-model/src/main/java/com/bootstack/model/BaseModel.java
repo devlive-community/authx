@@ -18,6 +18,7 @@
 package com.bootstack.model;
 
 import com.bootstack.common.support.DateSuooprt;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -58,11 +59,13 @@ public class BaseModel {
     @Column(name = "create_time")
     @CreatedDate
     @DateTimeFormat(pattern = DateSuooprt.DATE_FORMAT_YYYY_MM_DD_HH_MM_SS)
+    @JsonFormat(pattern = DateSuooprt.DATE_FORMAT_YYYY_MM_DD_HH_MM_SS)
     private Date createTime; // 创建时间
 
     @Column(name = "update_time")
     @LastModifiedDate
     @DateTimeFormat(pattern = DateSuooprt.DATE_FORMAT_YYYY_MM_DD_HH_MM_SS)
+    @JsonFormat(pattern = DateSuooprt.DATE_FORMAT_YYYY_MM_DD_HH_MM_SS)
     private Date updateTime; // 更新时间
 
 }
