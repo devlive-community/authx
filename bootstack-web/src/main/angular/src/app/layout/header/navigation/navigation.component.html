@@ -32,6 +32,7 @@
                 <ul [@toggleHeight]="navigationSubState.Menus" *ngFor="let c of menu.children">
                     <li routerLinkActive="navigation__active">
                         <a [routerLink]="c.url" tooltip="{{c.tips}}">
+                            <i class="{{c.icon}}"></i>
                             {{c.name}}
                             <span class="badge badge-danger" *ngIf="menu.newd">{{ 'common.new' | translate }}</span>
                         </a>
