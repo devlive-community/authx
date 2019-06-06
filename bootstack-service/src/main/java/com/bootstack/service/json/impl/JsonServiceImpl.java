@@ -17,7 +17,9 @@
  */
 package com.bootstack.service.json.impl;
 
+import com.bootstack.common.enums.SystemMessageEnums;
 import com.bootstack.common.json.JsonUtils;
+import com.bootstack.common.json.JsonValidateUtils;
 import com.bootstack.model.common.CommonResponseModel;
 import com.bootstack.model.page.PageModel;
 import com.bootstack.service.json.JsonService;
@@ -53,7 +55,7 @@ public class JsonServiceImpl implements JsonService {
 
     @Override
     public CommonResponseModel formatPretty(String source) {
-        CommonResponseModel response = CommonResponseModel.validateCheck(source);
+        CommonResponseModel response = this.validate(source);
         if (!ObjectUtils.isEmpty(response)) {
             return response;
         }
@@ -62,7 +64,7 @@ public class JsonServiceImpl implements JsonService {
 
     @Override
     public CommonResponseModel compression(String source) {
-        CommonResponseModel response = CommonResponseModel.validateCheck(source);
+        CommonResponseModel response = this.validate(source);
         if (!ObjectUtils.isEmpty(response)) {
             return response;
         }
@@ -72,6 +74,17 @@ public class JsonServiceImpl implements JsonService {
     @Override
     public long getCount() {
         return 0;
+    }
+
+    private CommonResponseModel validate(String source) {
+        CommonResponseModel response = CommonResponseModel.validateCheck(source);
+        if (!ObjectUtils.isEmpty(response)) {
+            return response;
+        }
+        if (!JsonValidateUtils.isJSON(source)) {
+            return CommonResponseModel.error(SystemMessageEnums.SYSTEM_JSON_ERROR);
+        }
+        return null;
     }
 
 }
