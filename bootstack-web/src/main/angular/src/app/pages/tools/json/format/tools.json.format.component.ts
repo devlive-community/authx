@@ -33,9 +33,7 @@ export class ToolsJsonFormatComponent implements OnInit {
 
     public loading: Subscription;
     public options: any = {printMargin: false, wrap: 'free'};
-    // page model
     public page: CommonPageModel;
-    // current page number
     public currentPage: number;
 
     @ViewChild('showDetailModal')
