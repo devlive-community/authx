@@ -112,7 +112,7 @@ public class JsonParseUtils {
      * @return 解析的json数据
      */
     public static List<Map<String, String>> parseJson(String json) {
-        List<Map<String, String>> flatJson = null;
+        List<Map<String, String>> flatJson;
         try {
             JSONObject jsonObject = new JSONObject(json);
             flatJson = new ArrayList<>();
