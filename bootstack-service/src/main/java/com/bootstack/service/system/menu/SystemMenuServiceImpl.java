@@ -93,4 +93,9 @@ public class SystemMenuServiceImpl implements SystemMenuService {
         return new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements());
     }
 
+    @Override
+    public SystemMenuModel getModeByPath(String path) {
+        return this.systemMenuRepository.findByUrl(path);
+    }
+
 }

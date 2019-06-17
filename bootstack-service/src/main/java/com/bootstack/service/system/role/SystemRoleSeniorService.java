@@ -17,7 +17,7 @@ package com.bootstack.service.system.role; /**
  */
 
 import com.bootstack.model.system.menu.SystemMenuTypeModel;
-import com.bootstack.model.system.role.SystemMenuTreeModel;
+import com.bootstack.model.tree.TreeModel;
 import com.bootstack.model.system.role.SystemRoleModel;
 
 import java.util.List;
@@ -38,10 +38,10 @@ public interface SystemRoleSeniorService {
      * @param flag
      * @return
      */
-    List<SystemMenuTreeModel> findTreeMenuById(SystemRoleModel roleModel, SystemMenuTypeModel typeModel);
+    List<TreeModel> findTreeMenuById(SystemRoleModel roleModel, SystemMenuTypeModel typeModel);
 
-    List<SystemMenuTreeModel> findMenuById(Long id);
+    List<TreeModel> findMenuById(Long id);
 
-    List<SystemMenuTreeModel> findMenuByIds(List<SystemRoleModel> roles);
+    List<TreeModel> findMenuByIds(List<SystemRoleModel> roles);
 
 }

@@ -33,9 +33,7 @@ export class ToolsJsonFormatComponent implements OnInit {
 
     public loading: Subscription;
     public options: any = {printMargin: false, wrap: 'free'};
-    // page model
     public page: CommonPageModel;
-    // current page number
     public currentPage: number;
 
     @ViewChild('showDetailModal')
@@ -63,6 +61,7 @@ export class ToolsJsonFormatComponent implements OnInit {
      * 格式化数据
      */
     formatPretty() {
+        this.outputEditor.writeValue("");
         this.loading = this.jsonService.formatPretty(this.inputEditor.getEditor().getValue()).subscribe(
             response => {
                 if (response.code !== CodeConfig.SUCCESS) {
@@ -79,6 +78,7 @@ export class ToolsJsonFormatComponent implements OnInit {
      * 压缩数据
      */
     compression() {
+        this.outputEditor.writeValue("");
         this.loading = this.jsonService.compression(this.inputEditor.getEditor().getValue()).subscribe(
             response => {
                 if (response.code !== CodeConfig.SUCCESS) {

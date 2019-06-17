@@ -17,7 +17,7 @@
  */
 package com.bootstack.model.user;
 
-import com.bootstack.common.support.DateSuooprt;
+import com.bootstack.model.BaseModel;
 import com.bootstack.model.system.role.SystemRoleModel;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -25,13 +25,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -53,34 +49,22 @@ import java.util.List;
 @JsonIgnoreProperties(value = {
         "password",
 })
-public class UserModel {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-
-    @Column(name = "name")
-    private String name;
+public class UserModel extends BaseModel {
 
     @Column(name = "password")
-    private String password;
+    private String password; // 密码
 
     @Column(name = "avatar")
-    private String avatar;
+    private String avatar; // 头像
 
-    @Column(name = "active")
-    private Boolean active;
+    @Column(name = "email")
+    private String email; // 邮箱
 
-    @Column(name = "create_time")
-    @CreatedDate
-    @DateTimeFormat(pattern = DateSuooprt.DATE_FORMAT_YYYY_MM_DD_HH_MM_SS)
-    private Date createTime;
+    @Column(name = "locked")
+    private Boolean locked = false; // 是否锁定
 
-    @Column(name = "update_time")
-    @LastModifiedDate
-    @DateTimeFormat(pattern = DateSuooprt.DATE_FORMAT_YYYY_MM_DD_HH_MM_SS)
-    private Date updateTime;
+    @Column(name = "systemed")
+    private Boolean systemed = false; // 是否为系统默认,系统默认用户无法做任何操作
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_system_role_relation",

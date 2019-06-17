@@ -18,7 +18,6 @@
 package com.bootstack.model.system.interfaces;
 
 import com.bootstack.common.support.DateSuooprt;
-import com.bootstack.model.system.menu.SystemMenuModel;
 import com.bootstack.model.system.method.SystemMethodModel;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

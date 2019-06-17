@@ -52,6 +52,7 @@ const LAYOUT_ROUTES: Routes = [
             {path: 'role', loadChildren: '../pages/system/role/system.role.module#SystemRoleModule'},
             {path: 'menu-type', loadChildren: '../pages/system/menu/system.menu.type.module#SystemMenuTypeModule'},
             {path: 'menu', loadChildren: '../pages/system/menu/system.menu.module#SystemMenuModule'},
+            {path: 'settings', loadChildren: '../pages/system/settings/system.settings.module#SystemSettingsModule'},
             {
                 path: 'settings', children: [
                     {
@@ -61,6 +62,14 @@ const LAYOUT_ROUTES: Routes = [
                     {
                         path: 'method',
                         loadChildren: '../pages/system/settings/method/system.settings.method.module#SystemSettingsMethodModule'
+                    },
+                    {
+                        path: 'table', children: [
+                            {
+                                path: 'row',
+                                loadChildren: '../pages/system/settings/table/system.settings.table.module#SystemSettingsTableModule'
+                            }
+                        ]
                     }
                 ]
             }
@@ -96,6 +105,10 @@ const LAYOUT_ROUTES: Routes = [
                     {
                         path: 'format',
                         loadChildren: '../pages/tools/json/format/tools.json.format.module#ToolsJsonFormatModule'
+                    },
+                    {
+                        path: 'json2csv',
+                        loadChildren: '../pages/tools/json/2csv/tools.json.2csv.module#ToolsJson2csvModule'
                     }
                 ]
             },

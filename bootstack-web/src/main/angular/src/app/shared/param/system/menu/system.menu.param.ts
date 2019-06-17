@@ -24,7 +24,7 @@ export class SystemMenuParam {
     public sorted: number;
     public level: number;
     public tips: string
-    public news: boolean;
+    public newd: boolean;
     public parent: any;
     public method: any;
     public description: string;

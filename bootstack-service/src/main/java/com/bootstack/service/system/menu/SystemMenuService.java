@@ -60,4 +60,12 @@ public interface SystemMenuService extends BaseService {
 
     PageModel<SystemMenuModel> getByPageAndType(Long type, Pageable pageable);
 
+    /**
+     * 根据路径获取菜单详情
+     *
+     * @param path 路径
+     * @return 菜单详情
+     */
+    SystemMenuModel getModeByPath(String path);
+
 }

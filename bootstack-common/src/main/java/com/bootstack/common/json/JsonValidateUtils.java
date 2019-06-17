@@ -15,42 +15,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.test.pinyin;
+package com.bootstack.common.json;
 
-import com.bootstack.common.pinyin.PinYinUtils;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonSyntaxException;
 
 /**
- * <p> PinYinUtilsTest </p>
- * <p> Description : PinYinUtilsTest </p>
+ * <p> JsonValidateUtils </p>
+ * <p> Description : JsonValidateUtils </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-05-21 01:58 </p>
+ * <p> Create Time : 2019-06-06 14:18 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public class PinYinUtilsTest {
+public class JsonValidateUtils {
 
-    private String chinese;
-    private String prefix;
-    private String fullPrefix;
-
-    @Before
-    public void init() {
-        chinese = "测试中文";
-        prefix = "C";
-        fullPrefix = "CDZW";
-    }
-
-    @Test
-    public void testGetFirstOneSpell() {
-        Assert.assertEquals(PinYinUtils.getFirstOneSpell(chinese), prefix);
-    }
-
-    @Test
-    public void testGetFirstOneSpellToUpper() {
-        Assert.assertEquals(PinYinUtils.getFirstOneSpellToUpper(chinese), prefix);
+    /**
+     * 校验是否是json数据
+     *
+     * @param json json数据
+     * @return 校验结果
+     */
+    public static boolean isJSON(String json) {
+        try {
+            new Gson().fromJson(json, JsonObject.class);
+            return true;
+        } catch (JsonSyntaxException e) {
+            return false;
+        }
     }
 
 }

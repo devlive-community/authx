@@ -18,6 +18,8 @@
 package com.bootstack.repository.user;
 
 import com.bootstack.model.user.UserModel;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
@@ -48,5 +50,13 @@ public interface UserRepository extends PagingAndSortingRepository<UserModel, Lo
     UserModel findByName(String name);
 
     UserModel findDistinctById(Long id);
+
+    /**
+     * 查询所有的非系统用户信息
+     *
+     * @param pageable 分页查询信息
+     * @return 所有的非系统用户信息
+     */
+    Page<UserModel> findAllBySystemedFalse(Pageable pageable);
 
 }

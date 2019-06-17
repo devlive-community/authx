@@ -15,39 +15,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.model.system.role;
+package com.bootstack.core.config.mapper;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
-import java.util.List;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
- * <p> SystemMenuTreeModel </p>
- * <p> Description : SystemMenuTreeModel </p>
+ * <p> BootStackObjectMapperConf </p>
+ * <p> Description : BootStackObjectMapperConf </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-04-29 13:56 </p>
+ * <p> Create Time : 2019-06-03 10:30 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@Data
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
-public class SystemMenuTreeModel {
+@Configuration
+public class BootStackObjectMapperConfig {
 
-    private Long id; // menu id
-    private String name; // menu name
-    private String url;
-    private Integer sorted;
-    private Boolean newd;
-    private String icon;
-    private String tips;
-    private Boolean checked = false; // is checked
-    private Boolean selected = false; // is checked
-    private SysteMenuTreeItemModel item;
-    List<SystemMenuTreeModel> children; // sub menu
+    @Bean(name = "objectMapper")
+    public ObjectMapper myMapper() {
+        return new ObjectMapper().disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+    }
 
 }

@@ -296,3 +296,48 @@ create table system_menu_icon_relation (
     icon_id        int comment '图标表唯一标志,唯一主键'
 ) comment '菜单与图标关系表'
     default charset utf8;
+
+ALTER TABLE users
+    ADD COLUMN locked boolean DEFAULT false COMMENT '是否锁定,锁定后用户无法登录' ,
+    ADD COLUMN email varchar(100) COMMENT '邮箱地址' ,
+    ADD COLUMN systemed boolean DEFAULT false COMMENT '是否为系统默认,系统默认用户无法做任何操作';
+
+# 系统配置表
+drop table if exists system_settings;
+create table system_settings (
+    id          int auto_increment,
+    name        varchar(100) comment '名称',
+    code        varchar(100) comment '编码',
+    value       varchar(200) comment '配置信息',
+    label       varchar(100) comment '显示名称',
+    active      boolean comment '激活状态' default true,
+    create_time timestamp              default current_timestamp comment '创建时间',
+    update_time timestamp              default current_timestamp comment '更新时间',
+    primary key (id)
+) comment '系统配置表'
+    default charset utf8;
+
+# 表格(头)配置表
+drop table if exists table_row;
+create table table_row (
+    id          int auto_increment,
+    name        varchar(100) comment '名称',
+    title       varchar(100) comment '名称',
+    active      boolean comment '激活状态' default true,
+    checked     boolean comment '选中状态' default false,
+    properties  varchar(100) comment '对应数据的字段',
+    type        varchar(10) comment '字段类型',
+    sorted      int comment '排列顺序',
+    create_time timestamp              default current_timestamp comment '创建时间',
+    update_time timestamp              default current_timestamp comment '更新时间',
+    primary key (id)
+) comment '表格(头)配置表'
+    default charset utf8;
+
+-- 表格(头)与菜单关系表
+drop table if exists table_row_system_menu_relation;
+create table table_row_system_menu_relation (
+    system_menu_id int comment '菜单表唯一标志,唯一主键',
+    table_row_id   int comment '表格(头)表唯一标志,唯一主键'
+) comment '表格(头)与菜单关系表'
+    default charset utf8;

@@ -6,7 +6,7 @@
     <parent>
         <artifactId>incubator-bootstack</artifactId>
         <groupId>com.bootstack</groupId>
-        <version>1.0.3</version>
+        <version>1.0.4</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -32,6 +32,14 @@
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
         </dependency>
     </dependencies>
 

@@ -1,4 +1,4 @@
-/**
+package com.bootstack.service.table; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -15,30 +15,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.model.system.role;
 
-import lombok.Data;
-import lombok.ToString;
+import com.bootstack.model.common.CommonResponseModel;
+import com.bootstack.service.BaseService;
+import org.springframework.data.domain.Pageable;
 
 /**
- * <p> SysteMenuTreeItemModel </p>
- * <p> Description : 针对于tree-ngx插件定制 </p>
+ * <p> TableRowService </p>
+ * <p> Description : TableRowService </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-04-30 11:50 </p>
- * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ * <p> Create Time : 2019-05-31 14:38 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@Data
-@ToString
-public class SysteMenuTreeItemModel {
+public interface TableRowService extends BaseService {
 
-    private Long phrase;
-
-    private SysteMenuTreeItemModel() {
-    }
-
-    public static SysteMenuTreeItemModel buildNew() {
-        return new SysteMenuTreeItemModel();
-    }
+    /**
+     * 根据菜单查询菜单的表头信息
+     *
+     * @param menus    菜单信息
+     * @param pageable 分页信息
+     * @return 表头信息
+     */
+    CommonResponseModel getAllByMenus(Pageable pageable, String... menus);
 
 }

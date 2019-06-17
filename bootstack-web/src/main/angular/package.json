@@ -57,7 +57,8 @@
         "select2": "^4.0.4",
         "ts-md5": "^1.2.2",
         "tree-ngx": "1.0.14",
-        "ng2-ace-editor": "0.2.5"
+        "ng2-ace-editor": "0.2.5",
+        "ng2-dynamic-table": "1.0.0"
     },
     "devDependencies": {
         "@angular/cli": "1.4.3",

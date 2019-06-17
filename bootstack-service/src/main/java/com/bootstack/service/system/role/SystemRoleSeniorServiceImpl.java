@@ -17,11 +17,12 @@
  */
 package com.bootstack.service.system.role;
 
+import com.bootstack.model.icon.IconModel;
 import com.bootstack.model.system.menu.SystemMenuModel;
 import com.bootstack.model.system.menu.SystemMenuTypeModel;
-import com.bootstack.model.system.role.SysteMenuTreeItemModel;
-import com.bootstack.model.system.role.SystemMenuTreeModel;
 import com.bootstack.model.system.role.SystemRoleModel;
+import com.bootstack.model.tree.TreeItemModel;
+import com.bootstack.model.tree.TreeModel;
 import com.bootstack.service.system.menu.SystemMenuService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,8 +55,8 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
     private SystemMenuService systemMenuService;
 
     @Override
-    public List<SystemMenuTreeModel> findTreeMenuById(SystemRoleModel roleModel, SystemMenuTypeModel typeModel) {
-        Map<Long, SystemMenuTreeModel> treeMap = new ConcurrentHashMap<>();
+    public List<TreeModel> findTreeMenuById(SystemRoleModel roleModel, SystemMenuTypeModel typeModel) {
+        Map<Long, TreeModel> treeMap = new ConcurrentHashMap<>();
         // All currently available menus
         Iterable<SystemMenuModel> activedMenus = systemMenuService.getByType(typeModel);
         // The current permission has a menu
@@ -69,8 +70,8 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
                 .collect(Collectors.toList());
         // Sets the parent menu sort
         menuList.forEach(menu -> {
-            SystemMenuTreeModel parent = new SystemMenuTreeModel();
-            SysteMenuTreeItemModel item = SysteMenuTreeItemModel.buildNew();
+            TreeModel parent = new TreeModel();
+            TreeItemModel item = TreeItemModel.buildNew();
             item.setPhrase(menu.getId());
             parent.setItem(item);
             if (menu.getParent() == 0) {
@@ -88,20 +89,20 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
                 treeMap.put(menu.getId(), parent);
             } else {
                 // Sub menu
-                SystemMenuTreeModel temp = treeMap.get(menu.getParent());
-                List<SystemMenuTreeModel> childrens = temp.getChildren();
+                TreeModel temp = treeMap.get(menu.getParent());
+                List<TreeModel> childrens = temp.getChildren();
                 // Automatically sets a collection of submenus if the current submenu does not belong to the main menu
                 if (ObjectUtils.isEmpty(childrens)) {
                     childrens = new ArrayList<>();
                 }
-                SystemMenuTreeModel children = new SystemMenuTreeModel();
+                TreeModel children = new TreeModel();
                 children.setId(menu.getId());
                 children.setName(menu.getName());
                 children.setTips(menu.getTips());
                 if (!ObjectUtils.isEmpty(menu.getIcon())) {
                     children.setIcon(menu.getIcon().getCode());
                 }
-                SysteMenuTreeItemModel childrenItem = SysteMenuTreeItemModel.buildNew();
+                TreeItemModel childrenItem = TreeItemModel.buildNew();
                 childrenItem.setPhrase(menu.getId());
                 children.setItem(item);
                 if (!ObjectUtils.isEmpty(roleMenus.get(menu.getId()))) {
@@ -114,18 +115,18 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
             }
         });
         // Convert Map data to List
-        List<SystemMenuTreeModel> tree = new ArrayList<>();
+        List<TreeModel> tree = new ArrayList<>();
         treeMap.keySet().forEach(v -> tree.add(treeMap.get(v)));
         return tree;
     }
 
     @Override
-    public List<SystemMenuTreeModel> findMenuById(Long id) {
+    public List<TreeModel> findMenuById(Long id) {
         return null;
     }
 
     @Override
-    public List<SystemMenuTreeModel> findMenuByIds(List<SystemRoleModel> roles) {
+    public List<TreeModel> findMenuByIds(List<SystemRoleModel> roles) {
         List<SystemMenuModel> list = new ArrayList<>();
         roles.forEach(role -> {
             List<SystemMenuModel> menus = role.getMenuList().stream().filter(v -> v.getType().getId() == 3).collect(Collectors.toList());
@@ -140,52 +141,92 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
      * @param roles source role list
      * @return tree model list
      */
-    private List<SystemMenuTreeModel> getTree(List<SystemMenuModel> roles) {
-        Map<Long, SystemMenuTreeModel> treeMap = new ConcurrentHashMap<>();
+    private List<TreeModel> getTree(List<SystemMenuModel> roles) {
+        Map<Long, TreeModel> treeMap = new ConcurrentHashMap<>();
         // Assembly menu, divided into father and son menu
-        roles.forEach((SystemMenuModel menu) -> {
-            SystemMenuTreeModel parent = new SystemMenuTreeModel();
-            if (menu.getParent() == 0) {
-                // The main menu
-                BeanUtils.copyProperties(menu, parent);
-                if (!ObjectUtils.isEmpty(menu.getIcon())) {
-                    parent.setIcon(menu.getIcon().getCode());
-                }
-                treeMap.put(menu.getId(), parent);
-            } else {
-                SystemMenuTreeModel children = new SystemMenuTreeModel();
-                BeanUtils.copyProperties(menu, children);
-                if (!ObjectUtils.isEmpty(menu.getIcon())) {
-                    children.setIcon(menu.getIcon().getCode());
-                }
-                // Sub menu
-                SystemMenuTreeModel temp = treeMap.get(menu.getParent());
-                // The parent menu of the current submenu is not buffered
-                if (ObjectUtils.isEmpty(temp)) {
-                    treeMap.put(menu.getParent(), children);
-                    // Reextract data
-                    temp = treeMap.get(menu.getParent());
-                }
-                // Set parent menu as new function when subset menu has new function
-                if (menu.getNewd()) {
-                    temp.setNewd(Boolean.TRUE);
-                }
-                List<SystemMenuTreeModel> childrens = temp.getChildren();
-                // Automatically sets a collection of submenus if the current submenu does not belong to the main menu
-                if (ObjectUtils.isEmpty(childrens)) {
-                    childrens = new ArrayList<>();
-                }
-                childrens.add(children);
-                temp.setChildren(childrens);
-                treeMap.put(menu.getParent(), temp);
-            }
-        });
+//        roles.forEach((SystemMenuModel menu) -> {
+//            TreeModel parent = new TreeModel();
+//            if (menu.getParent() == 0) {
+//                // The main menu
+//                BeanUtils.copyProperties(menu, parent);
+//                if (!ObjectUtils.isEmpty(menu.getIcon())) {
+//                    parent.setIcon(menu.getIcon().getCode());
+//                }
+//                treeMap.put(menu.getId(), parent);
+//            } else {
+//                TreeModel children = new TreeModel();
+//                BeanUtils.copyProperties(menu, children);
+//                if (!ObjectUtils.isEmpty(menu.getIcon())) {
+//                    children.setIcon(menu.getIcon().getCode());
+//                }
+//                // Sub menu
+//                TreeModel temp = treeMap.get(menu.getParent());
+//                // The parent menu of the current submenu is not buffered
+//                if (ObjectUtils.isEmpty(temp)) {
+//                    treeMap.put(menu.getParent(), children);
+//                    // Reextract data
+//                    temp = treeMap.get(menu.getParent());
+//                }
+//                // Set parent menu as new function when subset menu has new function
+//                if (menu.getNewd()) {
+//                    temp.setNewd(Boolean.TRUE);
+//                }
+//                List<TreeModel> childrens = temp.getChildren();
+//                // Automatically sets a collection of submenus if the current submenu does not belong to the main menu
+//                if (ObjectUtils.isEmpty(childrens)) {
+//                    childrens = new ArrayList<>();
+//                }
+//                childrens.add(children);
+//                temp.setChildren(childrens);
+//                treeMap.put(menu.getParent(), temp);
+//            }
+//        });
         // Convert Map data to List
-        List<SystemMenuTreeModel> tree = new ArrayList<>();
-        treeMap.keySet().forEach(v -> tree.add(treeMap.get(v)));
+        List<TreeModel> tree = this.getChildren(0L, roles);
+//        treeMap.keySet().forEach(v -> tree.add(treeMap.get(v)));
         // Reorder the menu by sort field
-        tree.sort(Comparator.comparing(SystemMenuTreeModel::getSorted));
+        tree.sort(Comparator.comparing(TreeModel::getSorted));
         return tree;
+    }
+
+    /**
+     * 获取子节点数据
+     *
+     * @param id     当前父节点标志
+     * @param models 数据集合
+     * @return 树形结构数据
+     */
+    public List<TreeModel> getChildren(Long id, List<SystemMenuModel> models) {
+        // 子数据存储器
+        List<TreeModel> childrens = new ArrayList<>();
+        for (SystemMenuModel model : models) {
+            // 遍历所有节点,将所有数据的父id与传过来的根节点的id比较,或者-1.相等说明: 为该根节点的子节点
+            if (model.getParent().equals(id)) {
+                TreeModel support = new TreeModel();
+                BeanUtils.copyProperties(model, support);
+                IconModel icon = model.getIcon();
+                if (!ObjectUtils.isEmpty(icon)) {
+                    support.setIcon(model.getIcon().getCode());
+                } else {
+                    support.setIcon("");
+                }
+//                TreeModelItemSupport item = TreeModelItemSupport.buildNew();
+//                item.setPhrase(entity.getId());
+//                support.setItem(item);
+//                support.setItem(model.getId());
+                childrens.add(support);
+            }
+        }
+        // 递归遍历数据填充树形结构
+        for (TreeModel support : childrens) {
+            support.setChildren(getChildren(support.getId(), models));
+        }
+        // 如果节点下没有子节点,返回一个空List(递归退出),暂时不做任何操作,直接递归退出
+        if (childrens.size() == 0) {
+            return null;
+//            return new ArrayList<>();
+        }
+        return childrens;
     }
 
 }

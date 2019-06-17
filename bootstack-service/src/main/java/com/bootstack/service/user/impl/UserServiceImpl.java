@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public PageModel getAllByPage(Pageable pageable) {
-        Page<UserModel> pageModel = this.userRepository.findAll(pageable);
+        Page<UserModel> pageModel = this.userRepository.findAllBySystemedFalse(pageable);
         return new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements());
     }
 
