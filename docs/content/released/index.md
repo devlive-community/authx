@@ -11,3 +11,4 @@ title: 发布日志
  - [1.0.1 - 2019年05月07日](/bootstack/content/released/released-1.0.1.html)
  - [1.0.2 - 2019年05月09日](/bootstack/content/released/released-1.0.2.html)
  - [1.0.3 - 2019年05月24日](/bootstack/content/released/released-1.0.3.html)
+ - [1.0.4 - 2019年06月17日](/bootstack/content/released/released-1.0.4.html)
