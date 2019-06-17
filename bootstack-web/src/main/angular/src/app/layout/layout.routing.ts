@@ -105,6 +105,10 @@ const LAYOUT_ROUTES: Routes = [
                     {
                         path: 'format',
                         loadChildren: '../pages/tools/json/format/tools.json.format.module#ToolsJsonFormatModule'
+                    },
+                    {
+                        path: 'json2csv',
+                        loadChildren: '../pages/tools/json/2csv/tools.json.2csv.module#ToolsJson2csvModule'
                     }
                 ]
             },

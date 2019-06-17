@@ -39,6 +39,7 @@
         "preview": "预览",
         "format": "格式化",
         "compression": "压缩",
+        "2csv": "转CSV",
         "action": {
             "name": "操作",
             "editItem": "编辑该选项",

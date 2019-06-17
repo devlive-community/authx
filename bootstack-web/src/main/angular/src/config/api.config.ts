@@ -79,6 +79,7 @@ export class ApiConfig {
      */
     public static readonly API_TOOLS_JSON = ApiConfig.API_VERSION_V1 + 'tools/json';
     public static readonly API_TOOLS_JSON_FORMAT = ApiConfig.API_TOOLS_JSON + '/format';
+    public static readonly API_TOOLS_JSON_2CSV = ApiConfig.API_TOOLS_JSON + '2csv';
     public static readonly API_TOOLS_JSON_COMPRESSION = ApiConfig.API_TOOLS_JSON + '/compression';
 
     /**
