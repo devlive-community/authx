@@ -341,3 +341,8 @@ create table table_row_system_menu_relation (
     table_row_id   int comment '表格(头)表唯一标志,唯一主键'
 ) comment '表格(头)与菜单关系表'
     default charset utf8;
+
+ALTER TABLE system_log
+    ADD COLUMN start_time TIMESTAMP NULL COMMENT '开始时间' AFTER update_time ,
+    ADD COLUMN end_time TIMESTAMP NULL COMMENT '结束时间' AFTER start_time ,
+    ADD COLUMN time_count INT ZEROFILL DEFAULT 0 COMMENT '总耗时(毫秒)' AFTER ent_time;

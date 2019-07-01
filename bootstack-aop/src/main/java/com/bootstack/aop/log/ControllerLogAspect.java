@@ -64,12 +64,21 @@ public class ControllerLogAspect {
     @Autowired
     private SystemMethodService systemMethodService;
 
+    // 用于记录服务时间
+    ThreadLocal<Long> startTime = new ThreadLocal<>();
+
     @Pointcut("execution(* com.bootstack.core.controller..*.*(..))")
     private void controller() {
     }
 
     @Before("controller()")
-    public void doBefore(JoinPoint joinPoint) throws Throwable {
+    public void doBefore() {
+        startTime.set(System.currentTimeMillis());
+    }
+
+    @AfterReturning(pointcut = "controller()")
+    public void doAfterReturning(JoinPoint joinPoint) {
+        long endTime = System.currentTimeMillis();
         // 接收到请求，记录请求内容
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
@@ -99,13 +108,10 @@ public class ControllerLogAspect {
         logType.setId(4L);
         log.setType(logType);
         log.setUser(user);
+        log.setStartTime(startTime.get());
+        log.setEntTime(endTime);
+        log.setTimeCount(endTime - startTime.get());
         this.systemLogService.insertModel(log);
-    }
-
-    @AfterReturning(returning = "response", pointcut = "controller()")
-    public void doAfterReturning(Object response) throws Throwable {
-        // 处理完请求，返回内容
-//        System.out.println(response);
     }
 
 }

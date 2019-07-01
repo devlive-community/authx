@@ -73,6 +73,15 @@ public class SystemLogModel {
     @Column(name = "args")
     private String args; // 请求参数
 
+    @Column(name = "start_time")
+    private Long startTime; // 开始时间
+
+    @Column(name = "end_time")
+    private Long entTime; // 结束时间
+
+    @Column(name = "time_count")
+    private Long timeCount; // 总耗时
+
     @Column(name = "create_time")
     @CreatedDate
     @DateTimeFormat(pattern = DateSuooprt.DATE_FORMAT_YYYY_MM_DD_HH_MM_SS)
