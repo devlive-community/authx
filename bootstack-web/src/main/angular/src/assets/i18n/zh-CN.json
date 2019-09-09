@@ -40,7 +40,6 @@
         "format": "格式化",
         "compression": "压缩",
         "2csv": "转CSV",
-        "elapsedTime": "耗时",
         "action": {
             "name": "操作",
             "editItem": "编辑该选项",
