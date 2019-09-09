@@ -20,15 +20,13 @@
         <module>bootstack-script</module>
         <module>bootstack-web</module>
         <module>bootstack-cache</module>
-        <module>bootstack-model</module>
-        <module>bootstack-repository</module>
-        <module>bootstack-service</module>
         <module>bootstack-param</module>
         <module>bootstack-validation</module>
         <module>bootstack-aop</module>
         <module>bootstack-test</module>
         <module>bootstack-job</module>
         <module>docs</module>
+        <module>bootstack-storage</module>
     </modules>
 
     <!-- url -->
@@ -134,21 +132,6 @@
             </dependency>
             <dependency>
                 <groupId>com.bootstack</groupId>
-                <artifactId>bootstack-model</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.bootstack</groupId>
-                <artifactId>bootstack-repository</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.bootstack</groupId>
-                <artifactId>bootstack-service</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.bootstack</groupId>
                 <artifactId>bootstack-param</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -170,6 +153,11 @@
             <dependency>
                 <groupId>com.bootstack</groupId>
                 <artifactId>bootstack-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.bootstack</groupId>
+                <artifactId>bootstack-storage-mysql</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!-- springboot -->

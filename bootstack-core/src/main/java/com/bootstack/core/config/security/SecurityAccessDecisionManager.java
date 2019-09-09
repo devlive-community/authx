@@ -18,12 +18,12 @@
 package com.bootstack.core.config.security;
 
 import com.bootstack.common.enums.SystemMessageEnums;
-import com.bootstack.model.system.interfaces.SystemInterfaceModel;
-import com.bootstack.model.system.method.SystemMethodModel;
-import com.bootstack.model.system.role.SystemRoleModel;
-import com.bootstack.service.system.interfaces.SystemInterfaceService;
-import com.bootstack.service.system.method.SystemMethodService;
-import com.bootstack.service.system.role.SystemRoleService;
+import com.bootstack.storage.mysql.model.system.interfaces.SystemInterfaceModel;
+import com.bootstack.storage.mysql.model.system.method.SystemMethodModel;
+import com.bootstack.storage.mysql.model.system.role.SystemRoleModel;
+import com.bootstack.storage.mysql.service.system.interfaces.SystemInterfaceService;
+import com.bootstack.storage.mysql.service.system.method.SystemMethodService;
+import com.bootstack.storage.mysql.service.system.role.SystemRoleService;
 import lombok.Data;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;

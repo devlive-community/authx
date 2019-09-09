@@ -18,7 +18,7 @@
 package com.bootstack.test.service.json;
 
 import com.bootstack.core.BootStackBootstrap;
-import com.bootstack.service.json.JsonService;
+import com.bootstack.storage.mysql.service.json.JsonService;
 import com.bootstack.test.JsonSupport;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;

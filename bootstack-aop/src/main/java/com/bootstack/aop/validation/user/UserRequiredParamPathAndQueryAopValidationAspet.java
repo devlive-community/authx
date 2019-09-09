@@ -19,9 +19,8 @@ package com.bootstack.aop.validation.user;
 
 import com.bootstack.common.enums.SystemMessageEnums;
 import com.bootstack.common.enums.UserMessageEnums;
-import com.bootstack.model.user.UserModel;
-import com.bootstack.service.user.UserService;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.bootstack.storage.mysql.model.user.UserModel;
+import com.bootstack.storage.mysql.service.user.UserService;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;

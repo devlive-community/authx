@@ -19,8 +19,8 @@ package com.bootstack.core.config.authorization;
 
 import com.bootstack.core.config.handler.BootStackAccessDeniedHandler;
 import com.bootstack.core.config.point.BootStackAuthenticationEntryPoint;
-import com.bootstack.model.system.method.SystemMethodModel;
-import com.bootstack.service.system.interfaces.SystemInterfaceService;
+import com.bootstack.storage.mysql.model.system.method.SystemMethodModel;
+import com.bootstack.storage.mysql.service.system.interfaces.SystemInterfaceService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

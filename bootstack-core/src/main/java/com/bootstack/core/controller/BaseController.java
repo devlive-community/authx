@@ -194,7 +194,7 @@
  */
 package com.bootstack.core.controller;
 
-import com.bootstack.model.common.CommonResponseModel;
+import com.bootstack.storage.mysql.model.common.CommonResponseModel;
 import com.bootstack.param.page.PageParam;
 import com.bootstack.param.table.TableRowCreateParam;
 import org.springframework.validation.annotation.Validated;

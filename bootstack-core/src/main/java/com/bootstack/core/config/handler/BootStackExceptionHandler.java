@@ -19,7 +19,7 @@ package com.bootstack.core.config.handler;
 
 import com.bootstack.common.enums.SystemMessageEnums;
 import com.bootstack.common.validation.ValidationUtils;
-import com.bootstack.model.common.CommonResponseModel;
+import com.bootstack.storage.mysql.model.common.CommonResponseModel;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;

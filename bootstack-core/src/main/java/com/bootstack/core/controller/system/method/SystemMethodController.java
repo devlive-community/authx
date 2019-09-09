@@ -18,12 +18,12 @@
 package com.bootstack.core.controller.system.method;
 
 import com.bootstack.common.pinyin.PinYinUtils;
-import com.bootstack.model.common.CommonResponseModel;
-import com.bootstack.model.page.PageModel;
-import com.bootstack.model.system.method.SystemMethodModel;
+import com.bootstack.storage.mysql.model.common.CommonResponseModel;
+import com.bootstack.storage.mysql.model.page.PageModel;
+import com.bootstack.storage.mysql.model.system.method.SystemMethodModel;
 import com.bootstack.param.page.PageParam;
 import com.bootstack.param.system.method.SystemMethodCreateParam;
-import com.bootstack.service.system.method.SystemMethodService;
+import com.bootstack.storage.mysql.service.system.method.SystemMethodService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

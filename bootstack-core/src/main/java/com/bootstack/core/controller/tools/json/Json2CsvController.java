@@ -17,8 +17,8 @@
  */
 package com.bootstack.core.controller.tools.json;
 
-import com.bootstack.model.common.CommonResponseModel;
-import com.bootstack.service.json.Json2CsvService;
+import com.bootstack.storage.mysql.model.common.CommonResponseModel;
+import com.bootstack.storage.mysql.service.json.Json2CsvService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

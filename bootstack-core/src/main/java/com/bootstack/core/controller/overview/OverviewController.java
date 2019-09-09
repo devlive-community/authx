@@ -17,8 +17,8 @@
  */
 package com.bootstack.core.controller.overview;
 
-import com.bootstack.model.common.CommonResponseModel;
-import com.bootstack.service.overview.OverviewService;
+import com.bootstack.storage.mysql.model.common.CommonResponseModel;
+import com.bootstack.storage.mysql.service.overview.OverviewService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

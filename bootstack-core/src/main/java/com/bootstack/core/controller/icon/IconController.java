@@ -17,16 +17,16 @@
  */
 package com.bootstack.core.controller.icon;
 
-import com.bootstack.model.common.CommonResponseModel;
-import com.bootstack.model.icon.IconModel;
-import com.bootstack.model.icon.IconTypeModel;
-import com.bootstack.model.icon.IconUsageModel;
-import com.bootstack.model.page.PageModel;
+import com.bootstack.storage.mysql.model.common.CommonResponseModel;
+import com.bootstack.storage.mysql.model.icon.IconModel;
+import com.bootstack.storage.mysql.model.icon.IconTypeModel;
+import com.bootstack.storage.mysql.model.icon.IconUsageModel;
+import com.bootstack.storage.mysql.model.page.PageModel;
 import com.bootstack.param.icon.IconCreateParam;
 import com.bootstack.param.icon.IconSetParam;
 import com.bootstack.param.page.PageParam;
-import com.bootstack.service.icon.IconService;
-import com.bootstack.service.icon.IconTypeService;
+import com.bootstack.storage.mysql.service.icon.IconService;
+import com.bootstack.storage.mysql.service.icon.IconTypeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

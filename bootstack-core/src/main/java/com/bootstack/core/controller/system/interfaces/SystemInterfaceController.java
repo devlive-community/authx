@@ -19,13 +19,13 @@ package com.bootstack.core.controller.system.interfaces;
 
 import com.bootstack.common.pinyin.PinYinUtils;
 import com.bootstack.core.support.ParamSupport;
-import com.bootstack.model.common.CommonResponseModel;
-import com.bootstack.model.system.interfaces.SystemInterfaceModel;
-import com.bootstack.model.system.method.SystemMethodModel;
+import com.bootstack.storage.mysql.model.common.CommonResponseModel;
+import com.bootstack.storage.mysql.model.system.interfaces.SystemInterfaceModel;
+import com.bootstack.storage.mysql.model.system.method.SystemMethodModel;
 import com.bootstack.param.page.PageParam;
 import com.bootstack.param.system.interfaces.SystemInterfaceCreateParam;
 import com.bootstack.param.system.interfaces.SystemInterfaceSetParam;
-import com.bootstack.service.system.interfaces.SystemInterfaceService;
+import com.bootstack.storage.mysql.service.system.interfaces.SystemInterfaceService;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;

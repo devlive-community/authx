@@ -18,8 +18,8 @@
 package com.bootstack.test.repository.system;
 
 import com.bootstack.core.BootStackBootstrap;
-import com.bootstack.model.system.SystemSettingsModel;
-import com.bootstack.repository.system.SystemSettingsRepository;
+import com.bootstack.storage.mysql.model.system.SystemSettingsModel;
+import com.bootstack.storage.mysql.repository.system.SystemSettingsRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;

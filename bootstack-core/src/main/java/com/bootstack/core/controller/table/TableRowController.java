@@ -18,14 +18,14 @@
 package com.bootstack.core.controller.table;
 
 import com.bootstack.core.controller.BaseController;
-import com.bootstack.model.common.CommonResponseModel;
-import com.bootstack.model.page.PageModel;
-import com.bootstack.model.system.menu.SystemMenuModel;
-import com.bootstack.model.table.TableRowModel;
+import com.bootstack.storage.mysql.model.common.CommonResponseModel;
+import com.bootstack.storage.mysql.model.page.PageModel;
+import com.bootstack.storage.mysql.model.system.menu.SystemMenuModel;
+import com.bootstack.storage.mysql.model.table.TableRowModel;
 import com.bootstack.param.page.PageParam;
 import com.bootstack.param.table.TableRowCreateParam;
-import com.bootstack.service.system.menu.SystemMenuService;
-import com.bootstack.service.table.TableRowService;
+import com.bootstack.storage.mysql.service.system.menu.SystemMenuService;
+import com.bootstack.storage.mysql.service.table.TableRowService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;

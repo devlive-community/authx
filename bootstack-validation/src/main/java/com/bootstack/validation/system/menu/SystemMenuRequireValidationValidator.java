@@ -17,7 +17,7 @@
  */
 package com.bootstack.validation.system.menu;
 
-import com.bootstack.service.system.menu.SystemMenuService;
+import com.bootstack.storage.mysql.service.system.menu.SystemMenuService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;

@@ -17,15 +17,15 @@
  */
 package com.bootstack.aop.log;
 
-import com.bootstack.model.system.interfaces.SystemInterfaceModel;
-import com.bootstack.model.system.log.SystemLogModel;
-import com.bootstack.model.system.log.SystemLogTypeModel;
-import com.bootstack.model.system.method.SystemMethodModel;
-import com.bootstack.model.user.UserModel;
-import com.bootstack.service.system.interfaces.SystemInterfaceService;
-import com.bootstack.service.system.log.SystemLogService;
-import com.bootstack.service.system.method.SystemMethodService;
-import com.bootstack.service.user.UserService;
+import com.bootstack.storage.mysql.model.system.interfaces.SystemInterfaceModel;
+import com.bootstack.storage.mysql.model.system.log.SystemLogModel;
+import com.bootstack.storage.mysql.model.system.log.SystemLogTypeModel;
+import com.bootstack.storage.mysql.model.system.method.SystemMethodModel;
+import com.bootstack.storage.mysql.model.user.UserModel;
+import com.bootstack.storage.mysql.service.system.interfaces.SystemInterfaceService;
+import com.bootstack.storage.mysql.service.system.log.SystemLogService;
+import com.bootstack.storage.mysql.service.system.method.SystemMethodService;
+import com.bootstack.storage.mysql.service.user.UserService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;

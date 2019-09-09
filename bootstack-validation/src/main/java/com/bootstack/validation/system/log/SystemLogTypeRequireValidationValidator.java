@@ -17,7 +17,7 @@
  */
 package com.bootstack.validation.system.log;
 
-import com.bootstack.service.system.log.SystemLogTypeService;
+import com.bootstack.storage.mysql.service.system.log.SystemLogTypeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;

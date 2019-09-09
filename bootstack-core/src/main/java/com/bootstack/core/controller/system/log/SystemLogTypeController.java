@@ -18,13 +18,13 @@
 package com.bootstack.core.controller.system.log;
 
 import com.bootstack.common.pinyin.PinYinUtils;
-import com.bootstack.model.common.CommonResponseModel;
-import com.bootstack.model.page.PageModel;
-import com.bootstack.model.system.log.SystemLogTypeModel;
+import com.bootstack.storage.mysql.model.common.CommonResponseModel;
+import com.bootstack.storage.mysql.model.page.PageModel;
+import com.bootstack.storage.mysql.model.system.log.SystemLogTypeModel;
 import com.bootstack.param.page.PageParam;
 import com.bootstack.param.system.log.SystemLogTypeCreateParam;
 import com.bootstack.param.system.log.SystemLogTypeSetParam;
-import com.bootstack.service.system.log.SystemLogTypeService;
+import com.bootstack.storage.mysql.service.system.log.SystemLogTypeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

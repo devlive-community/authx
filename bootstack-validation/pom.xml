@@ -23,7 +23,7 @@
         </dependency>
         <dependency>
             <groupId>com.bootstack</groupId>
-            <artifactId>bootstack-service</artifactId>
+            <artifactId>bootstack-storage-mysql</artifactId>
         </dependency>
     </dependencies>
 

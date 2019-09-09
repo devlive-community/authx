@@ -17,8 +17,8 @@
  */
 package com.bootstack.core.config.security;
 
-import com.bootstack.model.user.UserModel;
-import com.bootstack.service.user.UserService;
+import com.bootstack.storage.mysql.model.user.UserModel;
+import com.bootstack.storage.mysql.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

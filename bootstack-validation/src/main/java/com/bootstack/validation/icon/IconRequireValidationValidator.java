@@ -17,8 +17,8 @@
  */
 package com.bootstack.validation.icon;
 
-import com.bootstack.service.icon.IconService;
-import com.bootstack.service.icon.IconTypeService;
+import com.bootstack.storage.mysql.service.icon.IconService;
+import com.bootstack.storage.mysql.service.icon.IconTypeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
