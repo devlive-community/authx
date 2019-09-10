@@ -60,7 +60,7 @@ public class TableRowServiceImpl implements TableRowService {
 
     @Override
     public Object getModelById(Long id) {
-        return this.repository.findOne(id);
+        return this.repository.findById(id);
     }
 
     @Override

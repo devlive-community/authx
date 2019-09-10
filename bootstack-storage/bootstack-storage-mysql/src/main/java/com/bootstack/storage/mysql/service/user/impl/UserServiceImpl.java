@@ -28,6 +28,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import java.util.Optional;
+
 /**
  * <p> UserServiceImpl </p>
  * <p> Description : UserServiceImpl </p>
@@ -40,12 +42,12 @@ import org.springframework.util.ObjectUtils;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository repository;
 
     @Override
     public Long insertModel(Object model) {
         UserModel source = (UserModel) model;
-        UserModel user = this.userRepository.save(source);
+        UserModel user = this.repository.save(source);
         if (!ObjectUtils.isEmpty(user)) {
             return user.getId();
         }
@@ -54,33 +56,37 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserModel getModelById(Long id) {
-        return this.userRepository.findOne(id);
+        Optional<UserModel> model = this.repository.findById(id);
+        if (model.isPresent()) {
+            return model.get();
+        }
+        return null;
     }
 
     @Override
     public PageModel getAllByPage(Pageable pageable) {
-        Page<UserModel> pageModel = this.userRepository.findAllBySystemedFalse(pageable);
+        Page<UserModel> pageModel = this.repository.findAllBySystemedFalse(pageable);
         return new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements());
     }
 
     @Override
     public UserModel getModelByNameAndPassword(String name, String password) {
-        return this.userRepository.findByNameAndPassword(name, password);
+        return this.repository.findByNameAndPassword(name, password);
     }
 
     @Override
     public UserModel getModelByName(String name) {
-        return this.userRepository.findByName(name);
+        return this.repository.findByName(name);
     }
 
     @Override
     public UserModel getDistinctById(Long id) {
-        return this.userRepository.findDistinctById(id);
+        return this.repository.findDistinctById(id);
     }
 
     @Override
     public long getCount() {
-        return this.userRepository.count();
+        return this.repository.count();
     }
 
 }

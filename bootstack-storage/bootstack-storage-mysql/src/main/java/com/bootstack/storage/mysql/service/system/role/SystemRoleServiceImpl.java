@@ -27,6 +27,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import java.util.Optional;
+
 /**
  * <p> SystemRoleServiceImpl </p>
  * <p> Description : SystemRoleServiceImpl </p>
@@ -39,11 +41,11 @@ import org.springframework.util.ObjectUtils;
 public class SystemRoleServiceImpl implements SystemRoleService {
 
     @Autowired
-    private SystemRoleRepository systemRoleRepository;
+    private SystemRoleRepository repository;
 
     @Override
     public Long insertModel(SystemRoleModel model) {
-        SystemRoleModel systemRole = this.systemRoleRepository.save(model);
+        SystemRoleModel systemRole = this.repository.save(model);
         if (!ObjectUtils.isEmpty(systemRole)) {
             return systemRole.getId();
         }
@@ -52,18 +54,22 @@ public class SystemRoleServiceImpl implements SystemRoleService {
 
     @Override
     public SystemRoleModel getModelById(Long id) {
-        return this.systemRoleRepository.findOne(id);
+        Optional<SystemRoleModel> model = this.repository.findById(id);
+        if (model.isPresent()) {
+            return model.get();
+        }
+        return null;
     }
 
     @Override
     public PageModel<SystemRoleModel> getAll(Pageable pageable) {
-        Page<SystemRoleModel> models = this.systemRoleRepository.findAll(pageable);
+        Page<SystemRoleModel> models = this.repository.findAll(pageable);
         return new PageModel<>(models.getContent(), pageable, models.getTotalElements());
     }
 
     @Override
     public SystemRoleModel getModelByName(String name) {
-        return this.systemRoleRepository.findByName(name);
+        return this.repository.findByName(name);
     }
 
 }

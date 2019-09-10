@@ -54,7 +54,7 @@ public class SystemLogServiceImpl implements SystemLogService {
 
     @Override
     public Object getModelById(Long id) {
-        return this.systemLogRepository.findOne(id);
+        return this.systemLogRepository.findById(id);
     }
 
     @Override
