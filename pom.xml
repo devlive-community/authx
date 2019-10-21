@@ -160,6 +160,11 @@
                 <artifactId>bootstack-storage-mysql</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.bootstack</groupId>
+                <artifactId>bootstack-storage-mongodb</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!-- springboot -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>

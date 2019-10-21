@@ -37,6 +37,10 @@
             <groupId>com.bootstack</groupId>
             <artifactId>bootstack-storage-mysql</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.bootstack</groupId>
+            <artifactId>bootstack-storage-mongodb</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

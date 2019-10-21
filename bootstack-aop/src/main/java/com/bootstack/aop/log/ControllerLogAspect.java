@@ -17,6 +17,8 @@
  */
 package com.bootstack.aop.log;
 
+import com.bootstack.storage.mongodb.model.system.SystemLogToMongoDbModel;
+import com.bootstack.storage.mongodb.service.system.log.SystemLogToMongoDbService;
 import com.bootstack.storage.mysql.model.system.interfaces.SystemInterfaceModel;
 import com.bootstack.storage.mysql.model.system.log.SystemLogModel;
 import com.bootstack.storage.mysql.model.system.log.SystemLogTypeModel;
@@ -64,6 +66,9 @@ public class ControllerLogAspect {
     @Autowired
     private SystemMethodService systemMethodService;
 
+    @Autowired
+    private SystemLogToMongoDbService systemLogToMongoDbService;
+
     @Pointcut("execution(* com.bootstack.core.controller..*.*(..))")
     private void controller() {
     }
@@ -100,6 +105,15 @@ public class ControllerLogAspect {
         log.setType(logType);
         log.setUser(user);
         this.systemLogService.insertModel(log);
+        // 存储日志信息到Mongo中
+        SystemLogToMongoDbModel logToMongoDbModel = new SystemLogToMongoDbModel();
+        logToMongoDbModel.setUrl(request.getServletPath());
+        logToMongoDbModel.setArgs(Arrays.toString(joinPoint.getArgs()));
+        logToMongoDbModel.setClazz(joinPoint.getSignature().getDeclaringTypeName());
+        logToMongoDbModel.setClassMethod(joinPoint.getSignature().getName());
+        logToMongoDbModel.setMethod(request.getMethod());
+        logToMongoDbModel.setRemoteIp(request.getRemoteAddr());
+        this.systemLogToMongoDbService.insertModel(logToMongoDbModel);
     }
 
     @AfterReturning(returning = "response", pointcut = "controller()")

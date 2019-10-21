@@ -13,4 +13,15 @@
 
     <artifactId>bootstack-storage-mongodb</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.bootstack</groupId>
+            <artifactId>bootstack-common</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

@@ -21,6 +21,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -39,8 +41,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 /**
- * <p> DataSourcePrimaryConfig </p>
- * <p> Description : DataSourcePrimaryConfig </p>
+ * <p> StorageForMySqlPrimaryConfig </p>
+ * <p> Description : StorageForMySqlPrimaryConfig </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
  * <p> Create Time : 2019-01-24 12:59 </p>
@@ -50,12 +52,14 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = ConfigSupport.CONFIG_DATASOURCE_BASE_PACKAGE)
 @Slf4j
+@PropertySource(value = "bootstack-storage-mysql.properties")
 public class StorageForMySqlPrimaryConfig {
 
     @Resource
     private Environment environment;
 
     @Bean
+    @Primary
     public DataSource dataSource() {
         boolean embeddedDatabase = Boolean.valueOf(environment.getProperty(ConfigSupport.CONFIG_DATASOURCE_PREFIX + "embedded.enable"));
         log.info("start config datasource，use embedded datasource is {}", embeddedDatabase);

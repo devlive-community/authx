@@ -44,7 +44,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @PropertySource(value = {
         "bootstack.properties",
-        "bootstack-database.properties",
         "bootstack-api.properties"
 })
 public class BootStackBootstrap {
