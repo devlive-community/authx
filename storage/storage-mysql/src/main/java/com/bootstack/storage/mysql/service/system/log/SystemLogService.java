@@ -16,6 +16,7 @@ package com.bootstack.storage.mysql.service.system.log; /**
  * limitations under the License.
  */
 
+import com.bootstack.storage.mysql.model.system.log.SystemLogModel;
 import com.bootstack.storage.mysql.service.BaseService;
 
 /**
@@ -26,5 +27,5 @@ import com.bootstack.storage.mysql.service.BaseService;
  * <p> Create Time : 2019-05-07 14:30 </p>
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface SystemLogService extends BaseService {
+public interface SystemLogService extends BaseService<SystemLogModel> {
 }

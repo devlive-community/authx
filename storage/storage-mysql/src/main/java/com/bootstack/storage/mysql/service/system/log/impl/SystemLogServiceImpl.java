@@ -43,9 +43,8 @@ public class SystemLogServiceImpl implements SystemLogService {
     private SystemLogRepository systemLogRepository;
 
     @Override
-    public Long insertModel(Object model) {
-        SystemLogModel source = (SystemLogModel) model;
-        SystemLogModel user = this.systemLogRepository.save(source);
+    public Long insertModel(SystemLogModel model) {
+        SystemLogModel user = this.systemLogRepository.save(model);
         if (!ObjectUtils.isEmpty(user)) {
             return user.getId();
         }
@@ -53,8 +52,8 @@ public class SystemLogServiceImpl implements SystemLogService {
     }
 
     @Override
-    public Object getModelById(Long id) {
-        return this.systemLogRepository.findById(id);
+    public SystemLogModel getModelById(Long id) {
+        return this.systemLogRepository.findById(id).orElseGet(null);
     }
 
     @Override

@@ -18,12 +18,12 @@
 package com.bootstack.core.controller.system.log;
 
 import com.bootstack.common.pinyin.PinYinUtils;
-import com.bootstack.storage.mysql.model.common.CommonResponseModel;
-import com.bootstack.storage.mysql.model.page.PageModel;
-import com.bootstack.storage.mysql.model.system.log.SystemLogTypeModel;
 import com.bootstack.param.page.PageParam;
 import com.bootstack.param.system.log.SystemLogTypeCreateParam;
 import com.bootstack.param.system.log.SystemLogTypeSetParam;
+import com.bootstack.storage.mysql.model.common.CommonResponseModel;
+import com.bootstack.storage.mysql.model.page.PageModel;
+import com.bootstack.storage.mysql.model.system.log.SystemLogTypeModel;
 import com.bootstack.storage.mysql.service.system.log.SystemLogService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -59,7 +59,7 @@ public class SystemLogController {
         SystemLogTypeModel logType = new SystemLogTypeModel();
         BeanUtils.copyProperties(param, logType);
         logType.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
-        return CommonResponseModel.success(this.systemLogService.insertModel(logType));
+        return null;
     }
 
     @PutMapping
@@ -68,7 +68,7 @@ public class SystemLogController {
         BeanUtils.copyProperties(param, logType);
         logType.setId(Long.valueOf(param.getId()));
         logType.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
-        return CommonResponseModel.success(this.systemLogService.insertModel(logType));
+        return null;
     }
 
     /**
