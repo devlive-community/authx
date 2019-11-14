@@ -16,7 +16,9 @@ package com.bootstack.storage.mongodb.service.system.log; /**
  * limitations under the License.
  */
 
+import com.bootstack.common.page.PageModel;
 import com.bootstack.storage.mongodb.model.system.SystemLogToMongoDbModel;
+import org.springframework.data.domain.Pageable;
 
 /**
  * <p> SystemLogService </p>
@@ -29,5 +31,11 @@ import com.bootstack.storage.mongodb.model.system.SystemLogToMongoDbModel;
 public interface SystemLogToMongoDbService {
 
     SystemLogToMongoDbModel insertModel(SystemLogToMongoDbModel model);
+
+    PageModel<SystemLogToMongoDbModel> getAllByPage(Pageable pageable);
+
+    SystemLogToMongoDbModel getModelById(String id);
+
+    long getCount();
 
 }

@@ -17,7 +17,7 @@ package com.bootstack.storage.mysql.service;
  * limitations under the License.
  */
 
-import com.bootstack.storage.mysql.model.page.PageModel;
+import com.bootstack.common.page.PageModel;
 import org.springframework.data.domain.Pageable;
 
 /**

@@ -17,7 +17,7 @@
  */
 package com.bootstack.storage.mysql.service.user.impl;
 
-import com.bootstack.storage.mysql.model.page.PageModel;
+import com.bootstack.common.page.PageModel;
 import com.bootstack.storage.mysql.model.user.UserModel;
 import com.bootstack.storage.mysql.repository.user.UserRepository;
 import com.bootstack.storage.mysql.service.ServiceSupport;

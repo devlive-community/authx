@@ -19,7 +19,7 @@ package com.bootstack.core.controller.table;
 
 import com.bootstack.core.controller.BaseController;
 import com.bootstack.storage.mysql.model.common.CommonResponseModel;
-import com.bootstack.storage.mysql.model.page.PageModel;
+import com.bootstack.common.page.PageModel;
 import com.bootstack.storage.mysql.model.system.menu.SystemMenuModel;
 import com.bootstack.storage.mysql.model.table.TableRowModel;
 import com.bootstack.param.page.PageParam;

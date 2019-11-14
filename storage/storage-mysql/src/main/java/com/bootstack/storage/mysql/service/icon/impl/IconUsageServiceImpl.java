@@ -17,8 +17,8 @@
  */
 package com.bootstack.storage.mysql.service.icon.impl;
 
+import com.bootstack.common.page.PageModel;
 import com.bootstack.storage.mysql.model.icon.IconUsageModel;
-import com.bootstack.storage.mysql.model.page.PageModel;
 import com.bootstack.storage.mysql.repository.icon.IconUsageRepository;
 import com.bootstack.storage.mysql.service.ServiceSupport;
 import com.bootstack.storage.mysql.service.icon.IconUsageService;

@@ -15,18 +15,18 @@
     </parent>
 
     <modules>
-        <module>bootstack-common</module>
-        <module>bootstack-core</module>
-        <module>bootstack-script</module>
-        <module>bootstack-web</module>
-        <module>bootstack-cache</module>
-        <module>bootstack-param</module>
-        <module>bootstack-validation</module>
-        <module>bootstack-aop</module>
-        <module>bootstack-test</module>
-        <module>bootstack-job</module>
+        <module>common</module>
+        <module>core</module>
+        <module>script</module>
+        <module>web</module>
+        <module>cache</module>
+        <module>param</module>
+        <module>validation</module>
+        <module>aop</module>
+        <module>test</module>
+        <module>job</module>
         <module>docs</module>
-        <module>bootstack-storage</module>
+        <module>storage</module>
     </modules>
 
     <!-- url -->

@@ -18,7 +18,7 @@
 package com.bootstack.core.support;
 
 import com.bootstack.common.support.PageSupport;
-import com.bootstack.storage.mysql.model.page.PageModel;
+import com.bootstack.common.page.PageModel;
 import com.bootstack.param.page.PageParam;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

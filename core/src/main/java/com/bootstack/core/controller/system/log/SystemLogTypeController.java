@@ -19,7 +19,7 @@ package com.bootstack.core.controller.system.log;
 
 import com.bootstack.common.pinyin.PinYinUtils;
 import com.bootstack.storage.mysql.model.common.CommonResponseModel;
-import com.bootstack.storage.mysql.model.page.PageModel;
+import com.bootstack.common.page.PageModel;
 import com.bootstack.storage.mysql.model.system.log.SystemLogTypeModel;
 import com.bootstack.param.page.PageParam;
 import com.bootstack.param.system.log.SystemLogTypeCreateParam;

@@ -17,7 +17,7 @@
  */
 package com.bootstack.storage.mysql.service.system.log.impl;
 
-import com.bootstack.storage.mysql.model.page.PageModel;
+import com.bootstack.common.page.PageModel;
 import com.bootstack.storage.mysql.model.system.log.SystemLogModel;
 import com.bootstack.storage.mysql.repository.system.log.SystemLogRepository;
 import com.bootstack.storage.mysql.service.ServiceSupport;

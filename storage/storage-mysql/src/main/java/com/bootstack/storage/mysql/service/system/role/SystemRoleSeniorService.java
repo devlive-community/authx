@@ -17,8 +17,8 @@ package com.bootstack.storage.mysql.service.system.role; /**
  */
 
 import com.bootstack.storage.mysql.model.system.menu.SystemMenuTypeModel;
-import com.bootstack.storage.mysql.model.tree.TreeModel;
 import com.bootstack.storage.mysql.model.system.role.SystemRoleModel;
+import com.bootstack.storage.mysql.model.tree.TreeModel;
 
 import java.util.List;
 
@@ -34,6 +34,7 @@ public interface SystemRoleSeniorService {
 
     /**
      * Query the menu by the permission ID
+     *
      * @param id
      * @param flag
      * @return

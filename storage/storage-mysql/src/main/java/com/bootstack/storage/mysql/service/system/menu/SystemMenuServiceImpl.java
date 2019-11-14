@@ -17,7 +17,7 @@
  */
 package com.bootstack.storage.mysql.service.system.menu;
 
-import com.bootstack.storage.mysql.model.page.PageModel;
+import com.bootstack.common.page.PageModel;
 import com.bootstack.storage.mysql.model.system.menu.SystemMenuModel;
 import com.bootstack.storage.mysql.model.system.menu.SystemMenuTypeModel;
 import com.bootstack.storage.mysql.repository.system.menu.SystemMenuRepository;

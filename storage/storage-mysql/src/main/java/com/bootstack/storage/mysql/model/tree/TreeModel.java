@@ -40,6 +40,7 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class TreeModel {
 
+    List<TreeModel> children; // 子数据
     private Long id; // 数据唯一标志
     private String name; // 数据名称
     private String url; // 数据连接地址
@@ -50,7 +51,6 @@ public class TreeModel {
     private String code; // 数据唯一编码
     private Boolean checked = false; // 是否选中
     private Boolean selected = false; // 是否选中
-    List<TreeModel> children; // 子数据
     private TreeItemModel item;// 针对于tree-ngx插件定制
 
 }

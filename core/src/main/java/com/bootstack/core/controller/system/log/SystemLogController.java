@@ -21,8 +21,9 @@ import com.bootstack.common.pinyin.PinYinUtils;
 import com.bootstack.param.page.PageParam;
 import com.bootstack.param.system.log.SystemLogTypeCreateParam;
 import com.bootstack.param.system.log.SystemLogTypeSetParam;
+import com.bootstack.storage.mongodb.service.system.log.SystemLogToMongoDbService;
 import com.bootstack.storage.mysql.model.common.CommonResponseModel;
-import com.bootstack.storage.mysql.model.page.PageModel;
+import com.bootstack.common.page.PageModel;
 import com.bootstack.storage.mysql.model.system.log.SystemLogTypeModel;
 import com.bootstack.storage.mysql.service.system.log.SystemLogService;
 import lombok.extern.slf4j.Slf4j;
@@ -48,10 +49,13 @@ public class SystemLogController {
     @Autowired
     private SystemLogService systemLogService;
 
+    @Autowired
+    private SystemLogToMongoDbService mongoDbService;
+
     @GetMapping
     public CommonResponseModel getAll(@Validated PageParam param) {
         Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
-        return CommonResponseModel.success(this.systemLogService.getAllByPage(pageable));
+        return CommonResponseModel.success(this.mongoDbService.getAllByPage(pageable));
     }
 
     @PostMapping
@@ -78,8 +82,8 @@ public class SystemLogController {
      * @return 日志详情
      */
     @GetMapping(value = "/details")
-    public CommonResponseModel infoDetail(@RequestParam(value = "primaryKey") Long primaryKey) {
-        return CommonResponseModel.success(this.systemLogService.getModelById(primaryKey));
+    public CommonResponseModel infoDetail(@RequestParam(value = "primaryKey") String primaryKey) {
+        return CommonResponseModel.success(this.mongoDbService.getModelById(primaryKey));
     }
 
 }

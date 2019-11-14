@@ -13,8 +13,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>bootstack-storage-mongodb</module>
-        <module>bootstack-storage-mysql</module>
+        <module>storage-mongodb</module>
+        <module>storage-mysql</module>
     </modules>
 
     <artifactId>bootstack-storage</artifactId>

@@ -17,7 +17,7 @@
  */
 package com.bootstack.storage.mysql.service.system.role;
 
-import com.bootstack.storage.mysql.model.page.PageModel;
+import com.bootstack.common.page.PageModel;
 import com.bootstack.storage.mysql.model.system.role.SystemRoleModel;
 import com.bootstack.storage.mysql.repository.system.role.SystemRoleRepository;
 import com.bootstack.storage.mysql.service.ServiceSupport;

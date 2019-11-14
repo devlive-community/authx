@@ -19,7 +19,7 @@ package com.bootstack.core.controller.system.method;
 
 import com.bootstack.common.pinyin.PinYinUtils;
 import com.bootstack.storage.mysql.model.common.CommonResponseModel;
-import com.bootstack.storage.mysql.model.page.PageModel;
+import com.bootstack.common.page.PageModel;
 import com.bootstack.storage.mysql.model.system.method.SystemMethodModel;
 import com.bootstack.param.page.PageParam;
 import com.bootstack.param.system.method.SystemMethodCreateParam;

@@ -16,7 +16,7 @@ package com.bootstack.storage.mysql.service.system.interfaces; /**
  * limitations under the License.
  */
 
-import com.bootstack.storage.mysql.model.page.PageModel;
+import com.bootstack.common.page.PageModel;
 import com.bootstack.storage.mysql.model.system.interfaces.SystemInterfaceModel;
 import com.bootstack.storage.mysql.model.system.method.SystemMethodModel;
 import org.springframework.data.domain.Pageable;
@@ -109,7 +109,7 @@ public interface SystemInterfaceService {
     /**
      * find by path and method in method
      *
-     * @param path   path
+     * @param path    path
      * @param methods method info
      * @return info
      */

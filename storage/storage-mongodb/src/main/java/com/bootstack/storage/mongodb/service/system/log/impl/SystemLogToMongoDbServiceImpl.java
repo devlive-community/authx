@@ -17,10 +17,13 @@
  */
 package com.bootstack.storage.mongodb.service.system.log.impl;
 
+import com.bootstack.common.page.PageModel;
 import com.bootstack.storage.mongodb.model.system.SystemLogToMongoDbModel;
 import com.bootstack.storage.mongodb.repository.system.SystemLogToMongoDbRepository;
 import com.bootstack.storage.mongodb.service.system.log.SystemLogToMongoDbService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -40,6 +43,22 @@ public class SystemLogToMongoDbServiceImpl implements SystemLogToMongoDbService 
     @Override
     public SystemLogToMongoDbModel insertModel(SystemLogToMongoDbModel model) {
         return this.repository.save(model);
+    }
+
+    @Override
+    public PageModel<SystemLogToMongoDbModel> getAllByPage(Pageable pageable) {
+        Page<SystemLogToMongoDbModel> pageModel = this.repository.findAll(pageable);
+        return new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements());
+    }
+
+    @Override
+    public SystemLogToMongoDbModel getModelById(String id) {
+        return this.repository.findById(id).orElse(null);
+    }
+
+    @Override
+    public long getCount() {
+        return this.repository.count();
     }
 
 }

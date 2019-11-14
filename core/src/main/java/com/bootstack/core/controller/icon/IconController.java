@@ -21,7 +21,7 @@ import com.bootstack.storage.mysql.model.common.CommonResponseModel;
 import com.bootstack.storage.mysql.model.icon.IconModel;
 import com.bootstack.storage.mysql.model.icon.IconTypeModel;
 import com.bootstack.storage.mysql.model.icon.IconUsageModel;
-import com.bootstack.storage.mysql.model.page.PageModel;
+import com.bootstack.common.page.PageModel;
 import com.bootstack.param.icon.IconCreateParam;
 import com.bootstack.param.icon.IconSetParam;
 import com.bootstack.param.page.PageParam;

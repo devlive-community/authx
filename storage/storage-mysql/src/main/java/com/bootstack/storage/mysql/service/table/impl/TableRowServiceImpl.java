@@ -17,8 +17,8 @@
  */
 package com.bootstack.storage.mysql.service.table.impl;
 
+import com.bootstack.common.page.PageModel;
 import com.bootstack.storage.mysql.model.common.CommonResponseModel;
-import com.bootstack.storage.mysql.model.page.PageModel;
 import com.bootstack.storage.mysql.model.system.menu.SystemMenuModel;
 import com.bootstack.storage.mysql.model.table.TableRowModel;
 import com.bootstack.storage.mysql.repository.table.TableRowRepository;

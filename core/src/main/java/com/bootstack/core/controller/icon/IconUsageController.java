@@ -20,7 +20,7 @@ package com.bootstack.core.controller.icon;
 import com.bootstack.common.pinyin.PinYinUtils;
 import com.bootstack.storage.mysql.model.common.CommonResponseModel;
 import com.bootstack.storage.mysql.model.icon.IconUsageModel;
-import com.bootstack.storage.mysql.model.page.PageModel;
+import com.bootstack.common.page.PageModel;
 import com.bootstack.param.icon.IconUsageCreateParam;
 import com.bootstack.param.icon.IconUsageSetParam;
 import com.bootstack.param.page.PageParam;

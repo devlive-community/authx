@@ -113,6 +113,8 @@ public class ControllerLogAspect {
         logToMongoDbModel.setClassMethod(joinPoint.getSignature().getName());
         logToMongoDbModel.setMethod(request.getMethod());
         logToMongoDbModel.setRemoteIp(request.getRemoteAddr());
+        logToMongoDbModel.setUserId(user.getId());
+        logToMongoDbModel.setUserName(user.getName());
         this.systemLogToMongoDbService.insertModel(logToMongoDbModel);
     }
 

@@ -21,7 +21,7 @@ import com.bootstack.common.encryption.EncryptionShaUtils;
 import com.bootstack.common.enums.SystemMessageEnums;
 import com.bootstack.core.controller.ControllerSupport;
 import com.bootstack.storage.mysql.model.common.CommonResponseModel;
-import com.bootstack.storage.mysql.model.page.PageModel;
+import com.bootstack.common.page.PageModel;
 import com.bootstack.storage.mysql.model.system.role.SystemRoleModel;
 import com.bootstack.storage.mysql.model.user.UserModel;
 import com.bootstack.param.page.PageParam;

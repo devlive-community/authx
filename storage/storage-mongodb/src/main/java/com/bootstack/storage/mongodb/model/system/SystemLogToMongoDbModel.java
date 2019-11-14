@@ -69,6 +69,12 @@ public class SystemLogToMongoDbModel {
     @Field(value = "args")
     private String args; // 请求参数
 
+    @Field(value = "user_id")
+    private Long userId;
+
+    @Field(value = "user_name")
+    private String userName;
+
     @Field(value = "create_time")
     @CreatedDate
     @DateTimeFormat(pattern = DateSuooprt.DATE_FORMAT_YYYY_MM_DD_HH_MM_SS)

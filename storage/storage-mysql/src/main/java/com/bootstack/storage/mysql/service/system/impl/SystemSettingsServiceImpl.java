@@ -17,7 +17,7 @@
  */
 package com.bootstack.storage.mysql.service.system.impl;
 
-import com.bootstack.storage.mysql.model.page.PageModel;
+import com.bootstack.common.page.PageModel;
 import com.bootstack.storage.mysql.model.system.SystemSettingsModel;
 import com.bootstack.storage.mysql.repository.system.SystemSettingsRepository;
 import com.bootstack.storage.mysql.service.ServiceSupport;

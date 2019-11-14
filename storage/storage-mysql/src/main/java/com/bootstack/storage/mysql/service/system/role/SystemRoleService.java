@@ -16,7 +16,7 @@ package com.bootstack.storage.mysql.service.system.role; /**
  * limitations under the License.
  */
 
-import com.bootstack.storage.mysql.model.page.PageModel;
+import com.bootstack.common.page.PageModel;
 import com.bootstack.storage.mysql.model.system.role.SystemRoleModel;
 import org.springframework.data.domain.Pageable;
 

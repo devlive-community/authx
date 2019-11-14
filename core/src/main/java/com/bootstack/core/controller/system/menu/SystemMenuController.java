@@ -20,7 +20,7 @@ package com.bootstack.core.controller.system.menu;
 import com.bootstack.common.pinyin.PinYinUtils;
 import com.bootstack.storage.mysql.model.common.CommonResponseModel;
 import com.bootstack.storage.mysql.model.icon.IconModel;
-import com.bootstack.storage.mysql.model.page.PageModel;
+import com.bootstack.common.page.PageModel;
 import com.bootstack.storage.mysql.model.system.menu.SystemMenuModel;
 import com.bootstack.storage.mysql.model.system.menu.SystemMenuTypeModel;
 import com.bootstack.storage.mysql.model.system.method.SystemMethodModel;
