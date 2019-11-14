@@ -15,6 +15,8 @@ title: 1.0.5
      
 ---
 
+1. 支持MongoDB存储引擎
+2. 替换日志存储为MongoDB引擎
 
 <br />
 

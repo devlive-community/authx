@@ -356,15 +356,4 @@
         </plugins>
     </reporting>
 
-    <repositories>
-        <repository>
-            <id>nexus-ttxit</id>
-            <name>edurt maven center</name>
-            <url>http://maven.edurt.com/repository/maven/</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
 </project>

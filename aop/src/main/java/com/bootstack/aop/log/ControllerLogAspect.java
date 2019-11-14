@@ -93,18 +93,18 @@ public class ControllerLogAspect {
                 }
             }
         }
-        SystemLogModel log = new SystemLogModel();
-        log.setUrl(request.getServletPath());
-        log.setArgs(Arrays.toString(joinPoint.getArgs()));
-        log.setClazz(joinPoint.getSignature().getDeclaringTypeName());
-        log.setClassMethod(joinPoint.getSignature().getName());
-        log.setMethod(request.getMethod());
-        log.setRemoteIp(request.getRemoteAddr());
-        SystemLogTypeModel logType = new SystemLogTypeModel();
-        logType.setId(4L);
-        log.setType(logType);
-        log.setUser(user);
-        this.systemLogService.insertModel(log);
+//        SystemLogModel log = new SystemLogModel();
+//        log.setUrl(request.getServletPath());
+//        log.setArgs(Arrays.toString(joinPoint.getArgs()));
+//        log.setClazz(joinPoint.getSignature().getDeclaringTypeName());
+//        log.setClassMethod(joinPoint.getSignature().getName());
+//        log.setMethod(request.getMethod());
+//        log.setRemoteIp(request.getRemoteAddr());
+//        SystemLogTypeModel logType = new SystemLogTypeModel();
+//        logType.setId(4L);
+//        log.setType(logType);
+//        log.setUser(user);
+//        this.systemLogService.insertModel(log);
         // 存储日志信息到Mongo中
         SystemLogToMongoDbModel logToMongoDbModel = new SystemLogToMongoDbModel();
         logToMongoDbModel.setUrl(request.getServletPath());
