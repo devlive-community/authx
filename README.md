@@ -10,7 +10,7 @@ bootstack is a open source privilege management platform
 |:---:|---|
 |Java|1.8+|
 |Jwt|-|
-|SpringBoot|1.5.x|
+|SpringBoot|2.1.x|
 |Spring Security|-|
 |Spring Security Oauth2|-|
 |Spring Data JPA|-|
@@ -26,7 +26,6 @@ bootstack is a open source privilege management platform
 
 ---
 
-- [Internal](https://gitqub.com/SpringStack/bootstack.git)
 - [GitHub](https://github.com/springstack/bootstack.git)
 - [Gitee](https://gitee.com/Spring-Stack/bootstack.git)
 
@@ -34,13 +33,9 @@ bootstack is a open source privilege management platform
 
 ---
 
-- [Wiki](http://wiki.ttxit.com/display/bootstack)
-
 ### Issues
 
 ---
-
-- [JIRA](http://jira.ttxit.com/projects/BOOTSTACK)
 
 ### Contact us
     
