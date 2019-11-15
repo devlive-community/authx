@@ -76,7 +76,7 @@
         <dependency.springboot.common.version>2.1.7.RELEASE</dependency.springboot.common.version>
         <dependency.lombox.version>1.16.16</dependency.lombox.version>
         <dependency.spring.security.jwt.version>1.0.8.RELEASE</dependency.spring.security.jwt.version>
-        <dependency.spring.security.oauth2.version>2.1.1.RELEASE</dependency.spring.security.oauth2.version>
+        <dependency.spring.security.oauth2.version>2.1.5.RELEASE</dependency.spring.security.oauth2.version>
         <dependency.mysql.version>5.1.42</dependency.mysql.version>
         <dependency.jackson.databind.version>2.8.6</dependency.jackson.databind.version>
         <dependency.fastjson.version>1.2.47</dependency.fastjson.version>
