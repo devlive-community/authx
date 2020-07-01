@@ -91,7 +91,7 @@
         <dependency.servlet.api.version>2.5</dependency.servlet.api.version>
         <dependency.commons.version>3.2.2</dependency.commons.version>
         <dependency.google.collections.version>1.0</dependency.google.collections.version>
-        <dependency.quartz.version>2.2.1</dependency.quartz.version>
+        <dependency.quartz.version>2.3.2</dependency.quartz.version>
         <!-- plugin config -->
         <plugin.maven.compiler.version>3.3</plugin.maven.compiler.version>
         <plugin.maven.javadoc.version>2.10.4</plugin.maven.javadoc.version>
