@@ -1,0 +1,61 @@
+{#-
+This file was automatically generated - do not edit
+-#}
+{% extends "overrides/main.html" %}
+{% block tabs %}
+{{ super() }}
+<style>.md-header {
+    position: initial
+}
+
+.md-main__inner {
+    margin: 0
+}
+
+.md-content {
+    display: none
+}
+
+@media screen and (min-width: 60em) {
+    .md-sidebar--secondary {
+        display: none
+    }
+}
+
+@media screen and (min-width: 76.25em) {
+    .md-sidebar--primary {
+        display: none
+    }
+}</style>
+<section class="mdx-container">
+    <div class="md-grid md-typeset">
+        <div class="mdx-hero">
+            <div class="mdx-hero__image">
+                <img src="assets/images/illustration.png" alt="" width="1659" height="1200" draggable="false">
+            </div>
+            <div class="mdx-hero__content">
+                <h1>什么是BootStack?</h1>
+                <p class="lead">BOOTSTACK是一个开源的权限管理平台。
+                    核心使用SPRINGBOOT进行平台的开发，使用ANGULAR进行前端页面的展示，使用SECURITY，OAUTH2，JWT进行权限以及REST API的校验。也是一个SPRINGBOOT脚手架，核心宗旨为让所有程序员拥有一套开箱即用的后台权限管理平台!</p>
+                <h4>Feature</h4>
+                <ul class="md-tabs__list">
+                    <li class="md-tabs__item">✓ 开源</li>
+                    <li class="md-tabs__item">✓ 简单</li>
+                    <li class="md-tabs__item">✓ 快速</li>
+                </ul>
+                <ul class="md-tabs__list">
+                    <li class="md-tabs__item">✓ 易部署</li>
+                    <li class="md-tabs__item">✓ 可视化</li>
+                </ul>
+                <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | e }}"
+                   class="md-button md-button--primary">
+                    开始使用
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+{% block content %}{% endblock %}
+{% block footer %}{% endblock %}
