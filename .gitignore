@@ -170,3 +170,6 @@ buildNumber.properties
 venv
 
 .sass-cache
+
+docs/node_modules
+docs/site

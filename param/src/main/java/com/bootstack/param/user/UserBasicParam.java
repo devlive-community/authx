@@ -36,7 +36,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserBasicParam {
+public class UserBasicParam
+{
 
     @NotEmpty(message = "user name must not null")
     @UserNameValidation
@@ -45,4 +46,6 @@ public class UserBasicParam {
     @NotEmpty(message = "user password must not null")
     private String password;
 
+    private String email;
+    private String repassword;
 }

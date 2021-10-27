@@ -6,7 +6,7 @@
     <parent>
         <artifactId>incubator-bootstack</artifactId>
         <groupId>com.bootstack</groupId>
-        <version>1.0.5</version>
+        <version>1.6.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>

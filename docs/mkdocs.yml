@@ -1,0 +1,113 @@
+site_name: BootStack
+site_url: https://bootstack.datahall.cn
+site_author: qinamoQ
+site_description: >-
+  BootStack is open source privilege management platform.
+
+repo_name: EdurtIO/bootstack
+repo_url: https://github.com/EdurtIO/bootstack
+edit_uri: ""
+
+copyright: Copyright &copy; 2021 EdurtIO
+
+theme:
+  name: null
+  custom_dir: !ENV [ THEME_DIR, "material" ]
+
+  static_templates:
+    - 404.html
+
+  include_search_page: false
+  search_index_only: true
+
+  language: en
+  features:
+    - content.code.annotate
+    - content.tabs.link
+    #    - header.autohide
+    #    - navigation.expand
+    - navigation.indexes
+    #    - navigation.instant
+    - navigation.sections
+    - navigation.tabs
+    #    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+  #    - toc.integrate
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - scheme: slate
+      primary: red
+      accent: red
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  favicon: assets/favicon.png
+  icon:
+    logo: logo
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/EdurtIO
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/qianmoQ/
+
+markdown_extensions:
+  - admonition
+  - abbr
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid-experimental
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+nav:
+  - 主页: index.md
+  - 发布日志:
+      - 1.0.5: changelog/20191115-1.0.5.md
+      - 1.0.4: changelog/20190617-1.0.4.md
+      - 1.0.3: changelog/20190524-1.0.3.md
+      - 1.0.2: changelog/20190509-1.0.2.md
+      - 1.0.1: changelog/20190507-1.0.1.md
+      - 1.0.0: changelog/20190505-1.0.0.md
