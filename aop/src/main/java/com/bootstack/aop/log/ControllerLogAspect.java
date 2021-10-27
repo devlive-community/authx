@@ -20,8 +20,6 @@ package com.bootstack.aop.log;
 import com.bootstack.storage.mongodb.model.system.SystemLogToMongoDbModel;
 import com.bootstack.storage.mongodb.service.system.log.SystemLogToMongoDbService;
 import com.bootstack.storage.mysql.model.system.interfaces.SystemInterfaceModel;
-import com.bootstack.storage.mysql.model.system.log.SystemLogModel;
-import com.bootstack.storage.mysql.model.system.log.SystemLogTypeModel;
 import com.bootstack.storage.mysql.model.system.method.SystemMethodModel;
 import com.bootstack.storage.mysql.model.user.UserModel;
 import com.bootstack.storage.mysql.service.system.interfaces.SystemInterfaceService;
@@ -40,6 +38,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+
 import java.util.Arrays;
 
 /**
@@ -113,8 +112,10 @@ public class ControllerLogAspect {
         logToMongoDbModel.setClassMethod(joinPoint.getSignature().getName());
         logToMongoDbModel.setMethod(request.getMethod());
         logToMongoDbModel.setRemoteIp(request.getRemoteAddr());
-        logToMongoDbModel.setUserId(user.getId());
-        logToMongoDbModel.setUserName(user.getName());
+        Long userId = ObjectUtils.isEmpty(user) ? 0L : user.getId();
+        logToMongoDbModel.setUserId(userId);
+        String name = ObjectUtils.isEmpty(user) ? "anonymous" : user.getName();
+        logToMongoDbModel.setUserName(name);
         this.systemLogToMongoDbService.insertModel(logToMongoDbModel);
     }
 

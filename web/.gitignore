@@ -45,3 +45,4 @@ Thumbs.db
 src/main/angular/package-lock.json
 src/main/angular/node_modules
 src/main/angular/dist/
+yarn.lock
