@@ -104,6 +104,8 @@ markdown_extensions:
 
 nav:
   - 主页: index.md
+  - 开发者:
+      - 源码编译: development/from-source.md
   - 发布日志:
       - 1.0.5: changelog/20191115-1.0.5.md
       - 1.0.4: changelog/20190617-1.0.4.md
