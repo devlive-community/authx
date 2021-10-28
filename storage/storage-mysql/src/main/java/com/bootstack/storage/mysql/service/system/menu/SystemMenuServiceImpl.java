@@ -54,7 +54,7 @@ public class SystemMenuServiceImpl implements SystemMenuService {
 
     @Override
     public Object getModelById(Long id) {
-        return this.systemMenuRepository.findById(id);
+        return this.systemMenuRepository.findById(id).get();
     }
 
     @Override
