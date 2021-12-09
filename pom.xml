@@ -78,7 +78,7 @@
         <dependency.spring.security.jwt.version>1.0.8.RELEASE</dependency.spring.security.jwt.version>
         <dependency.spring.security.oauth2.version>2.1.1.RELEASE</dependency.spring.security.oauth2.version>
         <dependency.mysql.version>5.1.42</dependency.mysql.version>
-        <dependency.jackson.databind.version>2.9.4</dependency.jackson.databind.version>
+        <dependency.jackson.databind.version>2.9.10.8</dependency.jackson.databind.version>
         <dependency.fastjson.version>1.2.47</dependency.fastjson.version>
         <dependency.pinyin4j.version>2.5.0</dependency.pinyin4j.version>
         <dependency.common.lang3.version>3.6</dependency.common.lang3.version>
