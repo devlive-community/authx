@@ -1,18 +1,18 @@
 name: Publish docs via GitHub Pages
+
 on: push
 
 jobs:
-  build:
-    name: Deploy docs
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      - run: cd docs/ && pip install git+https://${GH_TOKEN}@github.com/qianmoq/mkdocs-material-insiders.git
+      - run: cd docs/ && pip install -r requirements.txt
+      - run: cd docs/ && mkdocs gh-deploy --force
 
-      - name: Deploy docs
-        uses: mhausenblas/mkdocs-deploy-gh-pages@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CUSTOM_DOMAIN: lc.incubator.edurt.io
-          CONFIG_FILE: docs/mkdocs.yml
-          EXTRA_PACKAGES: build-base
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
