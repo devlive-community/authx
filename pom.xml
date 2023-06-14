@@ -18,12 +18,10 @@
         <module>core/authx-param</module>
         <module>core/authx-aop</module>
         <module>core/authx-server</module>
-        <module>core/authx-test</module>
         <module>core/authx-validation</module>
         <module>storage/authx-storage-mysql</module>
         <module>storage/authx-storage-mongodb</module>
         <module>storage/authx-storage-cache</module>
-        <module>script</module>
     </modules>
 
     <!-- url -->
