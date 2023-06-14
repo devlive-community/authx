@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.storage.mongodb.config;
+package org.devlive.authx.storage.mongodb.config;
 
 /**
  * <p> ConfigSupport </p>
@@ -28,7 +28,7 @@ package com.bootstack.storage.mongodb.config;
 public class ConfigSupport {
 
     // root
-    public final static String CONFIG_PREFIX = "com.bootstack.storage.mongodb.";
+    public final static String CONFIG_PREFIX = "org.devlive.authx.storage.mongodb.";
     // database root path
     public final static String CONFIG_DATASOURCE_BASE_PACKAGE = CONFIG_PREFIX + "repository";
     // database prefix

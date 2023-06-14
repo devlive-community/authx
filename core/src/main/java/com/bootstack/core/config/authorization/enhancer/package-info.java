@@ -1,1 +1,1 @@
-package com.bootstack.core.config.authorization.enhancer;
+package org.devlive.authx.core.config.authorization.enhancer;

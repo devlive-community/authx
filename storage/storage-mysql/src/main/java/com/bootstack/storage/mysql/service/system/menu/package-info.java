@@ -1,1 +1,1 @@
-package com.bootstack.storage.mysql.service.system.menu;
+package org.devlive.authx.storage.mysql.service.system.menu;

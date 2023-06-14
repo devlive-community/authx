@@ -1,1 +1,1 @@
-package com.bootstack.core.config.handler;
+package org.devlive.authx.core.config.handler;

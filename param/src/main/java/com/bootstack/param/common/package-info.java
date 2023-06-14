@@ -1,1 +1,1 @@
-package com.bootstack.param.common;
+package org.devlive.authx.param.common;

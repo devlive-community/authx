@@ -1,4 +1,4 @@
-package com.bootstack.storage.mysql.service.system.log; /**
+package org.devlive.authx.storage.mysql.service.system.log; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -16,8 +16,8 @@ package com.bootstack.storage.mysql.service.system.log; /**
  * limitations under the License.
  */
 
-import com.bootstack.storage.mysql.model.system.log.SystemLogModel;
-import com.bootstack.storage.mysql.service.BaseService;
+import org.devlive.authx.storage.mysql.model.system.log.SystemLogModel;
+import org.devlive.authx.storage.mysql.service.BaseService;
 
 /**
  * <p> SystemLogTypeService </p>

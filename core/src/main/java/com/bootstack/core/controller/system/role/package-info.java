@@ -1,1 +1,1 @@
-package com.bootstack.core.controller.system.role;
+package org.devlive.authx.core.controller.system.role;

@@ -1,1 +1,1 @@
-package com.bootstack.storage.mysql.service.system.log.impl;
+package org.devlive.authx.storage.mysql.service.system.log.impl;

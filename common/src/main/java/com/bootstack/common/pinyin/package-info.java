@@ -1,1 +1,1 @@
-package com.bootstack.common.pinyin;
+package org.devlive.authx.common.pinyin;

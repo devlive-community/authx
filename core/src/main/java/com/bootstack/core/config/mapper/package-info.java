@@ -1,1 +1,1 @@
-package com.bootstack.core.config.mapper;
+package org.devlive.authx.core.config.mapper;

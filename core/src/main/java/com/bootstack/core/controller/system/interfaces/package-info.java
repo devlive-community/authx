@@ -1,1 +1,1 @@
-package com.bootstack.core.controller.system.interfaces;
+package org.devlive.authx.core.controller.system.interfaces;

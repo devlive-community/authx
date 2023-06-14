@@ -15,10 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.storage.mysql.model.system.role;
+package org.devlive.authx.storage.mysql.model.system.role;
 
-import com.bootstack.common.support.DateSuooprt;
-import com.bootstack.storage.mysql.model.system.menu.SystemMenuModel;
+import org.devlive.authx.common.support.DateSuooprt;
+import org.devlive.authx.storage.mysql.model.system.menu.SystemMenuModel;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -15,9 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.test.common.pinyin;
+package org.devlive.authx.test.common.pinyin;
 
-import com.bootstack.common.pinyin.PinYinUtils;
+import org.devlive.authx.common.pinyin.PinYinUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

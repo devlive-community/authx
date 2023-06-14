@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core;
+package org.devlive.authx.core;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
@@ -37,19 +37,19 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableAsync
 @EnableScheduling
 @ComponentScan(value = {
-        "com.bootstack",
-        "com.bootstack.core",
-        "com.bootstack.core.controller"
+        "org.devlive.authx",
+        "org.devlive.authx.core",
+        "org.devlive.authx.core.controller"
 })
 @SpringBootApplication
 @PropertySource(value = {
         "bootstack.properties",
         "bootstack-api.properties"
 })
-public class BootStackBootstrap {
+public class AuthX {
 
     public static void main(String[] args) {
-        SpringApplication.run(BootStackBootstrap.class, args);
+        SpringApplication.run(org.devlive.authx.core.AuthX.class, args);
     }
 
 }

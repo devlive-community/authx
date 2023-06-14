@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.common.validation;
+package org.devlive.authx.common.validation;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;

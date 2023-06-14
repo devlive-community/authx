@@ -15,12 +15,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.aop.validation.user;
+package org.devlive.authx.aop.validation.user;
 
-import com.bootstack.common.enums.SystemMessageEnums;
-import com.bootstack.common.enums.UserMessageEnums;
-import com.bootstack.storage.mysql.model.user.UserModel;
-import com.bootstack.storage.mysql.service.user.UserService;
+import org.devlive.authx.common.enums.SystemMessageEnums;
+import org.devlive.authx.common.enums.UserMessageEnums;
+import org.devlive.authx.storage.mysql.model.user.UserModel;
+import org.devlive.authx.storage.mysql.service.user.UserService;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;

@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.storage.mysql.config;
+package org.devlive.authx.storage.mysql.config;
 
 /**
  * <p> ConfigSupport </p>
@@ -28,7 +28,7 @@ package com.bootstack.storage.mysql.config;
 public class ConfigSupport {
 
     // root
-    public final static String CONFIG_PREFIX = "com.bootstack.storage.mysql.";
+    public final static String CONFIG_PREFIX = "org.devlive.authx.storage.mysql.";
     // database root path
     public final static String CONFIG_DATASOURCE_BASE_PACKAGE = CONFIG_PREFIX + "repository";
     // database prefix

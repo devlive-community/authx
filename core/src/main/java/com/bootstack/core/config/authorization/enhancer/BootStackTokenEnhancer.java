@@ -15,9 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.config.authorization.enhancer;
+package org.devlive.authx.core.config.authorization.enhancer;
 
-import com.bootstack.common.enums.SystemMessageEnums;
+import org.devlive.authx.common.enums.SystemMessageEnums;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;

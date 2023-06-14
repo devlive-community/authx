@@ -1,1 +1,1 @@
-package com.bootstack.storage.mongodb.config;
+package org.devlive.authx.storage.mongodb.config;

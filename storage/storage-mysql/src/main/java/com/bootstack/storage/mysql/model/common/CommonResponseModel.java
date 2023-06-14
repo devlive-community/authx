@@ -15,9 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.storage.mysql.model.common;
+package org.devlive.authx.storage.mysql.model.common;
 
-import com.bootstack.common.enums.SystemMessageEnums;
+import org.devlive.authx.common.enums.SystemMessageEnums;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

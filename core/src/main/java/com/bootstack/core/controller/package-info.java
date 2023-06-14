@@ -1,1 +1,1 @@
-package com.bootstack.core.controller;
+package org.devlive.authx.core.controller;

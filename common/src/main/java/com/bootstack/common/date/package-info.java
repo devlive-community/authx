@@ -1,1 +1,1 @@
-package com.bootstack.common.date;
+package org.devlive.authx.common.date;

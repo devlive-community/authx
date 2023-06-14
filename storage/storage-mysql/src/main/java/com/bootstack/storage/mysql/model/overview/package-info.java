@@ -1,1 +1,1 @@
-package com.bootstack.storage.mysql.model.overview;
+package org.devlive.authx.storage.mysql.model.overview;

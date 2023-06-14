@@ -15,11 +15,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.storage.mysql.model.system.menu;
+package org.devlive.authx.storage.mysql.model.system.menu;
 
-import com.bootstack.common.support.DateSuooprt;
-import com.bootstack.storage.mysql.model.icon.IconModel;
-import com.bootstack.storage.mysql.model.system.method.SystemMethodModel;
+import org.devlive.authx.common.support.DateSuooprt;
+import org.devlive.authx.storage.mysql.model.icon.IconModel;
+import org.devlive.authx.storage.mysql.model.system.method.SystemMethodModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

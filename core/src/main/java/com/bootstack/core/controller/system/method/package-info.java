@@ -1,1 +1,1 @@
-package com.bootstack.core.controller.system.method;
+package org.devlive.authx.core.controller.system.method;

@@ -15,11 +15,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.config.handler;
+package org.devlive.authx.core.config.handler;
 
-import com.bootstack.common.enums.SystemMessageEnums;
-import com.bootstack.common.validation.ValidationUtils;
-import com.bootstack.storage.mysql.model.common.CommonResponseModel;
+import org.devlive.authx.common.enums.SystemMessageEnums;
+import org.devlive.authx.common.validation.ValidationUtils;
+import org.devlive.authx.storage.mysql.model.common.CommonResponseModel;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;

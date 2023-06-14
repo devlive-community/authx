@@ -15,9 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.config.security;
+package org.devlive.authx.core.config.security;
 
-import com.bootstack.core.config.authorization.BootStackAuthorizationOauth2Support;
+import org.devlive.authx.core.config.authorization.BootStackAuthorizationOauth2Support;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

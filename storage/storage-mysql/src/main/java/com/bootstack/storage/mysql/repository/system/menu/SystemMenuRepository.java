@@ -1,4 +1,4 @@
-package com.bootstack.storage.mysql.repository.system.menu; /**
+package org.devlive.authx.storage.mysql.repository.system.menu; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -16,8 +16,8 @@ package com.bootstack.storage.mysql.repository.system.menu; /**
  * limitations under the License.
  */
 
-import com.bootstack.storage.mysql.model.system.menu.SystemMenuModel;
-import com.bootstack.storage.mysql.model.system.menu.SystemMenuTypeModel;
+import org.devlive.authx.storage.mysql.model.system.menu.SystemMenuModel;
+import org.devlive.authx.storage.mysql.model.system.menu.SystemMenuTypeModel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;

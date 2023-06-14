@@ -1,1 +1,1 @@
-package com.bootstack.core.config.authorization.exception;
+package org.devlive.authx.core.config.authorization.exception;

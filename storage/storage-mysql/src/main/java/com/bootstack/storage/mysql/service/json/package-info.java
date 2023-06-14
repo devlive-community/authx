@@ -1,1 +1,1 @@
-package com.bootstack.storage.mysql.service.json;
+package org.devlive.authx.storage.mysql.service.json;

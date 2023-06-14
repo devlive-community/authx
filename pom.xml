@@ -2,8 +2,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.bootstack</groupId>
-    <artifactId>incubator-bootstack</artifactId>
+    <groupId>org.devlive.authx</groupId>
+    <artifactId>incubator-authx</artifactId>
     <packaging>pom</packaging>
     <version>1.6.0-SNAPSHOT</version>
 
@@ -25,7 +25,6 @@
         <module>aop</module>
         <module>test</module>
         <module>job</module>
-        <module>docs</module>
         <module>storage</module>
     </modules>
 
@@ -126,42 +125,42 @@
         <dependencies>
             <!-- project -->
             <dependency>
-                <groupId>com.bootstack</groupId>
+                <groupId>org.devlive.authx</groupId>
                 <artifactId>bootstack-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.bootstack</groupId>
+                <groupId>org.devlive.authx</groupId>
                 <artifactId>bootstack-param</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.bootstack</groupId>
+                <groupId>org.devlive.authx</groupId>
                 <artifactId>bootstack-validation</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.bootstack</groupId>
+                <groupId>org.devlive.authx</groupId>
                 <artifactId>bootstack-cache</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.bootstack</groupId>
+                <groupId>org.devlive.authx</groupId>
                 <artifactId>bootstack-aop</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.bootstack</groupId>
+                <groupId>org.devlive.authx</groupId>
                 <artifactId>bootstack-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.bootstack</groupId>
+                <groupId>org.devlive.authx</groupId>
                 <artifactId>bootstack-storage-mysql</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.bootstack</groupId>
+                <groupId>org.devlive.authx</groupId>
                 <artifactId>bootstack-storage-mongodb</artifactId>
                 <version>${project.version}</version>
             </dependency>

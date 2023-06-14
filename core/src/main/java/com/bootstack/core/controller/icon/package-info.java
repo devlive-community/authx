@@ -1,1 +1,1 @@
-package com.bootstack.core.controller.icon;
+package org.devlive.authx.core.controller.icon;

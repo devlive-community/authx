@@ -1,1 +1,1 @@
-package com.bootstack.common.encryption;
+package org.devlive.authx.common.encryption;

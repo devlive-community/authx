@@ -1,1 +1,1 @@
-package com.bootstack.common.json;
+package org.devlive.authx.common.json;

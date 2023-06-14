@@ -1,1 +1,1 @@
-package com.bootstack.storage.mysql.repository.icon;
+package org.devlive.authx.storage.mysql.repository.icon;

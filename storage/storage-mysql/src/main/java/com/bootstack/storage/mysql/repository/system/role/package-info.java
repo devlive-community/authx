@@ -1,1 +1,1 @@
-package com.bootstack.storage.mysql.repository.system.role;
+package org.devlive.authx.storage.mysql.repository.system.role;

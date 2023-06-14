@@ -15,15 +15,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.config.security;
+package org.devlive.authx.core.config.security;
 
-import com.bootstack.common.enums.SystemMessageEnums;
-import com.bootstack.storage.mysql.model.system.interfaces.SystemInterfaceModel;
-import com.bootstack.storage.mysql.model.system.method.SystemMethodModel;
-import com.bootstack.storage.mysql.model.system.role.SystemRoleModel;
-import com.bootstack.storage.mysql.service.system.interfaces.SystemInterfaceService;
-import com.bootstack.storage.mysql.service.system.method.SystemMethodService;
-import com.bootstack.storage.mysql.service.system.role.SystemRoleService;
+import org.devlive.authx.common.enums.SystemMessageEnums;
+import org.devlive.authx.storage.mysql.model.system.interfaces.SystemInterfaceModel;
+import org.devlive.authx.storage.mysql.model.system.method.SystemMethodModel;
+import org.devlive.authx.storage.mysql.model.system.role.SystemRoleModel;
+import org.devlive.authx.storage.mysql.service.system.interfaces.SystemInterfaceService;
+import org.devlive.authx.storage.mysql.service.system.method.SystemMethodService;
+import org.devlive.authx.storage.mysql.service.system.role.SystemRoleService;
 import lombok.Data;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;

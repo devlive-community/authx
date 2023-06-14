@@ -15,26 +15,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.controller.system.role;
+package org.devlive.authx.core.controller.system.role;
 
-import com.bootstack.common.pinyin.PinYinUtils;
-import com.bootstack.core.controller.ControllerSupport;
-import com.bootstack.core.support.ParamSupport;
-import com.bootstack.storage.mysql.model.common.CommonResponseModel;
-import com.bootstack.storage.mysql.model.system.menu.SystemMenuModel;
-import com.bootstack.storage.mysql.model.system.menu.SystemMenuTypeModel;
-import com.bootstack.storage.mysql.model.system.role.SystemRoleModel;
-import com.bootstack.storage.mysql.model.user.UserModel;
-import com.bootstack.param.common.CommonMenuAndRoleParam;
-import com.bootstack.param.page.PageParam;
-import com.bootstack.param.system.role.SystemRoleBasicParam;
-import com.bootstack.param.system.role.SystemRoleMenuParam;
-import com.bootstack.param.system.role.SystemRoleSetMenuParam;
-import com.bootstack.param.system.role.SystemRoleSetParam;
-import com.bootstack.storage.mysql.service.system.menu.SystemMenuService;
-import com.bootstack.storage.mysql.service.system.role.SystemRoleSeniorService;
-import com.bootstack.storage.mysql.service.system.role.SystemRoleService;
-import com.bootstack.storage.mysql.service.user.UserService;
+import org.devlive.authx.common.pinyin.PinYinUtils;
+import org.devlive.authx.core.controller.ControllerSupport;
+import org.devlive.authx.core.support.ParamSupport;
+import org.devlive.authx.storage.mysql.model.common.CommonResponseModel;
+import org.devlive.authx.storage.mysql.model.system.menu.SystemMenuModel;
+import org.devlive.authx.storage.mysql.model.system.menu.SystemMenuTypeModel;
+import org.devlive.authx.storage.mysql.model.system.role.SystemRoleModel;
+import org.devlive.authx.storage.mysql.model.user.UserModel;
+import org.devlive.authx.param.common.CommonMenuAndRoleParam;
+import org.devlive.authx.param.page.PageParam;
+import org.devlive.authx.param.system.role.SystemRoleBasicParam;
+import org.devlive.authx.param.system.role.SystemRoleMenuParam;
+import org.devlive.authx.param.system.role.SystemRoleSetMenuParam;
+import org.devlive.authx.param.system.role.SystemRoleSetParam;
+import org.devlive.authx.storage.mysql.service.system.menu.SystemMenuService;
+import org.devlive.authx.storage.mysql.service.system.role.SystemRoleSeniorService;
+import org.devlive.authx.storage.mysql.service.system.role.SystemRoleService;
+import org.devlive.authx.storage.mysql.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

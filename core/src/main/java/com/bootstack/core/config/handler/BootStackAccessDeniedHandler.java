@@ -15,9 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.config.handler;
+package org.devlive.authx.core.config.handler;
 
-import com.bootstack.common.enums.SystemMessageEnums;
+import org.devlive.authx.common.enums.SystemMessageEnums;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

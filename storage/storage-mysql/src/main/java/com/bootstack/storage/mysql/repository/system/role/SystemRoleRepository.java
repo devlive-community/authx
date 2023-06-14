@@ -1,4 +1,4 @@
-package com.bootstack.storage.mysql.repository.system.role; /**
+package org.devlive.authx.storage.mysql.repository.system.role; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -16,7 +16,7 @@ package com.bootstack.storage.mysql.repository.system.role; /**
  * limitations under the License.
  */
 
-import com.bootstack.storage.mysql.model.system.role.SystemRoleModel;
+import org.devlive.authx.storage.mysql.model.system.role.SystemRoleModel;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**

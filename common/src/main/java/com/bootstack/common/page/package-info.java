@@ -1,1 +1,1 @@
-package com.bootstack.common.page;
+package org.devlive.authx.common.page;

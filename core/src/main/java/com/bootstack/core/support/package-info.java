@@ -1,1 +1,1 @@
-package com.bootstack.core.support;
+package org.devlive.authx.core.support;

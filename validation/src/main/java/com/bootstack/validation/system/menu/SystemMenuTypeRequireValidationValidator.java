@@ -15,9 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.validation.system.menu;
+package org.devlive.authx.validation.system.menu;
 
-import com.bootstack.storage.mysql.service.system.menu.SystemMenuTypeService;
+import org.devlive.authx.storage.mysql.service.system.menu.SystemMenuTypeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;

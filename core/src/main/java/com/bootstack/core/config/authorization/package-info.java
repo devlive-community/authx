@@ -1,1 +1,1 @@
-package com.bootstack.core.config.authorization;
+package org.devlive.authx.core.config.authorization;

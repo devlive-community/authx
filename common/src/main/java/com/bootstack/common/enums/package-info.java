@@ -1,1 +1,1 @@
-package com.bootstack.common.enums;
+package org.devlive.authx.common.enums;

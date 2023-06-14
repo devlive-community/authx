@@ -1,1 +1,1 @@
-package com.bootstack.job.config;
+package org.devlive.authx.job.config;

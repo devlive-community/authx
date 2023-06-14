@@ -15,17 +15,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.controller.table;
+package org.devlive.authx.core.controller.table;
 
-import com.bootstack.core.controller.BaseController;
-import com.bootstack.storage.mysql.model.common.CommonResponseModel;
-import com.bootstack.common.page.PageModel;
-import com.bootstack.storage.mysql.model.system.menu.SystemMenuModel;
-import com.bootstack.storage.mysql.model.table.TableRowModel;
-import com.bootstack.param.page.PageParam;
-import com.bootstack.param.table.TableRowCreateParam;
-import com.bootstack.storage.mysql.service.system.menu.SystemMenuService;
-import com.bootstack.storage.mysql.service.table.TableRowService;
+import org.devlive.authx.core.controller.BaseController;
+import org.devlive.authx.storage.mysql.model.common.CommonResponseModel;
+import org.devlive.authx.common.page.PageModel;
+import org.devlive.authx.storage.mysql.model.system.menu.SystemMenuModel;
+import org.devlive.authx.storage.mysql.model.table.TableRowModel;
+import org.devlive.authx.param.page.PageParam;
+import org.devlive.authx.param.table.TableRowCreateParam;
+import org.devlive.authx.storage.mysql.service.system.menu.SystemMenuService;
+import org.devlive.authx.storage.mysql.service.table.TableRowService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;

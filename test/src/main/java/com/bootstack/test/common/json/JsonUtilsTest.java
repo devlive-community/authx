@@ -15,10 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.test.common.json;
+package org.devlive.authx.test.common.json;
 
-import com.bootstack.common.json.JsonUtils;
-import com.bootstack.test.JsonSupport;
+import org.devlive.authx.common.json.JsonUtils;
+import org.devlive.authx.test.JsonSupport;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Before;

@@ -15,20 +15,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.controller.user;
+package org.devlive.authx.core.controller.user;
 
-import com.bootstack.common.encryption.EncryptionShaUtils;
-import com.bootstack.common.enums.SystemMessageEnums;
-import com.bootstack.core.controller.ControllerSupport;
-import com.bootstack.storage.mysql.model.common.CommonResponseModel;
-import com.bootstack.common.page.PageModel;
-import com.bootstack.storage.mysql.model.system.role.SystemRoleModel;
-import com.bootstack.storage.mysql.model.user.UserModel;
-import com.bootstack.param.page.PageParam;
-import com.bootstack.param.user.UserBasicParam;
-import com.bootstack.param.user.UserSetRoleParam;
-import com.bootstack.storage.mysql.service.system.role.SystemRoleService;
-import com.bootstack.storage.mysql.service.user.UserService;
+import org.devlive.authx.common.encryption.EncryptionShaUtils;
+import org.devlive.authx.common.enums.SystemMessageEnums;
+import org.devlive.authx.core.controller.ControllerSupport;
+import org.devlive.authx.storage.mysql.model.common.CommonResponseModel;
+import org.devlive.authx.common.page.PageModel;
+import org.devlive.authx.storage.mysql.model.system.role.SystemRoleModel;
+import org.devlive.authx.storage.mysql.model.user.UserModel;
+import org.devlive.authx.param.page.PageParam;
+import org.devlive.authx.param.user.UserBasicParam;
+import org.devlive.authx.param.user.UserSetRoleParam;
+import org.devlive.authx.storage.mysql.service.system.role.SystemRoleService;
+import org.devlive.authx.storage.mysql.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;

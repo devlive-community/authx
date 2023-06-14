@@ -1,1 +1,1 @@
-package com.bootstack.test.service;
+package org.devlive.authx.test.service;

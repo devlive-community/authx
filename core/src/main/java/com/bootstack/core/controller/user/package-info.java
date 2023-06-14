@@ -1,1 +1,1 @@
-package com.bootstack.core.controller.user;
+package org.devlive.authx.core.controller.user;

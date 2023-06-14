@@ -5,7 +5,7 @@
 
     <parent>
         <artifactId>bootstack-storage</artifactId>
-        <groupId>com.bootstack</groupId>
+        <groupId>org.devlive.authx</groupId>
         <version>1.6.0-SNAPSHOT</version>
     </parent>
 
@@ -31,7 +31,7 @@
             <artifactId>commons-collections</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.bootstack</groupId>
+            <groupId>org.devlive.authx</groupId>
             <artifactId>bootstack-common</artifactId>
         </dependency>
     </dependencies>
