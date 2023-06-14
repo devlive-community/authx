@@ -1,1 +1,1 @@
-package com.bootstack.common.validation;
+package org.devlive.authx.common.validation;

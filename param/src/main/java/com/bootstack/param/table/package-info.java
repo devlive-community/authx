@@ -1,1 +1,1 @@
-package com.bootstack.param.table;
+package org.devlive.authx.param.table;

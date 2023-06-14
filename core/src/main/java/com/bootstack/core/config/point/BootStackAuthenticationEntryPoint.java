@@ -15,9 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.config.point;
+package org.devlive.authx.core.config.point;
 
-import com.bootstack.common.enums.SystemMessageEnums;
+import org.devlive.authx.common.enums.SystemMessageEnums;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

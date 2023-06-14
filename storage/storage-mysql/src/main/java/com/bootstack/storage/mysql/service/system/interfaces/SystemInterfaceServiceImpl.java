@@ -15,13 +15,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.storage.mysql.service.system.interfaces;
+package org.devlive.authx.storage.mysql.service.system.interfaces;
 
-import com.bootstack.common.page.PageModel;
-import com.bootstack.storage.mysql.model.system.interfaces.SystemInterfaceModel;
-import com.bootstack.storage.mysql.model.system.method.SystemMethodModel;
-import com.bootstack.storage.mysql.repository.system.interfaces.SystemInterfaceRepository;
-import com.bootstack.storage.mysql.service.ServiceSupport;
+import org.devlive.authx.common.page.PageModel;
+import org.devlive.authx.storage.mysql.model.system.interfaces.SystemInterfaceModel;
+import org.devlive.authx.storage.mysql.model.system.method.SystemMethodModel;
+import org.devlive.authx.storage.mysql.repository.system.interfaces.SystemInterfaceRepository;
+import org.devlive.authx.storage.mysql.service.ServiceSupport;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

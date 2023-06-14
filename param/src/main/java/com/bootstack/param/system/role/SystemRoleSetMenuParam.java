@@ -15,9 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.param.system.role;
+package org.devlive.authx.param.system.role;
 
-import com.bootstack.validation.system.role.SystemRoleRequireValidation;
+import org.devlive.authx.validation.system.role.SystemRoleRequireValidation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

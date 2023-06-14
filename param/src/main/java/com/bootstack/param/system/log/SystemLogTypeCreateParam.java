@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.param.system.log;
+package org.devlive.authx.param.system.log;
 
 /**
  * <p> SystemLogTypeCreateParam </p>

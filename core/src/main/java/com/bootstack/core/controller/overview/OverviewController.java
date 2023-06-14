@@ -15,10 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.controller.overview;
+package org.devlive.authx.core.controller.overview;
 
-import com.bootstack.storage.mysql.model.common.CommonResponseModel;
-import com.bootstack.storage.mysql.service.overview.OverviewService;
+import org.devlive.authx.storage.mysql.model.common.CommonResponseModel;
+import org.devlive.authx.storage.mysql.service.overview.OverviewService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

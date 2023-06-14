@@ -1,4 +1,4 @@
-package com.bootstack.storage.mysql.service;
+package org.devlive.authx.storage.mysql.service;
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -17,7 +17,7 @@ package com.bootstack.storage.mysql.service;
  * limitations under the License.
  */
 
-import com.bootstack.common.page.PageModel;
+import org.devlive.authx.common.page.PageModel;
 import org.springframework.data.domain.Pageable;
 
 /**

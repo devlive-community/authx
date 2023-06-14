@@ -15,20 +15,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.controller.system.menu;
+package org.devlive.authx.core.controller.system.menu;
 
-import com.bootstack.common.pinyin.PinYinUtils;
-import com.bootstack.storage.mysql.model.common.CommonResponseModel;
-import com.bootstack.storage.mysql.model.icon.IconModel;
-import com.bootstack.common.page.PageModel;
-import com.bootstack.storage.mysql.model.system.menu.SystemMenuModel;
-import com.bootstack.storage.mysql.model.system.menu.SystemMenuTypeModel;
-import com.bootstack.storage.mysql.model.system.method.SystemMethodModel;
-import com.bootstack.param.page.PageParam;
-import com.bootstack.param.system.menu.SystemMenuCreateParam;
-import com.bootstack.storage.mysql.service.system.menu.SystemMenuService;
-import com.bootstack.storage.mysql.service.system.menu.SystemMenuTypeService;
-import com.bootstack.storage.mysql.service.user.UserService;
+import org.devlive.authx.common.pinyin.PinYinUtils;
+import org.devlive.authx.storage.mysql.model.common.CommonResponseModel;
+import org.devlive.authx.storage.mysql.model.icon.IconModel;
+import org.devlive.authx.common.page.PageModel;
+import org.devlive.authx.storage.mysql.model.system.menu.SystemMenuModel;
+import org.devlive.authx.storage.mysql.model.system.menu.SystemMenuTypeModel;
+import org.devlive.authx.storage.mysql.model.system.method.SystemMethodModel;
+import org.devlive.authx.param.page.PageParam;
+import org.devlive.authx.param.system.menu.SystemMenuCreateParam;
+import org.devlive.authx.storage.mysql.service.system.menu.SystemMenuService;
+import org.devlive.authx.storage.mysql.service.system.menu.SystemMenuTypeService;
+import org.devlive.authx.storage.mysql.service.user.UserService;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;

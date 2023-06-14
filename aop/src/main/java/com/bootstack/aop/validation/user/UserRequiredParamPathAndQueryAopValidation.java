@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.aop.validation.user;
+package org.devlive.authx.aop.validation.user;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

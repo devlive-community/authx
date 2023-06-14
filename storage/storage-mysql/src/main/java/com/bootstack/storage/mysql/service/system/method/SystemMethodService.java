@@ -1,4 +1,4 @@
-package com.bootstack.storage.mysql.service.system.method; /**
+package org.devlive.authx.storage.mysql.service.system.method; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -16,8 +16,8 @@ package com.bootstack.storage.mysql.service.system.method; /**
  * limitations under the License.
  */
 
-import com.bootstack.storage.mysql.model.system.method.SystemMethodModel;
-import com.bootstack.storage.mysql.service.BaseService;
+import org.devlive.authx.storage.mysql.model.system.method.SystemMethodModel;
+import org.devlive.authx.storage.mysql.service.BaseService;
 
 /**
  * <p> SystemMethodService </p>

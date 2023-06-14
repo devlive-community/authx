@@ -15,17 +15,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.aop.log;
+package org.devlive.authx.aop.log;
 
-import com.bootstack.storage.mongodb.model.system.SystemLogToMongoDbModel;
-import com.bootstack.storage.mongodb.service.system.log.SystemLogToMongoDbService;
-import com.bootstack.storage.mysql.model.system.interfaces.SystemInterfaceModel;
-import com.bootstack.storage.mysql.model.system.method.SystemMethodModel;
-import com.bootstack.storage.mysql.model.user.UserModel;
-import com.bootstack.storage.mysql.service.system.interfaces.SystemInterfaceService;
-import com.bootstack.storage.mysql.service.system.log.SystemLogService;
-import com.bootstack.storage.mysql.service.system.method.SystemMethodService;
-import com.bootstack.storage.mysql.service.user.UserService;
+import org.devlive.authx.storage.mongodb.model.system.SystemLogToMongoDbModel;
+import org.devlive.authx.storage.mongodb.service.system.log.SystemLogToMongoDbService;
+import org.devlive.authx.storage.mysql.model.system.interfaces.SystemInterfaceModel;
+import org.devlive.authx.storage.mysql.model.system.method.SystemMethodModel;
+import org.devlive.authx.storage.mysql.model.user.UserModel;
+import org.devlive.authx.storage.mysql.service.system.interfaces.SystemInterfaceService;
+import org.devlive.authx.storage.mysql.service.system.log.SystemLogService;
+import org.devlive.authx.storage.mysql.service.system.method.SystemMethodService;
+import org.devlive.authx.storage.mysql.service.user.UserService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -68,7 +68,7 @@ public class ControllerLogAspect {
     @Autowired
     private SystemLogToMongoDbService systemLogToMongoDbService;
 
-    @Pointcut("execution(* com.bootstack.core.controller..*.*(..))")
+    @Pointcut("execution(* org.devlive.authx.core.controller..*.*(..))")
     private void controller() {
     }
 

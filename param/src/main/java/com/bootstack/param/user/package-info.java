@@ -1,1 +1,1 @@
-package com.bootstack.param.user;
+package org.devlive.authx.param.user;

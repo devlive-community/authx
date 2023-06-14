@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.config.authorization;
+package org.devlive.authx.core.config.authorization;
 
 /**
  * <p> BootStackAuthorizationOauth2Support </p>

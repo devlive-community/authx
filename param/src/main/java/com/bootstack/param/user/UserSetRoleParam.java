@@ -15,9 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.param.user;
+package org.devlive.authx.param.user;
 
-import com.bootstack.validation.user.UserRequireValidation;
+import org.devlive.authx.validation.user.UserRequireValidation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

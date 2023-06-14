@@ -15,10 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.config.authorization;
+package org.devlive.authx.core.config.authorization;
 
-import com.bootstack.core.config.authorization.enhancer.BootStackTokenEnhancer;
-import com.bootstack.core.config.authorization.exception.BootStackOauthWebResponseExceptionTranslator;
+import org.devlive.authx.core.config.authorization.enhancer.BootStackTokenEnhancer;
+import org.devlive.authx.core.config.authorization.exception.BootStackOauthWebResponseExceptionTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

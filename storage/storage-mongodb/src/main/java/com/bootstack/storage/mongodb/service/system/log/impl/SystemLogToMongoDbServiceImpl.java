@@ -15,12 +15,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.storage.mongodb.service.system.log.impl;
+package org.devlive.authx.storage.mongodb.service.system.log.impl;
 
-import com.bootstack.common.page.PageModel;
-import com.bootstack.storage.mongodb.model.system.SystemLogToMongoDbModel;
-import com.bootstack.storage.mongodb.repository.system.SystemLogToMongoDbRepository;
-import com.bootstack.storage.mongodb.service.system.log.SystemLogToMongoDbService;
+import org.devlive.authx.common.page.PageModel;
+import org.devlive.authx.storage.mongodb.model.system.SystemLogToMongoDbModel;
+import org.devlive.authx.storage.mongodb.repository.system.SystemLogToMongoDbRepository;
+import org.devlive.authx.storage.mongodb.service.system.log.SystemLogToMongoDbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -15,9 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.storage.mysql.model.system;
+package org.devlive.authx.storage.mysql.model.system;
 
-import com.bootstack.storage.mysql.model.BaseModel;
+import org.devlive.authx.storage.mysql.model.BaseModel;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;

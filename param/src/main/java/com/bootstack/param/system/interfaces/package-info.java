@@ -1,2 +1,2 @@
 
-package com.bootstack.param.system.interfaces;
+package org.devlive.authx.param.system.interfaces;

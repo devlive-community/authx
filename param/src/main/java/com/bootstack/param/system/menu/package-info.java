@@ -1,1 +1,1 @@
-package com.bootstack.param.system.menu;
+package org.devlive.authx.param.system.menu;

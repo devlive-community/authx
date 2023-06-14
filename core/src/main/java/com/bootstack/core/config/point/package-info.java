@@ -1,1 +1,1 @@
-package com.bootstack.core.config.point;
+package org.devlive.authx.core.config.point;

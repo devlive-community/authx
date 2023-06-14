@@ -1,1 +1,1 @@
-package com.bootstack.param.page;
+package org.devlive.authx.param.page;

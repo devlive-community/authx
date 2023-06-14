@@ -1,1 +1,1 @@
-package com.bootstack.validation.system.log;
+package org.devlive.authx.validation.system.log;

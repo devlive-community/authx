@@ -15,16 +15,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.controller.system.log;
+package org.devlive.authx.core.controller.system.log;
 
-import com.bootstack.common.pinyin.PinYinUtils;
-import com.bootstack.storage.mysql.model.common.CommonResponseModel;
-import com.bootstack.common.page.PageModel;
-import com.bootstack.storage.mysql.model.system.log.SystemLogTypeModel;
-import com.bootstack.param.page.PageParam;
-import com.bootstack.param.system.log.SystemLogTypeCreateParam;
-import com.bootstack.param.system.log.SystemLogTypeSetParam;
-import com.bootstack.storage.mysql.service.system.log.SystemLogTypeService;
+import org.devlive.authx.common.pinyin.PinYinUtils;
+import org.devlive.authx.storage.mysql.model.common.CommonResponseModel;
+import org.devlive.authx.common.page.PageModel;
+import org.devlive.authx.storage.mysql.model.system.log.SystemLogTypeModel;
+import org.devlive.authx.param.page.PageParam;
+import org.devlive.authx.param.system.log.SystemLogTypeCreateParam;
+import org.devlive.authx.param.system.log.SystemLogTypeSetParam;
+import org.devlive.authx.storage.mysql.service.system.log.SystemLogTypeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

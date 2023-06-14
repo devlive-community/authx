@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.validation.user;
+package org.devlive.authx.validation.user;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

@@ -15,10 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.test.service.overview;
+package org.devlive.authx.test.service.overview;
 
-import com.bootstack.core.BootStackBootstrap;
-import com.bootstack.storage.mysql.service.overview.OverviewService;
+import org.devlive.authx.storage.mysql.service.overview.OverviewService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,7 +37,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @Slf4j
 @SpringBootTest(classes = {
-        BootStackBootstrap.class
+        org.devlive.authx.core.AuthX.class
 }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @TestPropertySource(value = {

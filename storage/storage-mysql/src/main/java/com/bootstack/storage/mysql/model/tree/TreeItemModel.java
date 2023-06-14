@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.storage.mysql.model.tree;
+package org.devlive.authx.storage.mysql.model.tree;
 
 import lombok.Data;
 import lombok.ToString;

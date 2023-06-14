@@ -1,1 +1,1 @@
-package com.bootstack.test.controller;
+package org.devlive.authx.test.controller;

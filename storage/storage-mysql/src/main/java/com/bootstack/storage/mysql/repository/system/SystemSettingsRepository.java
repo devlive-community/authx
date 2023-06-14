@@ -15,10 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.storage.mysql.repository.system;
+package org.devlive.authx.storage.mysql.repository.system;
 
-import com.bootstack.storage.mysql.model.system.SystemSettingsModel;
-import com.bootstack.storage.mysql.repository.BaseRepository;
+import org.devlive.authx.storage.mysql.model.system.SystemSettingsModel;
+import org.devlive.authx.storage.mysql.repository.BaseRepository;
 
 /**
  * <p> SystemSettingsRepository </p>

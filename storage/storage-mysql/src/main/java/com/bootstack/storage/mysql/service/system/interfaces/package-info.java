@@ -1,1 +1,1 @@
-package com.bootstack.storage.mysql.service.system.interfaces;
+package org.devlive.authx.storage.mysql.service.system.interfaces;

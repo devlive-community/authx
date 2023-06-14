@@ -192,11 +192,11 @@
  * <p> Create Time : 2019-05-25 21:25 </p>
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-package com.bootstack.core.controller;
+package org.devlive.authx.core.controller;
 
-import com.bootstack.storage.mysql.model.common.CommonResponseModel;
-import com.bootstack.param.page.PageParam;
-import com.bootstack.param.table.TableRowCreateParam;
+import org.devlive.authx.storage.mysql.model.common.CommonResponseModel;
+import org.devlive.authx.param.page.PageParam;
+import org.devlive.authx.param.table.TableRowCreateParam;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

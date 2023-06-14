@@ -1,1 +1,1 @@
-package com.bootstack.test.common;
+package org.devlive.authx.test.common;

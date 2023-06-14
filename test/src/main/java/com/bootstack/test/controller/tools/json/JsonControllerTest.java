@@ -15,10 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.test.controller.tools.json;
+package org.devlive.authx.test.controller.tools.json;
 
-import com.bootstack.core.BootStackBootstrap;
-import com.bootstack.test.JsonSupport;
+import org.devlive.authx.test.JsonSupport;
 import lombok.extern.slf4j.Slf4j;
 import net.minidev.json.JSONObject;
 import org.junit.Before;
@@ -49,7 +48,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Slf4j
 @SpringBootTest(classes = {
-        BootStackBootstrap.class
+        org.devlive.authx.core.AuthX.class
 }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @TestPropertySource(value = {

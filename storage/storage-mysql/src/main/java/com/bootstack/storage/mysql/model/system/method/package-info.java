@@ -1,1 +1,1 @@
-package com.bootstack.storage.mysql.model.system.method;
+package org.devlive.authx.storage.mysql.model.system.method;

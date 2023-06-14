@@ -15,9 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.common.date;
+package org.devlive.authx.common.date;
 
-import com.bootstack.common.support.DateSuooprt;
+import org.devlive.authx.common.support.DateSuooprt;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

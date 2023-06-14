@@ -1,1 +1,1 @@
-package com.bootstack.storage.mongodb.repository;
+package org.devlive.authx.storage.mongodb.repository;

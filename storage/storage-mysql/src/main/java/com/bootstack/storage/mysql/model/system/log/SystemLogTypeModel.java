@@ -15,9 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.storage.mysql.model.system.log;
+package org.devlive.authx.storage.mysql.model.system.log;
 
-import com.bootstack.common.support.DateSuooprt;
+import org.devlive.authx.common.support.DateSuooprt;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;

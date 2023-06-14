@@ -1,1 +1,1 @@
-package com.bootstack.storage.mongodb.service.system.log.impl;
+package org.devlive.authx.storage.mongodb.service.system.log.impl;

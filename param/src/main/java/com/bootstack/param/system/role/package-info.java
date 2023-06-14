@@ -1,1 +1,1 @@
-package com.bootstack.param.system.role;
+package org.devlive.authx.param.system.role;

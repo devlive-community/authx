@@ -15,9 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.param.system.menu;
+package org.devlive.authx.param.system.menu;
 
-import com.bootstack.validation.system.menu.SystemMenuTypeRequireValidation;
+import org.devlive.authx.validation.system.menu.SystemMenuTypeRequireValidation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -15,10 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.validation.icon;
+package org.devlive.authx.validation.icon;
 
-import com.bootstack.storage.mysql.service.icon.IconService;
-import com.bootstack.storage.mysql.service.icon.IconTypeService;
+import org.devlive.authx.storage.mysql.service.icon.IconService;
+import org.devlive.authx.storage.mysql.service.icon.IconTypeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;

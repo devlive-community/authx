@@ -15,10 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.config.authorization.exception;
+package org.devlive.authx.core.config.authorization.exception;
 
-import com.bootstack.common.date.DateUtils;
-import com.bootstack.common.enums.SystemMessageEnums;
+import org.devlive.authx.common.date.DateUtils;
+import org.devlive.authx.common.enums.SystemMessageEnums;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;

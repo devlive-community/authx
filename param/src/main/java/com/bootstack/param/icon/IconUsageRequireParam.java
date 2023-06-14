@@ -15,9 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.param.icon;
+package org.devlive.authx.param.icon;
 
-import com.bootstack.validation.icon.IconUsageRequireValidation;
+import org.devlive.authx.validation.icon.IconUsageRequireValidation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

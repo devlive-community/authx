@@ -1,1 +1,1 @@
-package com.bootstack.storage.mysql.repository.table;
+package org.devlive.authx.storage.mysql.repository.table;

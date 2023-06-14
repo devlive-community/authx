@@ -1,1 +1,1 @@
-package com.bootstack.core.controller.system.log;
+package org.devlive.authx.core.controller.system.log;

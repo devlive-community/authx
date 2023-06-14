@@ -1,4 +1,4 @@
-package com.bootstack.storage.mongodb.service.system.log; /**
+package org.devlive.authx.storage.mongodb.service.system.log; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -16,8 +16,8 @@ package com.bootstack.storage.mongodb.service.system.log; /**
  * limitations under the License.
  */
 
-import com.bootstack.common.page.PageModel;
-import com.bootstack.storage.mongodb.model.system.SystemLogToMongoDbModel;
+import org.devlive.authx.common.page.PageModel;
+import org.devlive.authx.storage.mongodb.model.system.SystemLogToMongoDbModel;
 import org.springframework.data.domain.Pageable;
 
 /**

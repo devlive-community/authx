@@ -15,12 +15,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.storage.mysql.service.system.method;
+package org.devlive.authx.storage.mysql.service.system.method;
 
-import com.bootstack.common.page.PageModel;
-import com.bootstack.storage.mysql.model.system.method.SystemMethodModel;
-import com.bootstack.storage.mysql.repository.system.method.SystemMethodRepository;
-import com.bootstack.storage.mysql.service.ServiceSupport;
+import org.devlive.authx.common.page.PageModel;
+import org.devlive.authx.storage.mysql.model.system.method.SystemMethodModel;
+import org.devlive.authx.storage.mysql.repository.system.method.SystemMethodRepository;
+import org.devlive.authx.storage.mysql.service.ServiceSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

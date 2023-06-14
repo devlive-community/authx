@@ -15,9 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.storage.mysql.repository.user;
+package org.devlive.authx.storage.mysql.repository.user;
 
-import com.bootstack.storage.mysql.model.user.UserModel;
+import org.devlive.authx.storage.mysql.model.user.UserModel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;

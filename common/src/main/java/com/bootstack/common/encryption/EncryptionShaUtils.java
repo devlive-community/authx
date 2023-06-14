@@ -15,9 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.common.encryption;
+package org.devlive.authx.common.encryption;
 
-import com.bootstack.common.support.EncryptionSupport;
+import org.devlive.authx.common.support.EncryptionSupport;
 import lombok.extern.slf4j.Slf4j;
 
 import java.security.MessageDigest;

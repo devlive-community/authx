@@ -15,15 +15,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.storage.mysql.service.system.role;
+package org.devlive.authx.storage.mysql.service.system.role;
 
-import com.bootstack.storage.mysql.model.icon.IconModel;
-import com.bootstack.storage.mysql.model.system.menu.SystemMenuModel;
-import com.bootstack.storage.mysql.model.system.menu.SystemMenuTypeModel;
-import com.bootstack.storage.mysql.model.system.role.SystemRoleModel;
-import com.bootstack.storage.mysql.model.tree.TreeItemModel;
-import com.bootstack.storage.mysql.model.tree.TreeModel;
-import com.bootstack.storage.mysql.service.system.menu.SystemMenuService;
+import org.devlive.authx.storage.mysql.model.icon.IconModel;
+import org.devlive.authx.storage.mysql.model.system.menu.SystemMenuModel;
+import org.devlive.authx.storage.mysql.model.system.menu.SystemMenuTypeModel;
+import org.devlive.authx.storage.mysql.model.system.role.SystemRoleModel;
+import org.devlive.authx.storage.mysql.model.tree.TreeItemModel;
+import org.devlive.authx.storage.mysql.model.tree.TreeModel;
+import org.devlive.authx.storage.mysql.service.system.menu.SystemMenuService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,1 +1,1 @@
-package com.bootstack.core.controller.system.menu;
+package org.devlive.authx.core.controller.system.menu;

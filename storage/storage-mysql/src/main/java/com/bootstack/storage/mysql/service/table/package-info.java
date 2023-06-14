@@ -1,1 +1,1 @@
-package com.bootstack.storage.mysql.service.table;
+package org.devlive.authx.storage.mysql.service.table;

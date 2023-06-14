@@ -1,1 +1,1 @@
-package com.bootstack.storage.mongodb.model;
+package org.devlive.authx.storage.mongodb.model;

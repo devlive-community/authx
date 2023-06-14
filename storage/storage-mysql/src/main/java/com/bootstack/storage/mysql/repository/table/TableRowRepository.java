@@ -1,4 +1,4 @@
-package com.bootstack.storage.mysql.repository.table; /**
+package org.devlive.authx.storage.mysql.repository.table; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -16,9 +16,9 @@ package com.bootstack.storage.mysql.repository.table; /**
  * limitations under the License.
  */
 
-import com.bootstack.storage.mysql.model.system.menu.SystemMenuModel;
-import com.bootstack.storage.mysql.model.table.TableRowModel;
-import com.bootstack.storage.mysql.repository.BaseRepository;
+import org.devlive.authx.storage.mysql.model.system.menu.SystemMenuModel;
+import org.devlive.authx.storage.mysql.model.table.TableRowModel;
+import org.devlive.authx.storage.mysql.repository.BaseRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

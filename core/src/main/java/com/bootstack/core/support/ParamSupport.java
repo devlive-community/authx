@@ -15,11 +15,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.support;
+package org.devlive.authx.core.support;
 
-import com.bootstack.common.support.PageSupport;
-import com.bootstack.common.page.PageModel;
-import com.bootstack.param.page.PageParam;
+import org.devlive.authx.common.support.PageSupport;
+import org.devlive.authx.common.page.PageModel;
+import org.devlive.authx.param.page.PageParam;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.util.ObjectUtils;

@@ -15,12 +15,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.core.config.authorization;
+package org.devlive.authx.core.config.authorization;
 
-import com.bootstack.core.config.handler.BootStackAccessDeniedHandler;
-import com.bootstack.core.config.point.BootStackAuthenticationEntryPoint;
-import com.bootstack.storage.mysql.model.system.method.SystemMethodModel;
-import com.bootstack.storage.mysql.service.system.interfaces.SystemInterfaceService;
+import org.devlive.authx.core.config.handler.BootStackAccessDeniedHandler;
+import org.devlive.authx.core.config.point.BootStackAuthenticationEntryPoint;
+import org.devlive.authx.storage.mysql.model.system.method.SystemMethodModel;
+import org.devlive.authx.storage.mysql.service.system.interfaces.SystemInterfaceService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

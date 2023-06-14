@@ -1,1 +1,1 @@
-package com.bootstack.param.system;
+package org.devlive.authx.param.system;

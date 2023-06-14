@@ -1,1 +1,1 @@
-package com.bootstack.storage.mysql.model.user;
+package org.devlive.authx.storage.mysql.model.user;

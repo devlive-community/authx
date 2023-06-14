@@ -1,4 +1,4 @@
-package com.bootstack.storage.mysql.service.system.interfaces; /**
+package org.devlive.authx.storage.mysql.service.system.interfaces; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -16,9 +16,9 @@ package com.bootstack.storage.mysql.service.system.interfaces; /**
  * limitations under the License.
  */
 
-import com.bootstack.common.page.PageModel;
-import com.bootstack.storage.mysql.model.system.interfaces.SystemInterfaceModel;
-import com.bootstack.storage.mysql.model.system.method.SystemMethodModel;
+import org.devlive.authx.common.page.PageModel;
+import org.devlive.authx.storage.mysql.model.system.interfaces.SystemInterfaceModel;
+import org.devlive.authx.storage.mysql.model.system.method.SystemMethodModel;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;

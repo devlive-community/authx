@@ -15,15 +15,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bootstack.storage.mysql.service.table.impl;
+package org.devlive.authx.storage.mysql.service.table.impl;
 
-import com.bootstack.common.page.PageModel;
-import com.bootstack.storage.mysql.model.common.CommonResponseModel;
-import com.bootstack.storage.mysql.model.system.menu.SystemMenuModel;
-import com.bootstack.storage.mysql.model.table.TableRowModel;
-import com.bootstack.storage.mysql.repository.table.TableRowRepository;
-import com.bootstack.storage.mysql.service.ServiceSupport;
-import com.bootstack.storage.mysql.service.table.TableRowService;
+import org.devlive.authx.common.page.PageModel;
+import org.devlive.authx.storage.mysql.model.common.CommonResponseModel;
+import org.devlive.authx.storage.mysql.model.system.menu.SystemMenuModel;
+import org.devlive.authx.storage.mysql.model.table.TableRowModel;
+import org.devlive.authx.storage.mysql.repository.table.TableRowRepository;
+import org.devlive.authx.storage.mysql.service.ServiceSupport;
+import org.devlive.authx.storage.mysql.service.table.TableRowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
