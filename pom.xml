@@ -1,6 +1,5 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.devlive.authx</groupId>
     <artifactId>incubator-authx</artifactId>
@@ -15,17 +14,14 @@
     </parent>
 
     <modules>
-        <module>common</module>
-        <module>core</module>
-        <module>script</module>
-        <module>web</module>
-        <module>cache</module>
-        <module>param</module>
-        <module>validation</module>
-        <module>aop</module>
-        <module>test</module>
-        <module>job</module>
-        <module>storage</module>
+        <module>core/authx-common</module>
+        <module>core/authx-param</module>
+        <module>core/authx-aop</module>
+        <module>core/authx-server</module>
+        <module>core/authx-validation</module>
+        <module>storage/authx-storage-mysql</module>
+        <module>storage/authx-storage-mongodb</module>
+        <module>storage/authx-storage-cache</module>
     </modules>
 
     <!-- url -->
@@ -60,15 +56,6 @@
         <name>Apache Software Foundation</name>
         <url>http://www.apache.org</url>
     </organization>
-
-    <!-- issueManagement -->
-    <issueManagement>
-        <system>jira</system>
-        <url>http://jira.ttxit.com/projects/BOOTSTACK</url>
-    </issueManagement>
-
-    <name>bootstack parent</name>
-    <description>bootstack</description>
 
     <properties>
         <!-- dependency config -->
@@ -107,9 +94,7 @@
         <system.node.version>v8.9.4</system.node.version>
         <system.npm.version>5.4.2</system.npm.version>
         <!-- docker -->
-        <docker.image.prefix>bootstack</docker.image.prefix>
-        <!-- sonar -->
-        <sonar.host.url>https://sonar.edurt.com</sonar.host.url>
+        <docker.image.prefix>authx</docker.image.prefix>
     </properties>
 
     <dependencies>
@@ -123,48 +108,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- project -->
-            <dependency>
-                <groupId>org.devlive.authx</groupId>
-                <artifactId>bootstack-common</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.devlive.authx</groupId>
-                <artifactId>bootstack-param</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.devlive.authx</groupId>
-                <artifactId>bootstack-validation</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.devlive.authx</groupId>
-                <artifactId>bootstack-cache</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.devlive.authx</groupId>
-                <artifactId>bootstack-aop</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.devlive.authx</groupId>
-                <artifactId>bootstack-core</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.devlive.authx</groupId>
-                <artifactId>bootstack-storage-mysql</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.devlive.authx</groupId>
-                <artifactId>bootstack-storage-mongodb</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <!-- springboot -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -344,15 +287,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
-                <version>${reporting.maven.jxr.version}</version>
-            </plugin>
-        </plugins>
-    </reporting>
-
 </project>
