@@ -17,8 +17,8 @@
  */
 package org.devlive.authx.server.controller.overview;
 
-import org.devlive.authx.storage.mysql.model.common.CommonResponseModel;
-import org.devlive.authx.storage.mysql.service.overview.OverviewService;
+import org.devlive.authx.service.entity.common.CommonResponseModel;
+import org.devlive.authx.service.service.overview.OverviewService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @RestController
-@RequestMapping(value = "${bootstack.api.path}/${bootstack.api.version}/overview")
+@RequestMapping(value = "api/v1/overview")
 @Slf4j
 public class OverviewController {
 

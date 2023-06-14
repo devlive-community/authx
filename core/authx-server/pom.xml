@@ -27,12 +27,9 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.security.oauth</groupId>
-            <artifactId>spring-security-oauth2</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-jwt</artifactId>
+            <version>1.1.1.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>commons-collections</groupId>
@@ -48,27 +45,16 @@
         </dependency>
         <dependency>
             <groupId>org.devlive.authx</groupId>
+            <artifactId>authx-security</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.devlive.authx</groupId>
             <artifactId>authx-param</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.devlive.authx</groupId>
-            <artifactId>authx-aop</artifactId>
-            <version>${project.version}</version>
-        </dependency>
     </dependencies>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${dependency.springboot.common.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <build>
         <finalName>authx-server</finalName>

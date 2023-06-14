@@ -33,12 +33,7 @@
         </dependency>
         <dependency>
             <groupId>org.devlive.authx</groupId>
-            <artifactId>authx-storage-mysql</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.devlive.authx</groupId>
-            <artifactId>authx-storage-mongodb</artifactId>
+            <artifactId>authx-service</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

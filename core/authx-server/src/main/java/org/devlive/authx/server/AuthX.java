@@ -21,35 +21,21 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-/**
- * <p> BootStackLaunchBootstrap </p>
- * <p> Description : BootStackLaunchBootstrap </p>
- * <p> Author : qianmoQ </p>
- * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-24 12:44 </p>
- * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
- */
 @Slf4j
 @EnableAsync
 @EnableScheduling
-@ComponentScan(value = {
-        "org.devlive.authx",
-        "org.devlive.authx.server",
-        "org.devlive.authx.server.controller"
-})
 @SpringBootApplication
-@PropertySource(value = {
-        "bootstack.properties",
-        "bootstack-api.properties"
+@ComponentScan(value = {
+        "org.devlive.authx.security",
+        "org.devlive.authx.service",
+        "org.devlive.authx.server"
 })
 public class AuthX {
 
     public static void main(String[] args) {
         SpringApplication.run(org.devlive.authx.server.AuthX.class, args);
     }
-
 }

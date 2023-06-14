@@ -18,13 +18,13 @@
 package org.devlive.authx.server.controller.system.log;
 
 import org.devlive.authx.common.pinyin.PinYinUtils;
-import org.devlive.authx.storage.mysql.model.common.CommonResponseModel;
+import org.devlive.authx.service.entity.common.CommonResponseModel;
 import org.devlive.authx.common.page.PageModel;
-import org.devlive.authx.storage.mysql.model.system.log.SystemLogTypeModel;
+import org.devlive.authx.service.entity.system.log.SystemLogTypeModel;
 import org.devlive.authx.param.page.PageParam;
 import org.devlive.authx.param.system.log.SystemLogTypeCreateParam;
 import org.devlive.authx.param.system.log.SystemLogTypeSetParam;
-import org.devlive.authx.storage.mysql.service.system.log.SystemLogTypeService;
+import org.devlive.authx.service.service.system.log.SystemLogTypeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +41,7 @@ import org.springframework.web.bind.annotation.*;
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @RestController
-@RequestMapping(value = "${bootstack.api.path}/${bootstack.api.version}/system/log/type")
+@RequestMapping(value = "api/v1/system/log/type")
 @Slf4j
 public class SystemLogTypeController {
 

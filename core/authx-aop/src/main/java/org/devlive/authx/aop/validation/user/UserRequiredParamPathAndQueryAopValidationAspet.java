@@ -19,8 +19,8 @@ package org.devlive.authx.aop.validation.user;
 
 import org.devlive.authx.common.enums.SystemMessageEnums;
 import org.devlive.authx.common.enums.UserMessageEnums;
-import org.devlive.authx.storage.mysql.model.user.UserModel;
-import org.devlive.authx.storage.mysql.service.user.UserService;
+import org.devlive.authx.service.entity.user.UserModel;
+import org.devlive.authx.service.service.user.UserService;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;

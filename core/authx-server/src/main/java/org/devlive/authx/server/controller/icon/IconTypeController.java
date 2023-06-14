@@ -18,13 +18,13 @@
 package org.devlive.authx.server.controller.icon;
 
 import org.devlive.authx.common.pinyin.PinYinUtils;
-import org.devlive.authx.storage.mysql.model.common.CommonResponseModel;
-import org.devlive.authx.storage.mysql.model.icon.IconTypeModel;
+import org.devlive.authx.service.entity.common.CommonResponseModel;
+import org.devlive.authx.service.entity.icon.IconTypeModel;
 import org.devlive.authx.common.page.PageModel;
 import org.devlive.authx.param.icon.IconTypeCreateParam;
 import org.devlive.authx.param.icon.IconTypeSetParam;
 import org.devlive.authx.param.page.PageParam;
-import org.devlive.authx.storage.mysql.service.icon.IconTypeService;
+import org.devlive.authx.service.service.icon.IconTypeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +41,7 @@ import org.springframework.web.bind.annotation.*;
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @RestController
-@RequestMapping(value = "${bootstack.api.path}/${bootstack.api.version}/icon/type")
+@RequestMapping(value = "api/v1/icon/type")
 @Slf4j
 public class IconTypeController {
 

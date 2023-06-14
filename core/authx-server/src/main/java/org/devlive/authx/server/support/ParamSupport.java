@@ -17,8 +17,8 @@
  */
 package org.devlive.authx.server.support;
 
-import org.devlive.authx.common.support.PageSupport;
 import org.devlive.authx.common.page.PageModel;
+import org.devlive.authx.common.support.PageSupport;
 import org.devlive.authx.param.page.PageParam;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -43,21 +43,21 @@ public class ParamSupport {
     public static Pageable getPageable(PageParam param) {
         // sort by column and mode
         if (!ObjectUtils.isEmpty(param.getSortColumn()) && !ObjectUtils.isEmpty(param.getSortMode())) {
-            return PageModel.getPageableAndSort(param.getPage(), param.getSize(), new Sort(Sort.Direction.fromString(param.getSortMode().name()),
+            return PageModel.getPageableAndSort(param.getPage(), param.getSize(), Sort.by(Sort.Direction.fromString(param.getSortMode().name()),
                     param.getSortColumn()));
         }
         // sort column is empty, sort by mode
         if (!ObjectUtils.isEmpty(param.getSortMode())) {
-            return PageModel.getPageableAndSort(param.getPage(), param.getSize(), new Sort(Sort.Direction.fromString(param.getSortMode().name()),
+            return PageModel.getPageableAndSort(param.getPage(), param.getSize(), Sort.by(Sort.Direction.fromString(param.getSortMode().name()),
                     PageSupport.DEFAULT_ORDER_PROPERTY_CREATE_TIME));
         }
         // sort mode is empty, sort by custom column
         if (!ObjectUtils.isEmpty(param.getSortColumn())) {
-            return PageModel.getPageableAndSort(param.getPage(), param.getSize(), new Sort(Sort.Direction.DESC,
+            return PageModel.getPageableAndSort(param.getPage(), param.getSize(), Sort.by(Sort.Direction.DESC,
                     param.getSortColumn()));
         }
         // sort by default column and default mode
-        return PageModel.getPageableAndSort(param.getPage(), param.getSize(), new Sort(Sort.Direction.DESC,
+        return PageModel.getPageableAndSort(param.getPage(), param.getSize(), Sort.by(Sort.Direction.DESC,
                 PageSupport.DEFAULT_ORDER_PROPERTY_CREATE_TIME));
     }
 

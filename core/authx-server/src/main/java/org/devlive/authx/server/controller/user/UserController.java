@@ -20,15 +20,15 @@ package org.devlive.authx.server.controller.user;
 import org.devlive.authx.common.encryption.EncryptionShaUtils;
 import org.devlive.authx.common.enums.SystemMessageEnums;
 import org.devlive.authx.server.controller.ControllerSupport;
-import org.devlive.authx.storage.mysql.model.common.CommonResponseModel;
+import org.devlive.authx.service.entity.common.CommonResponseModel;
 import org.devlive.authx.common.page.PageModel;
-import org.devlive.authx.storage.mysql.model.system.role.SystemRoleModel;
-import org.devlive.authx.storage.mysql.model.user.UserModel;
+import org.devlive.authx.service.entity.system.role.SystemRoleModel;
+import org.devlive.authx.service.entity.user.UserModel;
 import org.devlive.authx.param.page.PageParam;
 import org.devlive.authx.param.user.UserBasicParam;
 import org.devlive.authx.param.user.UserSetRoleParam;
-import org.devlive.authx.storage.mysql.service.system.role.SystemRoleService;
-import org.devlive.authx.storage.mysql.service.user.UserService;
+import org.devlive.authx.service.service.system.role.SystemRoleService;
+import org.devlive.authx.service.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -51,7 +51,7 @@ import java.util.stream.Collectors;
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @RestController
-@RequestMapping(value = "${bootstack.api.path}/${bootstack.api.version}/user")
+@RequestMapping(value = "api/v1/user")
 @Slf4j
 public class UserController {
 

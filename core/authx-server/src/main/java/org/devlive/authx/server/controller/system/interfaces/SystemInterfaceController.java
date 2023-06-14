@@ -19,13 +19,13 @@ package org.devlive.authx.server.controller.system.interfaces;
 
 import org.devlive.authx.common.pinyin.PinYinUtils;
 import org.devlive.authx.server.support.ParamSupport;
-import org.devlive.authx.storage.mysql.model.common.CommonResponseModel;
-import org.devlive.authx.storage.mysql.model.system.interfaces.SystemInterfaceModel;
-import org.devlive.authx.storage.mysql.model.system.method.SystemMethodModel;
+import org.devlive.authx.service.entity.common.CommonResponseModel;
+import org.devlive.authx.service.entity.system.interfaces.SystemInterfaceModel;
+import org.devlive.authx.service.entity.system.method.SystemMethodModel;
 import org.devlive.authx.param.page.PageParam;
 import org.devlive.authx.param.system.interfaces.SystemInterfaceCreateParam;
 import org.devlive.authx.param.system.interfaces.SystemInterfaceSetParam;
-import org.devlive.authx.storage.mysql.service.system.interfaces.SystemInterfaceService;
+import org.devlive.authx.service.service.system.interfaces.SystemInterfaceService;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -45,7 +45,7 @@ import java.util.List;
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @RestController
-@RequestMapping(value = "${bootstack.api.path}/${bootstack.api.version}/system/interface")
+@RequestMapping(value = "api/v1/system/interface")
 @Slf4j
 public class SystemInterfaceController {
 

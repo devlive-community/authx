@@ -18,17 +18,17 @@
 package org.devlive.authx.server.controller.system.menu;
 
 import org.devlive.authx.common.pinyin.PinYinUtils;
-import org.devlive.authx.storage.mysql.model.common.CommonResponseModel;
-import org.devlive.authx.storage.mysql.model.icon.IconModel;
+import org.devlive.authx.service.entity.common.CommonResponseModel;
+import org.devlive.authx.service.entity.icon.IconModel;
 import org.devlive.authx.common.page.PageModel;
-import org.devlive.authx.storage.mysql.model.system.menu.SystemMenuModel;
-import org.devlive.authx.storage.mysql.model.system.menu.SystemMenuTypeModel;
-import org.devlive.authx.storage.mysql.model.system.method.SystemMethodModel;
+import org.devlive.authx.service.entity.system.menu.SystemMenuModel;
+import org.devlive.authx.service.entity.system.menu.SystemMenuTypeModel;
+import org.devlive.authx.service.entity.system.method.SystemMethodModel;
 import org.devlive.authx.param.page.PageParam;
 import org.devlive.authx.param.system.menu.SystemMenuCreateParam;
-import org.devlive.authx.storage.mysql.service.system.menu.SystemMenuService;
-import org.devlive.authx.storage.mysql.service.system.menu.SystemMenuTypeService;
-import org.devlive.authx.storage.mysql.service.user.UserService;
+import org.devlive.authx.service.service.system.menu.SystemMenuService;
+import org.devlive.authx.service.service.system.menu.SystemMenuTypeService;
+import org.devlive.authx.service.service.user.UserService;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -49,7 +49,7 @@ import java.util.List;
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @RestController
-@RequestMapping(value = "${bootstack.api.path}/${bootstack.api.version}/system/menu")
+@RequestMapping(value = "api/v1/system/menu")
 @Slf4j
 public class SystemMenuController {
 
