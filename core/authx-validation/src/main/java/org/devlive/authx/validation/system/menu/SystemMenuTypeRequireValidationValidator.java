@@ -17,7 +17,7 @@
  */
 package org.devlive.authx.validation.system.menu;
 
-import org.devlive.authx.storage.mysql.service.system.menu.SystemMenuTypeService;
+import org.devlive.authx.service.service.system.menu.SystemMenuTypeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;

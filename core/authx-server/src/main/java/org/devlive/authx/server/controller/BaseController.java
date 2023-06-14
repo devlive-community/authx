@@ -194,7 +194,7 @@
  */
 package org.devlive.authx.server.controller;
 
-import org.devlive.authx.storage.mysql.model.common.CommonResponseModel;
+import org.devlive.authx.service.entity.common.CommonResponseModel;
 import org.devlive.authx.param.page.PageParam;
 import org.devlive.authx.param.table.TableRowCreateParam;
 import org.springframework.validation.annotation.Validated;

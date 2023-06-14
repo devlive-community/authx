@@ -6,30 +6,20 @@
     <packaging>pom</packaging>
     <version>1.6.0-SNAPSHOT</version>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.7.RELEASE</version>
-        <relativePath/>
-    </parent>
-
     <modules>
         <module>core/authx-common</module>
         <module>core/authx-param</module>
         <module>core/authx-aop</module>
         <module>core/authx-server</module>
         <module>core/authx-validation</module>
-        <module>storage/authx-storage-mysql</module>
-        <module>storage/authx-storage-mongodb</module>
-        <module>storage/authx-storage-cache</module>
+        <module>core/authx-security</module>
+        <module>core/authx-service</module>
     </modules>
 
-    <!-- url -->
-    <url>http://www.bootstack.com</url>
+    <url>https://authx.devlive.org</url>
 
-    <!-- scm -->
     <scm>
-        <url>https://github.com/SpringStack/bootstack.git</url>
+        <url>https://github.com/devlive-community/authx</url>
     </scm>
 
     <!-- licenses -->
@@ -41,7 +31,6 @@
         </license>
     </licenses>
 
-    <!-- developer -->
     <developers>
         <developer>
             <name>qianmoQ</name>
@@ -51,27 +40,18 @@
         </developer>
     </developers>
 
-    <!-- organization -->
-    <organization>
-        <name>Apache Software Foundation</name>
-        <url>http://www.apache.org</url>
-    </organization>
-
     <properties>
-        <!-- dependency config -->
-        <dependency.springboot.common.version>2.1.7.RELEASE</dependency.springboot.common.version>
-        <dependency.lombox.version>1.16.16</dependency.lombox.version>
-        <dependency.spring.security.jwt.version>1.0.8.RELEASE</dependency.spring.security.jwt.version>
-        <dependency.spring.security.oauth2.version>2.1.1.RELEASE</dependency.spring.security.oauth2.version>
-        <dependency.mysql.version>5.1.42</dependency.mysql.version>
-        <dependency.jackson.databind.version>2.9.4</dependency.jackson.databind.version>
+        <springboot.version>2.7.4</springboot.version>
+        <lombok.version>1.18.24</lombok.version>
+        <mysql.version>8.0.29</mysql.version>
+        <jackson.version>2.14.2</jackson.version>
+
         <dependency.fastjson.version>1.2.47</dependency.fastjson.version>
         <dependency.pinyin4j.version>2.5.0</dependency.pinyin4j.version>
         <dependency.common.lang3.version>3.6</dependency.common.lang3.version>
         <dependency.gson.version>2.8.0</dependency.gson.version>
         <dependency.nekohtml.version>1.9.22</dependency.nekohtml.version>
         <dependency.httpclient.version>[4.5.13,)</dependency.httpclient.version>
-        <dependency.spring.context.version>5.1.9.RELEASE</dependency.spring.context.version>
         <dependency.commons.lang3.version>3.8.1</dependency.commons.lang3.version>
         <dependency.commons.io.version>2.6</dependency.commons.io.version>
         <dependency.servlet.api.version>2.5</dependency.servlet.api.version>
@@ -86,23 +66,18 @@
         <plugin.maven.sonar.version>3.3.0.603</plugin.maven.sonar.version>
         <plugin.frontend.version>0.0.27</plugin.frontend.version>
         <plugin.springboot.version>2.1.7.RELEASE</plugin.springboot.version>
-        <!-- environment config -->
         <environment.compile.java.version>1.8</environment.compile.java.version>
-        <!-- reporting config -->
         <reporting.maven.jxr.version>2.5</reporting.maven.jxr.version>
-        <!-- node & npm -->
         <system.node.version>v8.9.4</system.node.version>
         <system.npm.version>5.4.2</system.npm.version>
-        <!-- docker -->
         <docker.image.prefix>authx</docker.image.prefix>
     </properties>
 
     <dependencies>
-        <!-- lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${dependency.lombox.version}</version>
+            <version>${lombok.version}</version>
         </dependency>
     </dependencies>
 
@@ -111,36 +86,44 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-jpa</artifactId>
-                <version>${dependency.springboot.common.version}</version>
+                <version>${springboot.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.springframework.security.oauth</groupId>
-                <artifactId>spring-security-oauth2</artifactId>
-                <version>${dependency.spring.security.oauth2.version}</version>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${springboot.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-jwt</artifactId>
-                <version>${dependency.spring.security.jwt.version}</version>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-security</artifactId>
+                <version>${springboot.version}</version>
             </dependency>
-            <!-- validation -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-validation</artifactId>
-                <version>${dependency.springboot.common.version}</version>
+                <version>${springboot.version}</version>
             </dependency>
-            <!-- database -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-aop</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-oauth2-client</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
-                <version>${dependency.mysql.version}</version>
+                <version>${mysql.version}</version>
             </dependency>
-            <!-- jackson -->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
-                <version>${dependency.jackson.databind.version}</version>
+                <version>${jackson.version}</version>
             </dependency>
+
             <!-- fastjson -->
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -176,22 +159,6 @@
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient</artifactId>
                 <version>${dependency.httpclient.version}</version>
-            </dependency>
-            <!-- spring -->
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context</artifactId>
-                <version>${dependency.spring.context.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-aop</artifactId>
-                <version>${dependency.spring.context.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-aspects</artifactId>
-                <version>${dependency.spring.context.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -236,7 +203,6 @@
     <build>
         <pluginManagement>
             <plugins>
-                <!-- docker -->
                 <plugin>
                     <groupId>io.fabric8</groupId>
                     <artifactId>docker-maven-plugin</artifactId>

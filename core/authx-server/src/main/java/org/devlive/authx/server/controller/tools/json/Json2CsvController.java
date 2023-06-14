@@ -17,8 +17,8 @@
  */
 package org.devlive.authx.server.controller.tools.json;
 
-import org.devlive.authx.storage.mysql.model.common.CommonResponseModel;
-import org.devlive.authx.storage.mysql.service.json.Json2CsvService;
+import org.devlive.authx.service.entity.common.CommonResponseModel;
+import org.devlive.authx.service.service.json.Json2CsvService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,7 +35,7 @@ import org.springframework.web.bind.annotation.RestController;
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @RestController
-@RequestMapping(value = "${bootstack.api.path}/${bootstack.api.version}/tools/json2csv")
+@RequestMapping(value = "api/v1/tools/json2csv")
 @Slf4j
 public class Json2CsvController {
 

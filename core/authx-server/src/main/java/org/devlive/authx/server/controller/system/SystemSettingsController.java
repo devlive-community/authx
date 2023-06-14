@@ -17,8 +17,8 @@
  */
 package org.devlive.authx.server.controller.system;
 
-import org.devlive.authx.storage.mysql.model.common.CommonResponseModel;
-import org.devlive.authx.storage.mysql.service.system.SystemSettingsService;
+import org.devlive.authx.service.entity.common.CommonResponseModel;
+import org.devlive.authx.service.service.system.SystemSettingsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @RestController
-@RequestMapping(value = "${bootstack.api.path}/${bootstack.api.version}/system/settings")
+@RequestMapping(value = "api/v1/system/settings")
 @Slf4j
 public class SystemSettingsController {
 

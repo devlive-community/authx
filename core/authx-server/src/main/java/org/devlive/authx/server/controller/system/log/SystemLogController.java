@@ -17,19 +17,15 @@
  */
 package org.devlive.authx.server.controller.system.log;
 
+import lombok.extern.slf4j.Slf4j;
 import org.devlive.authx.common.pinyin.PinYinUtils;
-import org.devlive.authx.param.page.PageParam;
 import org.devlive.authx.param.system.log.SystemLogTypeCreateParam;
 import org.devlive.authx.param.system.log.SystemLogTypeSetParam;
-import org.devlive.authx.storage.mongodb.service.system.log.SystemLogToMongoDbService;
-import org.devlive.authx.storage.mysql.model.common.CommonResponseModel;
-import org.devlive.authx.common.page.PageModel;
-import org.devlive.authx.storage.mysql.model.system.log.SystemLogTypeModel;
-import org.devlive.authx.storage.mysql.service.system.log.SystemLogService;
-import lombok.extern.slf4j.Slf4j;
+import org.devlive.authx.service.entity.common.CommonResponseModel;
+import org.devlive.authx.service.entity.system.log.SystemLogTypeModel;
+import org.devlive.authx.service.service.system.log.SystemLogService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,21 +38,21 @@ import org.springframework.web.bind.annotation.*;
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @RestController
-@RequestMapping(value = "${bootstack.api.path}/${bootstack.api.version}/system/log")
+@RequestMapping(value = "api/v1/system/log")
 @Slf4j
 public class SystemLogController {
 
     @Autowired
     private SystemLogService systemLogService;
 
-    @Autowired
-    private SystemLogToMongoDbService mongoDbService;
+//    @Autowired
+//    private SystemLogToMongoDbService mongoDbService;
 
-    @GetMapping
-    public CommonResponseModel getAll(@Validated PageParam param) {
-        Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
-        return CommonResponseModel.success(this.mongoDbService.getAllByPage(pageable));
-    }
+//    @GetMapping
+//    public CommonResponseModel getAll(@Validated PageParam param) {
+//        Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
+//        return CommonResponseModel.success(this.mongoDbService.getAllByPage(pageable));
+//    }
 
     @PostMapping
     public CommonResponseModel add(@RequestBody @Validated SystemLogTypeCreateParam param) {
@@ -81,9 +77,8 @@ public class SystemLogController {
      * @param primaryKey 数据主键
      * @return 日志详情
      */
-    @GetMapping(value = "/details")
-    public CommonResponseModel infoDetail(@RequestParam(value = "primaryKey") String primaryKey) {
-        return CommonResponseModel.success(this.mongoDbService.getModelById(primaryKey));
-    }
-
+//    @GetMapping(value = "/details")
+//    public CommonResponseModel infoDetail(@RequestParam(value = "primaryKey") String primaryKey) {
+//        return CommonResponseModel.success(this.mongoDbService.getModelById(primaryKey));
+//    }
 }

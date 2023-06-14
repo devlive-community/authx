@@ -17,7 +17,7 @@
  */
 package org.devlive.authx.validation.system.log;
 
-import org.devlive.authx.storage.mysql.service.system.log.SystemLogTypeService;
+import org.devlive.authx.service.service.system.log.SystemLogTypeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;

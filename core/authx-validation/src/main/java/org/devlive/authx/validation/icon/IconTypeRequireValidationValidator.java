@@ -17,7 +17,7 @@
  */
 package org.devlive.authx.validation.icon;
 
-import org.devlive.authx.storage.mysql.service.icon.IconTypeService;
+import org.devlive.authx.service.service.icon.IconTypeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;

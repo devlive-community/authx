@@ -18,14 +18,14 @@
 package org.devlive.authx.server.controller.table;
 
 import org.devlive.authx.server.controller.BaseController;
-import org.devlive.authx.storage.mysql.model.common.CommonResponseModel;
+import org.devlive.authx.service.entity.common.CommonResponseModel;
 import org.devlive.authx.common.page.PageModel;
-import org.devlive.authx.storage.mysql.model.system.menu.SystemMenuModel;
-import org.devlive.authx.storage.mysql.model.table.TableRowModel;
+import org.devlive.authx.service.entity.system.menu.SystemMenuModel;
+import org.devlive.authx.service.entity.table.TableRowModel;
 import org.devlive.authx.param.page.PageParam;
 import org.devlive.authx.param.table.TableRowCreateParam;
-import org.devlive.authx.storage.mysql.service.system.menu.SystemMenuService;
-import org.devlive.authx.storage.mysql.service.table.TableRowService;
+import org.devlive.authx.service.service.system.menu.SystemMenuService;
+import org.devlive.authx.service.service.table.TableRowService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -46,7 +46,7 @@ import java.util.List;
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @RestController
-@RequestMapping(value = "${bootstack.api.path}/${bootstack.api.version}/table/row")
+@RequestMapping(value = "api/v1/table/row")
 public class TableRowController extends BaseController {
 
     @Autowired

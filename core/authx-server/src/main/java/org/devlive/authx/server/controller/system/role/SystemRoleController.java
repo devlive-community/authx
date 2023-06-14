@@ -20,21 +20,21 @@ package org.devlive.authx.server.controller.system.role;
 import org.devlive.authx.common.pinyin.PinYinUtils;
 import org.devlive.authx.server.controller.ControllerSupport;
 import org.devlive.authx.server.support.ParamSupport;
-import org.devlive.authx.storage.mysql.model.common.CommonResponseModel;
-import org.devlive.authx.storage.mysql.model.system.menu.SystemMenuModel;
-import org.devlive.authx.storage.mysql.model.system.menu.SystemMenuTypeModel;
-import org.devlive.authx.storage.mysql.model.system.role.SystemRoleModel;
-import org.devlive.authx.storage.mysql.model.user.UserModel;
+import org.devlive.authx.service.entity.common.CommonResponseModel;
+import org.devlive.authx.service.entity.system.menu.SystemMenuModel;
+import org.devlive.authx.service.entity.system.menu.SystemMenuTypeModel;
+import org.devlive.authx.service.entity.system.role.SystemRoleModel;
+import org.devlive.authx.service.entity.user.UserModel;
 import org.devlive.authx.param.common.CommonMenuAndRoleParam;
 import org.devlive.authx.param.page.PageParam;
 import org.devlive.authx.param.system.role.SystemRoleBasicParam;
 import org.devlive.authx.param.system.role.SystemRoleMenuParam;
 import org.devlive.authx.param.system.role.SystemRoleSetMenuParam;
 import org.devlive.authx.param.system.role.SystemRoleSetParam;
-import org.devlive.authx.storage.mysql.service.system.menu.SystemMenuService;
-import org.devlive.authx.storage.mysql.service.system.role.SystemRoleSeniorService;
-import org.devlive.authx.storage.mysql.service.system.role.SystemRoleService;
-import org.devlive.authx.storage.mysql.service.user.UserService;
+import org.devlive.authx.service.service.system.menu.SystemMenuService;
+import org.devlive.authx.service.service.system.role.SystemRoleSeniorService;
+import org.devlive.authx.service.service.system.role.SystemRoleService;
+import org.devlive.authx.service.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +57,7 @@ import java.util.stream.Collectors;
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @RestController
-@RequestMapping(value = "${bootstack.api.path}/${bootstack.api.version}/system/role")
+@RequestMapping(value = "api/v1/system/role")
 @Slf4j
 public class SystemRoleController {
 

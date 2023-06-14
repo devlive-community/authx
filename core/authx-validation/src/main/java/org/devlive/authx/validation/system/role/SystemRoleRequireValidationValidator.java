@@ -17,7 +17,7 @@
  */
 package org.devlive.authx.validation.system.role;
 
-import org.devlive.authx.storage.mysql.service.system.role.SystemRoleService;
+import org.devlive.authx.service.service.system.role.SystemRoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;

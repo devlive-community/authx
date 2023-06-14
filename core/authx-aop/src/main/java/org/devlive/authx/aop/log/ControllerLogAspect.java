@@ -17,20 +17,18 @@
  */
 package org.devlive.authx.aop.log;
 
-import org.devlive.authx.storage.mongodb.model.system.SystemLogToMongoDbModel;
-import org.devlive.authx.storage.mongodb.service.system.log.SystemLogToMongoDbService;
-import org.devlive.authx.storage.mysql.model.system.interfaces.SystemInterfaceModel;
-import org.devlive.authx.storage.mysql.model.system.method.SystemMethodModel;
-import org.devlive.authx.storage.mysql.model.user.UserModel;
-import org.devlive.authx.storage.mysql.service.system.interfaces.SystemInterfaceService;
-import org.devlive.authx.storage.mysql.service.system.log.SystemLogService;
-import org.devlive.authx.storage.mysql.service.system.method.SystemMethodService;
-import org.devlive.authx.storage.mysql.service.user.UserService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.devlive.authx.service.entity.system.interfaces.SystemInterfaceModel;
+import org.devlive.authx.service.entity.system.method.SystemMethodModel;
+import org.devlive.authx.service.entity.user.UserModel;
+import org.devlive.authx.service.service.system.interfaces.SystemInterfaceService;
+import org.devlive.authx.service.service.system.log.SystemLogService;
+import org.devlive.authx.service.service.system.method.SystemMethodService;
+import org.devlive.authx.service.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
@@ -38,8 +36,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-
-import java.util.Arrays;
 
 /**
  * <p> ControllerLogAspect </p>
@@ -65,8 +61,8 @@ public class ControllerLogAspect {
     @Autowired
     private SystemMethodService systemMethodService;
 
-    @Autowired
-    private SystemLogToMongoDbService systemLogToMongoDbService;
+//    @Autowired
+//    private SystemLogToMongoDbService systemLogToMongoDbService;
 
     @Pointcut("execution(* org.devlive.authx.core.controller..*.*(..))")
     private void controller() {
@@ -105,18 +101,18 @@ public class ControllerLogAspect {
 //        log.setUser(user);
 //        this.systemLogService.insertModel(log);
         // 存储日志信息到Mongo中
-        SystemLogToMongoDbModel logToMongoDbModel = new SystemLogToMongoDbModel();
-        logToMongoDbModel.setUrl(request.getServletPath());
-        logToMongoDbModel.setArgs(Arrays.toString(joinPoint.getArgs()));
-        logToMongoDbModel.setClazz(joinPoint.getSignature().getDeclaringTypeName());
-        logToMongoDbModel.setClassMethod(joinPoint.getSignature().getName());
-        logToMongoDbModel.setMethod(request.getMethod());
-        logToMongoDbModel.setRemoteIp(request.getRemoteAddr());
-        Long userId = ObjectUtils.isEmpty(user) ? 0L : user.getId();
-        logToMongoDbModel.setUserId(userId);
-        String name = ObjectUtils.isEmpty(user) ? "anonymous" : user.getName();
-        logToMongoDbModel.setUserName(name);
-        this.systemLogToMongoDbService.insertModel(logToMongoDbModel);
+//        SystemLogToMongoDbModel logToMongoDbModel = new SystemLogToMongoDbModel();
+//        logToMongoDbModel.setUrl(request.getServletPath());
+//        logToMongoDbModel.setArgs(Arrays.toString(joinPoint.getArgs()));
+//        logToMongoDbModel.setClazz(joinPoint.getSignature().getDeclaringTypeName());
+//        logToMongoDbModel.setClassMethod(joinPoint.getSignature().getName());
+//        logToMongoDbModel.setMethod(request.getMethod());
+//        logToMongoDbModel.setRemoteIp(request.getRemoteAddr());
+//        Long userId = ObjectUtils.isEmpty(user) ? 0L : user.getId();
+//        logToMongoDbModel.setUserId(userId);
+//        String name = ObjectUtils.isEmpty(user) ? "anonymous" : user.getName();
+//        logToMongoDbModel.setUserName(name);
+//        this.systemLogToMongoDbService.insertModel(logToMongoDbModel);
     }
 
     @AfterReturning(returning = "response", pointcut = "controller()")
@@ -124,5 +120,4 @@ public class ControllerLogAspect {
         // 处理完请求，返回内容
 //        System.out.println(response);
     }
-
 }
