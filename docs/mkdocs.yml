@@ -8,7 +8,7 @@ repo_name: devlive-community/authx
 repo_url: https://github.com/devlive-community/authx
 edit_uri: "https://github.com/devlive-community/authx/blob/dev/docs/docs"
 
-copyright: Copyright &copy; 2021 Devlive Community
+copyright: Copyright &copy; 2023 Devlive Community
 
 theme:
   name: material
@@ -48,9 +48,8 @@ theme:
   font:
     text: Roboto
     code: Roboto Mono
-  favicon: assets/favicon.png
-  icon:
-    logo: logo
+  favicon: assets/images/logo.png
+  logo: assets/images/logo.png
 
 extra:
   social:
@@ -98,7 +97,7 @@ markdown_extensions:
   - pymdownx.tilde
 
 nav:
-  - 主页: index.md
+  - index.md
   - 发布日志:
       - 1.0.5: changelog/20191115-1.0.5.md
       - 1.0.4: changelog/20190617-1.0.4.md
