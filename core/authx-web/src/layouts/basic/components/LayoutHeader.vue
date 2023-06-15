@@ -12,8 +12,12 @@
         </div>
         <div class="layout-nav">
           <MenuItem name="auth_login" to="/auth/login">
-            <font-awesome-icon :icon="['fas', 'user-plus']"/>
+            <font-awesome-icon :icon="['fas', 'right-to-bracket']"/>
             登录
+          </MenuItem>
+          <MenuItem name="auth_login" to="/auth/register">
+            <font-awesome-icon :icon="['fas', 'user-plus']"/>
+            注册
           </MenuItem>
         </div>
       </Menu>

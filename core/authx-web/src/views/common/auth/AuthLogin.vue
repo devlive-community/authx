@@ -12,7 +12,10 @@
           <UserName name="username"/>
           <Password name="password"/>
           <div class="login_btn">
-            <Submit/>
+            <Space>
+              <Button size="large" to="/auth/register">注册</Button>
+              <Submit/>
+            </Space>
           </div>
         </Login>
       </div>
@@ -22,7 +25,7 @@
 
 <script lang="ts">
 import AuthService from '@/services/AuthService'
-import { Message } from 'view-ui-plus'
+import {Message} from 'view-ui-plus'
 
 export default {
   methods: {
@@ -30,10 +33,11 @@ export default {
       if (valid) {
         AuthService.doAuth(username, password)
           .then(response => {
-            console.log(response.data.data)
+            console.log(response?.data?.data)
           })
           .catch(error => {
-            Message.error(error.response.data.message)
+            const message = error?.response ? error?.response?.data.message : error.message
+            Message.error(message)
           })
       }
     }
