@@ -173,3 +173,6 @@ venv
 
 docs/node_modules
 docs/site
+
+core/authx-web/yarn.lock
+core/authx-web/node_modules
