@@ -2,7 +2,14 @@
   <div>
     <Header>
       <Menu mode="horizontal" theme="dark">
-        <div class="layout-logo"></div>
+        <div class="layout-logo">
+          <MenuItem name="home" to="/">
+            <Avatar
+              style="width: 45px; height: 50px;"
+              src="/static/images/logo.png">
+            </Avatar>
+          </MenuItem>
+        </div>
         <div class="layout-nav">
           <MenuItem name="auth_login" to="/auth/login">
             <font-awesome-icon :icon="['fas', 'user-plus']"/>
@@ -30,13 +37,9 @@ export default {
 }
 
 .layout-logo {
-  width: 100px;
-  height: 30px;
-  background: #5b6270;
   border-radius: 3px;
   float: left;
   position: relative;
-  top: 15px;
   left: 20px;
 }
 

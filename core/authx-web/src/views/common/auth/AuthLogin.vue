@@ -2,7 +2,10 @@
   <div class="login_container">
     <div class="login_box">
       <div class="avatar_box">
-        <!--        <img src="../assets/logo.png" alt="" />-->
+        <Avatar
+          style="width: 75px; height: 80px;"
+          src="/static/images/logo.png">
+        </Avatar>
       </div>
       <div class="login_form">
         <Login>
@@ -45,14 +48,7 @@
     position: absolute;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #fff;
-
-    img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background-color: #eee;
-    }
+    background-color: #91e1b9;
   }
 }
 
