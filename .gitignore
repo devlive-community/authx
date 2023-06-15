@@ -171,6 +171,8 @@ venv
 
 .sass-cache
 
+.npm
+
 docs/node_modules
 docs/site
 
