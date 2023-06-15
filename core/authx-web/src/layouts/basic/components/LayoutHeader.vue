@@ -1,24 +1,12 @@
 <template>
   <div>
     <Header>
-      <Menu mode="horizontal" theme="dark" active-name="1">
+      <Menu mode="horizontal" theme="dark">
         <div class="layout-logo"></div>
         <div class="layout-nav">
-          <MenuItem name="1">
-            <Icon type="ios-navigate"></Icon>
-            Item 1
-          </MenuItem>
-          <MenuItem name="2">
-            <Icon type="ios-keypad"></Icon>
-            Item 2
-          </MenuItem>
-          <MenuItem name="3">
-            <Icon type="ios-analytics"></Icon>
-            Item 3
-          </MenuItem>
-          <MenuItem name="4">
-            <Icon type="ios-paper"></Icon>
-            Item 4
+          <MenuItem name="auth_login" to="/auth/login">
+            <font-awesome-icon :icon="['fas', 'user-plus']"/>
+            登录
           </MenuItem>
         </div>
       </Menu>
@@ -28,12 +16,7 @@
 
 <script lang="ts">
 export default {
-  name: 'FastDocLayoutHeader',
-  data () {
-    return {
-      defaultActiveMenu: 'home'
-    }
-  }
+  name: 'FastDocLayoutHeader'
 }
 </script>
 
@@ -58,7 +41,7 @@ export default {
 }
 
 .layout-nav {
-  width: 420px;
+  float: right;
   margin: 0 20px 0 auto;
 }
 </style>

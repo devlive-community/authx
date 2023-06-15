@@ -4,31 +4,25 @@
       <div class="avatar_box">
         <!--        <img src="../assets/logo.png" alt="" />-->
       </div>
-      <el-form label-width="60px" class="login_form">
-        <el-form-item label="用户名">
-          <el-input placeholder="请输入用户名">
-          </el-input>
-        </el-form-item>
-        <el-form-item label="密 码">
-          <el-input placeholder="请输入用户密码">
-          </el-input>
-        </el-form-item>
-        <el-row justify="end">
-          <el-form-item class="login_btn">
-            <el-button type="primary">登录</el-button>
-            <el-button type="info">注册</el-button>
-          </el-form-item>
-        </el-row>
-      </el-form>
+      <div class="login_form">
+        <Login>
+          <UserName name="username"/>
+          <Password name="password"/>
+          <div class="login_btn">
+            <Submit/>
+          </div>
+        </Login>
+      </div>
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 </script>
+
 <style scoped>
 .login_container {
-  height: 90vh;
+  height: 75vh;
 }
 
 .login_box {
@@ -66,7 +60,7 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-  padding: 0 20px;
+  padding: 20px;
   box-sizing: border-box;
 }
 
