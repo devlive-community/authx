@@ -5,7 +5,7 @@
         <div class="layout-logo">
           <MenuItem name="home" to="/">
             <Avatar
-              style="width: 45px; height: 50px;"
+              size="45"
               src="/static/images/logo.png">
             </Avatar>
           </MenuItem>
