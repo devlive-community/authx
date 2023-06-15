@@ -40,17 +40,24 @@ public class AuthXResourceServerConfigure extends ResourceServerConfigurerAdapte
     @Override
     public void configure(HttpSecurity http) throws Exception {
         HttpSecurity.RequestMatcherConfigurer configurer = http.requestMatchers();
-        this.systemInterfaceService.getAllByWhiteIsTrueAndActiveTrueAndSystemTrue().forEach(v -> {
-            List<SystemMethodModel> methods = v.getMethods();
-            for (SystemMethodModel method : methods) {
-                try {
-                    configurer.and().authorizeRequests().antMatchers(getMethod(method.getMethod()), v.getPath()).permitAll();
-                } catch (Exception e) {
-                    log.error("authorize request error", e.getMessage());
-                }
-            }
-        });
-        configurer.and().authorizeRequests().antMatchers("/**").authenticated();
+        this.systemInterfaceService.getAllByWhiteIsTrueAndActiveTrueAndSystemTrue()
+                .forEach(v -> {
+                    List<SystemMethodModel> methods = v.getMethods();
+                    for (SystemMethodModel method : methods) {
+                        try {
+                            configurer.and()
+                                    .authorizeRequests()
+                                    .antMatchers(getMethod(method.getMethod()), v.getPath())
+                                    .permitAll();
+                        } catch (Exception e) {
+                            log.error("authorize request error", e.getMessage());
+                        }
+                    }
+                });
+        configurer.and()
+                .authorizeRequests()
+                .antMatchers("/**")
+                .authenticated();
     }
 
     /**

@@ -52,8 +52,7 @@ public class AuthXServerConfigure extends AuthorizationServerConfigurerAdapter {
         endpoints.tokenStore(tokenStore)
                 .accessTokenConverter(accessTokenConverter)
                 .tokenEnhancer(enhancerChain)
-                .authenticationManager(authenticationManager);
-        // custom response
-        endpoints.exceptionTranslator(oauthWebResponseExceptionTranslator);
+                .authenticationManager(authenticationManager)
+                .exceptionTranslator(oauthWebResponseExceptionTranslator);
     }
 }

@@ -76,5 +76,4 @@ public class AuthXExceptionHandler {
     public Object methodHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException exception) {
         return CommonResponseModel.error(SystemMessageEnums.SYSTEM_METHOD_NOT_SUPPORT, exception.getMessage());
     }
-
 }
