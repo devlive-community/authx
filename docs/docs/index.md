@@ -23,16 +23,16 @@ hide:
     <p/>
     AuthX 是一个简单、易用的开源权限管理平台。它旨在帮助开发者轻松地实现基于角色的访问控制（RBAC）和权限管理。
     <p/>
-    <a target="_blank" class="connector-logo-index" href="https://gitee.com/EdurtIO/datacap/members">
+    <a target="_blank" class="connector-logo-index" href="https://gitee.com/devlive-community/authx/members">
         <img src='https://gitee.com/devlive-community/authx/badge/fork.svg?theme=white' alt='fork'/>
     </a>
-    <a target="_blank" class="connector-logo-index" href="https://gitee.com/EdurtIO/datacap/stargazers">
+    <a target="_blank" class="connector-logo-index" href="https://gitee.com/devlive-community/authx/stargazers">
         <img src='https://gitee.com/devlive-community/authx/badge/star.svg?theme=white' alt='star'/>
     </a>
-    <a target="_blank" class="connector-logo-index" href="https://github.com/EdurtIO/datacap/fork">
+    <a target="_blank" class="connector-logo-index" href="https://github.com/devlive-community/authx/fork">
         <img alt="GitHub stars" src="https://img.shields.io/github/forks/devlive-community/authx?logo=github">
     </a>
-    <a target="_blank" class="connector-logo-index" href="https://github.com/EdurtIO/datacap/stargazers">
+    <a target="_blank" class="connector-logo-index" href="https://github.com/devlive-community/authx/stargazers">
         <img alt="GitHub stars" src="https://img.shields.io/github/stars/devlive-community/authx?logo=github">
     </a>
     <p/> 
