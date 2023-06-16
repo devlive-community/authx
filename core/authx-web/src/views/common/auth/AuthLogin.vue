@@ -24,8 +24,8 @@
 </template>
 
 <script lang="ts">
-import AuthService from '@/services/AuthService'
-import {Message} from 'view-ui-plus'
+import AuthService from '@/services/user/AuthService'
+import { Message } from 'view-ui-plus'
 
 export default {
   methods: {

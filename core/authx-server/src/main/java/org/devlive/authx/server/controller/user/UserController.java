@@ -1,40 +1,26 @@
-/**
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package org.devlive.authx.server.controller.user;
 
+import lombok.extern.slf4j.Slf4j;
 import org.devlive.authx.common.encryption.EncryptionShaUtils;
 import org.devlive.authx.common.enums.SystemMessageEnums;
-import org.devlive.authx.server.controller.ControllerSupport;
-import org.devlive.authx.service.entity.common.CommonResponseModel;
 import org.devlive.authx.common.page.PageModel;
-import org.devlive.authx.service.entity.system.role.SystemRoleModel;
-import org.devlive.authx.service.entity.user.UserModel;
 import org.devlive.authx.param.page.PageParam;
 import org.devlive.authx.param.user.UserBasicParam;
 import org.devlive.authx.param.user.UserSetRoleParam;
-import org.devlive.authx.service.service.system.role.SystemRoleService;
+import org.devlive.authx.service.entity.common.CommonResponseModel;
+import org.devlive.authx.service.entity.system.role.SystemRoleModel;
+import org.devlive.authx.service.entity.user.UserModel;
 import org.devlive.authx.service.service.user.UserService;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -42,45 +28,34 @@ import java.util.List;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
-/**
- * <p> UserController </p>
- * <p> Description : UserController </p>
- * <p> Author : qianmoQ </p>
- * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-25 10:11 </p>
- * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
- */
 @RestController
 @RequestMapping(value = "api/v1/user")
 @Slf4j
-public class UserController {
+public class UserController
+{
+    private final UserService userService;
 
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private SystemRoleService systemRoleService;
+    public UserController(UserService userService)
+    {
+        this.userService = userService;
+    }
 
     @GetMapping
-    public CommonResponseModel getAll(@Validated PageParam param) {
+    public CommonResponseModel getAll(@Validated PageParam param)
+    {
         Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
         return CommonResponseModel.success(this.userService.getAllByPage(pageable));
     }
 
-    /**
-     * register user
-     *
-     * @param param user info
-     * @return register response
-     */
-    @PostMapping(value = ControllerSupport.CONTROLLER_DEFAULT_ADD)
-    public CommonResponseModel add(@RequestBody @Validated UserBasicParam param) {
-        log.info("add user action, user name is {}", param.getName());
-        if (!ObjectUtils.isEmpty(this.userService.getModelByName(param.getName()))) {
+    @PostMapping(value = "register")
+    public CommonResponseModel add(@RequestBody @Validated UserBasicParam param)
+    {
+        log.info("执行用户操作 [{}] {}", "新建", param.getUsername());
+        if (!ObjectUtils.isEmpty(this.userService.getModelByName(param.getUsername()))) {
             return CommonResponseModel.error(SystemMessageEnums.SYSTEM_USER_EXISTS);
         }
         UserModel user = new UserModel();
-        user.setName(param.getName());
+        user.setName(param.getUsername());
         user.setPassword(EncryptionShaUtils.hash256(param.getPassword()));
         // default active this user
         user.setActive(Boolean.TRUE);
@@ -88,7 +63,8 @@ public class UserController {
     }
 
     @GetMapping(value = "info/{name}")
-    public CommonResponseModel info(@PathVariable String name) {
+    public CommonResponseModel info(@PathVariable String name)
+    {
         return CommonResponseModel.success(this.userService.getModelByName(name));
     }
 
@@ -99,7 +75,8 @@ public class UserController {
      * @return 分配状态
      */
     @PutMapping(value = "role")
-    public CommonResponseModel setRole(@RequestBody @Validated UserSetRoleParam param) {
+    public CommonResponseModel setRole(@RequestBody @Validated UserSetRoleParam param)
+    {
         UserModel user = (UserModel) this.userService.getModelById(Long.valueOf(param.getId()));
         // 抽取用户原有权限
         List<SystemRoleModel> systemRoles = user.getRoles();

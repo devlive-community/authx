@@ -12,11 +12,17 @@ export class HttpClient {
       axios.defaults.baseURL = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '')
     }
 
+    const token = localStorage.getItem('AuthToken')
+
+    const headers = new Headers({
+      'Content-Type': 'application/json'
+    })
+    if (token) {
+      headers.append('Authorization', `Bearer ${token}`)
+    }
+
     this.configure = {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
-        Authorization: 'Basic ' + btoa('AuthX-Client:AuthX-Web')
-      },
+      headers: headers,
       cancelToken: undefined,
       params: undefined
     }
@@ -41,11 +47,12 @@ export class HttpClient {
   post (url: string, data = {}, cancelToken?: any): Promise<any> {
     return new Promise((resolve) => {
       this.configure.cancelToken = cancelToken
+      // @ts-ignore
       axios.post(url, data, this.configure)
         .then(result => {
-          return result
+          resolve(result)
         }, error => {
-          return error
+          resolve(error)
         })
     })
   }

@@ -17,7 +17,7 @@
  */
 package org.devlive.authx.param.user;
 
-import org.devlive.authx.validation.user.UserNameValidation;
+import org.devlive.authx.validation.user.CheckUserNameValidation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -40,8 +40,8 @@ public class UserBasicParam
 {
 
     @NotEmpty(message = "user name must not null")
-    @UserNameValidation
-    private String name;
+    @CheckUserNameValidation
+    private String username;
 
     @NotEmpty(message = "user password must not null")
     private String password;
