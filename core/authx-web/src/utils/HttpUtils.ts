@@ -91,6 +91,19 @@ export class HttpUtils {
         })
     })
   }
+
+  put (url: string, data = {}, cancelToken?: any): Promise<ResponseEntity> {
+    return new Promise((resolve) => {
+      this.options.cancelToken = cancelToken
+      // @ts-ignore
+      axios.put(url, data, this.options)
+        .then(result => {
+          resolve(this.doResponse(result.data))
+        }, error => {
+          resolve(this.doResponse(error))
+        })
+    })
+  }
 }
 
 export default new HttpUtils()

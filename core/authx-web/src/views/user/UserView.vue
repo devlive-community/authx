@@ -4,11 +4,23 @@
            :columns="headers"
            :data="data?.content">
       <template #permission="{ row }">
-        <Tag v-for="role in row.roles"
-             v-bind:key="role.name"
-             color="primary">
-          {{ role.name }}
-        </Tag>
+        <Tooltip v-for="role in row.roles"
+                 v-bind:key="role.name"
+                 :content="role.description">
+          <Tag color="primary">
+            {{ role.name }}
+          </Tag>
+        </Tooltip>
+      </template>
+      <template #action="{ row }">
+        <Button type="primary"
+                size="small"
+                shape="circle"
+                @click="handlerAssignRole( true, row)">
+          <Tooltip content="分配权限">
+            <font-awesome-icon :icon="['fas', 'location-arrow']"/>
+          </Tooltip>
+        </Button>
       </template>
     </Table>
     <Page v-if="data?.content"
@@ -22,16 +34,24 @@
           @on-page-size-change="handlerSizeChange"
           @on-change="handlerIndexChange">
     </Page>
+    <UserAssignRole v-if="assignRole.visible"
+                    :is-visible="assignRole.visible"
+                    :info="assignRole.info"
+                    @close="handlerAssignRole(false, null)">
+    </UserAssignRole>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { PageEntity, PageResponseEntity } from '@/entity/PageEntity'
-import UserService from '@/services/admin/UserService'
+import UserService from '@/services/UserService'
 import UserUtils from '@/views/user/UserUtils'
+import UserAssignRole from '@/views/user/components/UserAssignRole.vue'
+import { UserEntity } from '@/entity/UserEntity'
 
 export default defineComponent({
   name: 'UserView',
+  components: { UserAssignRole },
   created () {
     this.page = new PageEntity()
     this.handlerInitialize()
@@ -41,7 +61,11 @@ export default defineComponent({
       page: null as unknown as PageEntity,
       loading: false,
       headers: UserUtils.headers,
-      data: null as unknown as PageResponseEntity
+      data: null as unknown as PageResponseEntity,
+      assignRole: {
+        visible: false,
+        info: null as unknown as UserEntity
+      }
     }
   },
   methods: {
@@ -50,7 +74,6 @@ export default defineComponent({
       UserService.getAllByPage(this.page)
         .then(response => {
           this.data = response.data
-          console.log(this.data.content)
         })
         .finally(() => {
           this.loading = false
@@ -63,6 +86,13 @@ export default defineComponent({
     handlerIndexChange (index: number) {
       this.page.page = index
       this.handlerInitialize()
+    },
+    handlerAssignRole (value: boolean, info?: UserEntity) {
+      this.assignRole.info = info as UserEntity
+      this.assignRole.visible = value
+      if (value === false) {
+        this.handlerInitialize()
+      }
     }
   }
 })

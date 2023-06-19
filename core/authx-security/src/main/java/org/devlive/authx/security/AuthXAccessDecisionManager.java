@@ -7,10 +7,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.devlive.authx.common.enums.SystemMessageEnums;
 import org.devlive.authx.service.entity.system.interfaces.SystemInterfaceModel;
 import org.devlive.authx.service.entity.system.method.SystemMethodModel;
-import org.devlive.authx.service.entity.system.role.SystemRoleModel;
+import org.devlive.authx.service.entity.RoleEntity;
 import org.devlive.authx.service.service.system.interfaces.SystemInterfaceService;
 import org.devlive.authx.service.service.system.method.SystemMethodService;
-import org.devlive.authx.service.service.system.role.SystemRoleService;
+import org.devlive.authx.service.service.RoleService;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.ConfigAttribute;
@@ -33,9 +33,9 @@ public class AuthXAccessDecisionManager implements AccessDecisionManager {
 
     private final SystemInterfaceService systemInterfaceService;
     private final SystemMethodService systemMethodService;
-    private final SystemRoleService systemRoleService;
+    private final RoleService systemRoleService;
 
-    public AuthXAccessDecisionManager(SystemInterfaceService systemInterfaceService, SystemMethodService systemMethodService, SystemRoleService systemRoleService) {
+    public AuthXAccessDecisionManager(SystemInterfaceService systemInterfaceService, SystemMethodService systemMethodService, RoleService systemRoleService) {
         this.systemInterfaceService = systemInterfaceService;
         this.systemMethodService = systemMethodService;
         this.systemRoleService = systemRoleService;
@@ -60,7 +60,7 @@ public class AuthXAccessDecisionManager implements AccessDecisionManager {
         for (GrantedAuthority grantedAuthority : authentication.getAuthorities()) {
             // TODO：抽取权限过来的数据并解析(目前通过数据库抽取后期加入缓冲中)
             String granted = grantedAuthority.getAuthority();
-            SystemRoleModel roleModel = this.systemRoleService.getModelById(Long.valueOf(granted));
+            RoleEntity roleModel = this.systemRoleService.getModelById(Long.valueOf(granted));
             roleModel.getMenuList().forEach(m -> {
                 if (ObjectUtils.isEmpty(menus.get(m.getId()))) {
                     if (!m.getUrl().equalsIgnoreCase("#")) {

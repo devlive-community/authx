@@ -1,4 +1,4 @@
-package org.devlive.authx.service.service.system.role; /**
+package org.devlive.authx.service.service; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -17,18 +17,11 @@ package org.devlive.authx.service.service.system.role; /**
  */
 
 import org.devlive.authx.common.page.PageModel;
-import org.devlive.authx.service.entity.system.role.SystemRoleModel;
+import org.devlive.authx.service.entity.RoleEntity;
 import org.springframework.data.domain.Pageable;
 
-/**
- * <p> SystemRoleService </p>
- * <p> Description : SystemRoleService </p>
- * <p> Author : qianmoQ </p>
- * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-26 01:01 </p>
- * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
- */
-public interface SystemRoleService {
+public interface RoleService
+{
 
     /**
      * insert model
@@ -36,7 +29,7 @@ public interface SystemRoleService {
      * @param model model info
      * @return insert result
      */
-    Long insertModel(SystemRoleModel model);
+    Long insertModel(RoleEntity model);
 
     /**
      * get model by id
@@ -44,7 +37,7 @@ public interface SystemRoleService {
      * @param id id
      * @return model response id
      */
-    SystemRoleModel getModelById(Long id);
+    RoleEntity getModelById(Long id);
 
     /**
      * get all model
@@ -52,7 +45,7 @@ public interface SystemRoleService {
      * @param pageable page info
      * @return all model
      */
-    PageModel<SystemRoleModel> getAll(Pageable pageable);
+    PageModel<RoleEntity> getAll(Pageable pageable);
 
     /**
      * get model by name
@@ -60,6 +53,6 @@ public interface SystemRoleService {
      * @param name name
      * @return model response by name
      */
-    SystemRoleModel getModelByName(String name);
+    RoleEntity getModelByName(String name);
 
 }

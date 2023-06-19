@@ -17,11 +17,11 @@
  */
 package org.devlive.authx.param.user;
 
-import org.devlive.authx.validation.user.UserRequireValidation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.devlive.authx.validation.user.UserRequireValidation;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import java.util.List;
@@ -38,14 +38,14 @@ import java.util.List;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserSetRoleParam {
+public class UserSetRoleParam
+{
 
     @NotEmpty(message = "user id must not null")
     @UserRequireValidation
     private String id;
 
-    @NotEmpty(message = "role id must not null")
+    @NotEmpty(message = "路由标记不能为空")
 //    @SystemRoleRequireValidation
-    private List<Object> values;
-
+    private List<Long> values;
 }

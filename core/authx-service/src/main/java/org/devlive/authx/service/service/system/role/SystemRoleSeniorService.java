@@ -17,7 +17,7 @@ package org.devlive.authx.service.service.system.role; /**
  */
 
 import org.devlive.authx.service.entity.system.menu.SystemMenuTypeModel;
-import org.devlive.authx.service.entity.system.role.SystemRoleModel;
+import org.devlive.authx.service.entity.RoleEntity;
 import org.devlive.authx.service.entity.tree.TreeModel;
 
 import java.util.List;
@@ -39,10 +39,10 @@ public interface SystemRoleSeniorService {
      * @param flag
      * @return
      */
-    List<TreeModel> findTreeMenuById(SystemRoleModel roleModel, SystemMenuTypeModel typeModel);
+    List<TreeModel> findTreeMenuById(RoleEntity roleModel, SystemMenuTypeModel typeModel);
 
     List<TreeModel> findMenuById(Long id);
 
-    List<TreeModel> findMenuByIds(List<SystemRoleModel> roles);
+    List<TreeModel> findMenuByIds(List<RoleEntity> roles);
 
 }

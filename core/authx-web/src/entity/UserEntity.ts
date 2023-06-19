@@ -1,8 +1,10 @@
-export class UserEntity {
+import { BaseEntity } from '@/entity/BaseEntity'
+import { RoleEntity } from '@/entity/RoleEntity'
+
+export class UserEntity extends BaseEntity {
   username = ''
   password = ''
-  // 转换 JWT
+  roles: Array<RoleEntity> | undefined
   token?: string | undefined
   type?: string | undefined
-  id?: number
 }

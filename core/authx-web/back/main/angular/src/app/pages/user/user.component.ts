@@ -61,8 +61,6 @@ export class UserComponent implements OnInit {
         containerCssClass: 'select2-selection--alt',
         dropdownCssClass: 'select2-dropdown--alt'
     };
-    // 权限下拉数据
-    methodRoleOptions: Array<Select2OptionData>;
     @ViewChild('methodRoles')
     methodRoles: Select2Component;
 
@@ -104,34 +102,6 @@ export class UserComponent implements OnInit {
     }
 
     /**
-     * 初始化权限列表
-     */
-    initRoleList() {
-        this.page.size = 100;
-        this.roleLoading = this.systemRoleService.getList(this.page).subscribe(
-            response => {
-                if (response.code !== CodeConfig.SUCCESS) {
-                    this.toastyService.error(response.message);
-                } else {
-                    const fields = [], temps = response.data.content;
-                    for (const x in temps) {
-                        let content = temps[x].content;
-                        if (!content) {
-                            content = temps[x].name
-                        }
-                        const v = {
-                            "id": temps[x].id,
-                            "text": content
-                        }
-                        fields.push(v);
-                    }
-                    this.methodRoleOptions = fields;
-                }
-            }
-        );
-    }
-
-    /**
      * 显示新增数据弹出框
      */
     startShowCreateAndUpdateModal(model: any) {
@@ -166,56 +136,4 @@ export class UserComponent implements OnInit {
             );
         }
     }
-
-    /**
-     * 分页信息改变重新加载数据
-     * @param event 分页响应事件
-     */
-    pageChanged(event: any) {
-        this.page.number = event.page;
-        this.page.size = event.itemsPerPage;
-        this.initList(this.page);
-    }
-
-    /**
-     * 显示分配权限弹出框
-     * @param user 需要分配的用户信息
-     */
-    startShowAssignmentRolesModal(user: any) {
-        console.log(this.roleAssignmentValues);
-        this.param = user;
-        this.assignmentRoleModal.show();
-        if (!this.methodRoleOptions) {
-            this.initRoleList();
-        }
-    }
-
-    /**
-     * 分配用户权限
-     */
-    assignmentRoles() {
-        let param = new UserParam();
-        param.id = this.param.id;
-        param.values = this.roleValues;
-        this.userService.putRole(param).subscribe(
-            response => {
-                if (response.code !== CodeConfig.SUCCESS) {
-                    this.toastyService.error(response.message);
-                } else {
-                    this.assignmentRoleModal.hide();
-                    this.toastyService.error(response.message);
-                    this.initList(this.page);
-                }
-            }
-        );
-    }
-
-    /**
-     * 数据选中情况
-     * @param data 选中的数据
-     */
-    methodRoleChanged(data: { value: string[] }) {
-        this.roleValues = data.value
-    }
-
 }

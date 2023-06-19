@@ -53,7 +53,7 @@
 
 <script lang="ts">
 import { UserEntity } from '@/entity/UserEntity'
-import UserService from '@/services/admin/UserService'
+import UserService from '@/services/UserService'
 import { Message } from 'view-ui-plus'
 
 export default {

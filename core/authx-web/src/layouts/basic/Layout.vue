@@ -25,10 +25,10 @@
 import FastDocLayoutHeader from '@/layouts/basic/components/LayoutHeader.vue'
 import FastDocLayoutContent from '@/layouts/basic/components/LayoutContent.vue'
 import FastDocLayoutFooter from '@/layouts/basic/components/LayoutFooter.vue'
-import AuthService from '@/services/user/AuthService'
+import AuthService from '@/services/AuthService'
 import { defineComponent } from 'vue'
-import UserService from '@/services/admin/UserService'
-import MenuService from '@/services/admin/MenuService'
+import UserService from '@/services/UserService'
+import MenuService from '@/services/MenuService'
 import { MenuEntity } from '@/entity/MenuEntity'
 import FastDocLayoutAside from '@/layouts/basic/components/LayoutAside.vue'
 
