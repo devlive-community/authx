@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Content :style="{minHeight: '280px', background: '#fff'}">
+    <Content :style="{background: '#fff'}">
       <router-view></router-view>
     </Content>
   </div>

@@ -21,7 +21,8 @@
               <template #list>
                 <DropdownMenu>
                   <DropdownItem @click="handlerSignOut">
-                    <font-awesome-icon :icon="['fas', 'sign-out']"/> 退出
+                    <font-awesome-icon :icon="['fas', 'sign-out']"/>
+                    退出
                   </DropdownItem>
                 </DropdownMenu>
               </template>
@@ -45,39 +46,21 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import AuthService from '@/services/user/AuthService'
-import UserService from '@/services/user/UserService'
-import { UserEntity } from '@/entity/UserEntity'
 import SupportUtils from '@/utils/SupportUtils'
 import router from '@/router'
 
 export default defineComponent({
   name: 'FastDocLayoutHeader',
-  created () {
-    this.handlerInitialize()
-  },
-  data () {
-    return {
-      isLogined: false,
-      userInfo: { name: '' }
+  props: {
+    isLogined: {
+      type: Boolean,
+      default: false
+    },
+    userInfo: {
+      type: null
     }
   },
   methods: {
-    handlerInitialize () {
-      const auth: string = AuthService.getAuth()
-      const username: string = AuthService.getAuthUserName()
-      if (auth) {
-        this.isLogined = true
-        UserService.getInfoByUserName(username)
-          .then(response => {
-            if (response.code === 2000) {
-              this.userInfo = response.data
-            } else {
-              this.userInfo.name = username
-            }
-          })
-      }
-    },
     handlerSignOut () {
       localStorage.removeItem(SupportUtils.token)
       router.push('/auth/login')

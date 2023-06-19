@@ -49,32 +49,10 @@ export class UserService implements BaseService {
         private router: Router,
         private toastyService: ToastyService) {
     }
-
-    /**
-     * save token
-     * @param token token
-     */
-    saveToken(token) {
-        const expire = new Date();
-        const time = Date.now() + ((3600 * 1000) * 1); // save token to cookie 1 hour
-        expire.setTime(time);
-        Cookie.set(CommonConfig.AUTH_TOKEN, token.data, expire);
-        this.router.navigate(['/']);
-    }
-
-    /**
-     * validate
-     */
     checkCredentials() {
         if (!CookieUtils.get()) {
             this.router.navigate(['/user/login']);
         }
-    }
-
-    getInfo(primaryKey: Object): Observable<CommonResponseModel> {
-        const options = HttpUtils.getDefaultRequestOptionsByTokenAndJSON();
-        const path = ApiConfig.API_USER_INFO + primaryKey.toString();
-        return this.http.get(path, options).map(ResponseUtils.extractData);
     }
 
     getList(page: CommonPageModel): Observable<CommonResponseModel> {
