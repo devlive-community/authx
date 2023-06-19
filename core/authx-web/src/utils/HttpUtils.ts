@@ -77,10 +77,11 @@ export class HttpUtils {
     })
   }
 
-  get (url: string, cancelToken?: any): Promise<ResponseEntity> {
+  get (url: string, params?: any, cancelToken?: any): Promise<ResponseEntity> {
     return new Promise((resolve) => {
       this.doRefresh()
       this.options.cancelToken = cancelToken
+      this.options.params = params
       // @ts-ignore
       axios.get(url, this.options)
         .then(result => {

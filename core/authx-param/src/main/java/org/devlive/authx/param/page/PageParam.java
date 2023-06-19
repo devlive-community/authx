@@ -46,7 +46,7 @@ public class PageParam {
     @Max(value = 100)
     private Integer size; // page size
 
-    @NotNull(message = "The current page display number cannot be empty")
+    @NotNull(message = "查询页码不能为空")
     @Min(value = 1)
     @Max(value = Integer.MAX_VALUE)
     private Integer page; // current page number

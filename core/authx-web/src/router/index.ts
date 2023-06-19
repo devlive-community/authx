@@ -24,6 +24,17 @@ const routes: Array<RouteRecordRaw> = [
     ]
   },
   {
+    path: '/admin',
+    component: LayoutContainer,
+    children: [
+      {
+        name: 'users',
+        path: 'users',
+        component: () => import('@/views/user/UserView.vue')
+      }
+    ]
+  },
+  {
     path: '/common',
     component: LayoutContainer,
     children: [

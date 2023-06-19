@@ -1,5 +1,6 @@
 import HttpUtils from '@/utils/HttpUtils'
 import { ResponseEntity } from '@/entity/ResponseEntity'
+import { PageEntity } from '@/entity/PageEntity'
 
 export abstract class BaseService<T> {
   private readonly baseUrl: string;
@@ -10,5 +11,9 @@ export abstract class BaseService<T> {
 
   saveOrUpdate<T> (configure: T): Promise<ResponseEntity> {
     return HttpUtils.post(this.baseUrl, configure)
+  }
+
+  getAllByPage<T> (page: PageEntity): Promise<ResponseEntity> {
+    return HttpUtils.get(this.baseUrl, page)
   }
 }

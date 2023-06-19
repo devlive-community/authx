@@ -5,12 +5,12 @@
         <FastDocLayoutHeader :is-logined="isLogined" :user-info="userInfo">
         </FastDocLayoutHeader>
       </Affix>
-      <Layout :style="{padding: '0', height: '450px', background: '#fff'}">
+      <Layout :style="{padding: '0', height: '650px', background: '#fff'}">
         <Sider hide-trigger :style="{background: '#fff'}">
           <FastDocLayoutAside :menus="menus">
           </FastDocLayoutAside>
         </Sider>
-        <Layout :style="{background: '#fff'}">
+        <Layout :style="{background: '#fff', padding: '10px'}">
           <FastDocLayoutContent>
           </FastDocLayoutContent>
         </Layout>
@@ -27,7 +27,7 @@ import FastDocLayoutContent from '@/layouts/basic/components/LayoutContent.vue'
 import FastDocLayoutFooter from '@/layouts/basic/components/LayoutFooter.vue'
 import AuthService from '@/services/user/AuthService'
 import { defineComponent } from 'vue'
-import UserService from '@/services/user/UserService'
+import UserService from '@/services/admin/UserService'
 import MenuService from '@/services/admin/MenuService'
 import { MenuEntity } from '@/entity/MenuEntity'
 import FastDocLayoutAside from '@/layouts/basic/components/LayoutAside.vue'
