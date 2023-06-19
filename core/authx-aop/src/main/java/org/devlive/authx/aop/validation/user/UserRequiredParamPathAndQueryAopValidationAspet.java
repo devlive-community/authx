@@ -19,8 +19,8 @@ package org.devlive.authx.aop.validation.user;
 
 import org.devlive.authx.common.enums.SystemMessageEnums;
 import org.devlive.authx.common.enums.UserMessageEnums;
-import org.devlive.authx.service.entity.user.UserModel;
-import org.devlive.authx.service.service.user.UserService;
+import org.devlive.authx.service.entity.UserEntity;
+import org.devlive.authx.service.service.UserService;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -64,7 +64,7 @@ public class UserRequiredParamPathAndQueryAopValidationAspet {
         OutputStream output = null;
         output = response.getOutputStream();
         if (paramObj.length > 0) {
-            UserModel user = (UserModel) this.userService.getModelById(Long.valueOf(paramObj[0].toString()));
+            UserEntity user = (UserEntity) this.userService.getModelById(Long.valueOf(paramObj[0].toString()));
             if (ObjectUtils.isEmpty(user)) {
                 map.put("message", UserMessageEnums.USER_NOT_FOUND.getValue());
                 map.put("code", UserMessageEnums.USER_NOT_FOUND.getCode());

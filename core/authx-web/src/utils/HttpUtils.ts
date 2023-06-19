@@ -104,6 +104,21 @@ export class HttpUtils {
         })
     })
   }
+
+  delete (url: string, params?: any, cancelToken?: any): Promise<ResponseEntity> {
+    return new Promise((resolve) => {
+      this.doRefresh()
+      this.options.cancelToken = cancelToken
+      this.options.params = params
+      // @ts-ignore
+      axios.delete(url, this.options)
+        .then(result => {
+          resolve(this.doResponse(result.data))
+        }, error => {
+          resolve(this.doResponse(error))
+        })
+    })
+  }
 }
 
 export default new HttpUtils()

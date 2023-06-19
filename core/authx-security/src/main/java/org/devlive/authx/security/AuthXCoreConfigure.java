@@ -1,7 +1,7 @@
 package org.devlive.authx.security;
 
 import org.devlive.authx.security.authorization.AuthXOauth2Support;
-import org.devlive.authx.service.service.user.UserService;
+import org.devlive.authx.service.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;

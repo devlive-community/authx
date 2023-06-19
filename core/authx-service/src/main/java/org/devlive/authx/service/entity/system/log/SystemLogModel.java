@@ -18,7 +18,7 @@
 package org.devlive.authx.service.entity.system.log;
 
 import org.devlive.authx.common.support.DateSuooprt;
-import org.devlive.authx.service.entity.user.UserModel;
+import org.devlive.authx.service.entity.UserEntity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -87,7 +87,7 @@ public class SystemLogModel {
     @JoinTable(name = "system_log_users_relation",
             joinColumns = @JoinColumn(name = "system_log_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"))
-    private UserModel user;
+    private UserEntity user;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinTable(name = "system_log_type_relation",

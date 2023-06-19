@@ -1,7 +1,7 @@
 package org.devlive.authx.validation.user;
 
 import lombok.extern.slf4j.Slf4j;
-import org.devlive.authx.service.service.user.UserService;
+import org.devlive.authx.service.service.UserService;
 import org.springframework.util.ObjectUtils;
 
 import javax.validation.ConstraintValidator;

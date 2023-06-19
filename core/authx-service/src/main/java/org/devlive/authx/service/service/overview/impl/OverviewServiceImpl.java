@@ -20,7 +20,7 @@ package org.devlive.authx.service.service.overview.impl;
 import org.devlive.authx.service.entity.common.CommonResponseModel;
 import org.devlive.authx.service.entity.overview.OverviewModel;
 import org.devlive.authx.service.service.system.log.SystemLogService;
-import org.devlive.authx.service.service.user.UserService;
+import org.devlive.authx.service.service.UserService;
 import org.devlive.authx.service.service.overview.OverviewService;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;

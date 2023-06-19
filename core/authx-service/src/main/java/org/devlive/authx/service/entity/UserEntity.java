@@ -1,4 +1,4 @@
-package org.devlive.authx.service.entity.user;
+package org.devlive.authx.service.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -6,8 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.devlive.authx.service.entity.BaseModel;
-import org.devlive.authx.service.entity.RoleEntity;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Column;
@@ -32,7 +30,7 @@ import java.util.List;
 @JsonIgnoreProperties(value = {
         "password",
 })
-public class UserModel extends BaseModel
+public class UserEntity extends BaseModel
 {
 
     @Column(name = "password")
