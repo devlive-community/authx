@@ -19,7 +19,7 @@ export class ApiConfig {
 
     public static AUTHORIZATION_API = '/oauth/token';
 
-    private static API_VERSION_V1 = '/api/v1/';
+    private static API_VERSION_V1 = '/api/v1/system/role/men';
 
     /**
      * user api interface

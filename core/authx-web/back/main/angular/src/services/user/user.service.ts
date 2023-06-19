@@ -49,76 +49,10 @@ export class UserService implements BaseService {
         private router: Router,
         private toastyService: ToastyService) {
     }
-
-    /**
-     * login
-     * @param param user login info
-     */
-    login(param: UserLoginParam) {
-        Cookie.set(CommonConfig.AUTH_USER_NAME, param.username);
-        const params = HttpUtils.getParams();
-        params.append('username', param.username);
-        params.append('password', param.password);
-        params.append('grant_type', CommonConfig.AUTH_GRANT_TYPE);
-        params.append('client_id', CommonConfig.AUTH_CLIENT_ID);
-        const options = HttpUtils.getDefaultRequestOptionsByClient();
-        options.params = params;
-        return this.http.post(ApiConfig.AUTHORIZATION_API, param.toJson(), options)
-            .map(res => res.json())
-            .subscribe(
-                data => {
-                    this.saveToken(data);
-                    return true;
-                },
-                error => {
-                    CookieUtils.clearBy(CommonConfig.AUTH_USER_NAME);
-                    this.toastyService.error('Login failed, please check your user name or password.');
-                    return false;
-                });
-    }
-
-    /**
-     * register user
-     * @param param user info
-     */
-    register(param: UserParam): Observable<CommonResponseModel> {
-        const options = HttpUtils.getDefaultRequestOptions();
-        return this.http.post(ApiConfig.API_USER_REGISTER, JSON.stringify(param), options)
-            .map(ResponseUtils.extractData);
-    }
-
-    /**
-     * logout
-     */
-    logout() {
-        CookieUtils.clear();
-    }
-
-    /**
-     * save token
-     * @param token token
-     */
-    saveToken(token) {
-        const expire = new Date();
-        const time = Date.now() + ((3600 * 1000) * 1); // save token to cookie 1 hour
-        expire.setTime(time);
-        Cookie.set(CommonConfig.AUTH_TOKEN, token.data, expire);
-        this.router.navigate(['/']);
-    }
-
-    /**
-     * validate
-     */
     checkCredentials() {
         if (!CookieUtils.get()) {
             this.router.navigate(['/user/login']);
         }
-    }
-
-    getInfo(primaryKey: Object): Observable<CommonResponseModel> {
-        const options = HttpUtils.getDefaultRequestOptionsByTokenAndJSON();
-        const path = ApiConfig.API_USER_INFO + primaryKey.toString();
-        return this.http.get(path, options).map(ResponseUtils.extractData);
     }
 
     getList(page: CommonPageModel): Observable<CommonResponseModel> {
@@ -134,10 +68,4 @@ export class UserService implements BaseService {
         const options = HttpUtils.getDefaultRequestOptionsByTokenAndJSON();
         return this.http.put(ApiConfig.API_USER, JSON.stringify(param), options).map(ResponseUtils.extractData);
     }
-
-    putRole(param: UserParam): Observable<CommonResponseModel> {
-        const options = HttpUtils.getDefaultRequestOptionsByTokenAndJSON();
-        return this.http.put(ApiConfig.API_USER_ROLE, JSON.stringify(param), options).map(ResponseUtils.extractData);
-    }
-
 }

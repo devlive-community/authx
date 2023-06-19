@@ -57,25 +57,8 @@ export class NavigationComponent implements OnInit {
         })
     }
 
-    ngOnInit() {
-        this.initUserInfo();
-    }
-
     logout() {
-        this.userService.logout();
         this.router.navigate(['/user/login']);
-    }
-
-    initUserInfo() {
-        this.userService.getInfo(CookieUtils.getUserName()).subscribe(
-            response => {
-                if (response.code !== CodeConfig.SUCCESS) {
-                    this.toastyService.error(response.message);
-                }
-                this.user = response.data;
-                this.initMenu();
-            }
-        );
     }
 
     initMenu() {

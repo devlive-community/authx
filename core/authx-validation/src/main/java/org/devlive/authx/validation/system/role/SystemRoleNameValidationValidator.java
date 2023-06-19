@@ -17,7 +17,7 @@
  */
 package org.devlive.authx.validation.system.role;
 
-import org.devlive.authx.service.service.system.role.SystemRoleService;
+import org.devlive.authx.service.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
@@ -37,7 +37,7 @@ import javax.validation.ConstraintValidatorContext;
 public class SystemRoleNameValidationValidator implements ConstraintValidator<SystemRoleNameValidation, String> {
 
     @Autowired
-    private SystemRoleService systemRoleService;
+    private RoleService systemRoleService;
 
     @Override
     public void initialize(SystemRoleNameValidation validation) {

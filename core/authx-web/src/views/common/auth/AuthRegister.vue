@@ -8,7 +8,7 @@
         </Avatar>
       </div>
       <div class="login_form">
-        <Login ref="form">
+        <Login ref="form" @on-submit="handlerSubmit">
           <UserName name="username"/>
           <Poptip trigger="focus"
                   placement="right"
@@ -52,9 +52,12 @@
 </template>
 
 <script lang="ts">
+import { UserEntity } from '@/entity/UserEntity'
+import UserService from '@/services/UserService'
+import { Message } from 'view-ui-plus'
 
 export default {
-  data() {
+  data () {
     const validatePassCheck = (rule: any, value: string, callback: any) => {
       // @ts-ignore
       if (value !== this.$refs.form.formValidate.password) {
@@ -76,13 +79,13 @@ export default {
         {
           required: true, message: '确认密码不能为空！', trigger: 'change'
         },
-        {validator: validatePassCheck, trigger: 'change'}
+        { validator: validatePassCheck, trigger: 'change' }
       ],
       passwordLen: 0
     }
   },
   computed: {
-    passwordTip(): any {
+    passwordTip (): any {
       let strong = '强'
       let className = 'strong'
       // @ts-ignore
@@ -109,13 +112,21 @@ export default {
     }
   },
   methods: {
-    handlerChangePassword(val: string) {
+    handlerChangePassword (val: string) {
       // @ts-ignore
       this.passwordLen = val.length
     },
-    handlerSubmit(valid: any, {username, password}: any) {
+    handlerSubmit (valid: any, { username, password }: any) {
       if (valid) {
-        console.log(username, password)
+        const user = new UserEntity()
+        user.username = username
+        user.password = password
+        UserService.saveOrUpdate(user)
+          .then(response => {
+            if (response.code === 2000) {
+              Message.success('注册成功')
+            }
+          })
       }
     }
   }

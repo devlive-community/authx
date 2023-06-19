@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class AuthXObjectMapperConfigure {
     @Bean(name = "objectMapper")
     public ObjectMapper objectMapper() {
-        return new ObjectMapper().disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+        return new ObjectMapper()
+                .disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
     }
 }

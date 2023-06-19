@@ -11,14 +11,33 @@
           </MenuItem>
         </div>
         <div class="layout-nav">
-          <MenuItem name="auth_login" to="/auth/login">
-            <font-awesome-icon :icon="['fas', 'right-to-bracket']"/>
-            登录
-          </MenuItem>
-          <MenuItem name="auth_login" to="/auth/register">
-            <font-awesome-icon :icon="['fas', 'user-plus']"/>
-            注册
-          </MenuItem>
+          <div v-if="isLogined">
+            <Dropdown placement="bottom-end">
+              <a href="javascript:void(0)">
+                <Avatar style="background-color: #87d068">
+                  {{ userInfo.name }}
+                </Avatar>
+              </a>
+              <template #list>
+                <DropdownMenu>
+                  <DropdownItem @click="handlerSignOut">
+                    <font-awesome-icon :icon="['fas', 'sign-out']"/>
+                    退出
+                  </DropdownItem>
+                </DropdownMenu>
+              </template>
+            </Dropdown>
+          </div>
+          <div v-else>
+            <MenuItem name="auth_login" to="/auth/login">
+              <font-awesome-icon :icon="['fas', 'right-to-bracket']"/>
+              登录
+            </MenuItem>
+            <MenuItem name="auth_login" to="/auth/register">
+              <font-awesome-icon :icon="['fas', 'user-plus']"/>
+              注册
+            </MenuItem>
+          </div>
         </div>
       </Menu>
     </Header>
@@ -26,9 +45,28 @@
 </template>
 
 <script lang="ts">
-export default {
-  name: 'FastDocLayoutHeader'
-}
+import { defineComponent } from 'vue'
+import SupportUtils from '@/utils/SupportUtils'
+import router from '@/router'
+
+export default defineComponent({
+  name: 'FastDocLayoutHeader',
+  props: {
+    isLogined: {
+      type: Boolean,
+      default: false
+    },
+    userInfo: {
+      type: null
+    }
+  },
+  methods: {
+    handlerSignOut () {
+      localStorage.removeItem(SupportUtils.token)
+      router.push('/auth/login')
+    }
+  }
+})
 </script>
 
 <style scoped>

@@ -243,7 +243,7 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>${plugin.maven.checkstyle.version}</version>
                 <configuration>
-                    <configLocation>google_checks.xml</configLocation>
+                    <configLocation>configure/checks.xml</configLocation>
                 </configuration>
             </plugin>
             <plugin>
