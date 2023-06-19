@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faHome, faRightToBracket, faUserPlus, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faRightToBracket, faUserPlus, faUser, faSignOut } from '@fortawesome/free-solid-svg-icons'
 
 const createIcons = (app: any) => {
-  library.add(faHome, faRightToBracket, faUserPlus, faUser)
+  library.add(faHome, faRightToBracket, faUserPlus, faUser, faSignOut)
   app.component('font-awesome-icon', FontAwesomeIcon)
 }
 

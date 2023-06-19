@@ -51,23 +51,6 @@ export class UserService implements BaseService {
     }
 
     /**
-     * register user
-     * @param param user info
-     */
-    register(param: UserParam): Observable<CommonResponseModel> {
-        const options = HttpUtils.getDefaultRequestOptions();
-        return this.http.post(ApiConfig.API_USER_REGISTER, JSON.stringify(param), options)
-            .map(ResponseUtils.extractData);
-    }
-
-    /**
-     * logout
-     */
-    logout() {
-        CookieUtils.clear();
-    }
-
-    /**
      * save token
      * @param token token
      */

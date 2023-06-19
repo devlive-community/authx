@@ -32,6 +32,7 @@ import router from '@/router'
 export default {
   created () {
     localStorage.removeItem(SupportUtils.token)
+    localStorage.removeItem(SupportUtils.username)
   },
   methods: {
     handlerSubmit (valid: any, { username, password }: any) {
@@ -39,8 +40,10 @@ export default {
         AuthService.doAuth(username, password)
           .then(response => {
             if (response?.data.code === 2000) {
-              AuthService.saveAuth(response?.data?.data)
-              router.push('/')
+              AuthService.saveAuth(username, response?.data?.data)
+              setTimeout(() => {
+                router.push('/')
+              }, 200)
             }
           })
           .catch(error => {

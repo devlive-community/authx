@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 import { ResponseEntity } from '@/entity/ResponseEntity'
 import { Message } from 'view-ui-plus'
 import { ErrorValidationEntity } from '@/entity/ErrorValidationEntity'
@@ -9,7 +9,11 @@ import router from '@/router'
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
 
 export class HttpUtils {
-  private readonly options
+  private options = {
+    headers: {} || undefined,
+    cancelToken: undefined,
+    params: undefined
+  }
 
   constructor () {
     if (process.env.NODE_ENV === 'development') {
@@ -17,16 +21,15 @@ export class HttpUtils {
     } else {
       axios.defaults.baseURL = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '')
     }
+  }
+
+  doRefresh () {
     const token: string = localStorage.getItem(SupportUtils.token) as string
     const headers = {
       'Content-Type': 'application/json',
       Authorization: token ? `Bearer ${token}` : ''
     }
-    this.options = {
-      headers: headers,
-      cancelToken: undefined,
-      params: undefined
-    }
+    this.options.headers = headers
   }
 
   doAuth (url: string, username: string, password: string): Promise<any> {
@@ -76,6 +79,7 @@ export class HttpUtils {
 
   get (url: string, cancelToken?: any): Promise<ResponseEntity> {
     return new Promise((resolve) => {
+      this.doRefresh()
       this.options.cancelToken = cancelToken
       // @ts-ignore
       axios.get(url, this.options)

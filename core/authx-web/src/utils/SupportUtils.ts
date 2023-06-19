@@ -1,5 +1,7 @@
 const token = 'AuthToken'
+const username = 'AuthUserName'
 
 export default {
-  token: token
+  token: token,
+  username: username
 }

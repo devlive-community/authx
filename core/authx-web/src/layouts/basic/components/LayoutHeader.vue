@@ -12,6 +12,20 @@
         </div>
         <div class="layout-nav">
           <div v-if="isLogined">
+            <Dropdown placement="bottom-end">
+              <a href="javascript:void(0)">
+                <Avatar style="background-color: #87d068">
+                  {{ userInfo.name }}
+                </Avatar>
+              </a>
+              <template #list>
+                <DropdownMenu>
+                  <DropdownItem @click="handlerSignOut">
+                    <font-awesome-icon :icon="['fas', 'sign-out']"/> 退出
+                  </DropdownItem>
+                </DropdownMenu>
+              </template>
+            </Dropdown>
           </div>
           <div v-else>
             <MenuItem name="auth_login" to="/auth/login">
@@ -34,6 +48,8 @@ import { defineComponent } from 'vue'
 import AuthService from '@/services/user/AuthService'
 import UserService from '@/services/user/UserService'
 import { UserEntity } from '@/entity/UserEntity'
+import SupportUtils from '@/utils/SupportUtils'
+import router from '@/router'
 
 export default defineComponent({
   name: 'FastDocLayoutHeader',
@@ -42,19 +58,29 @@ export default defineComponent({
   },
   data () {
     return {
-      isLogined: false
+      isLogined: false,
+      userInfo: { name: '' }
     }
   },
   methods: {
     handlerInitialize () {
-      const auth: UserEntity = AuthService.getAuth()
+      const auth: string = AuthService.getAuth()
+      const username: string = AuthService.getAuthUserName()
       if (auth) {
         this.isLogined = true
-        UserService.getInfoByUserName('datacap')
+        UserService.getInfoByUserName(username)
           .then(response => {
-            console.log(response)
+            if (response.code === 2000) {
+              this.userInfo = response.data
+            } else {
+              this.userInfo.name = username
+            }
           })
       }
+    },
+    handlerSignOut () {
+      localStorage.removeItem(SupportUtils.token)
+      router.push('/auth/login')
     }
   }
 })

@@ -1,6 +1,5 @@
 import HttpUtils from '@/utils/HttpUtils'
 import SupportUtils from '@/utils/SupportUtils'
-import { UserEntity } from '@/entity/UserEntity'
 
 const baseUrl = '/oauth/token'
 
@@ -9,13 +8,17 @@ class AuthService {
     return HttpUtils.doAuth(baseUrl, username, password)
   }
 
-  saveAuth (token: any) {
+  saveAuth (username: string, token: string) {
+    localStorage.setItem(SupportUtils.username, username)
     localStorage.setItem(SupportUtils.token, token)
   }
 
-  getAuth (): UserEntity {
-    const token: UserEntity = JSON.parse(JSON.stringify(localStorage.getItem(SupportUtils.token) as string)) as UserEntity
-    return token
+  getAuth (): string {
+    return localStorage.getItem(SupportUtils.token) as string
+  }
+
+  getAuthUserName (): string {
+    return localStorage.getItem(SupportUtils.username) as string
   }
 }
 

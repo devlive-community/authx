@@ -1,9 +1,26 @@
 <template>
-  <Exception type="403"
-             back-text="返回登录"
-             redirect="/auth/login">
+  <Exception type="403">
+    <template #actions>
+      <Button type="primary"
+              @click="handlerGoLogin">
+        返回登录
+      </Button>
+    </template>
   </Exception>
 </template>
 <script>
-export default {}
+import router from '@/router'
+import SupportUtils from '@/utils/SupportUtils'
+
+export default {
+  methods: {
+    handlerGoLogin () {
+      localStorage.removeItem(SupportUtils.token)
+      localStorage.removeItem(SupportUtils.username)
+      setTimeout(() => {
+        router.push('/auth/login')
+      }, 100)
+    }
+  }
+}
 </script>
