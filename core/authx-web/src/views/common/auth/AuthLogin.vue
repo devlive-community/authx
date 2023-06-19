@@ -26,14 +26,22 @@
 <script lang="ts">
 import AuthService from '@/services/user/AuthService'
 import { Message } from 'view-ui-plus'
+import SupportUtils from '@/utils/SupportUtils'
+import router from '@/router'
 
 export default {
+  created () {
+    localStorage.removeItem(SupportUtils.token)
+  },
   methods: {
     handlerSubmit (valid: any, { username, password }: any) {
       if (valid) {
         AuthService.doAuth(username, password)
           .then(response => {
-            console.log(response?.data?.data)
+            if (response?.data.code === 2000) {
+              AuthService.saveAuth(response?.data?.data)
+              router.push('/')
+            }
           })
           .catch(error => {
             const message = error?.response ? error?.response?.data.message : error.message

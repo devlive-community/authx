@@ -1,4 +1,8 @@
 export class UserEntity {
-  username: string | undefined
-  password: string | undefined
+  username = ''
+  password = ''
+  // 转换 JWT
+  token?: string | undefined
+  type?: string | undefined
+  id?: number
 }

@@ -178,3 +178,5 @@ docs/site
 
 core/authx-web/yarn.lock
 core/authx-web/node_modules
+core/authx-web/node
+core/authx-web/dist

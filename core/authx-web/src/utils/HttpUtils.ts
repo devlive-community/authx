@@ -3,11 +3,13 @@ import { ResponseEntity } from '@/entity/ResponseEntity'
 import { Message } from 'view-ui-plus'
 import { ErrorValidationEntity } from '@/entity/ErrorValidationEntity'
 import MessageUtils from '@/utils/MessageUtils'
+import SupportUtils from '@/utils/SupportUtils'
+import router from '@/router'
 
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
 
 export class HttpUtils {
-  private configure
+  private readonly options
 
   constructor () {
     if (process.env.NODE_ENV === 'development') {
@@ -15,17 +17,12 @@ export class HttpUtils {
     } else {
       axios.defaults.baseURL = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '')
     }
-
-    const token = localStorage.getItem('AuthToken')
-
-    const headers = new Headers({
-      'Content-Type': 'application/json'
-    })
-    if (token) {
-      headers.append('Authorization', `Bearer ${token}`)
+    const token: string = localStorage.getItem(SupportUtils.token) as string
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: token ? `Bearer ${token}` : ''
     }
-
-    this.configure = {
+    this.options = {
       headers: headers,
       cancelToken: undefined,
       params: undefined
@@ -33,7 +30,7 @@ export class HttpUtils {
   }
 
   doAuth (url: string, username: string, password: string): Promise<any> {
-    const params = new URLSearchParams()
+    const params: URLSearchParams = new URLSearchParams()
     params.append('username', username)
     params.append('password', password)
     params.append('grant_type', 'password')
@@ -54,6 +51,10 @@ export class HttpUtils {
       if (instance) {
         MessageUtils.handlerError(response.data)
       } else {
+        // 当返回状态码为 4000 标志当前 token 无权限，重定向到未授权页面
+        if (response.code === 4000) {
+          router.push('/common/403')
+        }
         Message.error(response.message)
       }
     }
@@ -62,9 +63,22 @@ export class HttpUtils {
 
   post (url: string, data = {}, cancelToken?: any): Promise<ResponseEntity> {
     return new Promise((resolve) => {
-      this.configure.cancelToken = cancelToken
+      this.options.cancelToken = cancelToken
       // @ts-ignore
-      axios.post(url, data, this.configure)
+      axios.post(url, data, this.options)
+        .then(result => {
+          resolve(this.doResponse(result.data))
+        }, error => {
+          resolve(this.doResponse(error))
+        })
+    })
+  }
+
+  get (url: string, cancelToken?: any): Promise<ResponseEntity> {
+    return new Promise((resolve) => {
+      this.options.cancelToken = cancelToken
+      // @ts-ignore
+      axios.get(url, this.options)
         .then(result => {
           resolve(this.doResponse(result.data))
         }, error => {

@@ -2,9 +2,9 @@ package org.devlive.authx.common.enums;
 
 public enum SystemMessageEnums
 {
-    SYSTEM_SUCCESS(2000, "query success"),
-    SYSTEM_UNAUTHORIZED(4000, "Invalid access permissions, please contact administrator to assign permissions"),
-    SYSTEM_ERROR_TOKEN(4001, "this is a not active token"),
+    SYSTEM_SUCCESS(2000, "查询成功"),
+    SYSTEM_UNAUTHORIZED(4000, "访问权限无效，请联系管理员分配权限"),
+    SYSTEM_ERROR_TOKEN(4001, "无效的授权密钥"),
     SYSTEM_BAD_CREDENTIALS(4002, "错误的用户名或密码"),
     SYSTEM_PARAMS_VALIDATE_ERROR(4003, "param validation error, please check"),
     SYSTEM_BODY_MUST_NULL(4004, "required request body is missing"),

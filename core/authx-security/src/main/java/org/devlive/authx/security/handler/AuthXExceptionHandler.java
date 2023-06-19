@@ -21,7 +21,6 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 @Slf4j
 public class AuthXExceptionHandler
 {
-
     /**
      * POST validation error
      *

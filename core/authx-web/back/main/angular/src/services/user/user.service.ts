@@ -51,33 +51,6 @@ export class UserService implements BaseService {
     }
 
     /**
-     * login
-     * @param param user login info
-     */
-    login(param: UserLoginParam) {
-        Cookie.set(CommonConfig.AUTH_USER_NAME, param.username);
-        const params = HttpUtils.getParams();
-        params.append('username', param.username);
-        params.append('password', param.password);
-        params.append('grant_type', CommonConfig.AUTH_GRANT_TYPE);
-        params.append('client_id', CommonConfig.AUTH_CLIENT_ID);
-        const options = HttpUtils.getDefaultRequestOptionsByClient();
-        options.params = params;
-        return this.http.post(ApiConfig.AUTHORIZATION_API, param.toJson(), options)
-            .map(res => res.json())
-            .subscribe(
-                data => {
-                    this.saveToken(data);
-                    return true;
-                },
-                error => {
-                    CookieUtils.clearBy(CommonConfig.AUTH_USER_NAME);
-                    this.toastyService.error('Login failed, please check your user name or password.');
-                    return false;
-                });
-    }
-
-    /**
      * register user
      * @param param user info
      */

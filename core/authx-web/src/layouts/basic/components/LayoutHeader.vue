@@ -11,14 +11,18 @@
           </MenuItem>
         </div>
         <div class="layout-nav">
-          <MenuItem name="auth_login" to="/auth/login">
-            <font-awesome-icon :icon="['fas', 'right-to-bracket']"/>
-            登录
-          </MenuItem>
-          <MenuItem name="auth_login" to="/auth/register">
-            <font-awesome-icon :icon="['fas', 'user-plus']"/>
-            注册
-          </MenuItem>
+          <div v-if="isLogined">
+          </div>
+          <div v-else>
+            <MenuItem name="auth_login" to="/auth/login">
+              <font-awesome-icon :icon="['fas', 'right-to-bracket']"/>
+              登录
+            </MenuItem>
+            <MenuItem name="auth_login" to="/auth/register">
+              <font-awesome-icon :icon="['fas', 'user-plus']"/>
+              注册
+            </MenuItem>
+          </div>
         </div>
       </Menu>
     </Header>
@@ -26,9 +30,34 @@
 </template>
 
 <script lang="ts">
-export default {
-  name: 'FastDocLayoutHeader'
-}
+import { defineComponent } from 'vue'
+import AuthService from '@/services/user/AuthService'
+import UserService from '@/services/user/UserService'
+import { UserEntity } from '@/entity/UserEntity'
+
+export default defineComponent({
+  name: 'FastDocLayoutHeader',
+  created () {
+    this.handlerInitialize()
+  },
+  data () {
+    return {
+      isLogined: false
+    }
+  },
+  methods: {
+    handlerInitialize () {
+      const auth: UserEntity = AuthService.getAuth()
+      if (auth) {
+        this.isLogined = true
+        UserService.getInfoByUserName('datacap')
+          .then(response => {
+            console.log(response)
+          })
+      }
+    }
+  }
+})
 </script>
 
 <style scoped>

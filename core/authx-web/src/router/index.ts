@@ -28,16 +28,16 @@ const routes: Array<RouteRecordRaw> = [
     component: LayoutContainer,
     children: [
       {
+        name: '403',
+        path: '403',
+        component: () => import('@/views/common/code/PageForbidden.vue')
+      },
+      {
         name: '404',
         path: '404',
         component: () => import('@/views/common/code/PageNotFound.vue')
       }
     ]
-  },
-  {
-    path: '/about',
-    name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '@/views/AboutView.vue')
   }
 ]
 
@@ -46,7 +46,7 @@ const router = createRouter({
   routes
 })
 
-// 路由转换前增加特殊编码，404，403等页面处理
+// 路由转换前增加特殊编码，404，403 等页面处理
 router.beforeEach((to, from, next) => {
   if (to.matched.length === 0) {
     next({ name: '404' })
