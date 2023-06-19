@@ -4,22 +4,24 @@ import lombok.extern.slf4j.Slf4j;
 import org.devlive.authx.common.encryption.EncryptionShaUtils;
 import org.devlive.authx.common.enums.SystemMessageEnums;
 import org.devlive.authx.common.page.PageModel;
+import org.devlive.authx.param.UserBasicParam;
 import org.devlive.authx.param.page.PageParam;
-import org.devlive.authx.param.user.UserBasicParam;
 import org.devlive.authx.param.user.UserSetRoleParam;
 import org.devlive.authx.service.entity.RoleEntity;
+import org.devlive.authx.service.entity.UserEntity;
 import org.devlive.authx.service.entity.common.CommonResponseModel;
-import org.devlive.authx.service.entity.user.UserModel;
-import org.devlive.authx.service.service.user.UserService;
+import org.devlive.authx.service.service.UserService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -51,7 +53,7 @@ public class UserController
         if (!ObjectUtils.isEmpty(this.userService.getModelByName(param.getUsername()))) {
             return CommonResponseModel.error(SystemMessageEnums.SYSTEM_USER_EXISTS);
         }
-        UserModel user = new UserModel();
+        UserEntity user = new UserEntity();
         user.setName(param.getUsername());
         user.setPassword(EncryptionShaUtils.hash256(param.getPassword()));
         // default active this user
@@ -71,7 +73,7 @@ public class UserController
     @PutMapping(value = "role")
     public CommonResponseModel setRole(@RequestBody @Validated UserSetRoleParam param)
     {
-        UserModel user = (UserModel) this.userService.getModelById(Long.valueOf(param.getId()));
+        UserEntity user = (UserEntity) this.userService.getModelById(Long.valueOf(param.getId()));
         List<RoleEntity> roles = new ArrayList<>();
         param.getValues()
                 .forEach(roleId -> {
@@ -84,4 +86,9 @@ public class UserController
         return CommonResponseModel.success(this.userService.insertModel(user));
     }
 
+    @DeleteMapping
+    public CommonResponseModel delete(@RequestParam(value = "id") @Validated Long id)
+    {
+        return CommonResponseModel.success(this.userService.deleteById(id));
+    }
 }

@@ -28,7 +28,7 @@ import org.devlive.authx.param.page.PageParam;
 import org.devlive.authx.param.system.menu.SystemMenuCreateParam;
 import org.devlive.authx.service.service.system.menu.SystemMenuService;
 import org.devlive.authx.service.service.system.menu.SystemMenuTypeService;
-import org.devlive.authx.service.service.user.UserService;
+import org.devlive.authx.service.service.UserService;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;

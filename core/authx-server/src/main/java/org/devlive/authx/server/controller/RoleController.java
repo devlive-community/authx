@@ -13,11 +13,11 @@ import org.devlive.authx.service.entity.RoleEntity;
 import org.devlive.authx.service.entity.common.CommonResponseModel;
 import org.devlive.authx.service.entity.system.menu.SystemMenuModel;
 import org.devlive.authx.service.entity.system.menu.SystemMenuTypeModel;
-import org.devlive.authx.service.entity.user.UserModel;
+import org.devlive.authx.service.entity.UserEntity;
 import org.devlive.authx.service.service.RoleService;
 import org.devlive.authx.service.service.system.menu.SystemMenuService;
 import org.devlive.authx.service.service.system.role.SystemRoleSeniorService;
-import org.devlive.authx.service.service.user.UserService;
+import org.devlive.authx.service.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.ObjectUtils;
@@ -170,7 +170,7 @@ public class RoleController
     @GetMapping(value = "menu")
     public CommonResponseModel getMenu(@RequestParam Long id)
     {
-        UserModel user = (UserModel) this.userService.getDistinctById(id);
+        UserEntity user = (UserEntity) this.userService.getDistinctById(id);
         // TODO: 判断权限的等级
         return CommonResponseModel.success(this.systemRoleSeniorService.findMenuByIds(user.getRoles()));
     }

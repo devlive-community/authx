@@ -1,8 +1,8 @@
 package org.devlive.authx.security;
 
 import lombok.extern.slf4j.Slf4j;
-import org.devlive.authx.service.entity.user.UserModel;
-import org.devlive.authx.service.service.user.UserService;
+import org.devlive.authx.service.entity.UserEntity;
+import org.devlive.authx.service.service.UserService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -29,7 +29,7 @@ public class AuthXUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         // Encapsulating permission information
         List<GrantedAuthority> authorities = new ArrayList<>();
-        UserModel user = this.userService.getModelByName(s);
+        UserEntity user = this.userService.getModelByName(s);
         if (ObjectUtils.isEmpty(user)) {
             throw new UsernameNotFoundException(String.format("this user %s not found", s));
         }

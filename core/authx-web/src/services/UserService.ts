@@ -3,6 +3,7 @@ import { ResponseEntity } from '@/entity/ResponseEntity'
 import HttpUtils from '@/utils/HttpUtils'
 import { PageEntity } from '@/entity/PageEntity'
 import { AssignRoleEntity } from '@/entity/RoleEntity'
+import { UserEntity } from '@/entity/UserEntity'
 
 const baseUrl = '/api/v1/user'
 
@@ -25,6 +26,10 @@ export class UserService extends BaseService<ResponseEntity> {
 
   assignRole (configure: AssignRoleEntity): Promise<ResponseEntity> {
     return HttpUtils.put(`${baseUrl}/role`, configure)
+  }
+
+  delete (configure: UserEntity): Promise<ResponseEntity> {
+    return HttpUtils.delete(`${baseUrl}?id=${configure.id}`)
   }
 }
 

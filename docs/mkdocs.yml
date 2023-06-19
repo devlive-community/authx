@@ -98,6 +98,8 @@ markdown_extensions:
 
 nav:
   - index.md
+  - 系统管理:
+      - docs/system/user/index.md
   - 发布日志:
       - 1.0.5: changelog/20191115-1.0.5.md
       - 1.0.4: changelog/20190617-1.0.4.md

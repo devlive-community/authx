@@ -58,12 +58,30 @@ hide:
 AuthX 是一个简单、易用的开源权限管理平台
 </p>
 
-<div style="max-width: 800px; margin: 0 auto" class="grid cards" markdown>
+<div style="max-width: 70%; margin: 0 auto" class="grid cards" markdown>
 
-- __构建中__
+- __快速开发__
 
     ---
 
-    构建中
+    基于平台快速开发产品，提升开发效率，达到快速交付要求。
+
+- __社区互动__
+
+    ---
+
+    开发中遇到问题可以在社区提问，能快速找到帮助。
+
+- __开发文档__
+
+    ---
+
+    产品附带有完善的二次开发文档，文档将不断更新。
+
+- __代码质量__
+
+    ---
+
+    简洁、易懂，代码规范要求，可作为企业代码规范。
 
 </div>

@@ -3,8 +3,17 @@
     <Table :loading="loading"
            :columns="headers"
            :data="data?.content">
+      <template #avatar="{ row }">
+        <Avatar v-if="row.avatar"
+                :src="row.avatar">
+        </Avatar>
+        <Avatar v-else>
+          {{ row.name }}
+        </Avatar>
+      </template>
       <template #permission="{ row }">
         <Tooltip v-for="role in row.roles"
+                 transfer
                  v-bind:key="role.name"
                  :content="role.description">
           <Tag color="primary">
@@ -12,15 +21,32 @@
           </Tag>
         </Tooltip>
       </template>
+      <template #active="{ row }">
+        <Switch v-model="row.active"
+                disabled>
+        </Switch>
+      </template>
       <template #action="{ row }">
-        <Button type="primary"
-                size="small"
-                shape="circle"
-                @click="handlerAssignRole( true, row)">
-          <Tooltip content="分配权限">
-            <font-awesome-icon :icon="['fas', 'location-arrow']"/>
-          </Tooltip>
-        </Button>
+        <Space>
+          <Button type="primary"
+                  size="small"
+                  shape="circle"
+                  @click="handlerAssignRole(true, row)">
+            <Tooltip content="分配权限"
+                     transfer>
+              <font-awesome-icon :icon="['fas', 'location-arrow']"/>
+            </Tooltip>
+          </Button>
+          <Button type="error"
+                  size="small"
+                  shape="circle"
+                  @click="handlerDeleteUser(true, row)">
+            <Tooltip content="删除用户"
+                     transfer>
+              <font-awesome-icon :icon="['fas', 'trash']"/>
+            </Tooltip>
+          </Button>
+        </Space>
       </template>
     </Table>
     <Page v-if="data?.content"
@@ -39,6 +65,11 @@
                     :info="assignRole.info"
                     @close="handlerAssignRole(false, null)">
     </UserAssignRole>
+    <UserDelete v-if="deleteUser.visible"
+                :is-visible="deleteUser.visible"
+                :info="deleteUser.info"
+                @close="handlerDeleteUser(false, null)">
+    </UserDelete>
   </div>
 </template>
 <script lang="ts">
@@ -48,10 +79,11 @@ import UserService from '@/services/UserService'
 import UserUtils from '@/views/user/UserUtils'
 import UserAssignRole from '@/views/user/components/UserAssignRole.vue'
 import { UserEntity } from '@/entity/UserEntity'
+import UserDelete from '@/views/user/components/UserDelete.vue'
 
 export default defineComponent({
   name: 'UserView',
-  components: { UserAssignRole },
+  components: { UserDelete, UserAssignRole },
   created () {
     this.page = new PageEntity()
     this.handlerInitialize()
@@ -63,6 +95,10 @@ export default defineComponent({
       headers: UserUtils.headers,
       data: null as unknown as PageResponseEntity,
       assignRole: {
+        visible: false,
+        info: null as unknown as UserEntity
+      },
+      deleteUser: {
         visible: false,
         info: null as unknown as UserEntity
       }
@@ -90,6 +126,13 @@ export default defineComponent({
     handlerAssignRole (value: boolean, info?: UserEntity) {
       this.assignRole.info = info as UserEntity
       this.assignRole.visible = value
+      if (value === false) {
+        this.handlerInitialize()
+      }
+    },
+    handlerDeleteUser (value: boolean, info?: UserEntity) {
+      this.deleteUser.info = info as UserEntity
+      this.deleteUser.visible = value
       if (value === false) {
         this.handlerInitialize()
       }

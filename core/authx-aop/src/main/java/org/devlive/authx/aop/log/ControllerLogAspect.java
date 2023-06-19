@@ -24,11 +24,11 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.devlive.authx.service.entity.system.interfaces.SystemInterfaceModel;
 import org.devlive.authx.service.entity.system.method.SystemMethodModel;
-import org.devlive.authx.service.entity.user.UserModel;
+import org.devlive.authx.service.entity.UserEntity;
 import org.devlive.authx.service.service.system.interfaces.SystemInterfaceService;
 import org.devlive.authx.service.service.system.log.SystemLogService;
 import org.devlive.authx.service.service.system.method.SystemMethodService;
-import org.devlive.authx.service.service.user.UserService;
+import org.devlive.authx.service.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
@@ -73,7 +73,7 @@ public class ControllerLogAspect {
         // 接收到请求，记录请求内容
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
-        UserModel user = null;
+        UserEntity user = null;
         if (!ObjectUtils.isEmpty(request.getUserPrincipal())) {
             // TODO: 后期加入到懒缓冲中
             user = this.userService.getModelByName(request.getUserPrincipal().getName());
@@ -84,7 +84,7 @@ public class ControllerLogAspect {
             if (!ObjectUtils.isEmpty(systemMethodModel)) {
                 SystemInterfaceModel systemInterfaceModel = this.systemInterfaceService.getByPathAndMethodsIn(request.getServletPath(), systemMethodModel);
                 if (!ObjectUtils.isEmpty(systemInterfaceModel)) {
-                    user = (UserModel) this.userService.getModelById(1L);
+                    user = (UserEntity) this.userService.getModelById(1L);
                 }
             }
         }
