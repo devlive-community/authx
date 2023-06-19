@@ -12,6 +12,12 @@ export default {
     return {
       links: [
         {
+          key: '文档',
+          title: '文档',
+          href: 'https://authx.devlive.org',
+          blankTarget: true
+        },
+        {
           key: 'github',
           icon: 'logo-github',
           href: 'https://github.com/devlive-community/authx',

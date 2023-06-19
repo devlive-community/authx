@@ -124,7 +124,7 @@ export default {
         UserService.saveOrUpdate(user)
           .then(response => {
             if (response.code === 2000) {
-              Message.success(response)
+              Message.success('注册成功')
             }
           })
       }

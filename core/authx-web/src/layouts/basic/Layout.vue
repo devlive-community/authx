@@ -1,8 +1,10 @@
 <template>
   <div>
     <Layout>
-      <FastDocLayoutHeader>
-      </FastDocLayoutHeader>
+      <Affix>
+        <FastDocLayoutHeader>
+        </FastDocLayoutHeader>
+      </Affix>
       <Layout :style="{padding: '0'}">
         <FastDocLayoutContent>
         </FastDocLayoutContent>
