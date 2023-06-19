@@ -3,6 +3,14 @@
     <Table :loading="loading"
            :columns="headers"
            :data="data?.content">
+      <template #avatar="{ row }">
+        <Avatar v-if="row.avatar"
+                :src="row.avatar">
+        </Avatar>
+        <Avatar v-else>
+          {{ row.name }}
+        </Avatar>
+      </template>
       <template #permission="{ row }">
         <Tooltip v-for="role in row.roles"
                  transfer
@@ -12,6 +20,11 @@
             {{ role.name }}
           </Tag>
         </Tooltip>
+      </template>
+      <template #active="{ row }">
+        <Switch v-model="row.active"
+                disabled>
+        </Switch>
       </template>
       <template #action="{ row }">
         <Space>
