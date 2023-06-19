@@ -15,6 +15,7 @@ public enum SystemMessageEnums
     SYSTEM_USER_EXISTS(4009, "user exists, please replace user name"),
     SYSTEM_METHOD_NOT_SUPPORT(4010, "request method not supported"),
     SYSTEM_PARAMS_NOT_NULL(4011, "params must not null"),
+    SYSTEM_PERSISTENCE(4012, "数据持久化异常，异常信息：%s"),
 
     SYSTEM_JSON_ERROR(4100, "source not a valid json data");
 
@@ -30,6 +31,11 @@ public enum SystemMessageEnums
     public String getValue()
     {
         return value;
+    }
+
+    public void setValue(String value)
+    {
+        this.value = value;
     }
 
     public Integer getCode()

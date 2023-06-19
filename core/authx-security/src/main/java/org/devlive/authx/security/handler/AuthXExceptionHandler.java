@@ -1,8 +1,10 @@
 package org.devlive.authx.security.handler;
 
+import lombok.extern.slf4j.Slf4j;
 import org.devlive.authx.common.enums.SystemMessageEnums;
 import org.devlive.authx.common.validation.ValidationUtils;
 import org.devlive.authx.service.entity.common.CommonResponseModel;
+import org.hibernate.HibernateException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
@@ -16,7 +18,9 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 
 @ControllerAdvice
 @ResponseBody
-public class AuthXExceptionHandler {
+@Slf4j
+public class AuthXExceptionHandler
+{
 
     /**
      * POST validation error
@@ -25,7 +29,8 @@ public class AuthXExceptionHandler {
      * @return error result
      */
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    public Object methodArgumentNotValidHandler(MethodArgumentNotValidException exception) {
+    public Object methodArgumentNotValidHandler(MethodArgumentNotValidException exception)
+    {
         return CommonResponseModel.validateError(ValidationUtils.extractValidate(exception.getBindingResult()));
     }
 
@@ -36,7 +41,8 @@ public class AuthXExceptionHandler {
      * @return error result
      */
     @ExceptionHandler(value = BindException.class)
-    public Object methodArgumentNotValidHandler(BindException exception) {
+    public Object methodArgumentNotValidHandler(BindException exception)
+    {
         return CommonResponseModel.validateError(ValidationUtils.extractValidate(exception.getBindingResult()));
     }
 
@@ -47,7 +53,8 @@ public class AuthXExceptionHandler {
      * @return error result
      */
     @ExceptionHandler(value = HttpMessageNotReadableException.class)
-    public Object methodHttpMessageNotReadableException(HttpMessageNotReadableException exception) {
+    public Object methodHttpMessageNotReadableException(HttpMessageNotReadableException exception)
+    {
         return CommonResponseModel.error(SystemMessageEnums.SYSTEM_BODY_MUST_NULL, exception.getMessage());
     }
 
@@ -58,22 +65,37 @@ public class AuthXExceptionHandler {
      * @return error result
      */
     @ExceptionHandler(value = HttpMediaTypeNotSupportedException.class)
-    public Object methodHttpMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException exception) {
+    public Object methodHttpMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException exception)
+    {
         return CommonResponseModel.error(SystemMessageEnums.SYSTEM_MEDIA_TYPE_NOT_SUPPORT, exception.getMessage());
     }
 
     @ExceptionHandler(value = MethodArgumentTypeMismatchException.class)
-    public Object methodMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException exception) {
+    public Object methodMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException exception)
+    {
         return CommonResponseModel.error(SystemMessageEnums.SYSTEM_METHOD_CONVERT_NOT_SUPPORT, exception.getMessage());
     }
 
     @ExceptionHandler(value = MissingServletRequestParameterException.class)
-    public Object methodMissingServletRequestParameterException(MissingServletRequestParameterException exception) {
+    public Object methodMissingServletRequestParameterException(MissingServletRequestParameterException exception)
+    {
         return CommonResponseModel.error(SystemMessageEnums.SYSTEM_PARAM_MUST_NULL, exception.getMessage());
     }
 
     @ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
-    public Object methodHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException exception) {
+    public Object methodHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException exception)
+    {
         return CommonResponseModel.error(SystemMessageEnums.SYSTEM_METHOD_NOT_SUPPORT, exception.getMessage());
+    }
+
+    /**
+     * 数据库保存错误处理
+     */
+    @ExceptionHandler(value = HibernateException.class)
+    public Object methodHibernateException(HibernateException exception)
+    {
+        log.error("Hibernate Exception: {}", exception);
+        SystemMessageEnums.SYSTEM_PERSISTENCE.setValue(String.format(SystemMessageEnums.SYSTEM_PERSISTENCE.getValue(), exception.getMessage()));
+        return CommonResponseModel.error(SystemMessageEnums.SYSTEM_PERSISTENCE);
     }
 }

@@ -1,4 +1,4 @@
-import HttpClient from '@/commons/HttpClient'
+import HttpUtils from '@/utils/HttpUtils'
 import { ResponseEntity } from '@/entity/ResponseEntity'
 
 export abstract class BaseService<T> {
@@ -9,6 +9,6 @@ export abstract class BaseService<T> {
   }
 
   saveOrUpdate<T> (configure: T): Promise<ResponseEntity> {
-    return HttpClient.post(this.baseUrl, configure)
+    return HttpUtils.post(this.baseUrl, configure)
   }
 }

@@ -57,6 +57,6 @@ public interface UserRepository extends PagingAndSortingRepository<UserModel, Lo
      * @param pageable 分页查询信息
      * @return 所有的非系统用户信息
      */
-    Page<UserModel> findAllBySystemedFalse(Pageable pageable);
+    Page<UserModel> findAllByIsSystemIsFalse(Pageable pageable);
 
 }

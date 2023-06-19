@@ -17,17 +17,25 @@
  */
 package org.devlive.authx.service.entity.user;
 
-import org.devlive.authx.service.entity.system.role.SystemRoleModel;
-import org.devlive.authx.service.entity.BaseModel;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.devlive.authx.service.entity.BaseModel;
+import org.devlive.authx.service.entity.system.role.SystemRoleModel;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import java.util.List;
 
 /**
@@ -49,7 +57,8 @@ import java.util.List;
 @JsonIgnoreProperties(value = {
         "password",
 })
-public class UserModel extends BaseModel {
+public class UserModel extends BaseModel
+{
 
     @Column(name = "password")
     private String password; // 密码
@@ -63,13 +72,12 @@ public class UserModel extends BaseModel {
     @Column(name = "locked")
     private Boolean locked = false; // 是否锁定
 
-    @Column(name = "systemed")
-    private Boolean systemed = false; // 是否为系统默认,系统默认用户无法做任何操作
+    @Column(name = "is_system")
+    private Boolean isSystem = false; // 是否为系统默认,系统默认用户无法做任何操作
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_system_role_relation",
             joinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "system_role_id", referencedColumnName = "id"))
     private List<SystemRoleModel> roles;
-
 }

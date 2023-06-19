@@ -1,8 +1,12 @@
 import axios from 'axios'
+import { ResponseEntity } from '@/entity/ResponseEntity'
+import { Message } from 'view-ui-plus'
+import { ErrorValidationEntity } from '@/entity/ErrorValidationEntity'
+import MessageUtils from '@/utils/MessageUtils'
 
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
 
-export class HttpClient {
+export class HttpUtils {
   private configure
 
   constructor () {
@@ -44,18 +48,30 @@ export class HttpClient {
     return axios.post(url, JSON.stringify({ username: username, password: password }), options)
   }
 
-  post (url: string, data = {}, cancelToken?: any): Promise<any> {
+  doResponse (response: ResponseEntity): ResponseEntity {
+    if (response.code > 2000) {
+      const instance = response.data as ErrorValidationEntity
+      if (instance) {
+        MessageUtils.handlerError(response.data)
+      } else {
+        Message.error(response.message)
+      }
+    }
+    return response
+  }
+
+  post (url: string, data = {}, cancelToken?: any): Promise<ResponseEntity> {
     return new Promise((resolve) => {
       this.configure.cancelToken = cancelToken
       // @ts-ignore
       axios.post(url, data, this.configure)
         .then(result => {
-          resolve(result)
+          resolve(this.doResponse(result.data))
         }, error => {
-          resolve(error)
+          resolve(this.doResponse(error))
         })
     })
   }
 }
 
-export default new HttpClient()
+export default new HttpUtils()

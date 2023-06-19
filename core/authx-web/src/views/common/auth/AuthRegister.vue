@@ -54,7 +54,7 @@
 <script lang="ts">
 import { UserEntity } from '@/entity/UserEntity'
 import UserService from '@/services/user/UserService'
-import MessageCommon from '@/commons/MessageCommon'
+import { Message } from 'view-ui-plus'
 
 export default {
   data () {
@@ -123,13 +123,9 @@ export default {
         user.password = password
         UserService.saveOrUpdate(user)
           .then(response => {
-            const value = response.data
-            if (value.code > 2000) {
-              MessageCommon.handlerError(value.data)
+            if (response.code === 2000) {
+              Message.success(response)
             }
-          })
-          .catch(error => {
-            console.log(error)
           })
       }
     }
