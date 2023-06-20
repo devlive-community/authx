@@ -4,7 +4,7 @@ import org.devlive.authx.common.page.PageModel;
 import org.devlive.authx.service.entity.UserEntity;
 import org.devlive.authx.service.repository.user.UserRepository;
 import org.devlive.authx.service.service.ServiceSupport;
-import org.devlive.authx.service.service.UserService;
+import org.devlive.authx.service.service.UserIService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -13,11 +13,11 @@ import org.springframework.util.ObjectUtils;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService
+public class UserIServiceImpl implements UserIService
 {
     private final UserRepository repository;
 
-    public UserServiceImpl(UserRepository repository)
+    public UserIServiceImpl(UserRepository repository)
     {
         this.repository = repository;
     }

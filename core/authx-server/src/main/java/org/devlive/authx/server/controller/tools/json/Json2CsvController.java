@@ -18,7 +18,7 @@
 package org.devlive.authx.server.controller.tools.json;
 
 import org.devlive.authx.service.entity.common.CommonResponseModel;
-import org.devlive.authx.service.service.json.Json2CsvService;
+import org.devlive.authx.service.service.json.Json2CsvIService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,7 +40,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class Json2CsvController {
 
     @Autowired
-    private Json2CsvService json2CsvService;
+    private Json2CsvIService json2CsvService;
 
     @PostMapping
     public CommonResponseModel postFormatPretty(@RequestBody String body) {

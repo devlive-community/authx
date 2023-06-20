@@ -15,13 +15,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.devlive.authx.service.service.icon.impl;
+package org.devlive.authx.service.service.system.log.impl;
 
 import org.devlive.authx.common.page.PageModel;
-import org.devlive.authx.service.entity.icon.IconTypeModel;
-import org.devlive.authx.service.repository.icon.IconTypeRepository;
+import org.devlive.authx.service.entity.system.log.SystemLogModel;
+import org.devlive.authx.service.repository.system.log.SystemLogRepository;
 import org.devlive.authx.service.service.ServiceSupport;
-import org.devlive.authx.service.service.icon.IconTypeService;
+import org.devlive.authx.service.service.system.log.SystemLogIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -29,23 +29,23 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 /**
- * <p> IconTypeServiceImpl </p>
- * <p> Description : IconTypeServiceImpl </p>
+ * <p> SystemLogTypeServiceImpl </p>
+ * <p> Description : SystemLogTypeServiceImpl </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-05-08 17:51 </p>
+ * <p> Create Time : 2019-05-07 14:31 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@Service(value = "iconTypeService")
-public class IconTypeServiceImpl implements IconTypeService {
+@Service(value = "systemLogService")
+public class SystemLogIServiceImpl implements SystemLogIService
+{
 
     @Autowired
-    private IconTypeRepository repository;
+    private SystemLogRepository systemLogRepository;
 
     @Override
-    public Long insertModel(Object model) {
-        IconTypeModel source = (IconTypeModel) model;
-        IconTypeModel user = this.repository.save(source);
+    public Long insertModel(SystemLogModel model) {
+        SystemLogModel user = this.systemLogRepository.save(model);
         if (!ObjectUtils.isEmpty(user)) {
             return user.getId();
         }
@@ -53,19 +53,19 @@ public class IconTypeServiceImpl implements IconTypeService {
     }
 
     @Override
-    public Object getModelById(Long id) {
-        return this.repository.findById(id);
+    public SystemLogModel getModelById(Long id) {
+        return this.systemLogRepository.findById(id).orElseGet(null);
     }
 
     @Override
     public PageModel getAllByPage(Pageable pageable) {
-        Page<IconTypeModel> pageModel = this.repository.findAll(pageable);
+        Page<SystemLogModel> pageModel = this.systemLogRepository.findAll(pageable);
         return new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements());
     }
 
     @Override
     public long getCount() {
-        return this.repository.count();
+        return this.systemLogRepository.count();
     }
 
 }

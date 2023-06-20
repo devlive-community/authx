@@ -1,4 +1,4 @@
-package org.devlive.authx.service.service.json; /**
+package org.devlive.authx.service.service.system.method; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -16,33 +16,26 @@ package org.devlive.authx.service.service.json; /**
  * limitations under the License.
  */
 
-import org.devlive.authx.service.entity.common.CommonResponseModel;
-import org.devlive.authx.service.service.BaseService;
+import org.devlive.authx.service.entity.system.method.SystemMethodModel;
+import org.devlive.authx.service.service.BaseIService;
 
 /**
- * <p> JsonService </p>
- * <p> Description : JsonService </p>
+ * <p> SystemMethodService </p>
+ * <p> Description : SystemMethodService </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-05-21 18:35 </p>
+ * <p> Create Time : 2019-04-24 14:21 </p>
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface JsonService extends BaseService {
+public interface SystemMethodIService extends BaseIService
+{
 
     /**
-     * 格式化json数据
+     * get info by method
      *
-     * @param source json元数据
-     * @return 格式化后的json数据
+     * @param method method
+     * @return info
      */
-    CommonResponseModel formatPretty(String source);
-
-    /**
-     * 压缩json数据
-     *
-     * @param source json元数据
-     * @return 压缩后的json数据
-     */
-    CommonResponseModel compression(String source);
+    SystemMethodModel getByMethod(String method);
 
 }

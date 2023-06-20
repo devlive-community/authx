@@ -19,7 +19,7 @@ package org.devlive.authx.service.service.system.menu; /**
 import org.devlive.authx.common.page.PageModel;
 import org.devlive.authx.service.entity.system.menu.SystemMenuModel;
 import org.devlive.authx.service.entity.system.menu.SystemMenuTypeModel;
-import org.devlive.authx.service.service.BaseService;
+import org.devlive.authx.service.service.BaseIService;
 import org.springframework.data.domain.Pageable;
 
 /**
@@ -30,7 +30,8 @@ import org.springframework.data.domain.Pageable;
  * <p> Create Time : 2019-01-26 15:40 </p>
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface SystemMenuService extends BaseService {
+public interface SystemMenuIService extends BaseIService
+{
 
     /**
      * get all model by parent

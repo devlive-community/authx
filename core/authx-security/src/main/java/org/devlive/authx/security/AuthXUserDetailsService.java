@@ -2,7 +2,7 @@ package org.devlive.authx.security;
 
 import lombok.extern.slf4j.Slf4j;
 import org.devlive.authx.service.entity.UserEntity;
-import org.devlive.authx.service.service.UserService;
+import org.devlive.authx.service.service.UserIService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -19,9 +19,9 @@ import java.util.List;
 @Slf4j
 public class AuthXUserDetailsService implements UserDetailsService {
 
-    private final UserService userService;
+    private final UserIService userService;
 
-    public AuthXUserDetailsService(UserService userService) {
+    public AuthXUserDetailsService(UserIService userService) {
         this.userService = userService;
     }
 

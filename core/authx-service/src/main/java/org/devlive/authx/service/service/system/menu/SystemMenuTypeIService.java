@@ -1,4 +1,4 @@
-package org.devlive.authx.service.service.system.method; /**
+package org.devlive.authx.service.service.system.menu; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -16,25 +16,17 @@ package org.devlive.authx.service.service.system.method; /**
  * limitations under the License.
  */
 
-import org.devlive.authx.service.entity.system.method.SystemMethodModel;
-import org.devlive.authx.service.service.BaseService;
+import org.devlive.authx.service.service.BaseIService;
 
 /**
- * <p> SystemMethodService </p>
- * <p> Description : SystemMethodService </p>
+ * <p> SystemMenuTypeService </p>
+ * <p> Description : SystemMenuTypeService </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-04-24 14:21 </p>
+ * <p> Create Time : 2019-01-26 15:39 </p>
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface SystemMethodService extends BaseService {
-
-    /**
-     * get info by method
-     *
-     * @param method method
-     * @return info
-     */
-    SystemMethodModel getByMethod(String method);
+public interface SystemMenuTypeIService extends BaseIService
+{
 
 }

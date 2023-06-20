@@ -23,7 +23,7 @@ import org.devlive.authx.param.system.log.SystemLogTypeCreateParam;
 import org.devlive.authx.param.system.log.SystemLogTypeSetParam;
 import org.devlive.authx.service.entity.common.CommonResponseModel;
 import org.devlive.authx.service.entity.system.log.SystemLogTypeModel;
-import org.devlive.authx.service.service.system.log.SystemLogService;
+import org.devlive.authx.service.service.system.log.SystemLogIService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -43,7 +43,7 @@ import org.springframework.web.bind.annotation.*;
 public class SystemLogController {
 
     @Autowired
-    private SystemLogService systemLogService;
+    private SystemLogIService systemLogService;
 
 //    @Autowired
 //    private SystemLogToMongoDbService mongoDbService;

@@ -2,7 +2,6 @@ package org.devlive.authx.service.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -27,9 +26,9 @@ import java.util.List;
 @Entity
 @EntityListeners(value = AuditingEntityListener.class)
 @Table(name = "authx_role")
-@JsonIgnoreProperties(value = {
-        "menus"
-})
+@JsonIgnoreProperties(
+        ignoreUnknown = true,
+        value = {"menus"})
 public class RoleEntity extends BaseEntity
 {
     @Column(name = "code")

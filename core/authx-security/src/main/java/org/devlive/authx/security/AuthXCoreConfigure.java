@@ -1,7 +1,7 @@
 package org.devlive.authx.security;
 
 import org.devlive.authx.security.authorization.AuthXOauth2Support;
-import org.devlive.authx.service.service.UserService;
+import org.devlive.authx.service.service.UserIService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -25,9 +25,9 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class AuthXCoreConfigure extends WebSecurityConfigurerAdapter {
 
-    private final UserService userService;
+    private final UserIService userService;
 
-    public AuthXCoreConfigure(UserService userService) {
+    public AuthXCoreConfigure(UserIService userService) {
         this.userService = userService;
     }
 

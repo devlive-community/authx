@@ -18,25 +18,26 @@
 package org.devlive.authx.service.service.json.impl;
 
 import org.devlive.authx.common.enums.SystemMessageEnums;
-import org.devlive.authx.common.json.JsonParseUtils;
+import org.devlive.authx.common.json.JsonUtils;
 import org.devlive.authx.common.json.JsonValidateUtils;
-import org.devlive.authx.common.office.CsvUtils;
 import org.devlive.authx.common.page.PageModel;
 import org.devlive.authx.service.entity.common.CommonResponseModel;
-import org.devlive.authx.service.service.json.Json2CsvService;
+import org.devlive.authx.service.service.json.JsonIService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 /**
- * <p> Json2CsvServiceImpl </p>
- * <p> Description : Json2CsvServiceImpl </p>
+ * <p> JsonServiceImpl </p>
+ * <p> Description : JsonServiceImpl </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-06-17 19:23 </p>
+ * <p> Create Time : 2019-05-21 18:36 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@Service(value = "json2CsvService")
-public class Json2CsvServiceImpl implements Json2CsvService {
+@Service(value = "jsonService")
+public class JsonIServiceImpl implements JsonIService
+{
 
     @Override
     public Long insertModel(Object model) {
@@ -54,16 +55,37 @@ public class Json2CsvServiceImpl implements Json2CsvService {
     }
 
     @Override
+    public CommonResponseModel formatPretty(String source) {
+        CommonResponseModel response = this.validate(source);
+        if (!ObjectUtils.isEmpty(response)) {
+            return response;
+        }
+        return CommonResponseModel.success(JsonUtils.formatPretty(source));
+    }
+
+    @Override
+    public CommonResponseModel compression(String source) {
+        CommonResponseModel response = this.validate(source);
+        if (!ObjectUtils.isEmpty(response)) {
+            return response;
+        }
+        return CommonResponseModel.success(JsonUtils.compression(source));
+    }
+
+    @Override
     public long getCount() {
         return 0;
     }
 
-    @Override
-    public CommonResponseModel toCSV(String json) {
-        if (!JsonValidateUtils.isJSON(json)) {
+    private CommonResponseModel validate(String source) {
+        CommonResponseModel response = CommonResponseModel.validateCheck(source);
+        if (!ObjectUtils.isEmpty(response)) {
+            return response;
+        }
+        if (!JsonValidateUtils.isJSON(source)) {
             return CommonResponseModel.error(SystemMessageEnums.SYSTEM_JSON_ERROR);
         }
-        return CommonResponseModel.success(CsvUtils.getCSV(JsonParseUtils.parseJson(json)));
+        return null;
     }
 
 }

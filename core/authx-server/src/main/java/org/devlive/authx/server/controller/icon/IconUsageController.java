@@ -24,7 +24,7 @@ import org.devlive.authx.common.page.PageModel;
 import org.devlive.authx.param.icon.IconUsageCreateParam;
 import org.devlive.authx.param.icon.IconUsageSetParam;
 import org.devlive.authx.param.page.PageParam;
-import org.devlive.authx.service.service.icon.IconUsageService;
+import org.devlive.authx.service.service.icon.IconUsageIService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +46,7 @@ import org.springframework.web.bind.annotation.*;
 public class IconUsageController {
 
     @Autowired
-    private IconUsageService service;
+    private IconUsageIService service;
 
     @GetMapping
     public CommonResponseModel getAll(@Validated PageParam param) {

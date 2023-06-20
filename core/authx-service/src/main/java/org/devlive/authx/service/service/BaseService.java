@@ -1,64 +1,35 @@
 package org.devlive.authx.service.service;
-/**
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 import org.devlive.authx.common.page.PageModel;
+import org.devlive.authx.service.entity.UserEntity;
+import org.devlive.authx.service.entity.common.CommonResponseModel;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
-/**
- * <p> BaseService </p>
- * <p> Description : BaseService </p>
- * <p> Author : qianmoQ </p>
- * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-02-12 14:38 </p>
- * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
- */
-public interface BaseService<T> {
+public interface BaseService<T>
+{
+    /**
+     * 根据分页获取数据
+     *
+     * @param pageable 分页配置
+     * @return 当前配置数据结果集
+     */
+    default CommonResponseModel<T> findAllByPage(PagingAndSortingRepository repository, Pageable pageable)
+    {
+        Page<UserEntity> pageModel = repository.findAll(pageable);
+        return CommonResponseModel.success(new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements()));
+    }
 
     /**
-     * add model
+     * 保存 & 修改数据
      *
-     * @param model model info
-     * @return insert count
+     * @param repository 用于操作处理数据的执行器
+     * @param configure  需要处理的实际数据
+     * @return 最终处理结果
      */
-    Long insertModel(T model);
-
-    /**
-     * get model by id
-     *
-     * @param id model id
-     * @return model
-     */
-    T getModelById(Long id);
-
-    /**
-     * get all model by page
-     *
-     * @param pageable page info
-     * @return all model for page
-     */
-    PageModel<T> getAllByPage(Pageable pageable);
-
-    /**
-     * 获取数据总数
-     *
-     * @return 数据总数
-     */
-    long getCount();
-
+    default CommonResponseModel<T> saveOrUpdate(PagingAndSortingRepository repository, T configure)
+    {
+        return CommonResponseModel.success(repository.save(configure));
+    }
 }

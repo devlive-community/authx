@@ -1,29 +1,23 @@
 package org.devlive.authx.server.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.devlive.authx.common.pinyin.PinYinUtils;
 import org.devlive.authx.param.RoleSetMenuParam;
 import org.devlive.authx.param.common.CommonMenuAndRoleParam;
-import org.devlive.authx.param.page.PageParam;
-import org.devlive.authx.param.system.role.SystemRoleBasicParam;
 import org.devlive.authx.param.system.role.SystemRoleMenuParam;
-import org.devlive.authx.param.system.role.SystemRoleSetParam;
-import org.devlive.authx.server.support.ParamSupport;
 import org.devlive.authx.service.entity.RoleEntity;
 import org.devlive.authx.service.entity.UserEntity;
 import org.devlive.authx.service.entity.common.CommonResponseModel;
 import org.devlive.authx.service.entity.system.menu.SystemMenuModel;
 import org.devlive.authx.service.entity.system.menu.SystemMenuTypeModel;
+import org.devlive.authx.service.repository.RoleRepository;
 import org.devlive.authx.service.service.RoleService;
-import org.devlive.authx.service.service.UserService;
-import org.devlive.authx.service.service.system.menu.SystemMenuService;
+import org.devlive.authx.service.service.UserIService;
+import org.devlive.authx.service.service.system.menu.SystemMenuIService;
 import org.devlive.authx.service.service.system.role.SystemRoleSeniorService;
 import org.springframework.beans.BeanUtils;
-import org.springframework.data.domain.Pageable;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,69 +33,34 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "api/v1/role")
 @Slf4j
 public class RoleController
+        extends BaseController<RoleEntity>
 {
 
-    private final RoleService systemRoleService;
+    private final RoleRepository repository;
+    private final RoleService service;
     private final SystemRoleSeniorService systemRoleSeniorService;
-    private final UserService userService;
-    private final SystemMenuService systemMenuService;
+    private final UserIService userService;
+    private final SystemMenuIService systemMenuService;
 
-    public RoleController(RoleService systemRoleService, SystemRoleSeniorService systemRoleSeniorService, UserService userService, SystemMenuService systemMenuService)
+    public RoleController(RoleRepository repository, RoleService service, SystemRoleSeniorService systemRoleSeniorService, UserIService userService, SystemMenuIService systemMenuService)
     {
-        this.systemRoleService = systemRoleService;
+        super(repository, service);
+        this.repository = repository;
+        this.service = service;
         this.systemRoleSeniorService = systemRoleSeniorService;
         this.userService = userService;
         this.systemMenuService = systemMenuService;
     }
 
-    @GetMapping
-    public CommonResponseModel list(@Validated PageParam param)
-    {
-        Pageable pageable = ParamSupport.getPageable(param);
-        return CommonResponseModel.success(this.systemRoleService.getAllByPage(pageable));
-    }
-
-    /**
-     * add a role to system
-     *
-     * @param param role info
-     * @return add response
-     */
-    @PostMapping
-    public CommonResponseModel add(@RequestBody @Validated SystemRoleBasicParam param)
-    {
-        RoleEntity systemRole = new RoleEntity();
-        if (ObjectUtils.isEmpty(param.getActive())) {
-            systemRole.setActive(Boolean.TRUE);
-        }
-        systemRole.setDescription(param.getDescription());
-        systemRole.setName(param.getName());
-        systemRole.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
-        return CommonResponseModel.success(this.systemRoleService.insertModel(systemRole));
-    }
-
-    @PutMapping
-    public CommonResponseModel set(@RequestBody @Validated SystemRoleSetParam param)
-    {
-        RoleEntity systemRole = new RoleEntity();
-        BeanUtils.copyProperties(param, systemRole);
-        systemRole.setId(Long.valueOf(param.getId()));
-        systemRole.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
-        RoleEntity temp = this.systemRoleService.getModelById(Long.valueOf(param.getId()));
-        // 将权限信息还原
-        systemRole.setMenus(temp.getMenus());
-        return CommonResponseModel.success(this.systemRoleService.insertModel(systemRole));
-    }
-
     @PutMapping(value = ControllerSupport.CONTROLLER_DEFAULT_SET + "/menu")
     public CommonResponseModel setMenus(@RequestBody @Validated RoleSetMenuParam param)
     {
-        RoleEntity systemRole = this.systemRoleService.getModelById(Long.valueOf(param.getId()));
+        RoleEntity systemRole = this.service.getModelById(Long.valueOf(param.getId()));
         List<SystemMenuModel> menuList = new ArrayList<>();
         Arrays.asList(param.getMenu().split(","))
                 .forEach(v -> menuList.add(new SystemMenuModel(Long.valueOf(v))));
         systemRole.setMenus(menuList);
-        return CommonResponseModel.success(this.systemRoleService.insertModel(systemRole));
+        return CommonResponseModel.success(this.service.saveOrUpdate(repository, systemRole));
     }
 
     /**
@@ -115,7 +74,7 @@ public class RoleController
     {
         List<SystemMenuModel> menus = new ArrayList<>();
         List<String> menuId = param.getValue();
-        RoleEntity model = this.systemRoleService.getModelById(Long.valueOf(param.getKey()));
+        RoleEntity model = this.service.getModelById(Long.valueOf(param.getKey()));
         if (!ObjectUtils.isEmpty(menuId)) {
             menuId.stream().distinct().collect(Collectors.toList()).forEach(v -> {
                 Long id = Long.valueOf(v);
@@ -137,7 +96,7 @@ public class RoleController
         temp = temp.stream().distinct().collect(Collectors.toList()).stream().filter(v -> v.getType().getId() != Long.valueOf(param.getMenuType())).collect(Collectors.toList());
         menus.addAll(temp);
         model.setMenus(menus);
-        return CommonResponseModel.success(this.systemRoleService.insertModel(model));
+        return CommonResponseModel.success(this.service.saveOrUpdate(repository, model));
     }
 
     /**
@@ -168,5 +127,4 @@ public class RoleController
         // TODO: 判断权限的等级
         return CommonResponseModel.success(this.systemRoleSeniorService.findMenuByIds(user.getRoles()));
     }
-
 }

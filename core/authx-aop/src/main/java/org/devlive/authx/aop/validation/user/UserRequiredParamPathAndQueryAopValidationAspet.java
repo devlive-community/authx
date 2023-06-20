@@ -20,7 +20,7 @@ package org.devlive.authx.aop.validation.user;
 import org.devlive.authx.common.enums.SystemMessageEnums;
 import org.devlive.authx.common.enums.UserMessageEnums;
 import org.devlive.authx.service.entity.UserEntity;
-import org.devlive.authx.service.service.UserService;
+import org.devlive.authx.service.service.UserIService;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -52,7 +52,7 @@ import java.util.Map;
 public class UserRequiredParamPathAndQueryAopValidationAspet {
 
     @Autowired
-    private UserService userService;
+    private UserIService userService;
 
     @Before(value = "@annotation(paramPathAndQueryAopValidation)")
     public void paramValidation(JoinPoint point, UserRequiredParamPathAndQueryAopValidation paramPathAndQueryAopValidation) throws IOException {

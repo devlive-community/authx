@@ -26,9 +26,9 @@ import org.devlive.authx.service.entity.system.interfaces.SystemInterfaceModel;
 import org.devlive.authx.service.entity.system.method.SystemMethodModel;
 import org.devlive.authx.service.entity.UserEntity;
 import org.devlive.authx.service.service.system.interfaces.SystemInterfaceService;
-import org.devlive.authx.service.service.system.log.SystemLogService;
-import org.devlive.authx.service.service.system.method.SystemMethodService;
-import org.devlive.authx.service.service.UserService;
+import org.devlive.authx.service.service.system.log.SystemLogIService;
+import org.devlive.authx.service.service.system.method.SystemMethodIService;
+import org.devlive.authx.service.service.UserIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
@@ -50,16 +50,16 @@ import javax.servlet.http.HttpServletRequest;
 public class ControllerLogAspect {
 
     @Autowired
-    private UserService userService;
+    private UserIService userService;
 
     @Autowired
-    private SystemLogService systemLogService;
+    private SystemLogIService systemLogService;
 
     @Autowired
     private SystemInterfaceService systemInterfaceService;
 
     @Autowired
-    private SystemMethodService systemMethodService;
+    private SystemMethodIService systemMethodService;
 
 //    @Autowired
 //    private SystemLogToMongoDbService systemLogToMongoDbService;

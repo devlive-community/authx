@@ -1,4 +1,4 @@
-package org.devlive.authx.service.service.system.menu; /**
+package org.devlive.authx.service.service.icon; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -16,16 +16,16 @@ package org.devlive.authx.service.service.system.menu; /**
  * limitations under the License.
  */
 
-import org.devlive.authx.service.service.BaseService;
+import org.devlive.authx.service.service.BaseIService;
 
 /**
- * <p> SystemMenuTypeService </p>
- * <p> Description : SystemMenuTypeService </p>
+ * <p> IconTypeService </p>
+ * <p> Description : IconTypeService </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-26 15:39 </p>
+ * <p> Create Time : 2019-05-08 17:51 </p>
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface SystemMenuTypeService extends BaseService {
-
+public interface IconTypeIService extends BaseIService
+{
 }

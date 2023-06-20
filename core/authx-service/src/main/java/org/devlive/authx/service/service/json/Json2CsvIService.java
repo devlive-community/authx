@@ -1,4 +1,4 @@
-package org.devlive.authx.service.service.system.log; /**
+package org.devlive.authx.service.service.json; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -16,15 +16,26 @@ package org.devlive.authx.service.service.system.log; /**
  * limitations under the License.
  */
 
-import org.devlive.authx.service.service.BaseService;
+import org.devlive.authx.service.entity.common.CommonResponseModel;
+import org.devlive.authx.service.service.BaseIService;
 
 /**
- * <p> SystemLogTypeService </p>
- * <p> Description : SystemLogTypeService </p>
+ * <p> Json2CsvService </p>
+ * <p> Description : Json2CsvService </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-05-07 14:30 </p>
+ * <p> Create Time : 2019-06-17 19:23 </p>
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface SystemLogTypeService extends BaseService {
+public interface Json2CsvIService extends BaseIService
+{
+
+    /**
+     * 转换为CSV
+     *
+     * @param json 转换的源数据
+     * @return CSV
+     */
+    CommonResponseModel toCSV(String json);
+
 }

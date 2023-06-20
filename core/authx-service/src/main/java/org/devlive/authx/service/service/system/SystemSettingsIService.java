@@ -1,4 +1,4 @@
-package org.devlive.authx.service.service.table; /**
+package org.devlive.authx.service.service.system; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -16,27 +16,33 @@ package org.devlive.authx.service.service.table; /**
  * limitations under the License.
  */
 
-import org.devlive.authx.service.entity.common.CommonResponseModel;
-import org.devlive.authx.service.service.BaseService;
-import org.springframework.data.domain.Pageable;
+import org.devlive.authx.service.service.BaseIService;
+import org.devlive.authx.service.entity.system.SystemSettingsEntity;
 
 /**
- * <p> TableRowService </p>
- * <p> Description : TableRowService </p>
+ * <p> SystemSettingsService </p>
+ * <p> Description : SystemSettingsService </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-05-31 14:38 </p>
+ * <p> Create Time : 2019-05-29 20:38 </p>
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface TableRowService extends BaseService {
+public interface SystemSettingsIService extends BaseIService
+{
 
     /**
-     * 根据菜单查询菜单的表头信息
+     * 根据名称查询数据
      *
-     * @param menus    菜单信息
-     * @param pageable 分页信息
-     * @return 表头信息
+     * @param name 名称
+     * @return 当前名称对应的数据
      */
-    CommonResponseModel getAllByMenus(Pageable pageable, String... menus);
+    SystemSettingsEntity getModelByName(String name);
+
+    /**
+     * 获取当前激活的数据
+     *
+     * @return 当前激活的数据
+     */
+    SystemSettingsEntity getModelByActiveTrue();
 
 }

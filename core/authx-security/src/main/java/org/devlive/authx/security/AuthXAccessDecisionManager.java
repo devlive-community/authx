@@ -9,7 +9,7 @@ import org.devlive.authx.service.entity.system.interfaces.SystemInterfaceModel;
 import org.devlive.authx.service.entity.system.method.SystemMethodModel;
 import org.devlive.authx.service.entity.RoleEntity;
 import org.devlive.authx.service.service.system.interfaces.SystemInterfaceService;
-import org.devlive.authx.service.service.system.method.SystemMethodService;
+import org.devlive.authx.service.service.system.method.SystemMethodIService;
 import org.devlive.authx.service.service.RoleService;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;
@@ -32,10 +32,10 @@ import java.util.stream.Collectors;
 public class AuthXAccessDecisionManager implements AccessDecisionManager {
 
     private final SystemInterfaceService systemInterfaceService;
-    private final SystemMethodService systemMethodService;
+    private final SystemMethodIService systemMethodService;
     private final RoleService systemRoleService;
 
-    public AuthXAccessDecisionManager(SystemInterfaceService systemInterfaceService, SystemMethodService systemMethodService, RoleService systemRoleService) {
+    public AuthXAccessDecisionManager(SystemInterfaceService systemInterfaceService, SystemMethodIService systemMethodService, RoleService systemRoleService) {
         this.systemInterfaceService = systemInterfaceService;
         this.systemMethodService = systemMethodService;
         this.systemRoleService = systemRoleService;

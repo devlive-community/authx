@@ -23,7 +23,7 @@ import org.devlive.authx.common.page.PageModel;
 import org.devlive.authx.service.entity.system.method.SystemMethodModel;
 import org.devlive.authx.param.page.PageParam;
 import org.devlive.authx.param.system.method.SystemMethodCreateParam;
-import org.devlive.authx.service.service.system.method.SystemMethodService;
+import org.devlive.authx.service.service.system.method.SystemMethodIService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +45,7 @@ import org.springframework.web.bind.annotation.*;
 public class SystemMethodController {
 
     @Autowired
-    private SystemMethodService systemMethodService;
+    private SystemMethodIService systemMethodService;
 
     /**
      * find all model

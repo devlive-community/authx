@@ -18,10 +18,10 @@
 package org.devlive.authx.service.service.system.log.impl;
 
 import org.devlive.authx.common.page.PageModel;
-import org.devlive.authx.service.entity.system.log.SystemLogModel;
-import org.devlive.authx.service.repository.system.log.SystemLogRepository;
+import org.devlive.authx.service.entity.system.log.SystemLogTypeModel;
+import org.devlive.authx.service.repository.system.log.SystemLogTypeRepository;
 import org.devlive.authx.service.service.ServiceSupport;
-import org.devlive.authx.service.service.system.log.SystemLogService;
+import org.devlive.authx.service.service.system.log.SystemLogTypeIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,15 +36,17 @@ import org.springframework.util.ObjectUtils;
  * <p> Create Time : 2019-05-07 14:31 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@Service(value = "systemLogService")
-public class SystemLogServiceImpl implements SystemLogService {
+@Service(value = "systemLogTypeService")
+public class SystemLogTypeIServiceImpl implements SystemLogTypeIService
+{
 
     @Autowired
-    private SystemLogRepository systemLogRepository;
+    private SystemLogTypeRepository systemLogTypeRepository;
 
     @Override
-    public Long insertModel(SystemLogModel model) {
-        SystemLogModel user = this.systemLogRepository.save(model);
+    public Long insertModel(Object model) {
+        SystemLogTypeModel source = (SystemLogTypeModel) model;
+        SystemLogTypeModel user = this.systemLogTypeRepository.save(source);
         if (!ObjectUtils.isEmpty(user)) {
             return user.getId();
         }
@@ -52,19 +54,19 @@ public class SystemLogServiceImpl implements SystemLogService {
     }
 
     @Override
-    public SystemLogModel getModelById(Long id) {
-        return this.systemLogRepository.findById(id).orElseGet(null);
+    public Object getModelById(Long id) {
+        return this.systemLogTypeRepository.findById(id);
     }
 
     @Override
     public PageModel getAllByPage(Pageable pageable) {
-        Page<SystemLogModel> pageModel = this.systemLogRepository.findAll(pageable);
+        Page<SystemLogTypeModel> pageModel = this.systemLogTypeRepository.findAll(pageable);
         return new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements());
     }
 
     @Override
     public long getCount() {
-        return this.systemLogRepository.count();
+        return this.systemLogTypeRepository.count();
     }
 
 }

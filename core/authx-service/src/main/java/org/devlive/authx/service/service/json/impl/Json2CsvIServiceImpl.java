@@ -15,40 +15,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.devlive.authx.service.service.system.method;
+package org.devlive.authx.service.service.json.impl;
 
+import org.devlive.authx.common.enums.SystemMessageEnums;
+import org.devlive.authx.common.json.JsonParseUtils;
+import org.devlive.authx.common.json.JsonValidateUtils;
+import org.devlive.authx.common.office.CsvUtils;
 import org.devlive.authx.common.page.PageModel;
-import org.devlive.authx.service.entity.system.method.SystemMethodModel;
-import org.devlive.authx.service.repository.system.method.SystemMethodRepository;
-import org.devlive.authx.service.service.ServiceSupport;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
+import org.devlive.authx.service.entity.common.CommonResponseModel;
+import org.devlive.authx.service.service.json.Json2CsvIService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 
 /**
- * <p> SystemMethodServiceImpl </p>
- * <p> Description : SystemMethodServiceImpl </p>
+ * <p> Json2CsvServiceImpl </p>
+ * <p> Description : Json2CsvServiceImpl </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-04-24 14:21 </p>
+ * <p> Create Time : 2019-06-17 19:23 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@Service(value = "systemMethodService")
-public class SystemMethodServiceImpl implements SystemMethodService {
-
-    @Autowired
-    private SystemMethodRepository repository;
+@Service(value = "json2CsvService")
+public class Json2CsvIServiceImpl implements Json2CsvIService
+{
 
     @Override
     public Long insertModel(Object model) {
-        SystemMethodModel source = (SystemMethodModel) model;
-        SystemMethodModel temp = this.repository.save(source);
-        if (!ObjectUtils.isEmpty(temp)) {
-            return temp.getId();
-        }
-        return ServiceSupport.DEFAULT_ID;
+        return null;
     }
 
     @Override
@@ -58,18 +51,20 @@ public class SystemMethodServiceImpl implements SystemMethodService {
 
     @Override
     public PageModel getAllByPage(Pageable pageable) {
-        Page<SystemMethodModel> models = this.repository.findAll(pageable);
-        return new PageModel<>(models.getContent(), pageable, models.getTotalElements());
+        return null;
     }
 
     @Override
     public long getCount() {
-        return this.repository.count();
+        return 0;
     }
 
     @Override
-    public SystemMethodModel getByMethod(String method) {
-        return this.repository.findByMethod(method);
+    public CommonResponseModel toCSV(String json) {
+        if (!JsonValidateUtils.isJSON(json)) {
+            return CommonResponseModel.error(SystemMessageEnums.SYSTEM_JSON_ERROR);
+        }
+        return CommonResponseModel.success(CsvUtils.getCSV(JsonParseUtils.parseJson(json)));
     }
 
 }

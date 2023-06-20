@@ -1,9 +1,9 @@
 package org.devlive.authx.service.service;
 
 import org.devlive.authx.service.entity.UserEntity;
-import org.devlive.authx.service.service.BaseService;
 
-public interface UserService extends BaseService {
+public interface UserIService extends BaseIService
+{
 
     /**
      * get model by username and password

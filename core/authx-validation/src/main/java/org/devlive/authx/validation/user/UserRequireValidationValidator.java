@@ -17,7 +17,7 @@
  */
 package org.devlive.authx.validation.user;
 
-import org.devlive.authx.service.service.UserService;
+import org.devlive.authx.service.service.UserIService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
@@ -38,7 +38,7 @@ import javax.validation.ConstraintValidatorContext;
 public class UserRequireValidationValidator implements ConstraintValidator<UserRequireValidation, String> {
 
     @Autowired
-    private UserService userService;
+    private UserIService userService;
 
     @Override
     public void initialize(UserRequireValidation validation) {

@@ -23,7 +23,7 @@ import org.devlive.authx.service.entity.RoleEntity;
 import org.devlive.authx.service.entity.tree.TreeItemModel;
 import org.devlive.authx.service.entity.tree.TreeModel;
 import org.devlive.authx.service.service.RoleService;
-import org.devlive.authx.service.service.system.menu.SystemMenuService;
+import org.devlive.authx.service.service.system.menu.SystemMenuIService;
 import org.devlive.authx.service.entity.icon.IconModel;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +53,7 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
     private RoleService systemRoleService;
 
     @Autowired
-    private SystemMenuService systemMenuService;
+    private SystemMenuIService systemMenuService;
 
     @Override
     public List<TreeModel> findTreeMenuById(RoleEntity roleModel, SystemMenuTypeModel typeModel) {

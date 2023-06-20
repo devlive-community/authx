@@ -16,7 +16,7 @@ package org.devlive.authx.service.service.icon; /**
  * limitations under the License.
  */
 
-import org.devlive.authx.service.service.BaseService;
+import org.devlive.authx.service.service.BaseIService;
 
 /**
  * <p> IconService </p>
@@ -26,5 +26,6 @@ import org.devlive.authx.service.service.BaseService;
  * <p> Create Time : 2019-05-08 18:59 </p>
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface IconService extends BaseService {
+public interface IconIService extends BaseIService
+{
 }

@@ -37,7 +37,8 @@ import org.springframework.util.ObjectUtils;
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @Service(value = "systemMenuService")
-public class SystemMenuServiceImpl implements SystemMenuService {
+public class SystemMenuIServiceImpl implements SystemMenuIService
+{
 
     @Autowired
     private SystemMenuRepository systemMenuRepository;

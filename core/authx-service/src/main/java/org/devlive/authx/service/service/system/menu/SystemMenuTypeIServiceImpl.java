@@ -15,13 +15,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.devlive.authx.service.service.icon.impl;
+package org.devlive.authx.service.service.system.menu;
 
 import org.devlive.authx.common.page.PageModel;
-import org.devlive.authx.service.entity.icon.IconUsageModel;
-import org.devlive.authx.service.repository.icon.IconUsageRepository;
+import org.devlive.authx.service.entity.system.menu.SystemMenuTypeModel;
 import org.devlive.authx.service.service.ServiceSupport;
-import org.devlive.authx.service.service.icon.IconUsageService;
+import org.devlive.authx.service.repository.system.menu.SystemMenuTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -29,23 +28,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 /**
- * <p> IconUsageServiceImpl </p>
- * <p> Description : IconUsageServiceImpl </p>
+ * <p> SystemMenuTypeServiceImpl </p>
+ * <p> Description : SystemMenuTypeServiceImpl </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-05-08 17:51 </p>
+ * <p> Create Time : 2019-01-26 15:40 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@Service(value = "iconUsageService")
-public class IconUsageServiceImpl implements IconUsageService {
+@Service(value = "systemMenuTypeService")
+public class SystemMenuTypeIServiceImpl implements SystemMenuTypeIService
+{
 
     @Autowired
-    private IconUsageRepository repository;
+    private SystemMenuTypeRepository repository;
 
     @Override
     public Long insertModel(Object model) {
-        IconUsageModel source = (IconUsageModel) model;
-        IconUsageModel temp = this.repository.save(source);
+        SystemMenuTypeModel source = (SystemMenuTypeModel) model;
+        SystemMenuTypeModel temp = this.repository.save(source);
         if (!ObjectUtils.isEmpty(temp)) {
             return temp.getId();
         }
@@ -59,8 +59,8 @@ public class IconUsageServiceImpl implements IconUsageService {
 
     @Override
     public PageModel getAllByPage(Pageable pageable) {
-        Page<IconUsageModel> pageModel = this.repository.findAll(pageable);
-        return new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements());
+        Page<SystemMenuTypeModel> models = this.repository.findAll(pageable);
+        return new PageModel<>(models.getContent(), pageable, models.getTotalElements());
     }
 
     @Override

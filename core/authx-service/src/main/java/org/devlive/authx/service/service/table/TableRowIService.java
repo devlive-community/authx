@@ -1,4 +1,4 @@
-package org.devlive.authx.service.service.json; /**
+package org.devlive.authx.service.service.table; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -17,24 +17,27 @@ package org.devlive.authx.service.service.json; /**
  */
 
 import org.devlive.authx.service.entity.common.CommonResponseModel;
-import org.devlive.authx.service.service.BaseService;
+import org.devlive.authx.service.service.BaseIService;
+import org.springframework.data.domain.Pageable;
 
 /**
- * <p> Json2CsvService </p>
- * <p> Description : Json2CsvService </p>
+ * <p> TableRowService </p>
+ * <p> Description : TableRowService </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-06-17 19:23 </p>
+ * <p> Create Time : 2019-05-31 14:38 </p>
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface Json2CsvService extends BaseService {
+public interface TableRowIService extends BaseIService
+{
 
     /**
-     * 转换为CSV
+     * 根据菜单查询菜单的表头信息
      *
-     * @param json 转换的源数据
-     * @return CSV
+     * @param menus    菜单信息
+     * @param pageable 分页信息
+     * @return 表头信息
      */
-    CommonResponseModel toCSV(String json);
+    CommonResponseModel getAllByMenus(Pageable pageable, String... menus);
 
 }
