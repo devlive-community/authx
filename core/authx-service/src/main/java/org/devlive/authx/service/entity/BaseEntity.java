@@ -2,6 +2,7 @@ package org.devlive.authx.service.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -21,9 +22,8 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @MappedSuperclass
-public class BaseModel
+public class BaseEntity
 {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

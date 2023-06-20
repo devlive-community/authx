@@ -64,7 +64,7 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
         RoleEntity role = this.systemRoleService.getModelById(roleModel.getId());
         Map<Long, SystemMenuModel> roleMenus = new ConcurrentHashMap<>();
         // Populate own menu
-        role.getMenuList().forEach(menu -> roleMenus.put(menu.getId(), menu));
+        role.getMenus().forEach(menu -> roleMenus.put(menu.getId(), menu));
         // Into the list
         List<SystemMenuModel> menuList = StreamSupport.stream(activedMenus.spliterator(), false)
                 .sorted(Comparator.comparing(SystemMenuModel::getParent))
@@ -130,7 +130,7 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
     public List<TreeModel> findMenuByIds(List<RoleEntity> roles) {
         List<SystemMenuModel> list = new ArrayList<>();
         roles.forEach(role -> {
-            List<SystemMenuModel> menus = role.getMenuList().stream().filter(v -> v.getType().getId() == 3).collect(Collectors.toList());
+            List<SystemMenuModel> menus = role.getMenus().stream().filter(v -> v.getType().getId() == 3).collect(Collectors.toList());
             list.addAll(menus);
         });
         return this.getTree(list.stream().distinct().collect(Collectors.toList()));

@@ -40,12 +40,9 @@ public interface RoleService
     RoleEntity getModelById(Long id);
 
     /**
-     * get all model
-     *
-     * @param pageable page info
-     * @return all model
+     * 分页获取所有数据，并按照 ID 排序
      */
-    PageModel<RoleEntity> getAll(Pageable pageable);
+    PageModel<RoleEntity> getAllByPage(Pageable pageable);
 
     /**
      * get model by name

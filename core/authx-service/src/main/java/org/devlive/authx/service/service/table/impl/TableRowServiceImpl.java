@@ -19,7 +19,7 @@ package org.devlive.authx.service.service.table.impl;
 
 import org.devlive.authx.common.page.PageModel;
 import org.devlive.authx.service.entity.common.CommonResponseModel;
-import org.devlive.authx.service.entity.table.TableRowModel;
+import org.devlive.authx.service.entity.table.TableRowEntity;
 import org.devlive.authx.service.repository.table.TableRowRepository;
 import org.devlive.authx.service.service.ServiceSupport;
 import org.devlive.authx.service.entity.system.menu.SystemMenuModel;
@@ -50,8 +50,8 @@ public class TableRowServiceImpl implements TableRowService {
 
     @Override
     public Long insertModel(Object model) {
-        TableRowModel target = (TableRowModel) model;
-        TableRowModel temp = this.repository.save(target);
+        TableRowEntity target = (TableRowEntity) model;
+        TableRowEntity temp = this.repository.save(target);
         if (!ObjectUtils.isEmpty(temp)) {
             return temp.getId();
         }
@@ -65,7 +65,7 @@ public class TableRowServiceImpl implements TableRowService {
 
     @Override
     public PageModel getAllByPage(Pageable pageable) {
-        Page<TableRowModel> pageModel = this.repository.findAll(pageable);
+        Page<TableRowEntity> pageModel = this.repository.findAll(pageable);
         return new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements());
     }
 
@@ -82,7 +82,7 @@ public class TableRowServiceImpl implements TableRowService {
             menu.setId(Long.valueOf(v));
             models.add(menu);
         });
-        Page<TableRowModel> pageModel = this.repository.findAllByMenusIn(models, pageable);
+        Page<TableRowEntity> pageModel = this.repository.findAllByMenusIn(models, pageable);
         return CommonResponseModel.success(new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements()));
     }
 

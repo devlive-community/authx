@@ -17,7 +17,7 @@ package org.devlive.authx.service.service.system; /**
  */
 
 import org.devlive.authx.service.service.BaseService;
-import org.devlive.authx.service.entity.system.SystemSettingsModel;
+import org.devlive.authx.service.entity.system.SystemSettingsEntity;
 
 /**
  * <p> SystemSettingsService </p>
@@ -35,13 +35,13 @@ public interface SystemSettingsService extends BaseService {
      * @param name 名称
      * @return 当前名称对应的数据
      */
-    SystemSettingsModel getModelByName(String name);
+    SystemSettingsEntity getModelByName(String name);
 
     /**
      * 获取当前激活的数据
      *
      * @return 当前激活的数据
      */
-    SystemSettingsModel getModelByActiveTrue();
+    SystemSettingsEntity getModelByActiveTrue();
 
 }

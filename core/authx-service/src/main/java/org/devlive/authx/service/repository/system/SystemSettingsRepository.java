@@ -17,7 +17,7 @@
  */
 package org.devlive.authx.service.repository.system;
 
-import org.devlive.authx.service.entity.system.SystemSettingsModel;
+import org.devlive.authx.service.entity.system.SystemSettingsEntity;
 import org.devlive.authx.service.repository.BaseRepository;
 
 /**
@@ -28,6 +28,6 @@ import org.devlive.authx.service.repository.BaseRepository;
  * <p> Create Time : 2019-05-29 20:25 </p>
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-public interface SystemSettingsRepository extends BaseRepository<SystemSettingsModel, Long> {
+public interface SystemSettingsRepository extends BaseRepository<SystemSettingsEntity, Long> {
 
 }

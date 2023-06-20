@@ -61,7 +61,7 @@ public class AuthXAccessDecisionManager implements AccessDecisionManager {
             // TODO：抽取权限过来的数据并解析(目前通过数据库抽取后期加入缓冲中)
             String granted = grantedAuthority.getAuthority();
             RoleEntity roleModel = this.systemRoleService.getModelById(Long.valueOf(granted));
-            roleModel.getMenuList().forEach(m -> {
+            roleModel.getMenus().forEach(m -> {
                 if (ObjectUtils.isEmpty(menus.get(m.getId()))) {
                     if (!m.getUrl().equalsIgnoreCase("#")) {
                         Role role = new Role();

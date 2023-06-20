@@ -21,7 +21,7 @@ import org.devlive.authx.server.controller.BaseController;
 import org.devlive.authx.service.entity.common.CommonResponseModel;
 import org.devlive.authx.common.page.PageModel;
 import org.devlive.authx.service.entity.system.menu.SystemMenuModel;
-import org.devlive.authx.service.entity.table.TableRowModel;
+import org.devlive.authx.service.entity.table.TableRowEntity;
 import org.devlive.authx.param.page.PageParam;
 import org.devlive.authx.param.table.TableRowCreateParam;
 import org.devlive.authx.service.service.system.menu.SystemMenuService;
@@ -62,7 +62,7 @@ public class TableRowController extends BaseController {
 
     @Override
     public CommonResponseModel add(@RequestBody @Validated TableRowCreateParam param) {
-        TableRowModel model = new TableRowModel();
+        TableRowEntity model = new TableRowEntity();
         BeanUtils.copyProperties(param, model);
         model.setChecked(param.getChecked());
         model.setActive(param.getActive());

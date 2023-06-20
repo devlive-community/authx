@@ -44,7 +44,7 @@ public class RoleServiceImpl implements RoleService
     }
 
     @Override
-    public PageModel<RoleEntity> getAll(Pageable pageable)
+    public PageModel<RoleEntity> getAllByPage(Pageable pageable)
     {
         Page<RoleEntity> models = this.repository.findAll(pageable);
         return new PageModel<>(models.getContent(), pageable, models.getTotalElements());

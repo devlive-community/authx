@@ -2,22 +2,22 @@ package org.devlive.authx.server.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.devlive.authx.common.pinyin.PinYinUtils;
+import org.devlive.authx.param.RoleSetMenuParam;
 import org.devlive.authx.param.common.CommonMenuAndRoleParam;
 import org.devlive.authx.param.page.PageParam;
 import org.devlive.authx.param.system.role.SystemRoleBasicParam;
 import org.devlive.authx.param.system.role.SystemRoleMenuParam;
-import org.devlive.authx.param.RoleSetMenuParam;
 import org.devlive.authx.param.system.role.SystemRoleSetParam;
 import org.devlive.authx.server.support.ParamSupport;
 import org.devlive.authx.service.entity.RoleEntity;
+import org.devlive.authx.service.entity.UserEntity;
 import org.devlive.authx.service.entity.common.CommonResponseModel;
 import org.devlive.authx.service.entity.system.menu.SystemMenuModel;
 import org.devlive.authx.service.entity.system.menu.SystemMenuTypeModel;
-import org.devlive.authx.service.entity.UserEntity;
 import org.devlive.authx.service.service.RoleService;
+import org.devlive.authx.service.service.UserService;
 import org.devlive.authx.service.service.system.menu.SystemMenuService;
 import org.devlive.authx.service.service.system.role.SystemRoleSeniorService;
-import org.devlive.authx.service.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.ObjectUtils;
@@ -54,17 +54,11 @@ public class RoleController
         this.systemMenuService = systemMenuService;
     }
 
-    /**
-     * find all model
-     *
-     * @param param page info param
-     * @return all model for page
-     */
     @GetMapping
     public CommonResponseModel list(@Validated PageParam param)
     {
         Pageable pageable = ParamSupport.getPageable(param);
-        return CommonResponseModel.success(this.systemRoleService.getAll(pageable));
+        return CommonResponseModel.success(this.systemRoleService.getAllByPage(pageable));
     }
 
     /**
@@ -95,7 +89,7 @@ public class RoleController
         systemRole.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
         RoleEntity temp = this.systemRoleService.getModelById(Long.valueOf(param.getId()));
         // 将权限信息还原
-        systemRole.setMenuList(temp.getMenuList());
+        systemRole.setMenus(temp.getMenus());
         return CommonResponseModel.success(this.systemRoleService.insertModel(systemRole));
     }
 
@@ -106,7 +100,7 @@ public class RoleController
         List<SystemMenuModel> menuList = new ArrayList<>();
         Arrays.asList(param.getMenu().split(","))
                 .forEach(v -> menuList.add(new SystemMenuModel(Long.valueOf(v))));
-        systemRole.setMenuList(menuList);
+        systemRole.setMenus(menuList);
         return CommonResponseModel.success(this.systemRoleService.insertModel(systemRole));
     }
 
@@ -139,10 +133,10 @@ public class RoleController
         }
         BeanUtils.copyProperties(param, model);
         // 抽取原有菜单并移除当前更新的权限类型数据,然后添加到授权菜单中
-        List<SystemMenuModel> temp = model.getMenuList();
+        List<SystemMenuModel> temp = model.getMenus();
         temp = temp.stream().distinct().collect(Collectors.toList()).stream().filter(v -> v.getType().getId() != Long.valueOf(param.getMenuType())).collect(Collectors.toList());
         menus.addAll(temp);
-        model.setMenuList(menus);
+        model.setMenus(menus);
         return CommonResponseModel.success(this.systemRoleService.insertModel(model));
     }
 

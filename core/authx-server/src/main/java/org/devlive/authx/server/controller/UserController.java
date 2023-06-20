@@ -77,9 +77,8 @@ public class UserController
         List<RoleEntity> roles = new ArrayList<>();
         param.getValues()
                 .forEach(roleId -> {
-                    RoleEntity role = RoleEntity.builder()
-                            .id(Long.valueOf(roleId))
-                            .build();
+                    RoleEntity role = new RoleEntity();
+                    role.setId(Long.valueOf(roleId));
                     roles.add(role);
                 });
         user.setRoles(roles);

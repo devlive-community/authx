@@ -19,7 +19,7 @@ package org.devlive.authx.service.service.system.impl;
 
 import org.devlive.authx.common.page.PageModel;
 import org.devlive.authx.service.repository.system.SystemSettingsRepository;
-import org.devlive.authx.service.entity.system.SystemSettingsModel;
+import org.devlive.authx.service.entity.system.SystemSettingsEntity;
 import org.devlive.authx.service.service.ServiceSupport;
 import org.devlive.authx.service.service.system.SystemSettingsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +44,8 @@ public class SystemSettingsServiceImpl implements SystemSettingsService {
 
     @Override
     public Long insertModel(Object model) {
-        SystemSettingsModel target = (SystemSettingsModel) model;
-        SystemSettingsModel temp = this.repository.save(target);
+        SystemSettingsEntity target = (SystemSettingsEntity) model;
+        SystemSettingsEntity temp = this.repository.save(target);
         if (!ObjectUtils.isEmpty(temp)) {
             return temp.getId();
         }
@@ -59,7 +59,7 @@ public class SystemSettingsServiceImpl implements SystemSettingsService {
 
     @Override
     public PageModel getAllByPage(Pageable pageable) {
-        Page<SystemSettingsModel> pageModel = this.repository.findAll(pageable);
+        Page<SystemSettingsEntity> pageModel = this.repository.findAll(pageable);
         return new PageModel(pageModel.getContent(), pageable, pageModel.getTotalElements());
     }
 
@@ -69,12 +69,12 @@ public class SystemSettingsServiceImpl implements SystemSettingsService {
     }
 
     @Override
-    public SystemSettingsModel getModelByName(String name) {
+    public SystemSettingsEntity getModelByName(String name) {
         return this.repository.findByName(name);
     }
 
     @Override
-    public SystemSettingsModel getModelByActiveTrue() {
+    public SystemSettingsEntity getModelByActiveTrue() {
         return this.repository.findByActiveTrue();
     }
 
