@@ -17,7 +17,7 @@
  */
 package org.devlive.authx.validation.icon;
 
-import org.devlive.authx.service.service.icon.IconTypeService;
+import org.devlive.authx.service.service.icon.IconTypeIService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
@@ -38,7 +38,7 @@ import javax.validation.ConstraintValidatorContext;
 public class IconTypeRequireValidationValidator implements ConstraintValidator<IconTypeRequireValidation, String> {
 
     @Autowired
-    private IconTypeService IconTypeService;
+    private IconTypeIService IconTypeService;
 
     @Override
     public void initialize(IconTypeRequireValidation validation) {

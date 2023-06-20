@@ -24,7 +24,7 @@ import org.devlive.authx.service.entity.system.log.SystemLogTypeModel;
 import org.devlive.authx.param.page.PageParam;
 import org.devlive.authx.param.system.log.SystemLogTypeCreateParam;
 import org.devlive.authx.param.system.log.SystemLogTypeSetParam;
-import org.devlive.authx.service.service.system.log.SystemLogTypeService;
+import org.devlive.authx.service.service.system.log.SystemLogTypeIService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +46,7 @@ import org.springframework.web.bind.annotation.*;
 public class SystemLogTypeController {
 
     @Autowired
-    private SystemLogTypeService systemLogTypeService;
+    private SystemLogTypeIService systemLogTypeService;
 
     @GetMapping
     public CommonResponseModel getAll(@Validated PageParam param) {

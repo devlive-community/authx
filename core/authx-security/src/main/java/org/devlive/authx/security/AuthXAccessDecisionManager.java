@@ -6,10 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.devlive.authx.common.enums.SystemMessageEnums;
 import org.devlive.authx.service.entity.system.interfaces.SystemInterfaceModel;
-import org.devlive.authx.service.entity.system.method.SystemMethodModel;
+import org.devlive.authx.service.entity.MethodEntity;
 import org.devlive.authx.service.entity.RoleEntity;
 import org.devlive.authx.service.service.system.interfaces.SystemInterfaceService;
-import org.devlive.authx.service.service.system.method.SystemMethodService;
+import org.devlive.authx.service.service.MethodService;
 import org.devlive.authx.service.service.RoleService;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;
@@ -32,12 +32,12 @@ import java.util.stream.Collectors;
 public class AuthXAccessDecisionManager implements AccessDecisionManager {
 
     private final SystemInterfaceService systemInterfaceService;
-    private final SystemMethodService systemMethodService;
+    private final MethodService methodService;
     private final RoleService systemRoleService;
 
-    public AuthXAccessDecisionManager(SystemInterfaceService systemInterfaceService, SystemMethodService systemMethodService, RoleService systemRoleService) {
+    public AuthXAccessDecisionManager(SystemInterfaceService systemInterfaceService, MethodService methodService, RoleService systemRoleService) {
         this.systemInterfaceService = systemInterfaceService;
-        this.systemMethodService = systemMethodService;
+        this.methodService = methodService;
         this.systemRoleService = systemRoleService;
     }
 
@@ -47,7 +47,7 @@ public class AuthXAccessDecisionManager implements AccessDecisionManager {
         String requestUrl = request.getServletPath(), requestMethod = request.getMethod();
         log.info("current api interface：" + requestUrl + " , request method：" + requestMethod);
         // get method info from db
-        SystemMethodModel systemMethodModel = this.systemMethodService.getByMethod(requestMethod.toUpperCase());
+        MethodEntity systemMethodModel = this.methodService.getByMethod(requestMethod.toUpperCase());
         // Get whether the data is in the white list through the database
         if (!ObjectUtils.isEmpty(systemMethodModel)) {
             SystemInterfaceModel systemInterfaceModel = this.systemInterfaceService.getByPathAndMethodsIn(requestUrl, systemMethodModel);
@@ -61,7 +61,7 @@ public class AuthXAccessDecisionManager implements AccessDecisionManager {
             // TODO：抽取权限过来的数据并解析(目前通过数据库抽取后期加入缓冲中)
             String granted = grantedAuthority.getAuthority();
             RoleEntity roleModel = this.systemRoleService.getModelById(Long.valueOf(granted));
-            roleModel.getMenuList().forEach(m -> {
+            roleModel.getMenus().forEach(m -> {
                 if (ObjectUtils.isEmpty(menus.get(m.getId()))) {
                     if (!m.getUrl().equalsIgnoreCase("#")) {
                         Role role = new Role();

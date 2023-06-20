@@ -18,7 +18,7 @@
 package org.devlive.authx.server.controller.system;
 
 import org.devlive.authx.service.entity.common.CommonResponseModel;
-import org.devlive.authx.service.service.system.SystemSettingsService;
+import org.devlive.authx.service.service.system.SystemSettingsIService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +39,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SystemSettingsController {
 
     @Autowired
-    private SystemSettingsService service;
+    private SystemSettingsIService service;
 
     @GetMapping
     public CommonResponseModel get() {

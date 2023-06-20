@@ -24,7 +24,7 @@ import org.devlive.authx.service.entity.system.menu.SystemMenuTypeModel;
 import org.devlive.authx.param.page.PageParam;
 import org.devlive.authx.param.system.menu.SystemMenuTypeBasicParam;
 import org.devlive.authx.param.system.menu.SystemMenuTypeSetParam;
-import org.devlive.authx.service.service.system.menu.SystemMenuTypeService;
+import org.devlive.authx.service.service.system.menu.SystemMenuTypeIService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +47,7 @@ import org.springframework.web.bind.annotation.*;
 public class SystemMenuTypeController {
 
     @Autowired
-    private SystemMenuTypeService systemMenuTypeService;
+    private SystemMenuTypeIService systemMenuTypeService;
 
     /**
      * get all menu type by user and page

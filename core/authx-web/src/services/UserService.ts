@@ -28,6 +28,7 @@ export class UserService extends BaseService<ResponseEntity> {
     return HttpUtils.put(`${baseUrl}/role`, configure)
   }
 
+  // @ts-ignore
   delete (configure: UserEntity): Promise<ResponseEntity> {
     return HttpUtils.delete(`${baseUrl}?id=${configure.id}`)
   }

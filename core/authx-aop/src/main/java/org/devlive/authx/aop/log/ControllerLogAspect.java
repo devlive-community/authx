@@ -23,12 +23,12 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.devlive.authx.service.entity.system.interfaces.SystemInterfaceModel;
-import org.devlive.authx.service.entity.system.method.SystemMethodModel;
+import org.devlive.authx.service.entity.MethodEntity;
 import org.devlive.authx.service.entity.UserEntity;
 import org.devlive.authx.service.service.system.interfaces.SystemInterfaceService;
-import org.devlive.authx.service.service.system.log.SystemLogService;
-import org.devlive.authx.service.service.system.method.SystemMethodService;
-import org.devlive.authx.service.service.UserService;
+import org.devlive.authx.service.service.system.log.SystemLogIService;
+import org.devlive.authx.service.service.MethodService;
+import org.devlive.authx.service.service.UserIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
@@ -50,16 +50,16 @@ import javax.servlet.http.HttpServletRequest;
 public class ControllerLogAspect {
 
     @Autowired
-    private UserService userService;
+    private UserIService userService;
 
     @Autowired
-    private SystemLogService systemLogService;
+    private SystemLogIService systemLogService;
 
     @Autowired
     private SystemInterfaceService systemInterfaceService;
 
     @Autowired
-    private SystemMethodService systemMethodService;
+    private MethodService systemMethodService;
 
 //    @Autowired
 //    private SystemLogToMongoDbService systemLogToMongoDbService;
@@ -79,7 +79,7 @@ public class ControllerLogAspect {
             user = this.userService.getModelByName(request.getUserPrincipal().getName());
         } else {
             // 抽取系统白名单数据
-            SystemMethodModel systemMethodModel = this.systemMethodService.getByMethod(request.getMethod());
+            MethodEntity systemMethodModel = this.systemMethodService.getByMethod(request.getMethod());
             // 系统白名单数据使用系统默认用户
             if (!ObjectUtils.isEmpty(systemMethodModel)) {
                 SystemInterfaceModel systemInterfaceModel = this.systemInterfaceService.getByPathAndMethodsIn(request.getServletPath(), systemMethodModel);

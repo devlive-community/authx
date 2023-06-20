@@ -1,7 +1,7 @@
 package org.devlive.authx.validation.user;
 
 import lombok.extern.slf4j.Slf4j;
-import org.devlive.authx.service.service.UserService;
+import org.devlive.authx.service.service.UserIService;
 import org.springframework.util.ObjectUtils;
 
 import javax.validation.ConstraintValidator;
@@ -10,9 +10,9 @@ import javax.validation.ConstraintValidatorContext;
 @Slf4j
 public class CheckUserNameValidator implements ConstraintValidator<CheckUserNameValidation, String>
 {
-    private final UserService userService;
+    private final UserIService userService;
 
-    public CheckUserNameValidator(UserService userService)
+    public CheckUserNameValidator(UserIService userService)
     {
         this.userService = userService;
     }

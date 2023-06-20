@@ -17,7 +17,7 @@
  */
 package org.devlive.authx.validation.system.menu;
 
-import org.devlive.authx.service.service.system.menu.SystemMenuService;
+import org.devlive.authx.service.service.system.menu.SystemMenuIService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
@@ -38,7 +38,7 @@ import javax.validation.ConstraintValidatorContext;
 public class SystemMenuRequireValidationValidator implements ConstraintValidator<SystemMenuRequireValidation, String> {
 
     @Autowired
-    private SystemMenuService systemMenuService;
+    private SystemMenuIService systemMenuService;
 
     @Override
     public void initialize(SystemMenuRequireValidation validation) {

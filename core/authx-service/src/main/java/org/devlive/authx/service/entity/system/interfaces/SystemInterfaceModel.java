@@ -18,7 +18,7 @@
 package org.devlive.authx.service.entity.system.interfaces;
 
 import org.devlive.authx.common.support.DateSuooprt;
-import org.devlive.authx.service.entity.system.method.SystemMethodModel;
+import org.devlive.authx.service.entity.MethodEntity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -94,6 +94,6 @@ public class SystemInterfaceModel {
     @JoinTable(name = "system_interface_method_relation",
             joinColumns = @JoinColumn(name = "system_interface_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "system_method_id", referencedColumnName = "id"))
-    private List<SystemMethodModel> methods;
+    private List<MethodEntity> methods;
 
 }

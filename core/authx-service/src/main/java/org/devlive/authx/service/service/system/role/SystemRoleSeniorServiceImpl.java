@@ -23,7 +23,7 @@ import org.devlive.authx.service.entity.RoleEntity;
 import org.devlive.authx.service.entity.tree.TreeItemModel;
 import org.devlive.authx.service.entity.tree.TreeModel;
 import org.devlive.authx.service.service.RoleService;
-import org.devlive.authx.service.service.system.menu.SystemMenuService;
+import org.devlive.authx.service.service.system.menu.SystemMenuIService;
 import org.devlive.authx.service.entity.icon.IconModel;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +53,7 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
     private RoleService systemRoleService;
 
     @Autowired
-    private SystemMenuService systemMenuService;
+    private SystemMenuIService systemMenuService;
 
     @Override
     public List<TreeModel> findTreeMenuById(RoleEntity roleModel, SystemMenuTypeModel typeModel) {
@@ -64,7 +64,7 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
         RoleEntity role = this.systemRoleService.getModelById(roleModel.getId());
         Map<Long, SystemMenuModel> roleMenus = new ConcurrentHashMap<>();
         // Populate own menu
-        role.getMenuList().forEach(menu -> roleMenus.put(menu.getId(), menu));
+        role.getMenus().forEach(menu -> roleMenus.put(menu.getId(), menu));
         // Into the list
         List<SystemMenuModel> menuList = StreamSupport.stream(activedMenus.spliterator(), false)
                 .sorted(Comparator.comparing(SystemMenuModel::getParent))
@@ -130,7 +130,7 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
     public List<TreeModel> findMenuByIds(List<RoleEntity> roles) {
         List<SystemMenuModel> list = new ArrayList<>();
         roles.forEach(role -> {
-            List<SystemMenuModel> menus = role.getMenuList().stream().filter(v -> v.getType().getId() == 3).collect(Collectors.toList());
+            List<SystemMenuModel> menus = role.getMenus().stream().filter(v -> v.getType().getId() == 3).collect(Collectors.toList());
             list.addAll(menus);
         });
         return this.getTree(list.stream().distinct().collect(Collectors.toList()));

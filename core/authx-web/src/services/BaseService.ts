@@ -10,7 +10,16 @@ export abstract class BaseService<T> {
   }
 
   saveOrUpdate<T> (configure: T): Promise<ResponseEntity> {
-    return HttpUtils.post(this.baseUrl, configure)
+    // @ts-ignore
+    if (configure.id) {
+      return HttpUtils.put(this.baseUrl, configure)
+    } else {
+      return HttpUtils.post(this.baseUrl, configure)
+    }
+  }
+
+  delete (id: number): Promise<ResponseEntity> {
+    return HttpUtils.delete(`${this.baseUrl}?id=${id}`)
   }
 
   getAllByPage<T> (page: PageEntity): Promise<ResponseEntity> {

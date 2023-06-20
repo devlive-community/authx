@@ -10,7 +10,7 @@ import org.devlive.authx.param.user.UserSetRoleParam;
 import org.devlive.authx.service.entity.RoleEntity;
 import org.devlive.authx.service.entity.UserEntity;
 import org.devlive.authx.service.entity.common.CommonResponseModel;
-import org.devlive.authx.service.service.UserService;
+import org.devlive.authx.service.service.UserIService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.annotation.Validated;
@@ -32,9 +32,9 @@ import java.util.List;
 @Slf4j
 public class UserController
 {
-    private final UserService userService;
+    private final UserIService userService;
 
-    public UserController(UserService userService)
+    public UserController(UserIService userService)
     {
         this.userService = userService;
     }
@@ -77,9 +77,8 @@ public class UserController
         List<RoleEntity> roles = new ArrayList<>();
         param.getValues()
                 .forEach(roleId -> {
-                    RoleEntity role = RoleEntity.builder()
-                            .id(Long.valueOf(roleId))
-                            .build();
+                    RoleEntity role = new RoleEntity();
+                    role.setId(Long.valueOf(roleId));
                     roles.add(role);
                 });
         user.setRoles(roles);

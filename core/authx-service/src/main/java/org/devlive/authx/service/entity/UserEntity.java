@@ -25,14 +25,13 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @EntityListeners(value = AuditingEntityListener.class)
-@Table(name = "users")
+@Table(name = "authx_user")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonIgnoreProperties(value = {
         "password",
 })
-public class UserEntity extends BaseModel
+public class UserEntity extends BaseEntity
 {
-
     @Column(name = "password")
     private String password; // 密码
 
@@ -49,8 +48,8 @@ public class UserEntity extends BaseModel
     private Boolean isSystem = false; // 是否为系统默认,系统默认用户无法做任何操作
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "users_system_role_relation",
-            joinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "system_role_id", referencedColumnName = "id"))
+    @JoinTable(name = "authx_user_role_relation",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private List<RoleEntity> roles;
 }

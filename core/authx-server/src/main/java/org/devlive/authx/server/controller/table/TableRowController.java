@@ -17,21 +17,25 @@
  */
 package org.devlive.authx.server.controller.table;
 
-import org.devlive.authx.server.controller.BaseController;
-import org.devlive.authx.service.entity.common.CommonResponseModel;
 import org.devlive.authx.common.page.PageModel;
-import org.devlive.authx.service.entity.system.menu.SystemMenuModel;
-import org.devlive.authx.service.entity.table.TableRowModel;
 import org.devlive.authx.param.page.PageParam;
 import org.devlive.authx.param.table.TableRowCreateParam;
-import org.devlive.authx.service.service.system.menu.SystemMenuService;
-import org.devlive.authx.service.service.table.TableRowService;
+import org.devlive.authx.service.entity.common.CommonResponseModel;
+import org.devlive.authx.service.entity.system.menu.SystemMenuModel;
+import org.devlive.authx.service.entity.table.TableRowEntity;
+import org.devlive.authx.service.service.system.menu.SystemMenuIService;
+import org.devlive.authx.service.service.table.TableRowIService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,22 +51,22 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "api/v1/table/row")
-public class TableRowController extends BaseController {
+public class TableRowController {
 
     @Autowired
-    private TableRowService service;
+    private TableRowIService service;
 
     @Autowired
-    private SystemMenuService menuService;
+    private SystemMenuIService menuService;
 
     public CommonResponseModel getAll(@Validated PageParam param) {
         Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
         return CommonResponseModel.success(this.service.getAllByPage(pageable));
     }
 
-    @Override
+    @PostMapping
     public CommonResponseModel add(@RequestBody @Validated TableRowCreateParam param) {
-        TableRowModel model = new TableRowModel();
+        TableRowEntity model = new TableRowEntity();
         BeanUtils.copyProperties(param, model);
         model.setChecked(param.getChecked());
         model.setActive(param.getActive());

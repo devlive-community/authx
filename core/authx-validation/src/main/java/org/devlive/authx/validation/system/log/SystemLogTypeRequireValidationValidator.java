@@ -17,7 +17,7 @@
  */
 package org.devlive.authx.validation.system.log;
 
-import org.devlive.authx.service.service.system.log.SystemLogTypeService;
+import org.devlive.authx.service.service.system.log.SystemLogTypeIService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
@@ -38,7 +38,7 @@ import javax.validation.ConstraintValidatorContext;
 public class SystemLogTypeRequireValidationValidator implements ConstraintValidator<SystemLogTypeRequireValidation, String> {
 
     @Autowired
-    private SystemLogTypeService systemLogTypeService;
+    private SystemLogTypeIService systemLogTypeService;
 
     @Override
     public void initialize(SystemLogTypeRequireValidation validation) {

@@ -23,12 +23,12 @@ import org.devlive.authx.service.entity.icon.IconModel;
 import org.devlive.authx.common.page.PageModel;
 import org.devlive.authx.service.entity.system.menu.SystemMenuModel;
 import org.devlive.authx.service.entity.system.menu.SystemMenuTypeModel;
-import org.devlive.authx.service.entity.system.method.SystemMethodModel;
+import org.devlive.authx.service.entity.MethodEntity;
 import org.devlive.authx.param.page.PageParam;
 import org.devlive.authx.param.system.menu.SystemMenuCreateParam;
-import org.devlive.authx.service.service.system.menu.SystemMenuService;
-import org.devlive.authx.service.service.system.menu.SystemMenuTypeService;
-import org.devlive.authx.service.service.UserService;
+import org.devlive.authx.service.service.system.menu.SystemMenuIService;
+import org.devlive.authx.service.service.system.menu.SystemMenuTypeIService;
+import org.devlive.authx.service.service.UserIService;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -54,13 +54,13 @@ import java.util.List;
 public class SystemMenuController {
 
     @Autowired
-    private SystemMenuService systemMenuService;
+    private SystemMenuIService systemMenuService;
 
     @Autowired
-    private SystemMenuTypeService systemMenuTypeService;
+    private SystemMenuTypeIService systemMenuTypeService;
 
     @Autowired
-    private UserService userService;
+    private UserIService userService;
 
     /**
      * create new menu
@@ -78,9 +78,9 @@ public class SystemMenuController {
         SystemMenuTypeModel systemMenuTypeModel = new SystemMenuTypeModel();
         systemMenuTypeModel.setId(Long.valueOf(param.getType()));
         systemMenuModel.setType(systemMenuTypeModel);
-        List<SystemMethodModel> methods = Lists.newArrayList();
+        List<MethodEntity> methods = Lists.newArrayList();
         param.getMethod().forEach(v -> {
-            SystemMethodModel method = new SystemMethodModel();
+            MethodEntity method = new MethodEntity();
             method.setId(Long.valueOf(v));
             methods.add(method);
         });
