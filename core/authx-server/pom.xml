@@ -18,6 +18,7 @@
         <yarn.version>v1.22.11</yarn.version>
         <plugin.docker.version>0.4.13</plugin.docker.version>
         <frontend-maven-plugin.version>1.12.1</frontend-maven-plugin.version>
+        <assembly-plugin.version>3.5.0</assembly-plugin.version>
     </properties>
 
     <dependencies>
@@ -63,6 +64,27 @@
         <finalName>authx-server</finalName>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${assembly-plugin.version}</version>
+                <configuration>
+                    <finalName>authx</finalName>
+                    <outputDirectory>../../dist</outputDirectory>
+                    <descriptors>
+                        <descriptor>../../configure/assembly/server.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>${frontend-maven-plugin.version}</version>
@@ -101,14 +123,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${plugin.springboot.version}</version>
-                <configuration>
-                    <fork>true</fork>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>com.spotify</groupId>
