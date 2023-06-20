@@ -7,16 +7,17 @@ import org.devlive.authx.service.service.BaseService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.Serializable;
 
 public abstract class BaseController<T> implements Serializable
 {
-
     private final PagingAndSortingRepository repository;
     private final BaseService<T> service;
 
@@ -46,5 +47,11 @@ public abstract class BaseController<T> implements Serializable
     public CommonResponseModel saveAndUpdate(@RequestBody T configure)
     {
         return service.saveOrUpdate(repository, configure);
+    }
+
+    @DeleteMapping
+    public CommonResponseModel delete(@RequestParam(value = "id") Long id)
+    {
+        return service.deleteById(repository, id);
     }
 }

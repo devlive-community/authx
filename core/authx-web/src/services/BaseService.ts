@@ -18,6 +18,10 @@ export abstract class BaseService<T> {
     }
   }
 
+  delete (id: number): Promise<ResponseEntity> {
+    return HttpUtils.delete(`${this.baseUrl}?id=${id}`)
+  }
+
   getAllByPage<T> (page: PageEntity): Promise<ResponseEntity> {
     return HttpUtils.get(this.baseUrl, page)
   }

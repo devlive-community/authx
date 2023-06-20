@@ -3,9 +3,10 @@ import { Message } from 'view-ui-plus'
 
 export class MessageUtils {
   handlerError (error: ErrorValidationEntity) {
-    const message: string | undefined = error.error
+    let message: string | undefined = error.error
       ?.map(value => value.field + ' : ' + value.message)
       .join('\n')
+    message = message ? message : error as unknown as string
     Message.error(message)
   }
 }

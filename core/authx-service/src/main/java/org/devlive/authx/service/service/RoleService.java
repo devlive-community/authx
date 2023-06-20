@@ -16,11 +16,6 @@ public interface RoleService
     RoleEntity getModelById(Long id);
 
     /**
-     * 分页获取所有数据，并按照 ID 排序
-     */
-    PageModel<RoleEntity> getAllByPage(Pageable pageable);
-
-    /**
      * get model by name
      *
      * @param name name

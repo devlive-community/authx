@@ -33,6 +33,15 @@
                 <font-awesome-icon :icon="['fas', 'edit']"/>
               </Tooltip>
             </Button>
+            <Button type="error"
+                    size="small"
+                    shape="circle"
+                    @click="handlerDeleteRole(true, row)">
+              <Tooltip content="删除路由"
+                       transfer>
+                <font-awesome-icon :icon="['fas', 'trash']"/>
+              </Tooltip>
+            </Button>
           </Space>
         </template>
       </Table>
@@ -53,6 +62,11 @@
                 :info="detailRole.info"
                 @close="handlerDetailRole(false, null)">
     </RoleDetail>
+    <RoleDelete v-if="deleteRole.visible"
+                :is-visible="deleteRole.visible"
+                :info="deleteRole.info"
+                @close="handlerDeleteRole(false, null)">
+    </RoleDelete>
   </div>
 </template>
 <script lang="ts">
@@ -62,10 +76,11 @@ import RoleUtils from '@/views/role/RoleUtils'
 import RoleService from '@/services/RoleService'
 import RoleDetail from '@/views/role/components/RoleDetail.vue'
 import { RoleEntity } from '@/entity/RoleEntity'
+import RoleDelete from '@/views/role/components/RoleDelete.vue'
 
 export default defineComponent({
   name: 'RoleView',
-  components: { RoleDetail },
+  components: { RoleDelete, RoleDetail },
   created () {
     this.page = new PageEntity()
     this.handlerInitialize()
@@ -77,6 +92,10 @@ export default defineComponent({
       headers: RoleUtils.headers,
       data: null as unknown as PageResponseEntity,
       detailRole: {
+        visible: false,
+        info: null as unknown as RoleEntity
+      },
+      deleteRole: {
         visible: false,
         info: null as unknown as RoleEntity
       }
@@ -104,6 +123,13 @@ export default defineComponent({
     handlerDetailRole (value: boolean, info?: RoleEntity) {
       this.detailRole.info = info as RoleEntity
       this.detailRole.visible = value
+      if (value === false) {
+        this.handlerInitialize()
+      }
+    },
+    handlerDeleteRole (value: boolean, info?: RoleEntity) {
+      this.deleteRole.info = info as RoleEntity
+      this.deleteRole.visible = value
       if (value === false) {
         this.handlerInitialize()
       }

@@ -3,6 +3,7 @@ package org.devlive.authx.service.service;
 import org.devlive.authx.common.page.PageModel;
 import org.devlive.authx.service.entity.UserEntity;
 import org.devlive.authx.service.entity.common.CommonResponseModel;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -31,5 +32,18 @@ public interface BaseService<T>
     default CommonResponseModel<T> saveOrUpdate(PagingAndSortingRepository repository, T configure)
     {
         return CommonResponseModel.success(repository.save(configure));
+    }
+
+    /**
+     * 删除指定数据
+     *
+     * @param repository 用于操作处理数据的执行器
+     * @param id         需要删除数据的唯一标记
+     * @return 返回指定的数据标记
+     */
+    default CommonResponseModel<T> deleteById(PagingAndSortingRepository repository, Long id)
+    {
+        repository.deleteById(id);
+        return CommonResponseModel.success(id);
     }
 }
