@@ -6,7 +6,7 @@ export class MessageUtils {
     let message: string | undefined = error.error
       ?.map(value => value.field + ' : ' + value.message)
       .join('\n')
-    message = message ? message : error as unknown as string
+    message = message || error as unknown as string
     Message.error(message)
   }
 }

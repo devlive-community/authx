@@ -3,7 +3,7 @@ package org.devlive.authx.security.authorization;
 import lombok.extern.slf4j.Slf4j;
 import org.devlive.authx.security.handler.AuthXAccessDeniedHandler;
 import org.devlive.authx.security.point.AuthXAuthenticationEntryPoint;
-import org.devlive.authx.service.entity.system.method.SystemMethodModel;
+import org.devlive.authx.service.entity.MethodEntity;
 import org.devlive.authx.service.service.system.interfaces.SystemInterfaceService;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -42,8 +42,8 @@ public class AuthXResourceServerConfigure extends ResourceServerConfigurerAdapte
         HttpSecurity.RequestMatcherConfigurer configurer = http.requestMatchers();
         this.systemInterfaceService.getAllByWhiteIsTrueAndActiveTrueAndSystemTrue()
                 .forEach(v -> {
-                    List<SystemMethodModel> methods = v.getMethods();
-                    for (SystemMethodModel method : methods) {
+                    List<MethodEntity> methods = v.getMethods();
+                    for (MethodEntity method : methods) {
                         try {
                             configurer.and()
                                     .authorizeRequests()

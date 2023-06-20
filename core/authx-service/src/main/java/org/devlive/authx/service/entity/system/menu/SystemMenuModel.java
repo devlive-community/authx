@@ -18,7 +18,7 @@
 package org.devlive.authx.service.entity.system.menu;
 
 import org.devlive.authx.common.support.DateSuooprt;
-import org.devlive.authx.service.entity.system.method.SystemMethodModel;
+import org.devlive.authx.service.entity.MethodEntity;
 import org.devlive.authx.service.entity.icon.IconModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -105,7 +105,7 @@ public class SystemMenuModel {
     @JoinTable(name = "system_menu_method_relation",
             joinColumns = @JoinColumn(name = "system_menu_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "system_method_id", referencedColumnName = "id"))
-    private List<SystemMethodModel> methods;
+    private List<MethodEntity> methods;
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinTable(name = "system_menu_icon_relation",

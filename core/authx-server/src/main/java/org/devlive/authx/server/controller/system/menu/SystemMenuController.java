@@ -23,7 +23,7 @@ import org.devlive.authx.service.entity.icon.IconModel;
 import org.devlive.authx.common.page.PageModel;
 import org.devlive.authx.service.entity.system.menu.SystemMenuModel;
 import org.devlive.authx.service.entity.system.menu.SystemMenuTypeModel;
-import org.devlive.authx.service.entity.system.method.SystemMethodModel;
+import org.devlive.authx.service.entity.MethodEntity;
 import org.devlive.authx.param.page.PageParam;
 import org.devlive.authx.param.system.menu.SystemMenuCreateParam;
 import org.devlive.authx.service.service.system.menu.SystemMenuIService;
@@ -78,9 +78,9 @@ public class SystemMenuController {
         SystemMenuTypeModel systemMenuTypeModel = new SystemMenuTypeModel();
         systemMenuTypeModel.setId(Long.valueOf(param.getType()));
         systemMenuModel.setType(systemMenuTypeModel);
-        List<SystemMethodModel> methods = Lists.newArrayList();
+        List<MethodEntity> methods = Lists.newArrayList();
         param.getMethod().forEach(v -> {
-            SystemMethodModel method = new SystemMethodModel();
+            MethodEntity method = new MethodEntity();
             method.setId(Long.valueOf(v));
             methods.add(method);
         });

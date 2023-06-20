@@ -21,7 +21,7 @@ import org.devlive.authx.common.pinyin.PinYinUtils;
 import org.devlive.authx.server.support.ParamSupport;
 import org.devlive.authx.service.entity.common.CommonResponseModel;
 import org.devlive.authx.service.entity.system.interfaces.SystemInterfaceModel;
-import org.devlive.authx.service.entity.system.method.SystemMethodModel;
+import org.devlive.authx.service.entity.MethodEntity;
 import org.devlive.authx.param.page.PageParam;
 import org.devlive.authx.param.system.interfaces.SystemInterfaceCreateParam;
 import org.devlive.authx.param.system.interfaces.SystemInterfaceSetParam;
@@ -75,9 +75,9 @@ public class SystemInterfaceController {
         SystemInterfaceModel model = new SystemInterfaceModel();
         BeanUtils.copyProperties(param, model);
         model.setCode(PinYinUtils.getFullFirstToUpper(param.getName()));
-        List<SystemMethodModel> methods = Lists.newArrayList();
+        List<MethodEntity> methods = Lists.newArrayList();
         param.getMethod().forEach(v -> {
-            SystemMethodModel method = new SystemMethodModel();
+            MethodEntity method = new MethodEntity();
             method.setId(Long.valueOf(v));
             methods.add(method);
         });

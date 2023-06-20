@@ -17,7 +17,7 @@ package org.devlive.authx.service.repository.system.interfaces; /**
  */
 
 import org.devlive.authx.service.entity.system.interfaces.SystemInterfaceModel;
-import org.devlive.authx.service.entity.system.method.SystemMethodModel;
+import org.devlive.authx.service.entity.MethodEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -80,7 +80,7 @@ public interface SystemInterfaceRepository extends PagingAndSortingRepository<Sy
      * @param methods method list
      * @return info
      */
-    SystemInterfaceModel findByPathLikeAndMethodsInAndSystemFalse(String path, List<SystemMethodModel> methods);
+    SystemInterfaceModel findByPathLikeAndMethodsInAndSystemFalse(String path, List<MethodEntity> methods);
 
     /**
      * find by path and method in method list
@@ -89,7 +89,7 @@ public interface SystemInterfaceRepository extends PagingAndSortingRepository<Sy
      * @param methods method list
      * @return info
      */
-    SystemInterfaceModel findByPathAndSystemFalseAndMethodsIn(String path, List<SystemMethodModel> methods);
+    SystemInterfaceModel findByPathAndSystemFalseAndMethodsIn(String path, List<MethodEntity> methods);
 
     /**
      * 根据请求路径和请求方式查询数据
@@ -98,6 +98,6 @@ public interface SystemInterfaceRepository extends PagingAndSortingRepository<Sy
      * @param methods 请求方式列表
      * @return 当前查询条件返回数据
      */
-    SystemInterfaceModel findByPathAndSystemTrueAndWhiteTrueAndActiveTrueAndMethodsIn(String path, List<SystemMethodModel> methods);
+    SystemInterfaceModel findByPathAndSystemTrueAndWhiteTrueAndActiveTrueAndMethodsIn(String path, List<MethodEntity> methods);
 
 }

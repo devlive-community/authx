@@ -17,7 +17,7 @@ package org.devlive.authx.service.service.system.interfaces; /**
  */
 
 import org.devlive.authx.common.page.PageModel;
-import org.devlive.authx.service.entity.system.method.SystemMethodModel;
+import org.devlive.authx.service.entity.MethodEntity;
 import org.devlive.authx.service.entity.system.interfaces.SystemInterfaceModel;
 import org.springframework.data.domain.Pageable;
 
@@ -95,7 +95,7 @@ public interface SystemInterfaceService {
      * @param methods method list
      * @return info
      */
-    SystemInterfaceModel getByPathLikeAndMethodsIn(String path, List<SystemMethodModel> methods);
+    SystemInterfaceModel getByPathLikeAndMethodsIn(String path, List<MethodEntity> methods);
 
     /**
      * find by path like ? and method in method
@@ -104,7 +104,7 @@ public interface SystemInterfaceService {
      * @param method method info
      * @return info
      */
-    SystemInterfaceModel getByPathLikeAndMethods(String path, SystemMethodModel method);
+    SystemInterfaceModel getByPathLikeAndMethods(String path, MethodEntity method);
 
     /**
      * find by path and method in method
@@ -113,6 +113,6 @@ public interface SystemInterfaceService {
      * @param methods method info
      * @return info
      */
-    SystemInterfaceModel getByPathAndMethodsIn(String path, SystemMethodModel... methods);
+    SystemInterfaceModel getByPathAndMethodsIn(String path, MethodEntity... methods);
 
 }

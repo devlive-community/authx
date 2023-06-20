@@ -3,7 +3,7 @@ package org.devlive.authx.service.service.system.interfaces;
 import com.google.common.collect.Lists;
 import org.devlive.authx.common.page.PageModel;
 import org.devlive.authx.service.entity.system.interfaces.SystemInterfaceModel;
-import org.devlive.authx.service.entity.system.method.SystemMethodModel;
+import org.devlive.authx.service.entity.MethodEntity;
 import org.devlive.authx.service.repository.system.interfaces.SystemInterfaceRepository;
 import org.devlive.authx.service.service.ServiceSupport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,19 +63,19 @@ public class SystemInterfaceServiceImpl implements SystemInterfaceService {
     }
 
     @Override
-    public SystemInterfaceModel getByPathLikeAndMethodsIn(String path, List<SystemMethodModel> methods) {
+    public SystemInterfaceModel getByPathLikeAndMethodsIn(String path, List<MethodEntity> methods) {
         return this.systemInterfaceRepository.findByPathLikeAndMethodsInAndSystemFalse("%" + path + "%", methods);
     }
 
     @Override
-    public SystemInterfaceModel getByPathLikeAndMethods(String path, SystemMethodModel method) {
-        List<SystemMethodModel> methods = Lists.newArrayList();
+    public SystemInterfaceModel getByPathLikeAndMethods(String path, MethodEntity method) {
+        List<MethodEntity> methods = Lists.newArrayList();
         methods.add(method);
         return this.systemInterfaceRepository.findByPathLikeAndMethodsInAndSystemFalse("%" + path + "%", methods);
     }
 
     @Override
-    public SystemInterfaceModel getByPathAndMethodsIn(String path, SystemMethodModel... methods) {
+    public SystemInterfaceModel getByPathAndMethodsIn(String path, MethodEntity... methods) {
         return this.systemInterfaceRepository.findByPathAndSystemTrueAndWhiteTrueAndActiveTrueAndMethodsIn(path, Arrays.asList(methods));
     }
 }
