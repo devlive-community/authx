@@ -10,12 +10,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SystemMenuIServiceImpl implements MenuService
+public class MenuServiceImpl implements MenuService
 {
-
     private final MenuRepository repository;
 
-    public SystemMenuIServiceImpl(MenuRepository repository)
+    public MenuServiceImpl(MenuRepository repository)
     {
         this.repository = repository;
     }

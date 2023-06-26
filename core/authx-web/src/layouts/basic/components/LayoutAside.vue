@@ -6,19 +6,19 @@
         <Submenu v-if="menu.children"
                  :name="menu.code">
           <template #title>
-            {{ menu.name }}
+            {{ menu.title }}
           </template>
           <MenuItem v-for="children in menu.children"
                     v-bind:key="children.id"
                     :name="children.code"
                     :to="children.url">
-            {{ children.name }}
+            {{ children.title }}
           </MenuItem>
         </Submenu>
         <MenuItem v-else
                   :name="menu.code"
                   :to="menu.url">
-          {{ menu.name }}
+          {{ menu.title }}
         </MenuItem>
       </div>
     </Menu>

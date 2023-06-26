@@ -9,7 +9,7 @@
           <Button type="primary"
                   shape="circle"
                   size="small"
-                  @click="handlerDetailRole(true, null)">
+                  @click="handlerDetailRole(true, undefined)">
             <font-awesome-icon :icon="['fas', 'plus']"/>
           </Button>
         </Tooltip>
@@ -24,6 +24,15 @@
         </template>
         <template #action="{ row }">
           <Space>
+            <Button type="primary"
+                    size="small"
+                    shape="circle"
+                    @click="handlerAssignMenu(true, row)">
+              <Tooltip content="分配菜单"
+                       transfer>
+                <font-awesome-icon :icon="['fas', 'location-arrow']"/>
+              </Tooltip>
+            </Button>
             <Button type="primary"
                     size="small"
                     shape="circle"
@@ -60,13 +69,18 @@
     <RoleDetail v-if="detailRole.visible"
                 :is-visible="detailRole.visible"
                 :info="detailRole.info"
-                @close="handlerDetailRole(false, null)">
+                @close="handlerDetailRole(false, undefined)">
     </RoleDetail>
     <RoleDelete v-if="deleteRole.visible"
                 :is-visible="deleteRole.visible"
                 :info="deleteRole.info"
-                @close="handlerDeleteRole(false, null)">
+                @close="handlerDeleteRole(false, undefined)">
     </RoleDelete>
+    <RoleAssignMenu v-if="assignMenu.visible"
+                    :is-visible="assignMenu.visible"
+                    :info="assignMenu.info"
+                    @close="handlerAssignMenu(false, undefined)">
+    </RoleAssignMenu>
   </div>
 </template>
 <script lang="ts">
@@ -77,10 +91,12 @@ import RoleService from '@/services/RoleService'
 import RoleDetail from '@/views/role/components/RoleDetail.vue'
 import { RoleEntity } from '@/entity/RoleEntity'
 import RoleDelete from '@/views/role/components/RoleDelete.vue'
+import { MenuEntity } from '@/entity/MenuEntity'
+import RoleAssignMenu from '@/views/role/components/RoleAssignMenu.vue'
 
 export default defineComponent({
   name: 'RoleView',
-  components: { RoleDelete, RoleDetail },
+  components: { RoleAssignMenu, RoleDelete, RoleDetail },
   created () {
     this.page = new PageEntity()
     this.handlerInitialize()
@@ -98,6 +114,10 @@ export default defineComponent({
       deleteRole: {
         visible: false,
         info: null as unknown as RoleEntity
+      },
+      assignMenu: {
+        visible: false,
+        info: null as unknown as MenuEntity
       }
     }
   },
@@ -130,6 +150,13 @@ export default defineComponent({
     handlerDeleteRole (value: boolean, info?: RoleEntity) {
       this.deleteRole.info = info as RoleEntity
       this.deleteRole.visible = value
+      if (value === false) {
+        this.handlerInitialize()
+      }
+    },
+    handlerAssignMenu (value: boolean, info?: MenuEntity) {
+      this.assignMenu.info = info as MenuEntity
+      this.assignMenu.visible = value
       if (value === false) {
         this.handlerInitialize()
       }

@@ -1,25 +1,16 @@
 <template>
   <Modal v-model="visible"
-         width="40%"
+         width="60%"
          :mask-closable="false"
          @cancel="handlerCancel">
     <template #header>
       <font-awesome-icon :icon="['fas', 'location-arrow']"/>
-      分配权限
+      分配菜单 [{{ info.name }}]
     </template>
     <div>
-      <Space direction="vertical" type="flex">
-        <CheckboxGroup v-model="assignedRoles">
-          <Tooltip v-for="role in data?.content"
-                   v-bind:key="role.id"
-                   :content="role.description">
-            <Checkbox border
-                      :label="role.id">
-              {{ role.name }}
-            </Checkbox>
-          </Tooltip>
-        </CheckboxGroup>
-      </Space>
+      <Tree :data="assignedMenus"
+            show-checkbox>
+      </Tree>
       <Spin size="large"
             fix
             :show="loading">
@@ -30,57 +21,45 @@
               size="small"
               :loading="assignedLoading"
               @click="handlerAssign">
-        分配权限
+        分配菜单
       </Button>
     </template>
   </Modal>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { PageEntity, PageResponseEntity } from '@/entity/PageEntity'
 import RoleService from '@/services/RoleService'
-import { UserEntity } from '@/entity/UserEntity'
-import UserService from '@/services/UserService'
-import { AssignRoleEntity } from '@/entity/RoleEntity'
+import { AssignMenuEntity } from '@/entity/RoleEntity'
 import { Message } from 'view-ui-plus'
+import { MenuEntity } from '@/entity/MenuEntity'
 
 export default defineComponent({
-  name: 'UserAssignRole',
+  name: 'RoleAssignMenu',
   props: {
     isVisible: {
       type: Boolean,
       default: () => false
     },
     info: {
-      type: UserEntity
+      type: MenuEntity
     }
   },
   created () {
-    this.page = new PageEntity()
-    this.page.size = 0
     this.handlerInitialize()
   },
   data () {
     return {
       loading: false,
-      assignedRoles: Array<number>(),
-      assignedLoading: false,
-      page: null as unknown as PageEntity,
-      data: null as unknown as PageResponseEntity
+      assignedMenus: Array<MenuEntity>(),
+      assignedLoading: false
     }
   },
   methods: {
     handlerInitialize () {
       this.loading = true
-      this.assignedRoles = []
-      this.info
-        ?.roles
-        ?.forEach(value => {
-          this.assignedRoles.push(value.id as number)
-        })
-      RoleService.getAllByPage(this.page)
+      RoleService.getMenusByRole(this.info?.id as number)
         .then(response => {
-          this.data = response.data as PageResponseEntity
+          this.assignedMenus = response.data
         })
         .finally(() => {
           this.loading = false
@@ -88,10 +67,17 @@ export default defineComponent({
     },
     handlerAssign () {
       this.assignedLoading = true
-      const configure: AssignRoleEntity = new AssignRoleEntity()
-      configure.id = this.info?.id
-      configure.values = this.assignedRoles
-      UserService.assignRole(configure)
+      const configure: AssignMenuEntity = new AssignMenuEntity()
+      configure.roleId = this.info?.id
+      const menus = new Array<number>()
+      this.assignedMenus
+        .forEach(value  => {
+          if (value.checked) {
+            menus.push(value.id as number)
+          }
+        })
+      configure.menus = menus
+      RoleService.assignMenu(configure)
         .then(response => {
           if (response.code === 2000) {
             Message.success('分配成功')

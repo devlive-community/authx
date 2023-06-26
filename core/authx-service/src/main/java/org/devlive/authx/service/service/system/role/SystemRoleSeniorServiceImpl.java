@@ -18,15 +18,15 @@
 package org.devlive.authx.service.service.system.role;
 
 import org.devlive.authx.service.entity.MenuEntity;
-import org.devlive.authx.service.entity.system.menu.SystemMenuTypeModel;
 import org.devlive.authx.service.entity.RoleEntity;
+import org.devlive.authx.service.entity.icon.IconModel;
+import org.devlive.authx.service.entity.system.menu.SystemMenuTypeModel;
 import org.devlive.authx.service.entity.tree.TreeItemModel;
 import org.devlive.authx.service.entity.tree.TreeModel;
-import org.devlive.authx.service.service.RoleService;
+import org.devlive.authx.service.repository.MenuRepository;
 import org.devlive.authx.service.service.MenuService;
-import org.devlive.authx.service.entity.icon.IconModel;
+import org.devlive.authx.service.service.RoleService;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -50,22 +50,27 @@ import java.util.stream.StreamSupport;
 public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService
 {
 
-    @Autowired
-    private RoleService systemRoleService;
+    private final RoleService systemRoleService;
+    private final MenuService systemMenuService;
+    private final MenuRepository repository;
 
-    @Autowired
-    private MenuService systemMenuService;
+    public SystemRoleSeniorServiceImpl(RoleService systemRoleService, MenuService systemMenuService, MenuRepository repository)
+    {
+        this.systemRoleService = systemRoleService;
+        this.systemMenuService = systemMenuService;
+        this.repository = repository;
+    }
 
     @Override
     public List<TreeModel> findTreeMenuById(RoleEntity roleModel, SystemMenuTypeModel typeModel)
     {
         Map<Long, TreeModel> treeMap = new ConcurrentHashMap<>();
-        // All currently available menus
-        Iterable<MenuEntity> activedMenus = systemMenuService.getByType(typeModel);
-        // The current permission has a menu
+        // 所有当前可用的菜单
+        Iterable<MenuEntity> activedMenus = repository.findAll();
+        // 当前权限有菜单
         RoleEntity role = this.systemRoleService.getModelById(roleModel.getId());
         Map<Long, MenuEntity> roleMenus = new ConcurrentHashMap<>();
-        // Populate own menu
+        // 填充自己的菜单
         role.getMenus().forEach(menu -> roleMenus.put(menu.getId(), menu));
         // Into the list
         List<MenuEntity> menuList = StreamSupport.stream(activedMenus.spliterator(), false)
@@ -83,7 +88,7 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService
                     parent.setIcon(menu.getIcon().getCode());
                 }
                 parent.setId(menu.getId());
-                parent.setName(menu.getName());
+                parent.setTitle(menu.getName());
                 parent.setTips(menu.getTips());
                 if (!ObjectUtils.isEmpty(roleMenus.get(menu.getId()))) {
                     parent.setChecked(Boolean.TRUE);
@@ -100,7 +105,7 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService
                 }
                 TreeModel children = new TreeModel();
                 children.setId(menu.getId());
-                children.setName(menu.getName());
+                children.setTitle(menu.getName());
                 children.setTips(menu.getTips());
                 if (!ObjectUtils.isEmpty(menu.getIcon())) {
                     children.setIcon(menu.getIcon().getCode());
@@ -215,6 +220,7 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService
             if (model.getParent().equals(id)) {
                 TreeModel support = new TreeModel();
                 BeanUtils.copyProperties(model, support);
+                support.setTitle(model.getName());
                 IconModel icon = model.getIcon();
                 if (!ObjectUtils.isEmpty(icon)) {
                     support.setIcon(model.getIcon().getCode());
