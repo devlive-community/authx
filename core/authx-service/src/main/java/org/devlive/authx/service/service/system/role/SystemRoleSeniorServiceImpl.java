@@ -47,7 +47,8 @@ import java.util.stream.StreamSupport;
  * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @Service(value = "systemRoleSeniorService")
-public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
+public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService
+{
 
     @Autowired
     private RoleService systemRoleService;
@@ -56,7 +57,8 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
     private MenuService systemMenuService;
 
     @Override
-    public List<TreeModel> findTreeMenuById(RoleEntity roleModel, SystemMenuTypeModel typeModel) {
+    public List<TreeModel> findTreeMenuById(RoleEntity roleModel, SystemMenuTypeModel typeModel)
+    {
         Map<Long, TreeModel> treeMap = new ConcurrentHashMap<>();
         // All currently available menus
         Iterable<MenuEntity> activedMenus = systemMenuService.getByType(typeModel);
@@ -122,15 +124,21 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
     }
 
     @Override
-    public List<TreeModel> findMenuById(Long id) {
+    public List<TreeModel> findMenuById(Long id)
+    {
         return null;
     }
 
     @Override
-    public List<TreeModel> findMenuByIds(List<RoleEntity> roles) {
+    public List<TreeModel> findMenuByIds(List<RoleEntity> roles)
+    {
         List<MenuEntity> list = new ArrayList<>();
         roles.forEach(role -> {
-            List<MenuEntity> menus = role.getMenus().stream().filter(v -> v.getType().getId() == 3).collect(Collectors.toList());
+            List<MenuEntity> menus = role.getMenus()
+                    .stream()
+                    .filter(v -> v.getType().getId() == 3)
+                    .filter(v -> v.getActive())
+                    .collect(Collectors.toList());
             list.addAll(menus);
         });
         return this.getTree(list.stream().distinct().collect(Collectors.toList()));
@@ -142,7 +150,8 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
      * @param roles source role list
      * @return tree model list
      */
-    private List<TreeModel> getTree(List<MenuEntity> roles) {
+    private List<TreeModel> getTree(List<MenuEntity> roles)
+    {
         Map<Long, TreeModel> treeMap = new ConcurrentHashMap<>();
         // Assembly menu, divided into father and son menu
 //        roles.forEach((SystemMenuModel menu) -> {
@@ -197,7 +206,8 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
      * @param models 数据集合
      * @return 树形结构数据
      */
-    public List<TreeModel> getChildren(Long id, List<MenuEntity> models) {
+    public List<TreeModel> getChildren(Long id, List<MenuEntity> models)
+    {
         // 子数据存储器
         List<TreeModel> childrens = new ArrayList<>();
         for (MenuEntity model : models) {

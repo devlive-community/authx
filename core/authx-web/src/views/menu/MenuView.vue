@@ -6,21 +6,16 @@
       <template #method="{ row }">
         <Tooltip v-for="item in row.methods"
                  v-bind:key="item.id"
-                 :content="item.name">
+                 :content="item.description">
           <Tag>
             {{ item.name }}
           </Tag>
         </Tooltip>
       </template>
       <template #type="{ row }">
-        <Tooltip v-for="role in row.roles"
-                 transfer
-                 v-bind:key="role.name"
-                 :content="role.description">
-          <Tag color="primary">
-            {{ role.name }}
-          </Tag>
-        </Tooltip>
+        <Tag color="primary">
+          {{ row.type.name }}
+        </Tag>
       </template>
       <template #newd="{ row }">
         <Switch v-model="row.newd"

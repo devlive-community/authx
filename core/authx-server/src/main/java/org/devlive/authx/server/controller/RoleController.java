@@ -126,7 +126,7 @@ public class RoleController
     @GetMapping(value = "menu")
     public CommonResponseModel getMenu(@RequestParam Long id)
     {
-        UserEntity user = (UserEntity) this.userService.getDistinctById(id);
+        UserEntity user = this.userService.getDistinctById(id);
         // TODO: 判断权限的等级
         return CommonResponseModel.success(this.systemRoleSeniorService.findMenuByIds(user.getRoles()));
     }
