@@ -17,7 +17,7 @@
  */
 package org.devlive.authx.param.system.menu;
 
-import org.devlive.authx.validation.system.menu.SystemMenuRequireValidation;
+import org.devlive.authx.validation.menu.MenuRequireValidation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,7 +39,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class SystemMenuRequireParam {
 
     @NotEmpty(message = "system menu id must not null")
-    @SystemMenuRequireValidation
+    @MenuRequireValidation
     private String id;
 
 }

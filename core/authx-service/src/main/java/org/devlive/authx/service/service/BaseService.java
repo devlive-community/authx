@@ -3,10 +3,11 @@ package org.devlive.authx.service.service;
 import org.devlive.authx.common.page.PageModel;
 import org.devlive.authx.service.entity.UserEntity;
 import org.devlive.authx.service.entity.common.CommonResponseModel;
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
+
+import java.util.Optional;
 
 public interface BaseService<T>
 {
@@ -45,5 +46,11 @@ public interface BaseService<T>
     {
         repository.deleteById(id);
         return CommonResponseModel.success(id);
+    }
+
+    default CommonResponseModel<T> findById(PagingAndSortingRepository repository, Long id)
+    {
+        Optional<T> optional = repository.findById(id);
+        return CommonResponseModel.success(optional.get());
     }
 }

@@ -1,4 +1,4 @@
-package org.devlive.authx.validation.system.menu; /**
+package org.devlive.authx.validation.menu; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -29,10 +29,11 @@ import java.lang.annotation.*;
  * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
 @Documented
-@Constraint(validatedBy = SystemMenuRequireValidationValidator.class)
+@Constraint(validatedBy = MenuRequireValidationValidator.class)
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface SystemMenuRequireValidation {
+public @interface MenuRequireValidation
+{
 
     String message() default "the menu id not exists";
 

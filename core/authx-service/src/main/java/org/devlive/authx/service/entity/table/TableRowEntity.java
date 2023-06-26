@@ -23,7 +23,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.devlive.authx.service.entity.BaseEntity;
-import org.devlive.authx.service.entity.system.menu.SystemMenuModel;
+import org.devlive.authx.service.entity.MenuEntity;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -58,5 +58,5 @@ public class TableRowEntity extends BaseEntity
     @JoinTable(name = "table_row_system_menu_relation",
             joinColumns = @JoinColumn(name = "system_menu_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "table_row_id", referencedColumnName = "id"))
-    private List<SystemMenuModel> menus; // 可以使用的菜单列表,只能是菜单使用
+    private List<MenuEntity> menus; // 可以使用的菜单列表,只能是菜单使用
 }

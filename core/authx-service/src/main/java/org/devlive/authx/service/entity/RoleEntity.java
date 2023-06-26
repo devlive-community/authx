@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.devlive.authx.service.entity.system.menu.SystemMenuModel;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Column;
@@ -41,5 +40,5 @@ public class RoleEntity extends BaseEntity
     @JoinTable(name = "authx_role_menu_relation",
             joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "id"))
-    private List<SystemMenuModel> menus;
+    private List<MenuEntity> menus;
 }

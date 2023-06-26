@@ -17,13 +17,13 @@
  */
 package org.devlive.authx.service.service.system.role;
 
-import org.devlive.authx.service.entity.system.menu.SystemMenuModel;
+import org.devlive.authx.service.entity.MenuEntity;
 import org.devlive.authx.service.entity.system.menu.SystemMenuTypeModel;
 import org.devlive.authx.service.entity.RoleEntity;
 import org.devlive.authx.service.entity.tree.TreeItemModel;
 import org.devlive.authx.service.entity.tree.TreeModel;
 import org.devlive.authx.service.service.RoleService;
-import org.devlive.authx.service.service.system.menu.SystemMenuIService;
+import org.devlive.authx.service.service.MenuService;
 import org.devlive.authx.service.entity.icon.IconModel;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,21 +53,21 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
     private RoleService systemRoleService;
 
     @Autowired
-    private SystemMenuIService systemMenuService;
+    private MenuService systemMenuService;
 
     @Override
     public List<TreeModel> findTreeMenuById(RoleEntity roleModel, SystemMenuTypeModel typeModel) {
         Map<Long, TreeModel> treeMap = new ConcurrentHashMap<>();
         // All currently available menus
-        Iterable<SystemMenuModel> activedMenus = systemMenuService.getByType(typeModel);
+        Iterable<MenuEntity> activedMenus = systemMenuService.getByType(typeModel);
         // The current permission has a menu
         RoleEntity role = this.systemRoleService.getModelById(roleModel.getId());
-        Map<Long, SystemMenuModel> roleMenus = new ConcurrentHashMap<>();
+        Map<Long, MenuEntity> roleMenus = new ConcurrentHashMap<>();
         // Populate own menu
         role.getMenus().forEach(menu -> roleMenus.put(menu.getId(), menu));
         // Into the list
-        List<SystemMenuModel> menuList = StreamSupport.stream(activedMenus.spliterator(), false)
-                .sorted(Comparator.comparing(SystemMenuModel::getParent))
+        List<MenuEntity> menuList = StreamSupport.stream(activedMenus.spliterator(), false)
+                .sorted(Comparator.comparing(MenuEntity::getParent))
                 .collect(Collectors.toList());
         // Sets the parent menu sort
         menuList.forEach(menu -> {
@@ -128,9 +128,9 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
 
     @Override
     public List<TreeModel> findMenuByIds(List<RoleEntity> roles) {
-        List<SystemMenuModel> list = new ArrayList<>();
+        List<MenuEntity> list = new ArrayList<>();
         roles.forEach(role -> {
-            List<SystemMenuModel> menus = role.getMenus().stream().filter(v -> v.getType().getId() == 3).collect(Collectors.toList());
+            List<MenuEntity> menus = role.getMenus().stream().filter(v -> v.getType().getId() == 3).collect(Collectors.toList());
             list.addAll(menus);
         });
         return this.getTree(list.stream().distinct().collect(Collectors.toList()));
@@ -142,7 +142,7 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
      * @param roles source role list
      * @return tree model list
      */
-    private List<TreeModel> getTree(List<SystemMenuModel> roles) {
+    private List<TreeModel> getTree(List<MenuEntity> roles) {
         Map<Long, TreeModel> treeMap = new ConcurrentHashMap<>();
         // Assembly menu, divided into father and son menu
 //        roles.forEach((SystemMenuModel menu) -> {
@@ -197,10 +197,10 @@ public class SystemRoleSeniorServiceImpl implements SystemRoleSeniorService {
      * @param models 数据集合
      * @return 树形结构数据
      */
-    public List<TreeModel> getChildren(Long id, List<SystemMenuModel> models) {
+    public List<TreeModel> getChildren(Long id, List<MenuEntity> models) {
         // 子数据存储器
         List<TreeModel> childrens = new ArrayList<>();
-        for (SystemMenuModel model : models) {
+        for (MenuEntity model : models) {
             // 遍历所有节点,将所有数据的父id与传过来的根节点的id比较,或者-1.相等说明: 为该根节点的子节点
             if (model.getParent().equals(id)) {
                 TreeModel support = new TreeModel();

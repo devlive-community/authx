@@ -20,10 +20,11 @@ package org.devlive.authx.server.controller.table;
 import org.devlive.authx.common.page.PageModel;
 import org.devlive.authx.param.page.PageParam;
 import org.devlive.authx.param.table.TableRowCreateParam;
+import org.devlive.authx.service.entity.MenuEntity;
 import org.devlive.authx.service.entity.common.CommonResponseModel;
-import org.devlive.authx.service.entity.system.menu.SystemMenuModel;
 import org.devlive.authx.service.entity.table.TableRowEntity;
-import org.devlive.authx.service.service.system.menu.SystemMenuIService;
+import org.devlive.authx.service.repository.MenuRepository;
+import org.devlive.authx.service.service.MenuService;
 import org.devlive.authx.service.service.table.TableRowIService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,30 +52,39 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "api/v1/table/row")
-public class TableRowController {
+public class TableRowController
+{
 
     @Autowired
     private TableRowIService service;
 
     @Autowired
-    private SystemMenuIService menuService;
+    private MenuService menuService;
+    private final MenuRepository menuRepository;
 
-    public CommonResponseModel getAll(@Validated PageParam param) {
+    public TableRowController(MenuRepository menuRepository)
+    {
+        this.menuRepository = menuRepository;
+    }
+
+    public CommonResponseModel getAll(@Validated PageParam param)
+    {
         Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
         return CommonResponseModel.success(this.service.getAllByPage(pageable));
     }
 
     @PostMapping
-    public CommonResponseModel add(@RequestBody @Validated TableRowCreateParam param) {
+    public CommonResponseModel add(@RequestBody @Validated TableRowCreateParam param)
+    {
         TableRowEntity model = new TableRowEntity();
         BeanUtils.copyProperties(param, model);
         model.setChecked(param.getChecked());
         model.setActive(param.getActive());
         model.setName(param.getProperties());
         // 封装关联的菜单信息
-        List<SystemMenuModel> menus = new ArrayList<>();
+        List<MenuEntity> menus = new ArrayList<>();
         Arrays.asList(param.getMenus()).forEach(v -> {
-            SystemMenuModel temp = (SystemMenuModel) this.menuService.getModelById(Long.valueOf(v));
+            MenuEntity temp = this.menuRepository.findById(Long.valueOf(v)).get();
             if (!ObjectUtils.isEmpty(temp)) {
                 menus.add(temp);
             }
@@ -85,7 +95,8 @@ public class TableRowController {
 
     @GetMapping(value = "{menu}")
     public CommonResponseModel getByMenu(@PathVariable(value = "menu") String menu,
-                                         @Validated PageParam param) {
+                                         @Validated PageParam param)
+    {
         Pageable pageable = PageModel.getPageable(param.getPage(), param.getSize());
         return this.service.getAllByMenus(pageable, menu);
     }

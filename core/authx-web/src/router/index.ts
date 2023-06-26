@@ -41,6 +41,11 @@ const routes: Array<RouteRecordRaw> = [
         name: 'methods',
         path: 'methods',
         component: () => import('@/views/method/MethodView.vue')
+      },
+      {
+        name: 'menus',
+        path: 'menus',
+        component: () => import('@/views/menu/MenuView.vue')
       }
     ]
   },
