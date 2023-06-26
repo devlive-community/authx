@@ -57,6 +57,11 @@ const routes: Array<RouteRecordRaw> = [
         name: '404',
         path: '404',
         component: () => import('@/views/common/code/PageNotFound.vue')
+      },
+      {
+        name: 'network',
+        path: 'network',
+        component: () => import('@/views/common/code/PageNetwork.vue')
       }
     ]
   }

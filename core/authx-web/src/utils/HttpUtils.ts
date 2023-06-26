@@ -60,6 +60,9 @@ export class HttpUtils {
         }
         Message.error(response.message)
       }
+    } else if (response.code.toString() === 'ERR_NETWORK') {
+      Message.error(response.message)
+      router.push('/common/network')
     }
     return response
   }
