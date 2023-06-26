@@ -5,7 +5,7 @@
         <FastDocLayoutHeader :is-logined="isLogined" :user-info="userInfo">
         </FastDocLayoutHeader>
       </Affix>
-      <Layout :style="{padding: '0', height: '650px', background: '#fff'}">
+      <Layout :style="{padding: '0', 'min-height': '650px', background: '#fff'}">
         <Sider hide-trigger :style="{background: '#fff'}">
           <FastDocLayoutAside :menus="menus">
           </FastDocLayoutAside>

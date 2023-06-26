@@ -1,4 +1,4 @@
-/**
+package org.devlive.authx.validation.menu; /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -15,31 +15,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.devlive.authx.param.system.menu;
 
-import org.devlive.authx.validation.menu.MenuRequireValidation;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.Constraint;
+import javax.validation.Payload;
+import java.lang.annotation.*;
 
 /**
- * <p> SystemRoleBasicParam </p>
- * <p> Description : SystemRoleBasicParam </p>
+ * <p> SystemRoleValidation </p>
+ * <p> Description : SystemRoleValidation </p>
  * <p> Author : qianmoQ </p>
  * <p> Version : 1.0 </p>
- * <p> Create Time : 2019-01-26 16:20 </p>
- * <p> Author Email: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
+ * <p> Create Time : 2019-01-26 15:01 </p>
+ * <p> Author Eamil: <a href="mailTo:shichengoooo@163.com">qianmoQ</a> </p>
  */
-@Data
-@ToString
-@AllArgsConstructor
-@NoArgsConstructor
-public class SystemMenuRequireParam {
+@Documented
+@Constraint(validatedBy = MenuRequireValidationValidator.class)
+@Target({ElementType.METHOD, ElementType.FIELD})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MenuRequireValidation
+{
 
-    @NotEmpty(message = "system menu id must not null")
-    @MenuRequireValidation
-    private String id;
+    String message() default "the menu id not exists";
+
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
 
 }

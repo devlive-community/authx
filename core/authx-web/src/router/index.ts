@@ -41,6 +41,22 @@ const routes: Array<RouteRecordRaw> = [
         name: 'methods',
         path: 'methods',
         component: () => import('@/views/method/MethodView.vue')
+      },
+      {
+        name: 'menus',
+        path: 'menus',
+        component: () => import('@/views/menu/MenuView.vue')
+      }
+    ]
+  },
+  {
+    path: '/json',
+    component: LayoutContainer,
+    children: [
+      {
+        name: 'pretty',
+        path: 'pretty',
+        component: () => import('@/views/json/JsonPrettyView.vue')
       }
     ]
   },
@@ -57,6 +73,11 @@ const routes: Array<RouteRecordRaw> = [
         name: '404',
         path: '404',
         component: () => import('@/views/common/code/PageNotFound.vue')
+      },
+      {
+        name: 'network',
+        path: 'network',
+        component: () => import('@/views/common/code/PageNetwork.vue')
       }
     ]
   }

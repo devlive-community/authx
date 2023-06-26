@@ -22,7 +22,7 @@ import org.devlive.authx.service.entity.common.CommonResponseModel;
 import org.devlive.authx.service.entity.table.TableRowEntity;
 import org.devlive.authx.service.repository.table.TableRowRepository;
 import org.devlive.authx.service.service.ServiceSupport;
-import org.devlive.authx.service.entity.system.menu.SystemMenuModel;
+import org.devlive.authx.service.entity.MenuEntity;
 import org.devlive.authx.service.service.table.TableRowIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -77,9 +77,9 @@ public class TableRowIServiceImpl implements TableRowIService
 
     @Override
     public CommonResponseModel getAllByMenus(Pageable pageable, String... menus) {
-        List<SystemMenuModel> models = new ArrayList<>();
+        List<MenuEntity> models = new ArrayList<>();
         Arrays.asList(menus).forEach(v -> {
-            SystemMenuModel menu = new SystemMenuModel();
+            MenuEntity menu = new MenuEntity();
             menu.setId(Long.valueOf(v));
             models.add(menu);
         });

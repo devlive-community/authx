@@ -17,7 +17,7 @@ public enum SystemMessageEnums
     SYSTEM_PARAMS_NOT_NULL(4011, "params must not null"),
     SYSTEM_PERSISTENCE(4012, "数据持久化异常，异常信息：%s"),
 
-    SYSTEM_JSON_ERROR(4100, "source not a valid json data");
+    SYSTEM_JSON_ERROR(4100, "无效的 JSON 数据");
 
     private Integer code;
     private String value;
@@ -42,5 +42,4 @@ public enum SystemMessageEnums
     {
         return code;
     }
-
 }

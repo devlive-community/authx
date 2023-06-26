@@ -16,7 +16,7 @@ package org.devlive.authx.service.repository.table; /**
  * limitations under the License.
  */
 
-import org.devlive.authx.service.entity.system.menu.SystemMenuModel;
+import org.devlive.authx.service.entity.MenuEntity;
 import org.devlive.authx.service.entity.table.TableRowEntity;
 import org.devlive.authx.service.repository.BaseRepository;
 import org.springframework.data.domain.Page;
@@ -41,6 +41,6 @@ public interface TableRowRepository extends BaseRepository<TableRowEntity, Long>
      * @param pageable 分页信息
      * @return 表头信息
      */
-    Page<TableRowEntity> findAllByMenusIn(List<SystemMenuModel> menus, Pageable pageable);
+    Page<TableRowEntity> findAllByMenusIn(List<MenuEntity> menus, Pageable pageable);
 
 }

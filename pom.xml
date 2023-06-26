@@ -246,11 +246,6 @@
                     <configLocation>configure/checks.xml</configLocation>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>${plugin.maven.sonar.version}</version>
-            </plugin>
         </plugins>
     </build>
 </project>

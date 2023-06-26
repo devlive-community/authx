@@ -10,6 +10,8 @@ const app = createApp(App)
 // 注册 fontawesome
 createIcons(app)
 // 注册 ElementPlus
-app.use(ViewUIPlus)
+app.use(ViewUIPlus, {
+  transfer: true
+})
 app.use(router)
 app.mount('#app')

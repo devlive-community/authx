@@ -203,54 +203,6 @@ export class SystemMenuComponent implements OnInit {
         return fields;
     }
 
-    createAndUpdate() {
-        this.page.type = 1;
-        if (this.param.type === '0') {
-            this.toastyService.error('menu type is must null');
-            return
-        }
-        if (this.param.id) {
-            this.systemMenuService.update(this.param).subscribe(
-                response => {
-                    if (response.code !== CodeConfig.SUCCESS) {
-                        this.toastyService.error(response.message);
-                    } else {
-                        this.initList(this.page, 1);
-                        this.createAndUpdateModal.hide();
-                    }
-                }
-            );
-        } else {
-            this.systemMenuService.register(this.param).subscribe(
-                response => {
-                    if (response.code !== CodeConfig.SUCCESS) {
-                        this.toastyService.error(response.message);
-                    } else {
-                        this.initList(this.page, 1);
-                        this.createAndUpdateModal.hide();
-                    }
-                }
-            );
-        }
-    }
-
-    pageChanged(event: any) {
-        this.page.number = event.page;
-        this.page.size = event.itemsPerPage;
-        this.page.type = this.methodType;
-        this.loading = this.systemMenuService.getList(this.page).subscribe(
-            response => {
-                if (response.code !== CodeConfig.SUCCESS) {
-                    this.toastyService.error(response.message);
-                } else {
-                    this.models = response.data.content;
-                    this.page = CommonPageModel.getPage(response.data);
-                    this.currentPage = this.page.number;
-                }
-            }
-        );
-    }
-
     // select method change
     methodChanged(data: { value: string[] }) {
         this.param.method = data.value;
