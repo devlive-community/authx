@@ -32,6 +32,7 @@ import RoleService from '@/services/RoleService'
 import { AssignMenuEntity } from '@/entity/RoleEntity'
 import { Message } from 'view-ui-plus'
 import { MenuEntity } from '@/entity/MenuEntity'
+import { RecursionUtils } from '@/utils/RecursionUtils'
 
 export default defineComponent({
   name: 'RoleAssignMenu',
@@ -70,8 +71,8 @@ export default defineComponent({
       const configure: AssignMenuEntity = new AssignMenuEntity()
       configure.roleId = this.info?.id
       const menus = new Array<number>()
-      this.assignedMenus
-        .forEach(value  => {
+      RecursionUtils.getAllCheckedNodes(this.assignedMenus as [])
+        .forEach(value => {
           if (value.checked) {
             menus.push(value.id as number)
           }
