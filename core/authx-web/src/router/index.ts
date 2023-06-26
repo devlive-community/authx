@@ -50,6 +50,17 @@ const routes: Array<RouteRecordRaw> = [
     ]
   },
   {
+    path: '/json',
+    component: LayoutContainer,
+    children: [
+      {
+        name: 'pretty',
+        path: 'pretty',
+        component: () => import('@/views/json/JsonPrettyView.vue')
+      }
+    ]
+  },
+  {
     path: '/common',
     component: LayoutContainer,
     children: [

@@ -6,6 +6,8 @@
       <template #method="{ row }">
         <Tooltip v-for="item in row.methods"
                  v-bind:key="item.id"
+                 max-width="300"
+                 transfer
                  :content="item.description">
           <Tag>
             {{ item.name }}
