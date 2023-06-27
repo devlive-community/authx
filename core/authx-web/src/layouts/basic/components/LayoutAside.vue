@@ -7,18 +7,27 @@
                  :name="menu.code">
           <template #title>
             {{ menu.title }}
+            <Badge v-if="menu.newd"
+                   text="新">
+            </Badge>
           </template>
           <MenuItem v-for="children in menu.children"
                     v-bind:key="children.id"
                     :name="children.code"
                     :to="children.url">
             {{ children.title }}
+            <Badge v-if="menu.newd"
+                   text="新">
+            </Badge>
           </MenuItem>
         </Submenu>
         <MenuItem v-else
                   :name="menu.code"
                   :to="menu.url">
           {{ menu.title }}
+          <Badge v-if="menu.newd"
+                 text="新">
+          </Badge>
         </MenuItem>
       </div>
     </Menu>
