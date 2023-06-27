@@ -8,7 +8,14 @@ repo_name: devlive-community/authx
 repo_url: https://github.com/devlive-community/authx
 edit_uri: "https://github.com/devlive-community/authx/blob/dev/docs/docs"
 
+banners:
+  - title: AuthX 1.0.6 已经发布
+    link: /changelog/latest.html
+    description: <a href="https://github.com/devlive-community/authx"> 如果您 ❤️ AuthX? 请在 GitHub 上点一个 🌟 </a>
+
 copyright: Copyright &copy; 2023 Devlive Community
+
+use_directory_urls: false
 
 theme:
   name: material
@@ -96,14 +103,28 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
 
+plugins:
+  - search
+  - git-revision-date-localized:
+      enable_creation_date: true
+      fallback_to_build_date: true
+      type: date
+  - git-authors
+  - redirects:
+      redirect_maps:
+        release-latest.md: changelog/latest.md
+
 nav:
   - index.md
-  - 系统管理:
-      - docs/system/user/home.md
+  - 使用文档:
+      - docs/user/home.md
+      - docs/role/home.md
+      - docs/method/home.md
   - 发布日志:
-      - 1.0.5: changelog/20191115-1.0.5.md
-      - 1.0.4: changelog/20190617-1.0.4.md
-      - 1.0.3: changelog/20190524-1.0.3.md
-      - 1.0.2: changelog/20190509-1.0.2.md
-      - 1.0.1: changelog/20190507-1.0.1.md
-      - 1.0.0: changelog/20190505-1.0.0.md
+      - changelog/latest.md
+      - changelog/1.0.5.md
+      - changelog/1.0.4.md
+      - changelog/1.0.3.md
+      - changelog/1.0.2.md
+      - changelog/1.0.1.md
+      - changelog/1.0.0.md

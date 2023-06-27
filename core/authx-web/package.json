@@ -1,6 +1,6 @@
 {
   "name": "AuthX",
-  "version": "1.6.0-SNAPSHOT",
+  "version": "1.6.0",
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve",

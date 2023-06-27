@@ -3,7 +3,7 @@ export class MenuEntity {
   code: string | undefined
   id: number | undefined
   name: string | undefined
-  isNew: boolean | undefined
+  newd: boolean | undefined
   selected: boolean | undefined
   sorted: number | undefined
   tips: string | undefined
