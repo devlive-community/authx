@@ -5,7 +5,15 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
-    component: LayoutContainer
+    redirect: '/dashboard',
+    component: LayoutContainer,
+    children: [
+      {
+        path: '/dashboard',
+        name: 'dashboard',
+        component: () => import('@/views/dashboard/DashboardHome.vue')
+      }
+    ]
   },
   {
     path: '/auth',
