@@ -5,12 +5,12 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.devlive.authx.common.enums.SystemMessageEnums;
-import org.devlive.authx.service.entity.system.interfaces.SystemInterfaceModel;
 import org.devlive.authx.service.entity.MethodEntity;
 import org.devlive.authx.service.entity.RoleEntity;
-import org.devlive.authx.service.service.system.interfaces.SystemInterfaceService;
+import org.devlive.authx.service.entity.system.interfaces.SystemInterfaceModel;
 import org.devlive.authx.service.service.MethodService;
 import org.devlive.authx.service.service.RoleService;
+import org.devlive.authx.service.service.system.interfaces.SystemInterfaceService;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.ConfigAttribute;
@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import javax.servlet.http.HttpServletRequest;
+
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -60,6 +61,10 @@ public class AuthXAccessDecisionManager implements AccessDecisionManager {
         for (GrantedAuthority grantedAuthority : authentication.getAuthorities()) {
             // TODO：抽取权限过来的数据并解析(目前通过数据库抽取后期加入缓冲中)
             String granted = grantedAuthority.getAuthority();
+            if (granted.equals("ROLE_ANONYMOUS")) {
+                log.warn("Role " + granted + " is not allowed");
+                return;
+            }
             RoleEntity roleModel = this.systemRoleService.getModelById(Long.valueOf(granted));
             roleModel.getMenus().forEach(m -> {
                 if (ObjectUtils.isEmpty(menus.get(m.getId()))) {
