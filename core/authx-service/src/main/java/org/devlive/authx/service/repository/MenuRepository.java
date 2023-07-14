@@ -1,10 +1,13 @@
 package org.devlive.authx.service.repository;
 
 import org.devlive.authx.service.entity.MenuEntity;
+import org.devlive.authx.service.entity.MethodEntity;
 import org.devlive.authx.service.entity.system.menu.SystemMenuTypeModel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
+
+import java.util.List;
 
 public interface MenuRepository extends PagingAndSortingRepository<MenuEntity, Long>
 {
@@ -49,4 +52,7 @@ public interface MenuRepository extends PagingAndSortingRepository<MenuEntity, L
      */
     MenuEntity findByUrl(String url);
 
+    List<MenuEntity> findAllByIsSystemIsTrue();
+
+    MenuEntity findByUrlAndMethodsContaining(String url, MethodEntity method);
 }

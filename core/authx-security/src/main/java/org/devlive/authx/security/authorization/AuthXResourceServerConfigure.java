@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.devlive.authx.security.handler.AuthXAccessDeniedHandler;
 import org.devlive.authx.security.point.AuthXAuthenticationEntryPoint;
 import org.devlive.authx.service.entity.MethodEntity;
-import org.devlive.authx.service.service.system.interfaces.SystemInterfaceService;
+import org.devlive.authx.service.repository.MenuRepository;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,20 +18,23 @@ import java.util.List;
 @Configuration
 @EnableResourceServer
 @Slf4j
-public class AuthXResourceServerConfigure extends ResourceServerConfigurerAdapter {
+public class AuthXResourceServerConfigure extends ResourceServerConfigurerAdapter
+{
 
     private final ResourceServerTokenServices resourceServerTokenServices;
     private final AuthXAccessDeniedHandler accessDeniedHandler;
-    private final SystemInterfaceService systemInterfaceService;
+    private final MenuRepository menuRepository;
 
-    public AuthXResourceServerConfigure(ResourceServerTokenServices resourceServerTokenServices, AuthXAccessDeniedHandler accessDeniedHandler, SystemInterfaceService systemInterfaceService) {
+    public AuthXResourceServerConfigure(ResourceServerTokenServices resourceServerTokenServices, AuthXAccessDeniedHandler accessDeniedHandler, MenuRepository menuRepository)
+    {
         this.resourceServerTokenServices = resourceServerTokenServices;
         this.accessDeniedHandler = accessDeniedHandler;
-        this.systemInterfaceService = systemInterfaceService;
+        this.menuRepository = menuRepository;
     }
 
     @Override
-    public void configure(ResourceServerSecurityConfigurer resources) {
+    public void configure(ResourceServerSecurityConfigurer resources)
+    {
         resources.resourceId(AuthXOauth2Support.SECURITY_RESOURCE_ID).tokenServices(resourceServerTokenServices)
                 .accessDeniedHandler(accessDeniedHandler)
                 .authenticationEntryPoint(new AuthXAuthenticationEntryPoint());
@@ -40,17 +43,17 @@ public class AuthXResourceServerConfigure extends ResourceServerConfigurerAdapte
     @Override
     public void configure(HttpSecurity http) throws Exception {
         HttpSecurity.RequestMatcherConfigurer configurer = http.requestMatchers();
-        this.systemInterfaceService.getAllByWhiteIsTrueAndActiveTrueAndSystemTrue()
+        this.menuRepository.findAllByIsSystemIsTrue()
                 .forEach(v -> {
                     List<MethodEntity> methods = v.getMethods();
                     for (MethodEntity method : methods) {
                         try {
                             configurer.and()
                                     .authorizeRequests()
-                                    .antMatchers(getMethod(method.getMethod()), v.getPath())
+                                    .antMatchers(getMethod(method.getMethod()), v.getUrl())
                                     .permitAll();
                         } catch (Exception e) {
-                            log.error("authorize request error", e.getMessage());
+                            log.error("Authorize request {} method {} error", method.getMethod(), v.getUrl(), e.getMessage());
                         }
                     }
                 });
