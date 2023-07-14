@@ -53,6 +53,9 @@ public class MenuEntity extends BaseEntity
     @Column(name = "description")
     private String description;
 
+    @Column(name = "is_system")
+    private Boolean isSystem;
+
     @OneToOne(fetch = FetchType.EAGER)
     @JoinTable(name = "system_menu_type_relation",
             joinColumns = @JoinColumn(name = "system_menu_id", referencedColumnName = "id"),
