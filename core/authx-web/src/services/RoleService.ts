@@ -1,6 +1,6 @@
 import { BaseService } from '@/services/BaseService'
 import { ResponseEntity } from '@/entity/ResponseEntity'
-import HttpUtils from '@/utils/HttpUtils'
+import HttpUtils from '@/utils/http'
 import { AssignMenuEntity } from '@/entity/RoleEntity'
 
 const baseUrl = '/api/v1/role'

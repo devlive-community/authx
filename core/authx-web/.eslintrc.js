@@ -1,11 +1,11 @@
 module.exports = {
   root: true,
   env: {
-    node: true
+    node: true,
+    'vue/setup-compiler-macros': true
   },
   extends: [
-    'plugin:vue/vue3-essential',
-    '@vue/standard',
+    'plugin:vue/vue3-recommended',
     '@vue/typescript/recommended'
   ],
   parserOptions: {
@@ -13,7 +13,6 @@ module.exports = {
   },
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    '@typescript-eslint/ban-ts-comment': 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
   }
 }

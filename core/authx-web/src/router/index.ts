@@ -1,7 +1,7 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import LayoutContainer from '@/layouts/basic/Layout.vue'
+import { createRouter, createWebHashHistory } from 'vue-router'
+import LayoutContainer from '@/layouts/basic/LayoutContainer.vue'
 
-const routes: Array<RouteRecordRaw> = [
+const routes: Array<any> = [
   {
     path: '/',
     name: 'home',
@@ -100,7 +100,8 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   if (to.matched.length === 0) {
     next({ name: '404' })
-  } else {
+  }
+  else {
     next()
   }
 })

@@ -1,4 +1,4 @@
-import HttpUtils from '@/utils/HttpUtils'
+import HttpUtils from '@/utils/http'
 
 const baseUrl = 'api/v1/overview'
 

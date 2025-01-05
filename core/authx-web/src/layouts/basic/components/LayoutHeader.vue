@@ -1,18 +1,15 @@
 <template>
   <div>
-    <Header>
-      <Menu mode="horizontal" theme="dark">
+    <ShadcnLayoutHeader>
+      <ShadcnMenu direction="horizontal">
         <div class="layout-logo">
-          <MenuItem name="home" to="/">
-            <Avatar
-              size="45"
-              src="/static/images/logo.png">
-            </Avatar>
-          </MenuItem>
+          <ShadcnMenuItem name="home" to="/">
+            <ShadcnAvatar src="/static/images/logo.png"/>
+          </ShadcnMenuItem>
         </div>
         <div class="layout-nav">
           <div v-if="isLogined">
-            <Dropdown placement="bottom-end">
+            <ShadcnDropdown placement="bottom-end">
               <a href="javascript:void(0)">
                 <Avatar style="background-color: #87d068">
                   {{ userInfo.name }}
@@ -20,73 +17,47 @@
               </a>
               <template #list>
                 <DropdownMenu>
-                  <DropdownItem @click="handlerSignOut">
+                  <DropdownItem @click="logout">
                     <font-awesome-icon :icon="['fas', 'sign-out']"/>
                     退出
                   </DropdownItem>
                 </DropdownMenu>
               </template>
-            </Dropdown>
+            </ShadcnDropdown>
           </div>
           <div v-else>
-            <MenuItem name="auth_login" to="/auth/login">
+            <ShadcnMenuItem name="auth_login" to="/auth/login">
               <font-awesome-icon :icon="['fas', 'right-to-bracket']"/>
               登录
-            </MenuItem>
-            <MenuItem name="auth_login" to="/auth/register">
+            </ShadcnMenuItem>
+            <ShadcnMenuItem name="auth_login" to="/auth/register">
               <font-awesome-icon :icon="['fas', 'user-plus']"/>
               注册
-            </MenuItem>
+            </ShadcnMenuItem>
           </div>
         </div>
-      </Menu>
-    </Header>
+      </ShadcnMenu>
+    </ShadcnLayoutHeader>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import SupportUtils from '@/utils/SupportUtils'
+<script setup lang="ts">
 import router from '@/router'
+import AuthService from '@/services/auth'
 
-export default defineComponent({
-  name: 'FastDocLayoutHeader',
-  props: {
-    isLogined: {
-      type: Boolean,
-      default: false
-    },
-    userInfo: {
-      type: null
-    }
-  },
-  methods: {
-    handlerSignOut () {
-      localStorage.removeItem(SupportUtils.token)
-      router.push('/auth/login')
-    }
-  }
+interface Props
+{
+  isLogined: boolean
+  userInfo: any
+}
+
+withDefaults(defineProps<Props>(), {
+  isLogined: false,
+  userInfo: null
 })
+
+const logout = () => {
+  AuthService.logout()
+  router.push('/auth/login')
+}
 </script>
-
-<style scoped>
-.layout {
-  border: 1px solid #d7dde4;
-  background: #f5f7f9;
-  position: relative;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.layout-logo {
-  border-radius: 3px;
-  float: left;
-  position: relative;
-  left: 20px;
-}
-
-.layout-nav {
-  float: right;
-  margin: 0 20px 0 auto;
-}
-</style>

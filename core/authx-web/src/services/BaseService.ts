@@ -1,4 +1,4 @@
-import HttpUtils from '@/utils/HttpUtils'
+import HttpUtils from '@/utils/http'
 import { ResponseEntity } from '@/entity/ResponseEntity'
 import { PageEntity } from '@/entity/PageEntity'
 

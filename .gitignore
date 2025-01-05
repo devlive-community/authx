@@ -180,6 +180,7 @@ core/authx-web/yarn.lock
 core/authx-web/node_modules
 core/authx-web/node
 core/authx-web/dist
+core/authx-web/depcheck-output.json
 
 dist/
 !script/bin/

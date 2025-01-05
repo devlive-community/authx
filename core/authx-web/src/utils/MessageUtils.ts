@@ -1,5 +1,5 @@
 import { ErrorValidationEntity } from '@/entity/ErrorValidationEntity'
-import { Message } from 'view-ui-plus'
+import Message from 'view-shadcn-ui'
 
 export class MessageUtils {
   handlerError (error: ErrorValidationEntity) {

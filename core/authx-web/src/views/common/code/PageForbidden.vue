@@ -10,7 +10,7 @@
 </template>
 <script>
 import router from '@/router'
-import SupportUtils from '@/utils/SupportUtils'
+import SupportUtils from '@/utils/support'
 
 export default {
   methods: {

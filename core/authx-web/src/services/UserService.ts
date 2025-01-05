@@ -1,6 +1,6 @@
 import { BaseService } from '@/services/BaseService'
 import { ResponseEntity } from '@/entity/ResponseEntity'
-import HttpUtils from '@/utils/HttpUtils'
+import HttpUtils from '@/utils/http'
 import { PageEntity } from '@/entity/PageEntity'
 import { AssignRoleEntity } from '@/entity/RoleEntity'
 import { UserEntity } from '@/entity/UserEntity'

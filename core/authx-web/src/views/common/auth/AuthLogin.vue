@@ -1,93 +1,94 @@
 <template>
-  <div class="login_container">
-    <div class="login_box">
-      <div class="avatar_box">
-        <Avatar
-          size="80"
-          src="/static/images/logo.png">
-        </Avatar>
-      </div>
-      <div class="login_form">
-        <Login @on-submit="handlerSubmit">
-          <UserName name="username"/>
-          <Password name="password"/>
-          <div class="login_btn">
-            <Space>
-              <Button size="large" to="/auth/register">注册</Button>
-              <Submit/>
-            </Space>
+  <div class="h-screen flex items-center justify-center">
+    <div class="w-full max-w-md px-4 mx-auto">
+      <ShadcnCard class="w-full">
+        <template #title>
+          <div class='flex items-center justify-center'>
+            <ShadcnAvatar src="/static/images/logo.png" alt="AuthX"/>
           </div>
-        </Login>
-      </div>
+        </template>
+
+        <div class="px-6 py-8 relative">
+          <ShadcnForm v-model="formState" @on-submit="onSubmit">
+            <ShadcnFormItem name="username"
+                            label="用户名"
+                            :rules="[
+                              { required: true, message: '请输入用户名！' }
+                            ]">
+              <ShadcnInput v-model="formState.username" name="username" placeholder="请输入用户名">
+                <template #prefix>
+                  <ShadcnIcon icon="User" size="18"/>
+                </template>
+              </ShadcnInput>
+            </ShadcnFormItem>
+
+            <ShadcnFormItem name="password"
+                            label="密码"
+                            :rules="[
+                              { required: true, message: '请输入密码！' }
+                            ]">
+              <ShadcnInput v-model="formState.password" name="password" type="password" placeholder="请输入密码">
+                <template #prefix>
+                  <ShadcnIcon icon="Lock" size="18"/>
+                </template>
+              </ShadcnInput>
+            </ShadcnFormItem>
+
+            <ShadcnSpace wrap>
+              <ShadcnButton class="w-full"
+                            submit
+                            :disabled="loading"
+                            :loading="loading">
+                登录
+              </ShadcnButton>
+
+              <ShadcnDivider class="text-sm text-gray-400 py-2"
+                             orientation="center"
+                             text="还没有用户？">
+              </ShadcnDivider>
+
+              <ShadcnButton class="w-full text-center"
+                            type="default"
+                            to="/auth/register">
+                注册
+              </ShadcnButton>
+            </ShadcnSpace>
+          </ShadcnForm>
+        </div>
+      </ShadcnCard>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import AuthService from '@/services/AuthService'
-import { Message } from 'view-ui-plus'
-import SupportUtils from '@/utils/SupportUtils'
+<script setup lang="ts">
+import { getCurrentInstance, ref } from 'vue'
+import AuthService from '@/services/auth'
 import router from '@/router'
 
-export default {
-  created () {
-    localStorage.removeItem(SupportUtils.token)
-    localStorage.removeItem(SupportUtils.username)
-  },
-  methods: {
-    handlerSubmit (valid: any, { username, password }: any) {
-      if (valid) {
-        AuthService.doAuth(username, password)
-          .then(response => {
-            if (response?.data.code === 2000) {
-              AuthService.saveAuth(username, response?.data?.data)
-              setTimeout(() => {
-                router.push('/')
-              }, 200)
-            }
-          })
-          .catch(error => {
-            const message = error?.response ? error?.response?.data.message : error.message
-            Message.error(message)
-          })
-      }
-    }
-  }
+const { proxy } = getCurrentInstance()!
+
+const loading = ref(false)
+const formState = ref({
+  username: null,
+  password: null
+})
+
+const onSubmit = () => {
+  AuthService.doAuth(formState.value)
+             .then(response => {
+               if (response?.data.code === 2000) {
+                 AuthService.saveAuth(response?.data?.data)
+                 setTimeout(() => {
+                   router.push('/')
+                 }, 200)
+               }
+             })
+             .catch(error => {
+               const message = error?.response ? error?.response?.data.message : error.message
+               proxy?.$Message.error({
+                 content: message,
+                 showIcon: true
+               })
+             })
 }
 </script>
-
-<style scoped>
-.login_container {
-  height: 75vh;
-}
-
-.login_box {
-  width: 450px;
-  height: 250px;
-  background-color: #ecf5ff;
-  border-radius: 20px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-
-  .avatar_box {
-  //border: 1px solid #eee; border-radius: 50%; padding: 10px;
-  //box-shadow: 0 0 1px #ddd; position: absolute; left: 50%;
-    transform: translate(-50%, -50%);
-  }
-}
-
-.login_form {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.login_btn {
-  display: flex;
-  justify-content: flex-end;
-}
-</style>
